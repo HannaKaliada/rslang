@@ -3,7 +3,7 @@ function mainPage() {
   const header = document.createElement('h2');
   header.innerText = 'This is main page';
   const list = document.createElement('ul');
-  list.innerHTML = '<li><a href="#/statistics">Statistic page</a></li><li><a href="#/game">Game page</a></li>';
+  list.innerHTML = '<li><a href="#/statis-tics">Statistic page</a></li><li><a href="#/game">Game page</a></li>';
   page.append(header, list);
 }
 function statistics() {
@@ -19,12 +19,12 @@ function game() {
   const header = document.createElement('h2');
   header.innerText = 'This is game page';
   const list = document.createElement('ul');
-  list.innerHTML = '<li><a href="#/statistics">Statistic page</a></li><li><a href="#/">Main page</a></li>';
+  list.innerHTML = '<li><a href="#/statis-tics">Statistic page</a></li><li><a href="#/">Main page</a></li>';
   page.append(header, list);
 }
 const routes = {
   '#/': mainPage,
-  '#/statistics': statistics,
+  '#/statis-tics': statistics,
   '#/game': game,
 };
 

@@ -9,10 +9,10 @@ class Routing {
   }
 
   navigation() {
-    if (!window.location.href.match(/#\/\w*$/)) {
+    if (!window.location.href.match(/#\/.*$/)) {
       return;
     }
-    const route = window.location.href.match(/#\/\w*$/)[0];
+    const route = window.location.href.match(/#\/.*$/)[0];
     this.root.innerHTML = '';
     this.routes[route]();
   }
@@ -20,7 +20,7 @@ class Routing {
   init() {
     this.root = document.querySelector('.root');
     window.onpopstate = this.navigation.bind(this);
-    if (!window.location.href.match(/#\/\w*$/)) {
+    if (!window.location.href.match(/#\/.*$/)) {
       window.history.replaceState({}, '#/', `${window.location.origin}#/`);
       this.navigation('#/');
     } else {
