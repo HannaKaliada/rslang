@@ -7,6 +7,7 @@ function mainPage() {
   page.append(header, list);
   return page;
 }
+
 function statistics() {
   const page = document.createElement('div');
   const header = document.createElement('h2');
@@ -16,6 +17,7 @@ function statistics() {
   page.append(header, list);
   return page;
 }
+
 function game() {
   const page = document.createElement('div');
   const header = document.createElement('h2');
@@ -25,10 +27,22 @@ function game() {
   page.append(header, list);
   return page;
 }
+
+function speakGame() {
+  const page = document.createElement('div');
+  const header = document.createElement('h2');
+  header.innerText = 'This is Speak ';
+  const list = document.createElement('ul');
+  list.innerHTML = '<li><a href="#/speak-it">Statistic page</a></li><li><a href="#/">Main page</a></li>';
+  page.append(header, list);
+  return page;
+}
+
 const routes = {
   '#/': mainPage(),
   '#/statistics': statistics(),
   '#/game': game(),
+  '#/speak-it': speakGame(),
 };
 
 export default routes;

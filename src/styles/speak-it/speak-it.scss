@@ -1,0 +1,23 @@
+.speak-it {
+
+  &__controls {
+    display: flex;
+    justify-content: space-around;
+
+    &-pages,
+    &-groups {
+      margin: 10px
+    }
+
+    &-level {
+      display: flex;
+    }
+
+    &-app {
+
+      &__btn {
+        margin: 10px
+      }
+    }
+  }
+}
