@@ -10,3 +10,5 @@ function createElement(tag, className, attrs) {
   }
   return element;
 }
+
+export default createElement;
