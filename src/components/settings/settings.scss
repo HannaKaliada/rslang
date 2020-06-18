@@ -1,0 +1,18 @@
+.limits {
+    display: flex;
+    justify-content: center;
+    .limit {
+        label{
+            margin-right: 10px;
+        }
+        input {
+            vertical-align: middle;
+        }
+        output{
+            margin-left: 10px;
+        }
+    }
+    .limit:first-child {
+        margin-right: 30px;
+    }
+}
