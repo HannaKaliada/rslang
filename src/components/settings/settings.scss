@@ -1,18 +1,21 @@
 .limits {
-    display: flex;
-    justify-content: center;
-    .limit {
-        label{
-            margin-right: 10px;
-        }
-        input {
-            vertical-align: middle;
-        }
-        output{
-            margin-left: 10px;
-        }
+  display: flex;
+  justify-content: center;
+  .limit {
+    label {
+      margin-right: 10px;
     }
-    .limit:first-child {
-        margin-right: 30px;
+    input {
+      vertical-align: middle;
+
+      cursor: pointer;
     }
+    output {
+      min-width: 35px;
+      margin-left: 10px;
+    }
+  }
+  .limit:first-child {
+    margin-right: 30px;
+  }
 }
