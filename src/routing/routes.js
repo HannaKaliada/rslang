@@ -1,4 +1,5 @@
 import settings from '../components/settings/settings.js';
+import renderAboutTeamPage from '../components/about-team-page/about-team-page.js';
 
 function mainPage() {
     const page = document.querySelector('.root');
@@ -7,7 +8,8 @@ function mainPage() {
     const list = document.createElement('ul');
     list.innerHTML = `<li><a href="#/statis-tics">Statistic page</a></li>
   <li><a href="#/game">Game page</a></li>
-  <li><a href="#/settings">Settings</a></li>`;
+  <li><a href="#/settings">Settings</a></li>
+  <li><a href="#/about-team">About team page</a></li>`;
     page.append(header, list);
 }
 
@@ -33,21 +35,14 @@ function game() {
     page.append(header, list);
 }
 
-function aboutTeam() {
-    const page = document.querySelector('.root');
-    const header = document.createElement('h2');
-    header.innerText = 'This is about team page';
-    const list = document.createElement('ul');
-    list.innerHTML = '</li><li><a href="#/">Main page</a></li>';
-    page.append(header, list);
-}
+
 
 const routes = {
     '#/': mainPage,
     '#/statis-tics': statistics,
     '#/game': game,
     '#/settings': settings,
-    '#/about-team': aboutTeam,
+    '#/about-team': renderAboutTeamPage,
 };
 
 export default routes;
