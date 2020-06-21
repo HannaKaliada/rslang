@@ -1,48 +1,44 @@
+// eslint-disable-next-line import/extensions
+import settings from '../components/settings/settings.js';
+
 function mainPage() {
-  const page = document.createElement('div');
+  const page = document.querySelector('.root');
   const header = document.createElement('h2');
   header.innerText = 'This is main page';
   const list = document.createElement('ul');
-  list.innerHTML = '<li><a href="#/statistics">Statistic page</a></li><li><a href="#/game">Game page</a></li>';
+  list.innerHTML = `<li><a href="#/statis-tics">Statistic page</a></li>
+  <li><a href="#/game">Game page</a></li>
+  <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
-  return page;
 }
 
 function statistics() {
-  const page = document.createElement('div');
+  const page = document.querySelector('.root');
   const header = document.createElement('h2');
   header.innerText = 'This is statistics page';
   const list = document.createElement('ul');
-  list.innerHTML = '<li><a href="#/">Main page</a></li><li><a href="#/game">Game page</a></li>';
+  list.innerHTML = `<li><a href="#/">Main page</a></li>
+  <li><a href="#/game">Game page</a></li>
+  <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
-  return page;
 }
 
 function game() {
-  const page = document.createElement('div');
+  const page = document.querySelector('.root');
   const header = document.createElement('h2');
   header.innerText = 'This is game page';
   const list = document.createElement('ul');
-  list.innerHTML = '<li><a href="#/statistics">Statistic page</a></li><li><a href="#/">Main page</a></li>';
+  list.innerHTML = `<li><a href="#/statis-tics">Statistic page</a></li>
+  <li><a href="#/">Main page</a></li>
+  <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
-  return page;
-}
-
-function speakGame() {
-  const page = document.createElement('div');
-  const header = document.createElement('h2');
-  header.innerText = 'This is Speak ';
-  const list = document.createElement('ul');
-  list.innerHTML = '<li><a href="#/speak-it">Statistic page</a></li><li><a href="#/">Main page</a></li>';
-  page.append(header, list);
-  return page;
 }
 
 const routes = {
-  '#/': mainPage(),
-  '#/statistics': statistics(),
-  '#/game': game(),
-  '#/speak-it': speakGame(),
+  '#/': mainPage,
+  '#/statis-tics': statistics,
+  '#/game': game,
+  '#/settings': settings,
 };
 
 export default routes;

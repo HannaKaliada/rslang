@@ -22,7 +22,6 @@ export default function createStartPage(node) {
     // eslint-disable-next-line no-multi-assign
     State.create()
       .wordsData = data;
-    console.log(data);
     const speakIt = SpeakIt.create()
       .createContainer()
       .addControls()

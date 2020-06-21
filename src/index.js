@@ -10,7 +10,5 @@ import createStartPage from './components/mini game/speak-it/start-page';
 const routing = new Routing(routes);
 
 document.addEventListener('DOMContentLoaded', () => {
-  const { body } = document;
-  body.append(createStartPage(body));
-  // routing.init();
+  routing.init();
 });
