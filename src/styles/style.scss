@@ -1,3 +1,23 @@
 * {
   box-sizing: border-box;
 }
+
+.sign-in-form {
+  max-width: 390px;
+  display: flex;
+  flex-direction: column;
+  input,
+  .sign-in-form__label {
+    margin-bottom: 10px;
+  }
+}
+
+.sign-in-form__label {
+  display: block;
+  font-size: 1.4rem;
+}
+
+.sign-in-form__name,
+.sign-in-form__password {
+  padding: 0 5px;
+}
