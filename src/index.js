@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Routing from './routing/routing';
 import routes from './routing/routes';
-import createStartPage from './components/mini game/speak-it/start-page';
 
 const routing = new Routing(routes);
 
