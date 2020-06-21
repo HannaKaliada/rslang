@@ -67,14 +67,9 @@ actions = {
     const title = field.fieldTitle;
     const audio = elem.parentNode.querySelector('.speak-it__content-word__item-audio');
 
-    if (this.curWordElem) {
-      this.curWordElem.classList.toggle('speak-it__active');
-      elem.parentNode.classList.toggle('speak-it__active');
-      this.curWordElem = elem.parentNode;
-    } else {
-      this.curWordElem = elem.parentNode;
-      this.curWordElem.classList.toggle('speak-it__active');
-    }
+    if (this.curWordElem) this.curWordElem.classList.toggle('speak-it__active');
+    this.curWordElem = elem.parentNode;
+    this.curWordElem.classList.toggle('speak-it__active');
 
     if (word && img && title && audio) {
       img.setAttribute('src', word.image);
@@ -94,7 +89,7 @@ actions = {
       this.curWordElem = null;
     }
     const corrects = [...document.querySelectorAll('.speak-it__correct')];
-    if (corrects.length > 0) {
+    if (corrects.length) {
       corrects.forEach((elem) => elem.classList.remove('speak-it__correct'));
     }
   },
@@ -113,7 +108,7 @@ actions = {
     Content.create().container.append(result);
   },
 
-  lvl(elem) {
+  levelChange(elem) {
     elem.parentNode.classList.toggle('show');
     elem.nextSibling.classList.toggle('show');
   },

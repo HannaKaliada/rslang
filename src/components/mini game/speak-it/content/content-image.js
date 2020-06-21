@@ -43,8 +43,7 @@ class ImageField {
   }
 
   addContent() {
-    this.img = createDomElem('img', ['speak-it__content-info__img']);
-    this.img.setAttribute('src', '/assets/image/start-pic.jpg');
+    this.img = createDomElem('img', ['speak-it__content-info__img'], null, [['src', '/assets/image/start-pic.jpg']]);
     this.title = createDomElem('p', ['speak-it__content-info__img-title']);
     this.output = createDomElem('p', ['speak-it__content-info__img-input']);
     this.score = createDomElem('p', ['speak-it__content-info__img-score'], ['Score: 0']);

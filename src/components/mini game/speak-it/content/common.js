@@ -11,8 +11,9 @@ export default function createWordCards(data) {
         + '5.674zM19 26c-3.314 0-12-4.144-12-10S15.686 6 19 6s6 4.477 6 10-2.686 10-6 10z" fill-rule="evenodd"></path></svg>';
   const wordIcon = createDomElem('p', ['speak-it__content-word__item-icon']);
   wordIcon.innerHTML = icon;
-  const wordSelect = createDomElem('div', ['speak-it__content-word__item-select']);
-  wordSelect.setAttribute('data-word', word);
+  const wordSelect = createDomElem(
+    'div', ['speak-it__content-word__item-select'], null, [['data-word', word]],
+  );
   const wordTitle = createDomElem('p', ['speak-it__content-word__item-title'], [word]);
   const wordTranscription = createDomElem('p', ['speak-it__content-word__item-transcription'], [transcription]);
   const wordAudio = createAudio(audio, word, 'speak-it__content-word__item-audio', 'speak-it__content-word__item-source');
