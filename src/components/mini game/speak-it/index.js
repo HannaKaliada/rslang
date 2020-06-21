@@ -1,8 +1,24 @@
 import createDomElem from './common';
 import Controls from './controls';
 import Content from './content';
+import actions from './actions';
 
 let instance;
+
+function clickHandle(e) {
+  const first = 0;
+  const action = Object.entries(e.target.dataset);
+  if (action.length > 0) {
+    const [data, val] = action[first];
+    if (val === 'speak' && actions.recognition) {
+      actions[data](e.target, val);
+      return;
+    }
+    if (actions[data] && !actions.recognition) {
+      actions[data](e.target, val);
+    }
+  }
+}
 
 class SpeakIt {
   get container() {
@@ -41,8 +57,14 @@ class SpeakIt {
     const content = Content.create()
       .createContainer()
       .addStartImage()
+      .addWordsSet()
       .container;
     this.container.append(content);
+    return this;
+  }
+
+  addClickHandle() {
+    this.container.addEventListener('click', clickHandle);
     return this;
   }
 }

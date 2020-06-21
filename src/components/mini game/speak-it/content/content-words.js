@@ -1,4 +1,12 @@
 import createDomElem from '../common';
+import createWordCards from './common';
+import State from '../state';
+
+function getWordsNodes() {
+  const state = State.create()
+    .wordsData;
+  return state.map((elem) => createWordCards(elem));
+}
 
 let instance;
 
@@ -23,6 +31,16 @@ class WordsField {
   createContainer() {
     this.appContainer = createDomElem('div', ['speak-it__content-words']);
     return this;
+  }
+
+  addContent() {
+    this.container.append(...getWordsNodes());
+    return this;
+  }
+
+  updateContent() {
+    this.container.innerHTML = '';
+    this.container.append(...getWordsNodes());
   }
 }
 

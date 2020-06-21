@@ -37,7 +37,10 @@ class Content {
   }
 
   addWordsSet() {
-    const field = WordsField.create();
+    const field = WordsField.create()
+      .createContainer()
+      .addContent()
+      .container;
     this.container.append(field);
     return this;
   }

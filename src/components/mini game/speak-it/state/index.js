@@ -14,7 +14,6 @@ class State {
     this.group = 0;
     this.words = null;
     this.score = 0;
-    this.wrong = [];
     this.correct = [];
     return this;
   }
@@ -25,6 +24,21 @@ class State {
 
   get wordsData() {
     return this.words;
+  }
+
+  get correctWords() {
+    return this.correct;
+  }
+
+  resetScore() {
+    this.score = 0;
+    this.correct = [];
+    return this;
+  }
+
+  addPoint() {
+    this.score += 1;
+    return this;
   }
 }
 

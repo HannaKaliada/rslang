@@ -1,25 +1,9 @@
-import createDomElem from '../common';
-
-function createAudio(
-  src, audioName, audioClass, sourceClass,
-) {
-  const [
-    cardAudio,
-    cardAudioSource,
-  ] = [
-    createDomElem('audio', [audioClass]),
-    createDomElem('source', [sourceClass]),
-  ];
-  cardAudioSource.setAttribute('src', src);
-  cardAudioSource.setAttribute('type', 'audio/mpeg');
-  cardAudio.setAttribute('data-name', audioName);
-  cardAudio.append(cardAudioSource, 'Your browser does not support the audio element.');
-  return cardAudio;
-}
+// eslint-disable-next-line import/named
+import createDomElem, { createAudio } from '../common';
 
 export default function createWordCards(data) {
   const {
-    word, wordTranslate, audio,
+    word, transcription, audio,
   } = data;
   const icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="width: 40px;">'
         + '<path fill="currentColor" d="M15.788 13.007a3 3 0 110 5.985c.571 3.312 2.064 5.675 3.815 5.675 2.244 0 '
@@ -30,7 +14,7 @@ export default function createWordCards(data) {
   const wordSelect = createDomElem('div', ['speak-it__content-word__item-select']);
   wordSelect.setAttribute('data-word', word);
   const wordTitle = createDomElem('p', ['speak-it__content-word__item-title'], [word]);
-  const wordTranscription = createDomElem('p', ['speak-it__content-word__item-transcription'], [wordTranslate]);
+  const wordTranscription = createDomElem('p', ['speak-it__content-word__item-transcription'], [transcription]);
   const wordAudio = createAudio(audio, word, 'speak-it__content-word__item-audio', 'speak-it__content-word__item-source');
   return createDomElem('div', ['speak-it__content-word__item'], [wordSelect, wordTitle, wordTranscription, wordIcon, wordAudio]);
 }
