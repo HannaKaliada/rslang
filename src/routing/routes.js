@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/extensions
 import settings from '../components/settings/settings.js';
 
 function mainPage() {
@@ -11,7 +10,6 @@ function mainPage() {
   <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
 }
-
 function statistics() {
   const page = document.querySelector('.root');
   const header = document.createElement('h2');
@@ -22,7 +20,6 @@ function statistics() {
   <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
 }
-
 function game() {
   const page = document.querySelector('.root');
   const header = document.createElement('h2');
@@ -33,7 +30,6 @@ function game() {
   <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
 }
-
 const routes = {
   '#/': mainPage,
   '#/statis-tics': statistics,
