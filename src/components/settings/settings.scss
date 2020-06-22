@@ -19,3 +19,31 @@
     margin-right: 30px;
   }
 }
+
+.info-settings {
+  display: flex;
+  flex-direction: column;
+  p:first-child {
+    margin-top: 30px;
+  }
+  .btn {
+    max-width: 120px;
+    margin-top: 10px;
+  }
+  .warning {
+    color: red;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .success-notification {
+    color: green;
+  }
+  .success-notification,
+  .warning {
+    margin-bottom: 0;
+    font-weight: 700;
+  }
+  .hidden {
+    display: none;
+  }
+}

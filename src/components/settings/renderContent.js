@@ -31,5 +31,21 @@ export default function renderContent() {
           <output class="cards-limit-output" for="cards-limit">${localStorage.getItem('cardsLimit') || 80}</output>
         </div>
       </div>
+      <div class="info-settings">
+       <p>What information do you want to see on the cards?</p>
+      <label>
+      <input type="checkbox"  name="wordTranslation" class="settings-to-save" checked> Word translation</label>
+    <label>
+      <input type="checkbox" name="wordMeaning" class="settings-to-save"> Sentence explaining the meaning of the word</label>
+    <label>
+      <input type="checkbox" name="wordExample-" class="settings-to-save" checked> Sentence with an example of using the studied word</label>
+      <label>
+      <input type="checkbox" name="wordTranscription" class="settings-to-save"> Word transcription</label>
+      <label>
+      <input type="checkbox" name="wordImage" class="settings-to-save"> Image-association to the studied word</label>
+      <p class="warning hidden">At least one point must be chosen!</p>
+      <p class="success-notification hidden">Your settings have been successfully saved!</p>
+      <input class="btn btn-primary save-btn" type="button" value="Save">
+      </div>
     </div>`);
 }
