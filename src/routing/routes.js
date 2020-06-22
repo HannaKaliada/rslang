@@ -1,5 +1,5 @@
 import settings from '../components/settings/settings.js';
-import renderAboutTeamPage from '../components/about-team-page/about-team-page.js';
+import renderTeamPage from '../components/about-team-page/render-about-team-page.js';
 
 function mainPage() {
     const page = document.querySelector('.root');
@@ -42,7 +42,7 @@ const routes = {
     '#/statis-tics': statistics,
     '#/game': game,
     '#/settings': settings,
-    '#/about-team': renderAboutTeamPage,
+    '#/about-team': renderTeamPage,
 };
 
 export default routes;
