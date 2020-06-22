@@ -38,9 +38,9 @@ class Result {
       .map((obj) => wordRow(obj));
     const btns = ['return', 'new game']
       .map((str) => {
-        const btn = createDomElem('button', ['speak-it__result__btn', 'btn', 'btn-primary'], [str.toUpperCase()]);
-        btn.setAttribute('data-action', str);
-        return btn;
+        return createDomElem(
+          'button', ['speak-it__result__btn', 'btn', 'btn-primary'], [str.toUpperCase()], [['data-action', str]],
+        );
       });
     const btnsRow = createDomElem('div', ['speak-it__result__controls'], btns);
     const correctTitle = createDomElem('p', ['speak-it__result__title'], [`Correct: ${correctWords.length}`]);

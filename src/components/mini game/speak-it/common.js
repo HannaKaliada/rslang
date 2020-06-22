@@ -16,16 +16,6 @@ export default function createDomElem(
 export function createAudio(
   src, audioName, audioClass, sourceClass,
 ) {
-  const [
-    cardAudio,
-    cardAudioSource,
-  ] = [
-    createDomElem('audio', [audioClass]),
-    createDomElem('source', [sourceClass]),
-  ];
-  cardAudioSource.setAttribute('src', src);
-  cardAudioSource.setAttribute('type', 'audio/mpeg');
-  cardAudio.setAttribute('data-name', audioName);
-  cardAudio.append(cardAudioSource, 'Your browser does not support the audio element.');
-  return cardAudio;
+  const cardAudioSource = createDomElem('source', [sourceClass], null, [['src', src], ['type', 'audio/mpeg']]);
+  return createDomElem('audio', [audioClass], [cardAudioSource, 'Your browser does not support the audio element.'], [['data-name', audioName]]);
 }
