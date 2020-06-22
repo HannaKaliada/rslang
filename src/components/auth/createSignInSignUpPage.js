@@ -56,6 +56,7 @@ class CreateSignInSignUpPage {
 
   toggleSingInSignUpForm(e) {
     e.preventDefault();
+    this.password.classList.remove('invalid-password');
     if (e.target.innerText === 'Already have an account') {
       e.target.innerText = 'Create an account';
       this.submit.value = 'Sign in';
