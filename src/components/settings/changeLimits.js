@@ -5,7 +5,6 @@ export default function changeLimits() {
         document.querySelector('.words-limit-output').textContent = event.target.value;
       } else {
         document.querySelector('.cards-limit-output').textContent = event.target.value;
-        localStorage.setItem('cardsLimit', event.target.value);
       }
     }
   });
