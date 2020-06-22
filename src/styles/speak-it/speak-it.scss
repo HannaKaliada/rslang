@@ -15,7 +15,7 @@
 
     &-pages,
     &-groups {
-      margin: 10px
+      margin: 10px;
     }
 
     &-level {
@@ -23,15 +23,13 @@
     }
 
     &-app {
-
       &__btn {
-        margin: 10px
+        margin: 10px;
       }
     }
   }
 
   &__content {
-
     &-info {
       width: 500px;
       margin: 40px auto;
@@ -42,8 +40,8 @@
         &-input,
         &-score,
         &-title {
-          font-size: 20px;
           font-weight: bold;
+          font-size: 20px;
           text-align: center;
         }
       }
@@ -58,15 +56,18 @@
 
     &-word__item {
       position: relative;
+
       width: fit-content;
       min-width: 200px;
-      padding: 5px;
       margin: 5px;
-      border-radius: 10px;
-      text-align: center;
+      padding: 5px;
+
       font-size: 25px;
-      color: #fff;
+      text-align: center;
+      color: #ffffff;
+
       background-color: #007bff;
+      border-radius: 10px;
 
       &:hover {
         background-color: #0069d9;
@@ -86,32 +87,39 @@
   &__page {
     height: 210px;
     overflow: auto;
+
     cursor: pointer;
   }
 
   &__result {
     position: fixed;
     top: 0;
-    bottom: 0;
     right: 0;
+    bottom: 0;
     left: 0;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     background: linear-gradient(40deg, #45cafc,#303f9f);
 
     &__wrap {
       padding: 10px;
+
       box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
     }
 
     &__row {
       position: relative;
+
       display: flex;
       align-items: center;
       margin-bottom: 10px;
+
       font-size: 20px;
       color: #ffffff;
+
       cursor: pointer;
     }
 
@@ -126,15 +134,16 @@
     &__select {
       position: absolute;
       top: 0;
-      bottom: 0;
       right: 0;
+      bottom: 0;
       left: 0;
     }
 
     &__title {
       margin: 5px;
-      color: yellow;
+
       font-size: 18px;
+      color: yellow;
     }
   }
 
@@ -145,23 +154,27 @@
 
 .start-page {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   width: 100vw;
   height: 100vh;
+
   background: linear-gradient(40deg, #45cafc,#303f9f);
 
   &__title {
-    padding: 10px;
     margin-bottom: 20px;
+    padding: 10px;
+
     color: #ffffff;
+
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
   }
 
   &__subtitle {
-    @extend .start-page__title;
     font-size: 20px;
     text-align: center;
+
+    @extend .start-page__title;
   }
 }
