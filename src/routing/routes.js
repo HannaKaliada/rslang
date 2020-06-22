@@ -1,4 +1,5 @@
 import settings from '../components/settings/settings.js';
+import renderStartPage from '../components/start-page/renderStartPage.js';
 
 function mainPage() {
   const page = document.querySelector('.root');
@@ -31,7 +32,7 @@ function game() {
   page.append(header, list);
 }
 const routes = {
-  '#/': mainPage,
+  '#/': renderStartPage,
   '#/statis-tics': statistics,
   '#/game': game,
   '#/settings': settings,
