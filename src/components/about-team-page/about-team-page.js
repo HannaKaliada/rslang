@@ -1,58 +1,30 @@
+import data from '../../data/teamInfo.json';
+
 export default function renderAboutTeamPage() {
     const page = document.querySelector('.root');
-    page.insertAdjacentHTML('beforeend',
-        `<div class="links"> <h1>About team page:</h1>
-        <h1 ><a href="#/">Main</a></h1> </div>
-        <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><div class="card" style="width: 18rem;">
-          <img src="../src/components/about-team-page/img/lesha.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div></div>
-          <div class="swiper-slide"><div class="card" style="width: 18rem;">
-          <img src="../src/components/about-team-page/img/lesha.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div></div>
-          <div class="swiper-slide"><div class="card" style="width: 18rem;">
-          <img src="../src/components/about-team-page/img/lesha.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div></div>
-          <div class="swiper-slide"><div class="card" style="width: 18rem;">
-          <img src="../src/components/about-team-page/img/lesha.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div></div>
-          <div class="swiper-slide"><div class="card" style="width: 18rem;">
-          <img src="../src/components/about-team-page/img/lesha.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div></div>
-          <div class="swiper-slide"><div class="card" style="width: 18rem;">
-          <img src="../src/components/about-team-page/img/lesha.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div></div>
-          <div class="swiper-slide"><div class="card" style="width: 18rem;">
-          <img src="../src/components/about-team-page/img/lesha.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div></div>
+    const links = `<div class="links"> <h1>About team page:</h1>
+    <h1 ><a href="#/">Main</a></h1> </div>`;
+    const start = `<div class="swiper-container">
+    <div class="swiper-wrapper">`;
+    const end = ` </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+<div class="swiper-button-prev"></div>
+  </div>`;
+    let content = '';
+    data.forEach(el => {
+        content += `<div class="swiper-slide"><div class="card" style="width: 18rem;">
+        <img src="${el.img}" class="card-img-top" alt="${el.name}">
+        <div class="card-body">
+        <h1 class="card-name">${el.name}</h1>
+          <p class="card-text">${el.description}</p>
         </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-      </div>
-         `);
+        </div>
+        </div>`
+
+    });
+    console.log(content);
+    content = links + start + content + end;
+    page.insertAdjacentHTML('beforeend', content);
 
 }
