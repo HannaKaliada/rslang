@@ -9,18 +9,23 @@ class CreateSignInSignUpPage {
   formHandler(e) {
     e.preventDefault();
     if (!this.passwordCheck()) {
+      this.password.classList.add('invalid-password');
       this.password.focus();
     }
+    return false;
   }
 
   passwordCheck() {
     const passValidRegExp = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\+\-_@$!%*?&#\.,;\:\[\]\{\}])[A-Za-z\d\+\-_@$!%*?&#\.,;\:\[\]\{\}]{8,}$/);
-    return !!this.password.match(passValidRegExp);
+    return !!this.password.value.match(passValidRegExp);
+  }
+
+  enterNewPassword() {
+    this.password.classList.remove('invalid-password');
   }
 
   showPasswordTip() {
     if (this.submit.value === 'Sign up') {
-      this.passwordTip = this.createElement('div', 'password-tip');
       this.passwordTip.style.left = `${this.password.offsetLeft}`;
       this.passwordTip.style.top = `${this.password.offsetHeight + this.password.offsetTop}px`;
       this.passwordTip.style.display = 'block';
@@ -38,6 +43,15 @@ class CreateSignInSignUpPage {
     this.title = this.createElement('h2', 'auth-page__title');
     this.title.innerText = 'Create an account';
     return this.title;
+  }
+
+  createPassword() {
+    const passwordAttrs = [['type', 'password'], ['name', 'password'], ['placeholder', 'Password']];
+    this.password = this.createElement('input', 'sign-in-form__password', passwordAttrs);
+    this.password.addEventListener('focus', this.showPasswordTip.bind(this));
+    this.password.addEventListener('blur', this.hidePasswordTip.bind(this));
+    this.password.addEventListener('keydown', this.enterNewPassword.bind(this));
+    return this.password;
   }
 
   toggleSingInSignUpForm(e) {
@@ -68,7 +82,6 @@ class CreateSignInSignUpPage {
   }
 
   createForm() {
-    const passwordAttrs = [['type', 'password'], ['name', 'password'], ['placeholder', 'Password']];
     const emailAttrs = [['type', 'email'], ['name', 'email'], ['placeholder', 'e-mail']];
     const form = this.createElement('form', 'sign-in-form');
     const emailLabel = this.createElement('label', 'sign-in-form__label');
@@ -76,12 +89,10 @@ class CreateSignInSignUpPage {
     const email = this.createElement('input', 'sign-in-form__name', emailAttrs);
     const passwordLabel = this.createElement('label', 'sign-in-form__label');
     passwordLabel.innerText = 'Password';
-    this.password = this.createElement('input', 'sign-in-form__password', passwordAttrs);
-    this.password.addEventListener('focus', this.showPasswordTip.bind(this));
-    this.password.addEventListener('blur', this.hidePasswordTip.bind(this));
-    const formElements = [this.createTitle(), emailLabel, email, passwordLabel];
-    formElements.push(this.password, this.createSubmitButton(), this.createToggleFormButton());
+    this.passwordTip = this.createElement('div', 'password-tip');
+    const formElements = [this.createTitle(), emailLabel, email, passwordLabel, this.createPassword(), this.passwordTip, this.createSubmitButton(), this.createToggleFormButton()];
     form.append(...formElements);
+    form.addEventListener('submit', this.formHandler.bind(this));
     return form;
   }
 

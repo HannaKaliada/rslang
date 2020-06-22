@@ -1,4 +1,4 @@
-import settings from '../components/settings/settings.js';
+import settings from '../components/settings/settings';
 import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
 
 function mainPage() {
