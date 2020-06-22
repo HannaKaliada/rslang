@@ -3,6 +3,7 @@ import createElement from '../../shared/createElement';
 class CreateSignInSignUpPage {
   constructor(func) {
     this.createElement = func;
+    this.passwordTipText = 'Password must contain at least 8 characters, at least one uppercase letter, one uppercase letter, one number and one special character from +-_@$!%*?&#.,;:[]{}].';
   }
 
   formHandler(e) {
@@ -11,7 +12,7 @@ class CreateSignInSignUpPage {
       const response = await fetch('https://afternoon-falls-25894.herokuapp.com/signin', {
         method: 'POST',
         headers: {
-          'Accept': 'application/json',
+          Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(user),
@@ -25,12 +26,15 @@ class CreateSignInSignUpPage {
         .catch((err) => console.log(err));
       return response;
     }
-    this.passwordCheck();
+    if (!this.passwordCheck()) {
+
+    };
     const email = document.querySelector('.sign-in-form__name').value;
   }
 
   passwordCheck() {
-
+    const passValidRegExp = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\+\-_@$!%*?&#\.,;\:\[\]\{\}])[A-Za-z\d\+\-_@$!%*?&#\.,;\:\[\]\{\}]{8,}$/);
+    return !!this.password.match(passValidRegExp);
   }
 
   createTitle() {
@@ -40,19 +44,22 @@ class CreateSignInSignUpPage {
   }
 
   toggleSingInSignUpForm(e) {
-    if (e.target.value === 'Already have an account') {
-      e.target.value = 'Create an account';
+    e.preventDefault();
+    if (e.target.innerText === 'Already have an account') {
+      e.target.innerText = 'Create an account';
+      console.log(e.target.innerText);
       this.submit.value = 'Sign in';
-      this.title = 'Sign in to RS Lang';
+      this.title.innerText = 'Sign in to RS Lang';
     } else {
-      e.target.value = 'Already have an account';
+      console.log('test');
+      e.target.innerText = 'Already have an account';
       this.submit.value = 'Sign up';
-      this.title = 'Create an account';
+      this.title.innerText = 'Create an account';
     }
   }
 
   createToggleFormButton() {
-    const toggleButton = this.createElement('button', 'btn,sign-in-form__toggle-btn');
+    const toggleButton = this.createElement('button', ['btn', 'sign-in-form__toggle-btn']);
     toggleButton.innerText = 'Already have an account';
     toggleButton.addEventListener('click', this.toggleSingInSignUpForm.bind(this));
     return toggleButton;
@@ -60,7 +67,7 @@ class CreateSignInSignUpPage {
 
   createSubmitButton() {
     const submitAttrs = [['type', 'submit']];
-    this.submit = this.createElement('input', 'btn,sign-in-form__submit', submitAttrs);
+    this.submit = this.createElement('input', ['btn', 'sign-in-form__submit'], submitAttrs);
     this.submit.value = 'Sign up';
     return this.submit;
   }
