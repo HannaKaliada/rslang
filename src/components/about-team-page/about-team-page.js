@@ -8,12 +8,12 @@ export default function renderAboutTeamPage() {
     <div class="swiper-wrapper">`;
     const end = ` </div>
     <div class="swiper-pagination"></div>
-    <div class="swiper-button-next"></div>
-<div class="swiper-button-prev"></div>
-  </div>`;
+      <div class="swiper-button-next"></div>
+     <div class="swiper-button-prev"></div>
+    </div>`;
     let content = '';
     data.forEach(el => {
-        content += `<div class="swiper-slide"><div class="card" style="width: 18rem;">
+        content += `<div class="swiper-slide"><div class="card" >
         <img src="${el.img}" class="card-img-top" alt="${el.name}">
         <div class="card-body">
         <h1 class="card-name">${el.name}</h1>
@@ -23,7 +23,7 @@ export default function renderAboutTeamPage() {
         </div>`
 
     });
-    console.log(content);
+
     content = links + start + content + end;
     page.insertAdjacentHTML('beforeend', content);
 

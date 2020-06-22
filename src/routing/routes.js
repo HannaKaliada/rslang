@@ -35,8 +35,6 @@ function game() {
     page.append(header, list);
 }
 
-
-
 const routes = {
     '#/': mainPage,
     '#/statis-tics': statistics,
