@@ -45,6 +45,24 @@ class CreateSignInSignUpPage {
     return this.title;
   }
 
+  createPasswordLabel() {
+    const passwordLabel = this.createElement('label', 'sign-in-form__label');
+    passwordLabel.innerText = 'Password';
+    return passwordLabel;
+  }
+
+  createEmail() {
+    const emailAttrs = [['type', 'email'], ['name', 'email'], ['placeholder', 'e-mail']];
+    const email = this.createElement('input', 'sign-in-form__name', emailAttrs);
+    return email;
+  }
+
+  createEmailLabel() {
+    const emailLabel = this.createElement('label', 'sign-in-form__label');
+    emailLabel.innerText = 'Login';
+    return emailLabel;
+  }
+
   createPassword() {
     const passwordAttrs = [['type', 'password'], ['name', 'password'], ['placeholder', 'Password']];
     this.password = this.createElement('input', 'sign-in-form__password', passwordAttrs);
@@ -83,15 +101,9 @@ class CreateSignInSignUpPage {
   }
 
   createForm() {
-    const emailAttrs = [['type', 'email'], ['name', 'email'], ['placeholder', 'e-mail']];
     const form = this.createElement('form', 'sign-in-form');
-    const emailLabel = this.createElement('label', 'sign-in-form__label');
-    emailLabel.innerText = 'Login';
-    const email = this.createElement('input', 'sign-in-form__name', emailAttrs);
-    const passwordLabel = this.createElement('label', 'sign-in-form__label');
-    passwordLabel.innerText = 'Password';
     this.passwordTip = this.createElement('div', 'password-tip');
-    const formElements = [this.createTitle(), emailLabel, email, passwordLabel, this.createPassword(), this.passwordTip, this.createSubmitButton(), this.createToggleFormButton()];
+    const formElements = [this.createTitle(), this.createEmailLabel(), this.createEmail(), this.createPasswordLabel(), this.createPassword(), this.passwordTip, this.createSubmitButton(), this.createToggleFormButton()];
     form.append(...formElements);
     form.addEventListener('submit', this.formHandler.bind(this));
     return form;
