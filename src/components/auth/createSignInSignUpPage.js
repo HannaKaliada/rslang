@@ -3,38 +3,35 @@ import createElement from '../../shared/createElement';
 class CreateSignInSignUpPage {
   constructor(func) {
     this.createElement = func;
-    this.passwordTipText = 'Password must contain at least 8 characters, at least one uppercase letter, one uppercase letter, one number and one special character from +-_@$!%*?&#.,;:[]{}].';
+    this.passwordTipText = 'Password must contain at least 8 characters, at least one uppercase letter, one uppercase letter, one number and one special character from "+-_@$!%*?&#.,;:[]{}]."';
   }
 
   formHandler(e) {
     e.preventDefault();
-    async function loginUser (user) {
-      const response = await fetch('https://afternoon-falls-25894.herokuapp.com/signin', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      })
-        .then((answer) => answer.json())
-        .then((obj) => {
-          state.token = obj.token;
-          state.id = obj.id;
-          console.log(state.token);
-        })
-        .catch((err) => console.log(err));
-      return response;
-    }
     if (!this.passwordCheck()) {
-
-    };
-    const email = document.querySelector('.sign-in-form__name').value;
+      this.password.focus();
+    }
   }
 
   passwordCheck() {
     const passValidRegExp = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\+\-_@$!%*?&#\.,;\:\[\]\{\}])[A-Za-z\d\+\-_@$!%*?&#\.,;\:\[\]\{\}]{8,}$/);
     return !!this.password.match(passValidRegExp);
+  }
+
+  showPasswordTip() {
+    if (this.submit.value === 'Sign up') {
+      this.passwordTip = this.createElement('div', 'password-tip');
+      this.passwordTip.style.left = `${this.password.offsetLeft}`;
+      this.passwordTip.style.top = `${this.password.offsetHeight + this.password.offsetTop}px`;
+      this.passwordTip.style.display = 'block';
+      this.passwordTip.innerText = this.passwordTipText;
+      const form = document.querySelector('.sign-in-form');
+      form.append(this.passwordTip);
+    }
+  }
+
+  hidePasswordTip() {
+    this.passwordTip.style.display = 'none';
   }
 
   createTitle() {
@@ -47,11 +44,9 @@ class CreateSignInSignUpPage {
     e.preventDefault();
     if (e.target.innerText === 'Already have an account') {
       e.target.innerText = 'Create an account';
-      console.log(e.target.innerText);
       this.submit.value = 'Sign in';
       this.title.innerText = 'Sign in to RS Lang';
     } else {
-      console.log('test');
       e.target.innerText = 'Already have an account';
       this.submit.value = 'Sign up';
       this.title.innerText = 'Create an account';
@@ -82,7 +77,10 @@ class CreateSignInSignUpPage {
     const passwordLabel = this.createElement('label', 'sign-in-form__label');
     passwordLabel.innerText = 'Password';
     this.password = this.createElement('input', 'sign-in-form__password', passwordAttrs);
-    const formElements = [this.createTitle(), emailLabel, email, passwordLabel, this.password, this.createSubmitButton(), this.createToggleFormButton()];
+    this.password.addEventListener('focus', this.showPasswordTip.bind(this));
+    this.password.addEventListener('blur', this.hidePasswordTip.bind(this));
+    const formElements = [this.createTitle(), emailLabel, email, passwordLabel];
+    formElements.push(this.password, this.createSubmitButton(), this.createToggleFormButton());
     form.append(...formElements);
     return form;
   }
@@ -93,7 +91,6 @@ class CreateSignInSignUpPage {
     container.append(this.createForm());
     root.append(container);
   }
-
 }
 
 const createSignInSignUpPage = new CreateSignInSignUpPage(createElement);

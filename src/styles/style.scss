@@ -4,6 +4,7 @@
 
 .sign-in-form {
   max-width: 390px;
+  position: relative;
   display: flex;
   flex-direction: column;
   input,
@@ -20,4 +21,13 @@
 .sign-in-form__name,
 .sign-in-form__password {
   padding: 0 5px;
+}
+
+.password-tip {
+  position: absolute;
+  padding: 20px 0 0 0;
+  clip-path: polygon(30% 0%, 35% 10%, 100% 10%, 100% 100%, 0% 100%, 0% 10%, 25% 10%);
+  background-color: #9a9a9a;
+  text-align: center;
+  opacity: 0.9;
 }
