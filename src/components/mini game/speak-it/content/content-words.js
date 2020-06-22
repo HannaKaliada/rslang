@@ -39,7 +39,7 @@ class WordsField {
   }
 
   updateContent() {
-    this.container.innerHTML = '';
+    this.container.textContent = '';
     this.container.append(...getWordsNodes());
   }
 }

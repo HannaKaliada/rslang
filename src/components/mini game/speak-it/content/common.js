@@ -10,7 +10,7 @@ export default function createWordCards(data) {
         + '4.064-3.88 4.064-8.667 0-4.786-1.82-8.667-4.064-8.667-1.751 0-3.244 2.363-3.815 '
         + '5.674zM19 26c-3.314 0-12-4.144-12-10S15.686 6 19 6s6 4.477 6 10-2.686 10-6 10z" fill-rule="evenodd"></path></svg>';
   const wordIcon = createDomElem('p', ['speak-it__content-word__item-icon']);
-  wordIcon.innerHTML = icon;
+  wordIcon.insertAdjacentElement('beforebegin', icon);
   const wordSelect = createDomElem(
     'div', ['speak-it__content-word__item-select'], null, [['data-word', word]],
   );

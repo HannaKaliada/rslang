@@ -154,7 +154,6 @@ actions = {
         elem.click();
       }
     });
-    // this.restart();
     this.return();
   },
 
@@ -187,8 +186,8 @@ actions = {
         .map((result) => result.transcript)
         .join('');
       compareAnswers(transcript);
-      output.innerHTML = '';
-      output.innerHTML = transcript;
+      output.textContent = '';
+      output.textContent = transcript;
     });
     this.recognition.addEventListener('end', this.recognition.start);
     this.recognition.start();
@@ -197,7 +196,7 @@ actions = {
   turnOff() {
     changeClassSpeak();
     const { output } = ImageField.create();
-    output.innerHTML = '';
+    output.textContent = '';
     this.recognition.removeEventListener('end', this.recognition.start);
     this.recognition.abort();
     this.recognition = null;

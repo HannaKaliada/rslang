@@ -37,11 +37,9 @@ class Result {
       .filter((obj) => state.correctWords.indexOf(obj.word.toLowerCase()) === -1)
       .map((obj) => wordRow(obj));
     const btns = ['return', 'new game']
-      .map((str) => {
-        return createDomElem(
-          'button', ['speak-it__result__btn', 'btn', 'btn-primary'], [str.toUpperCase()], [['data-action', str]],
-        );
-      });
+      .map((str) => createDomElem(
+        'button', ['speak-it__result__btn', 'btn', 'btn-primary'], [str.toUpperCase()], [['data-action', str]],
+      ));
     const btnsRow = createDomElem('div', ['speak-it__result__controls'], btns);
     const correctTitle = createDomElem('p', ['speak-it__result__title'], [`Correct: ${correctWords.length}`]);
     const correctField = createDomElem('div', ['speak-it__result__correct'], [correctTitle, ...correctWords]);
@@ -53,7 +51,7 @@ class Result {
   }
 
   removeContent() {
-    this.container.innerHTML = '';
+    this.container.textContent = '';
     return this;
   }
 }

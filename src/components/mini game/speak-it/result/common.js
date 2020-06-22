@@ -14,6 +14,6 @@ export default function wordRow(data) {
   const translationElem = createDomElem('span', ['speak-it__result__translation'], [wordTranslate]);
   const transcriptionElem = createDomElem('span', ['speak-it__result__transcription'], [transcription]);
   const audioElem = createAudio(audio, word, 'speak-it__result__audio', 'speak-it__result__source');
-  iconElem.innerHTML = icon;
+  iconElem.insertAdjacentElement('beforebegin', icon);
   return createDomElem('div', ['speak-it__result__row'], [iconElem, selectElem, wordElem, transcriptionElem, translationElem, audioElem]);
 }
