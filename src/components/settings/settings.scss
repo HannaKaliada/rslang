@@ -31,9 +31,10 @@
     margin-top: 10px;
   }
   .warning {
-    color: red;
     margin-top: 0;
     margin-bottom: 0;
+
+    color: red;
   }
   .success-notification {
     color: green;
@@ -41,6 +42,7 @@
   .success-notification,
   .warning {
     margin-bottom: 0;
+
     font-weight: 700;
   }
   .hidden {
