@@ -1,4 +1,5 @@
 import settings from '../components/settings/settings.js';
+import learningWords from '../components/learningWords/learningWords.js'
 
 function mainPage() {
   const page = document.querySelector('.root');
@@ -7,7 +8,8 @@ function mainPage() {
   const list = document.createElement('ul');
   list.innerHTML = `<li><a href="#/statis-tics">Statistic page</a></li>
   <li><a href="#/game">Game page</a></li>
-  <li><a href="#/settings">Settings</a></li>`;
+  <li><a href="#/settings">Settings</a></li>
+  <li><a href="#/learning">Start learning</a></li>`;
   page.append(header, list);
 }
 function statistics() {
@@ -35,6 +37,7 @@ const routes = {
   '#/statis-tics': statistics,
   '#/game': game,
   '#/settings': settings,
+  '#/learning': learningWords,
 };
 
 export default routes;
