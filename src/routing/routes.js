@@ -1,6 +1,6 @@
 import settings from '../components/settings/settings.js';
 import renderStartPage from '../components/start-page/renderStartPage.js';
-import createStartPage from '../components/mini game/speak-it/start-page';
+import createStartPage from '../components/mini-game/speak-it/start-page';
 
 function mainPage() {
   const page = document.querySelector('.root');
