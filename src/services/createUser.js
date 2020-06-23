@@ -1,4 +1,4 @@
-export const createUser = async user => {
+const createUser = async user => {
   const rawResponse = await fetch('https://afternoon-falls-25894.herokuapp.com/users', {
     method: 'POST',
     headers: {
@@ -8,7 +8,10 @@ export const createUser = async user => {
     body: JSON.stringify(user)
   });
   if (rawResponse.ok) {
-    return await rawResponse.json();
+    const content = await rawResponse.json();
+    return content;
   }
   throw new Error('Creating account error');
 };
+
+export default createUser;

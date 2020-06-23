@@ -4,13 +4,14 @@ const getUserStatistic = async ({ userId, token }) => {
     withCredentials: true,
     headers: {
       'Authorization': `Bearer ${token}`,
-      'Accept': 'application/json',
-    }
+      'Accept': 'application/json'
+    },
   });
   if (rawResponse.ok) {
-    return await rawResponse.json();
+    const content = await rawResponse.json();
+    return content;
   }
-  else {
-    throw new Error('Error to get user statistics');
-  }
+  throw new Error('Error to get user statistics');
 };
+
+export default getUserStatistic;

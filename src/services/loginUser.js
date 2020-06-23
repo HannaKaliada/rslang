@@ -1,4 +1,4 @@
-export const loginUser = async user => {
+const loginUser = async (user) => {
   const rawResponse = await fetch('https://afternoon-falls-25894.herokuapp.com/signin', {
     method: 'POST',
     headers: {
@@ -8,8 +8,10 @@ export const loginUser = async user => {
     body: JSON.stringify(user)
   });
   if (rawResponse.ok) {
-    console.log (await rawResponse.json());
+    const content = await rawResponse.json();
+    return content;
   }
   throw new Error('Authorization error');
-}
+};
 
+export default loginUser;

@@ -4,11 +4,14 @@ const getUserWord = async ({ userId, wordId, token}) => {
     withCredentials: true,
     headers: {
       'Authorization': `Bearer ${token}`,
-      'Accept': 'application/json',
-    }
+      'Accept': 'application/json'
+    },
   });
   if (rawResponse.ok) {
-    return await rawResponse.json();
+    const content = await rawResponse.json();
+    return content;
   }
   throw new Error('Getting users word error');
 };
+
+export default getUserWord;

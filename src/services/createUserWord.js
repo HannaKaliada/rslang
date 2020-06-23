@@ -1,4 +1,4 @@
-export const createUserWord = async ({ userId, wordId, word, token}) => {
+const createUserWord = async ({ userId, wordId, word, token}) => {
   const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/words/${wordId}`, {
     method: 'POST',
     withCredentials: true,
@@ -10,7 +10,10 @@ export const createUserWord = async ({ userId, wordId, word, token}) => {
     body: JSON.stringify(word)
   });
   if (rawResponse.ok) {
-    return await rawResponse.json();
+    const content = await rawResponse.json();
+    return content;
   }
   throw new Error('Error creating word for user');
 };
+
+export default createUserWord;
