@@ -1,5 +1,6 @@
 import settings from '../components/settings/settings.js';
 import renderStartPage from '../components/start-page/renderStartPage.js';
+import createStartPage from '../components/mini game/speak-it/start-page';
 
 function mainPage() {
   const page = document.querySelector('.root');
@@ -8,7 +9,8 @@ function mainPage() {
   const list = document.createElement('ul');
   list.innerHTML = `<li><a href="#/statis-tics">Statistic page</a></li>
   <li><a href="#/game">Game page</a></li>
-  <li><a href="#/settings">Settings</a></li>`;
+  <li><a href="#/settings">Settings</a></li>
+  <li><a href="#/speak-it">Speak it</a></li>`;
   page.append(header, list);
 }
 function statistics() {
@@ -31,11 +33,17 @@ function game() {
   <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
 }
+function speakIt() {
+  const page = document.querySelector('.root');
+  page.innerHTML = '';
+  page.append(createStartPage(page));
+}
 const routes = {
   '#/': renderStartPage,
   '#/statis-tics': statistics,
   '#/game': game,
   '#/settings': settings,
+  '#/speak-it': speakIt,
 };
 
 export default routes;
