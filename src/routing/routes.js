@@ -1,7 +1,7 @@
 import settings from '../components/settings/settings.js';
 import renderTeamPage from '../components/about-team-page/render-about-team-page.js';
 import renderStartPage from '../components/start-page/renderStartPage.js';
-
+import renderSavannaPage from '../components/mini-game/savanna/render-savanna-page.js';
 
 function mainPage() {
     const page = document.querySelector('.root');
@@ -11,7 +11,8 @@ function mainPage() {
     list.innerHTML = `<li><a href="#/statis-tics">Statistic page</a></li>
   <li><a href="#/game">Game page</a></li>
   <li><a href="#/settings">Settings</a></li>
-  <li><a href="#/about-team">About team page</a></li>`;
+  <li><a href="#/about-team">About team page</a></li>
+  <li><a href="#/savanna-game">Savanna game page</a></li>`;
     page.append(header, list);
 }
 
@@ -43,6 +44,7 @@ const routes = {
     '#/game': game,
     '#/settings': settings,
     '#/about-team': renderTeamPage,
+    '#/savanna-game': renderSavannaPage,
 };
 
 export default routes;
