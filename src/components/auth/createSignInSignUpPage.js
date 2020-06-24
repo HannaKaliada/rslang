@@ -53,7 +53,7 @@ class CreateSignInSignUpPage {
 
   createEmail() {
     const emailAttrs = [['type', 'email'], ['name', 'email'], ['placeholder', 'e-mail']];
-    const email = this.createElement('input', 'sign-in-form__name', emailAttrs);
+    const email = this.createElement('input', 'form-control', emailAttrs);
     return email;
   }
 
@@ -65,7 +65,7 @@ class CreateSignInSignUpPage {
 
   createPassword() {
     const passwordAttrs = [['type', 'password'], ['name', 'password'], ['placeholder', 'Password']];
-    this.password = this.createElement('input', 'sign-in-form__password', passwordAttrs);
+    this.password = this.createElement('input', 'form-control', passwordAttrs);
     this.password.addEventListener('focus', this.showPasswordTip.bind(this));
     this.password.addEventListener('blur', this.hidePasswordTip.bind(this));
     this.password.addEventListener('keydown', this.enterNewPassword.bind(this));
@@ -87,7 +87,7 @@ class CreateSignInSignUpPage {
   }
 
   createToggleFormButton() {
-    const toggleButton = this.createElement('button', ['btn', 'sign-in-form__toggle-btn']);
+    const toggleButton = this.createElement('button', ['btn', 'btn-default']);
     toggleButton.innerText = 'Already have an account';
     toggleButton.addEventListener('click', this.toggleSingInSignUpForm.bind(this));
     return toggleButton;
@@ -95,15 +95,23 @@ class CreateSignInSignUpPage {
 
   createSubmitButton() {
     const submitAttrs = [['type', 'submit']];
-    this.submit = this.createElement('input', ['btn', 'sign-in-form__submit'], submitAttrs);
+    this.submit = this.createElement('input', ['btn', 'btn-primary'], submitAttrs);
     this.submit.value = 'Sign up';
     return this.submit;
+  }
+
+  createFormBlock(label, input) {
+    const block = this.createElement('div', 'form-group');
+    block.append(label, input);
+    return block;
   }
 
   createForm() {
     const form = this.createElement('form', 'sign-in-form');
     this.passwordTip = this.createElement('div', 'password-tip');
-    const formElements = [this.createTitle(), this.createEmailLabel(), this.createEmail(), this.createPasswordLabel(), this.createPassword(), this.passwordTip, this.createSubmitButton(), this.createToggleFormButton()];
+    const emailBlock = this.createFormBlock(this.createEmailLabel(), this.createEmail());
+    const passwordBlock = this.createFormBlock(this.createPasswordLabel(), this.createPassword());
+    const formElements = [this.createTitle(), emailBlock, passwordBlock, this.passwordTip, this.createSubmitButton(), this.createToggleFormButton()];
     form.append(...formElements);
     form.addEventListener('submit', this.formHandler.bind(this));
     return form;
