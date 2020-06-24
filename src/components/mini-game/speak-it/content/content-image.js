@@ -22,6 +22,7 @@ class ImageField {
     this.title = null;
     this.output = null;
     this.score = null;
+    this.imgUrl = 'https://st2.depositphotos.com/3591429/5246/i/450/depositphotos_52462701-stock-photo-people-and-english-concept.jpg';
     return this;
   }
 
@@ -43,7 +44,7 @@ class ImageField {
   }
 
   addContent() {
-    this.img = createDomElem('img', ['speak-it__content-info__img'], null, [['src', '/assets/image/start-pic.jpg']]);
+    this.img = createDomElem('img', ['speak-it__content-info__img'], null, [['src', this.imgUrl]]);
     this.title = createDomElem('p', ['speak-it__content-info__img-title']);
     this.output = createDomElem('p', ['speak-it__content-info__img-input']);
     this.score = createDomElem('p', ['speak-it__content-info__img-score'], ['Score: 0']);
@@ -52,7 +53,7 @@ class ImageField {
   }
 
   resetInfo() {
-    this.img.setAttribute('src', '/assets/image/start-pic.jpg');
+    this.img.setAttribute('src', this.imgUrl);
     this.title.textContent = '';
     this.output.textContent = '';
     this.score.textContent = 'Score: 0';

@@ -1,5 +1,5 @@
 import createDomElem from '../common';
-import getWords from '../get-words';
+import getWords from '../../../../shared/get-words';
 import State from '../state';
 import SpeakIt from '../index';
 

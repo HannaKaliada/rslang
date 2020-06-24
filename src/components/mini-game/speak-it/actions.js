@@ -1,7 +1,7 @@
 import State from './state';
 import ImageField from './content/content-image';
 import WordsField from './content/content-words';
-import getWords from './get-words';
+import getWords from '../../../shared/get-words';
 import Result from './result';
 import Content from './content';
 

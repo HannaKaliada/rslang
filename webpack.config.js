@@ -26,12 +26,6 @@ const optimization = () => {
 
 const filename = (ext) => (isDev ? `[name].${ext}` : `[hash].${ext}`);
 
-const PATHS = {
-  src: path.join(__dirname, '/src'),
-  dist: path.join(__dirname, '/dist'),
-  assets: 'assets/',
-};
-
 const cssLoaders = (extra) => {
   const loaders = [{
     loader: MiniCssExtractPlugin.loader,
@@ -89,10 +83,7 @@ module.exports = {
       },
     }),
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin([
-      { from: `${PATHS.src}/${PATHS.assets}image`, to: `${PATHS.assets}image` },
-      { from: `${PATHS.src}/${PATHS.assets}audio`, to: `${PATHS.assets}audio` },
-    ]),
+    new CopyWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: filename('css'),
     }),
