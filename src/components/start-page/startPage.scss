@@ -1,0 +1,42 @@
+.main-page__wrapper {
+    max-width: 1020px;
+    margin: 20px auto 0 auto;
+}
+
+.main-page__promo {
+    display: flex;
+    align-items: center;
+    .promo-link {
+        font-size: 24px;
+    }
+}
+
+.main-page__description {
+    margin: 70px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        font-size: 48px;
+        margin-bottom: 50px;
+    }
+
+    .description-text {
+        text-align: center;
+
+        p {
+            font-size: 24px;
+            line-height: 1;
+        }
+    }
+}
+
+.main-page__start-btn {
+    display: flex;
+    justify-content: center;
+
+    .btn {
+        font-size: 24px;
+    }
+}

@@ -1,5 +1,7 @@
 import settings from '../components/settings/settings.js';
 import renderTeamPage from '../components/about-team-page/render-about-team-page.js';
+import renderStartPage from '../components/start-page/renderStartPage.js';
+
 
 function mainPage() {
     const page = document.querySelector('.root');
