@@ -1,4 +1,5 @@
 import settings from '../components/settings/settings.js';
+import renderTeamPage from '../components/about-team-page/render-about-team-page.js';
 import renderStartPage from '../components/start-page/renderStartPage.js';
 import createStartPage from '../components/mini-game/speak-it/start-page';
 
@@ -10,9 +11,11 @@ function mainPage() {
   list.innerHTML = `<li><a href="#/statis-tics">Statistic page</a></li>
   <li><a href="#/game">Game page</a></li>
   <li><a href="#/settings">Settings</a></li>
-  <li><a href="#/speak-it">Speak it</a></li>`;
+  <li><a href="#/speak-it">Speak it</a></li>
+  <li><a href="#/about-team">About team page</a></li>`;
   page.append(header, list);
 }
+
 function statistics() {
   const page = document.querySelector('.root');
   const header = document.createElement('h2');
@@ -23,6 +26,7 @@ function statistics() {
   <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
 }
+
 function game() {
   const page = document.querySelector('.root');
   const header = document.createElement('h2');
@@ -33,17 +37,20 @@ function game() {
   <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
 }
+
 function speakIt() {
   const page = document.querySelector('.root');
   page.innerHTML = '';
   page.append(createStartPage(page));
 }
+
 const routes = {
-  '#/': renderStartPage,
+  '#/': mainPage,
   '#/statis-tics': statistics,
   '#/game': game,
   '#/settings': settings,
   '#/speak-it': speakIt,
+  '#/about-team': renderTeamPage,
 };
 
 export default routes;
