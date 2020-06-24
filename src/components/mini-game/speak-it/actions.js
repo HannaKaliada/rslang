@@ -13,10 +13,28 @@ function changeClass(elem) {
   elem.parentNode.parentNode.classList.remove('show');
 }
 
+function toggleClass(elem, first, second) {
+  elem.classList.toggle(first);
+  elem.classList.toggle(second);
+}
+
 function changeClassSpeak() {
   const elem = document.querySelector('button[data-action="speak"]');
-  elem.classList.toggle('btn-primary');
-  elem.classList.toggle('btn-success');
+  toggleClass(elem, 'btn-primary', 'btn-success');
+}
+
+function changeClassBtns() {
+  let btns = document.querySelectorAll('.btn-primary');
+  if (btns.length) {
+    btns.forEach((node) => {
+      toggleClass(node, 'btn-primary', 'btn-secondary');
+    });
+    return;
+  }
+  btns = document.querySelectorAll('.btn-secondary');
+  btns.forEach((node) => {
+    toggleClass(node, 'btn-primary', 'btn-secondary');
+  });
 }
 
 async function changeLvl(group, page) {
@@ -168,6 +186,7 @@ actions = {
 
   turnOn() {
     changeClassSpeak();
+    changeClassBtns();
     if (!this.isStart) {
       ImageField.create().resetInfo();
       this.isStart = true;
@@ -194,6 +213,7 @@ actions = {
   },
 
   turnOff() {
+    changeClassBtns();
     changeClassSpeak();
     const { output } = ImageField.create();
     output.textContent = '';

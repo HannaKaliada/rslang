@@ -1,5 +1,6 @@
 .speak-it {
   position: relative;
+  box-sizing: border-box;
 
   &__active {
     border: 7px solid #aa2233;
