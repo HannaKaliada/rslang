@@ -54,7 +54,7 @@
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
-    "lint": "eslint ./src/*.js",
+    "lint": "eslint -c .eslintrc.js ./src/**/*.js",
     "csscomb": "./node_modules/.bin/csscomb ./src/styles/style.scss"
   },
   "author": "",
