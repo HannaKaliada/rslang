@@ -1,20 +1,23 @@
 .word {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    &__card {
-        padding: 60px;
-        margin-bottom: 20px;
-        .sentence {
-            input {
-                width: 20px;
-                padding: 10px;
-            }
-        }
-        .sentence-translation {
-            margin-bottom: 0;
-        }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  &__card {
+    margin-bottom: 20px;
+    padding: 60px;
+    .sentence {
+      input {
+        display: inline-block;
+        width: 25px;
+        padding: 10px;
+
+        font-size: 19px;
+      }
     }
+    .sentence-translation {
+      margin-bottom: 20px;
+    }
+  }
 }

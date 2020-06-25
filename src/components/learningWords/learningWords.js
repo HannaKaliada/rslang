@@ -1,6 +1,12 @@
 import './learningWords.scss';
-import renderContent from '../learningWords/renderContent';
+import renderContent from './renderContent';
+import setStartPosition from './setStartPosition';
+import checkInput from './checkInput';
+import setWordsToProps from './setWordsToProps';
 
-export default function learningWords() {
-  renderContent();
+export default async function learningWords() {
+  await setStartPosition();
+  await setWordsToProps();
+  await renderContent();
+  await checkInput();
 }
