@@ -1,3 +1,4 @@
+// import $ from 'jquery';
 import createDomElem from '../common';
 import getWords from '../../../../shared/get-words';
 import State from '../state';

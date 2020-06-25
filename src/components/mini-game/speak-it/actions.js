@@ -126,21 +126,6 @@ actions = {
     Content.create().container.append(result);
   },
 
-  levelChange(elem) {
-    elem.parentNode.classList.toggle('show');
-    elem.nextSibling.classList.toggle('show');
-  },
-
-  page(elem, type) {
-    changeClass(elem);
-    const state = State.create();
-    state.page = parseInt(type, 10);
-    changeLvl(state.group, state.page);
-    this.isStart = false;
-    // eslint-disable-next-line no-param-reassign
-    elem.parentNode.previousSibling.textContent = `Page: ${state.page + 1}`;
-  },
-
   level(elem, type) {
     changeClass(elem);
     const state = State.create();
@@ -164,14 +149,12 @@ actions = {
   },
 
   'new game': function () {
-    const pages = [...document.querySelectorAll('.dropdown-page')];
-    const num = Math.floor(Math.random() * pages.length);
-    pages.forEach((elem) => {
-      const { page } = elem.dataset;
-      if (parseInt(page, 10) === num) {
-        elem.click();
-      }
-    });
+    const pagesNum = 60;
+    const num = Math.floor(Math.random() * pagesNum);
+    const state = State.create();
+    state.page = num;
+    changeLvl(state.group, state.page);
+    this.isStart = false;
     this.return();
   },
 
