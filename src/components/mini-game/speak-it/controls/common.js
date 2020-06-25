@@ -13,14 +13,6 @@ function createList(count, name) {
   return createDomElem('ul', ['dropdown-menu', `speak-it__${name}`], items, [['style', style]]);
 }
 
-export function createPages(page) {
-  const btn = createDomElem(
-    'button', ['btn', 'btn-primary', 'dropdown-toggle'],
-    [`Page: ${page + 1}`], [['data-level-change', 'page']],
-  );
-  return createDomElem('div', ['dropdown', 'speak-it__controls-pages'], [btn, createList(60, 'page')]);
-}
-
 export function createGroups(group) {
   const btn = createDomElem(
     'button', ['btn', 'btn-primary', 'dropdown-toggle'],

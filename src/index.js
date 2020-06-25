@@ -2,6 +2,7 @@ import '@/styles/normalize.css';
 import '@/styles/style.scss';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min';
 import './components/about-team-page/about-team-page.js';
 import Routing from './routing/routing';
 import routes from './routing/routes';

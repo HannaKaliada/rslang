@@ -1,4 +1,4 @@
-import { createPages, createGroups } from './common';
+import { createGroups } from './common';
 import createDomElem from '../common';
 
 let instance;
@@ -29,8 +29,7 @@ class LevelControls {
 
   addLevel() {
     const groups = createGroups(this.initValue);
-    const pages = createPages(this.initValue);
-    this.container.append(groups, pages);
+    this.container.append(groups);
     return this;
   }
 }
