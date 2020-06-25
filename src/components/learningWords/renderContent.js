@@ -8,7 +8,7 @@ export default async function renderContent() {
         <div class="word__card card text-center">
           <form>
             <p class="sentence">
-              ${properties.words[localStorage.currentWord].textExample.replace(/\<.*\>/, '<input type="text" class="form-control word-input" maxlength="30" class="form-control" oninput="this.style.width = ((this.value.length + 1) * 8) + 24 + \'px\'"></input>')}
+              ${properties.words[localStorage.currentWord].textExample.replace(/\<.*\>/, '<input type="text" class="form-control word-input" maxlength="30" class="form-control"><span class="input-top-layer hidden"></span>')}
             </p>
             <p class="sentence-translation">
               ${properties.words[localStorage.currentWord].textExampleTranslate}
