@@ -11,7 +11,7 @@ export default function renderHeader() {
             <a class="menu__item dropdown-item" href="#/learn">Learn words</a>
             <a class="menu__item dropdown-item" href="#/games">Play games</a>
             <a class="menu__item dropdown-item" href="#/vocabluary">Vocabluary</a>
-            <a class="menu__item dropdown-item" href="#/statis-tics">Statistics</a>
+            <a class="menu__item dropdown-item" href="#/statistics">Statistics</a>
             <a class="menu__item dropdown-item" href="#/settings">Settings</a>
             <a class="menu__item dropdown-item" href="#/about-team">About our team</a>
           </div>
