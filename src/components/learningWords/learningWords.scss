@@ -1,5 +1,5 @@
-.hidden{
-    display: none;
+.hidden {
+  display: none;
 }
 
 .word {
@@ -16,20 +16,34 @@
         display: inline-block;
         width: 25px;
         padding: 10px;
+
         font-size: 18px;
       }
-      .input-top-layer{
-        font-size: 18px;
+      .input-top-layer {
+        display: inline-block;
         padding: 10px;
+
+        font-size: 18px;
+        text-align: left;
       }
-      .transparent{
-          z-index: -1;
+      .input-top-layer.hidden {
+        display: none;
       }
-      .correct-letter{
-          color: green;
+      .transparent {
+        z-index: -1;
+
+        opacity: 0;
+
+        transition: 1s;
+        span {
+          color: gray;
+        }
       }
-      .wrong-letter{
-          color: red;
+      .correct-letter {
+        color: green;
+      }
+      .wrong-letter {
+        color: red;
       }
     }
     .sentence-translation {
