@@ -16,6 +16,7 @@ export default function createWordCards(data) {
   );
   const wordTitle = createDomElem('p', ['speak-it__content-word__item-title'], [word]);
   const wordTranscription = createDomElem('p', ['speak-it__content-word__item-transcription'], [transcription]);
+  const wordConatiner = createDomElem('div', ['speak-it__content-word'], [wordTitle, wordTranscription]);
   const wordAudio = createAudio(audio, word, 'speak-it__content-word__item-audio', 'speak-it__content-word__item-source');
-  return createDomElem('div', ['speak-it__content-word__item'], [wordSelect, wordTitle, wordTranscription, wordIcon, wordAudio]);
+  return createDomElem('div', ['speak-it__content-word__item'], [wordSelect, wordConatiner, wordIcon, wordAudio]);
 }
