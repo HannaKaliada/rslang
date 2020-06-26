@@ -15,7 +15,7 @@ export default function renderStartPage() {
           </div>
       </div>
       <div class="main-page__start-btn">
-          <a class="btn btn-primary" href="#/registration" role="button">Start</a>
+          <a class="btn btn-primary" href="#/auth" role="button">Start</a>
       </div>
     </div>`);
 }
