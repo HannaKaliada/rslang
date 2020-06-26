@@ -1,8 +1,9 @@
 import settings from '../components/settings/settings';
-import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
 import renderTeamPage from '../components/about-team-page/render-about-team-page';
 import renderStartPage from '../components/start-page/renderStartPage';
-import learningWords from '../components/learningWords/learningWords.js'
+import initHubPage from '../components/hub/hub-page/initHubPage';
+import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
+import learningWords from '../components/learningWords/learningWords.js';
 
 function statistics() {
   const page = document.querySelector('.root');
@@ -35,6 +36,7 @@ const routes = {
   '#/settings': settings,
   '#/auth': createSignInSignUpPage.init.bind(createSignInSignUpPage),
   '#/about-team': renderTeamPage,
+  '#/hub': initHubPage,
   '#/learning': learningWords,
 };
 
