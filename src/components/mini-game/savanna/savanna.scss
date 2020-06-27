@@ -1,0 +1,29 @@
+.savanna-game-wrapper {
+  li {
+    cursor: pointer;
+  }
+  .block {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+  .btn {
+    display: block;
+  }
+  .word-btn {
+    display: block;
+    padding: 0;
+    margin: 10px;
+    height: 50px;
+    width: 200px !important;
+  }
+  .game-layout {
+  }
+  .game-words {
+    display: flex;
+    min-width: 300px;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+}
