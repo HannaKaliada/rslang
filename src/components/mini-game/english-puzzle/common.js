@@ -1,9 +1,15 @@
 export default function createDomElem(
-  tag, className, content,
+  tag, className, content, attribute,
 ) {
   const elem = document.createElement(tag);
   elem.classList.add(...className);
-  if (content) elem.append(...content);
+  if (content instanceof Array) elem.append(...content);
+  if (attribute instanceof Array) {
+    attribute.forEach((arr) => {
+      const [name, val] = arr;
+      elem.setAttribute(name, val);
+    });
+  }
   return elem;
 }
 

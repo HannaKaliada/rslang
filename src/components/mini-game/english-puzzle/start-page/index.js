@@ -1,5 +1,5 @@
 import createDomElem from '../common';
-import { getWords } from '../data';
+import getWords from '../../../../shared/get-words';
 import Puzzle from '../app';
 
 const FIRST_VALUE = 0;

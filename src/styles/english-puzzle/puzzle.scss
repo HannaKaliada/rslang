@@ -81,19 +81,20 @@
     display: flex;
     justify-content: space-around;
 
+    &-pages,
+    &-levels {
+      margin: 20px;
+    }
+
     &-data {
       display: flex;
-
-      &__dropdown {
-        margin: 10px;
-      }
     }
 
     &-options {
 
       &__btn {
         @include size(42px);
-        margin: 10px;
+        margin: 20px;
         background: {
           size: 30px 30px;
           repeat: no-repeat;

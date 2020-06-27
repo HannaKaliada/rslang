@@ -1,7 +1,11 @@
 function formatData(data) {
   return data.map((elem) => {
     const newElem = elem;
-    const { image, audio } = newElem;
+    const {
+      image, audio, textExample, audioExample,
+    } = newElem;
+    newElem.textExample = textExample.replace(/<\/?b>/g, '');
+    newElem.audioExample = `https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/${audioExample}`;
     newElem.image = `https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/${image}`;
     newElem.audio = `https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/${audio}`;
     return elem;

@@ -9,22 +9,37 @@ function createList(count, name) {
     elem.setAttribute(`data-${name}`, `${i}`);
     items.push(elem);
   }
-  const dropdown = createDomElem('ul', ['dropdown-menu'], items);
-  const style = 'position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);';
-  dropdown.setAttribute('style', style);
+  return createDomElem('ul', ['dropdown-menu'], items);
+}
+
+function createDropdown(curNum, name, listNum) {
+  const btn = createDomElem(
+    'button',
+    ['btn', 'btn-primary', 'dropdown-toggle'],
+    [`${name[0].toUpperCase() + name.substring(1)}: ${curNum + 1}`],
+    [['type', 'button'], ['data-toggle', 'dropdown'], ['aria-haspopup', 'true'], ['aria-expanded', 'false']],
+  );
+  const tooltipText = `Select game ${name}`;
+  const dropdown = createDomElem('div', [
+    'dropdown',
+    `puzzle__controls-${name}s`],
+  [btn, createList(listNum, name)],
+  [['data-toggle', 'tooltip'], ['data-placement', 'right'], ['title', tooltipText]]);
+  // eslint-disable-next-line no-undef
+  $(dropdown).tooltip('show');
   return dropdown;
 }
 
-function createPages(page) {
-  const btn = createDomElem('button', ['btn', 'btn-primary', 'dropdown-toggle'], [`Page: ${page + 1}`]);
-  btn.setAttribute('data-type', 'page');
-  return createDomElem('div', ['dropdown', 'puzzle__controls-data__dropdown'], [btn, createList(60, 'page')]);
+function createPages(curPage) {
+  const name = 'page';
+  const listNum = 60;
+  return createDropdown(curPage, name, listNum);
 }
 
-function createGroups(group) {
-  const btn = createDomElem('ul', ['btn', 'btn-primary', 'dropdown-toggle'], [`Level: ${group + 1}`]);
-  btn.setAttribute('data-type', 'group');
-  return createDomElem('div', ['dropdown', 'puzzle__controls-data__dropdown'], [btn, createList(6, 'level')]);
+export function createGroups(curGroup) {
+  const name = 'level';
+  const listNum = 6;
+  return createDropdown(curGroup, name, listNum);
 }
 
 export function createDataControls(data) {

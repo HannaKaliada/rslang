@@ -1,6 +1,6 @@
 import createDomElem from '../../common';
 import { createDataControls, createOptionsControls } from './common';
-import { getWords } from '../../data';
+import getWords from '../../../../../shared/get-words';
 import Content from '../content';
 import actionsContent from '../content/action';
 import Tips from '../content/tips';
@@ -28,20 +28,12 @@ async function changeView(elem, value, type) {
 }
 
 const actions = {
-  type(elem) {
-    const parent = elem.parentNode;
-    const dropdown = parent.querySelector('.dropdown-menu');
-    parent.classList.toggle('show');
-    dropdown.classList.toggle('show');
-  },
   page(elem) {
-    this.type(elem.parentNode);
     const [value] = Object.values(elem.dataset);
     const [type] = Object.keys(elem.dataset);
     changeView(elem, parseInt(value, 10), type);
   },
   level(elem) {
-    this.type(elem.parentNode);
     const [value] = Object.values((elem.dataset));
     const [type] = Object.keys(elem.dataset);
     changeView(elem, parseInt(value, 10), type);
@@ -65,6 +57,7 @@ const actions = {
 
 function changeData(e) {
   const [action] = Object.keys(e.target.dataset);
+  console.log(action);
   if (actions[action]) {
     actions[action](e.target);
   }
