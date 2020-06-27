@@ -1,5 +1,6 @@
 .speak-it {
   position: relative;
+
   box-sizing: border-box;
 
   &__active {
@@ -56,19 +57,18 @@
       margin: 0 auto;
       padding: 40px;
 
-      @media screen and (min-width: 1150px){
+      @media screen and (min-width: 1150px) {
         width: 1130px;
-
       }
     }
 
     &-word__item {
-      display: flex;
-      flex-direction: row-reverse;
-      align-items: center;
-      justify-content: space-around;
       position: relative;
 
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-around;
+      align-items: center;
       width: fit-content;
       min-width: 200px;
       margin: 5px;
@@ -79,8 +79,8 @@
       color: #ffffff;
 
       background-color: #007bff;
-      border-radius: 10px;
       border: 7px solid #007bff;
+      border-radius: 10px;
 
       &:hover {
         background-color: #0069d9;
@@ -136,7 +136,7 @@
       cursor: pointer;
 
       &:hover {
-        background-color: #00BFFF;
+        background-color: #00bfff;
       }
     }
 
