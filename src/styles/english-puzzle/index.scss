@@ -1,0 +1,47 @@
+@mixin size($width, $height: $width) {
+  min-width: $width;
+  height: $height;
+}
+
+//@import "start-page";
+@import "puzzle";
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  letter-spacing: 1px;
+  outline: none;
+}
+
+body {
+  background: #4285f4;
+  color: white;
+}
+
+.correct-word {
+  border-bottom: 2px solid green;
+}
+
+.wrong-word {
+  border-bottom: 2px solid red;
+}
+
+.dropdown {
+
+  &-item {
+    cursor: pointer;
+  }
+
+  &-menu {
+    max-height: 400px;
+    overflow: auto;
+  }
+}
+
+.over {
+  border: 2px dashed yellow;
+}

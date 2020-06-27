@@ -1,0 +1,122 @@
+.puzzle {
+
+  &__content {
+    text-align: center;
+
+    &__btn {
+      margin: 5px;
+    }
+
+    &__field {
+
+      &-list {
+        max-width: 700px;
+        margin: 0 auto;
+        border: 3px solid whitesmoke;
+      }
+
+      &-item {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        min-height: 40px;
+        padding: 0 10px;
+      }
+    }
+
+    &__words {
+
+      &-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 700px;
+        min-height: 40px;
+        margin: 0 auto;
+      }
+
+      &-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 5px 20px;
+        margin: 5px 1px;
+        background-color: #00BFFF;
+        cursor: pointer;
+
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          top: 7px;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+        }
+
+        &:before {
+          left: -10px;
+          background: #4285f4;
+        }
+
+        &:after {
+          right: -10px;
+          background-color: #00BFFF;
+          z-index: 10;
+        }
+      }
+    }
+
+
+    &__tips {
+
+      &-btn {
+        @extend .puzzle__controls-options__btn;
+        background-image: url("~bootstrap-icons/icons/volume-up-fill.svg");
+      }
+    }
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: space-around;
+
+    &-data {
+      display: flex;
+
+      &__dropdown {
+        margin: 10px;
+      }
+    }
+
+    &-options {
+
+      &__btn {
+        @include size(42px);
+        margin: 10px;
+        background: {
+          size: 30px 30px;
+          repeat: no-repeat;
+          position: center;
+        }
+        color: #fff;
+
+        &.sound {
+          background-image: url("~bootstrap-icons/icons/volume-up-fill.svg");
+        }
+
+        &.translate {
+          background-image: url("~bootstrap-icons/icons/file-text.svg");
+        }
+
+        &.melody {
+          background-image: url("~bootstrap-icons/icons/music-note.svg");
+        }
+
+        &.image {
+          background-image: url("~bootstrap-icons/icons/image.svg");
+        }
+      }
+    }
+  }
+}
