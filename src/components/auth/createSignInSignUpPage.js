@@ -1,7 +1,6 @@
 import createElement from '../../shared/createElement';
 import signInUser from './signInUser';
 import createUser from '../../services/createUser';
-import checkToken from './checkTokenIsAlive';
 import checkTokenIsAlive from './checkTokenIsAlive';
 
 const FORM_TYPE_SIGNUP = 'signUp';
