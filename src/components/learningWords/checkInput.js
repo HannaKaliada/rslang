@@ -21,7 +21,7 @@ export default function checkInput() {
 
       input.value = '';
       input.style.width = `${document.querySelector('.input-top-layer').offsetWidth}px`;
-      document.querySelector('.input-top-layer').style.marginLeft = `${-input.offsetWidth}px`;
+      document.querySelector('.input-top-layer').style.marginLeft = `${-input.offsetWidth - 5}px`;
 
       input.addEventListener('input', () => {
         document.querySelector('.input-top-layer').classList.add('transparent');
