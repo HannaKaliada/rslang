@@ -1,3 +1,4 @@
+import createStartPage from '../components/mini-game/speak-it/start-page';
 import settings from '../components/settings/settings';
 import renderTeamPage from '../components/about-team-page/render-about-team-page';
 import renderStartPage from '../components/start-page/renderStartPage';
@@ -23,10 +24,16 @@ function game() {
   header.innerText = 'This is game page';
   const list = document.createElement('ul');
   list.innerHTML = `
-  <li><a href="#/statistics">Statistic page</a></li>
+  <li><a href="#/statis-tics">Statistic page</a></li>
   <li><a href="#/">Main page</a></li>
   <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
+}
+
+function speakIt() {
+  const page = document.querySelector('.root');
+  page.innerHTML = '';
+  page.append(createStartPage(page));
 }
 
 const routes = {
@@ -38,6 +45,7 @@ const routes = {
   '#/about-team': renderTeamPage,
   '#/hub': initHubPage,
   '#/learning': learningWords,
+  '#/speak-it': speakIt,
 };
 
 export default routes;
