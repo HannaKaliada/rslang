@@ -4,7 +4,7 @@ function formatData(data) {
     const { image, audio } = newElem;
     newElem.image = `https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/${image}`;
     newElem.audio = `https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/${audio}`;
-    return elem;
+    return newElem;
   });
 }
 

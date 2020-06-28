@@ -1,16 +1,7 @@
 import settings from '../components/settings/settings.js';
 import renderStartPage from '../components/start-page/renderStartPage.js';
+import startPage from '../components/audio-call/createAudioCallPage';
 
-function mainPage() {
-  const page = document.querySelector('.root');
-  const header = document.createElement('h2');
-  header.innerText = 'This is main page';
-  const list = document.createElement('ul');
-  list.innerHTML = `<li><a href="#/statis-tics">Statistic page</a></li>
-  <li><a href="#/game">Game page</a></li>
-  <li><a href="#/settings">Settings</a></li>`;
-  page.append(header, list);
-}
 function statistics() {
   const page = document.querySelector('.root');
   const header = document.createElement('h2');
@@ -32,7 +23,7 @@ function game() {
   page.append(header, list);
 }
 const routes = {
-  '#/': renderStartPage,
+  '#/': startPage.createPage.bind(startPage),
   '#/statis-tics': statistics,
   '#/game': game,
   '#/settings': settings,
