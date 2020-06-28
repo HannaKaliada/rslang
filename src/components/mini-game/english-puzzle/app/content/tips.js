@@ -32,7 +32,7 @@ class Tips {
   }
 
   createContainer() {
-    this.appContainer = createDomElem('div', ['puzzle__content__tips']);
+    this.appContainer = createDomElem('div', ['content__tips']);
     return this;
   }
 
@@ -42,7 +42,7 @@ class Tips {
   }
 
   addBtn() {
-    this.btn = createDomElem('button', ['puzzle__content__tips-btn', 'btn', 'btn-info']);
+    this.btn = createDomElem('button', ['content__tips-btn', 'btn', 'btn-info']);
     this.btn.setAttribute('data-action', 'repeat');
     this.container.prepend(this.btn);
     return this;

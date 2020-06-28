@@ -19,7 +19,7 @@ function checkField() {
 }
 
 function cleanCheckWords() {
-  const wordsField = document.querySelectorAll('.puzzle__content__words-item');
+  const wordsField = document.querySelectorAll('.content__words-item');
   wordsField.forEach((word) => word.classList.remove('correct-word', 'wrong-word'));
 }
 
@@ -30,7 +30,7 @@ const actions = {
   isCheck: false,
 
   repeat() {
-    const audio = document.querySelector('.puzzle__content__tips-audio');
+    const audio = document.querySelector('.content__tips-audio');
     audio.play();
   },
 
@@ -42,7 +42,7 @@ const actions = {
         .cleanField(curPos)
         .getFields()[curPos];
       words.forEach((str) => {
-        const word = createDomElem('div', ['puzzle__content__words-item'], [str]);
+        const word = createDomElem('div', ['content__words-item'], [str]);
         word.setAttribute('data-action', 'out-field');
         field.append(word);
       });
@@ -88,13 +88,25 @@ const actions = {
   },
 
   'in-field': function (elem) {
+    console.log(elem.classList);
     if (!this.isCheck) {
       const curPos = Content.create().getCurWords();
       const field = Field.create();
-      elem.setAttribute('data-action', 'out-field');
+      // elem.setAttribute('data-action', 'out-field');
       const curField = field.getFields()[curPos];
-      curField.append(elem);
-      checkField();
+      const secondElem = 1;
+      const curWordsList = [...curField.children[secondElem].children]
+        .some((element) => {
+          if (element.textContent === '') {
+            // eslint-disable-next-line no-param-reassign
+            element.textContent = elem.textContent;
+            element.setAttribute('data-action', 'out-field');
+            return true;
+          }
+          return false;
+        });
+      console.log(curWordsList);
+      // checkField();
     }
   },
 

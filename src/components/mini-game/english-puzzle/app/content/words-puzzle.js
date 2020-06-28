@@ -31,7 +31,7 @@ class WordsPuzzle {
   }
 
   createContainer() {
-    this.appContainer = createDomElem('div', ['puzzle__content__words-list']);
+    this.appContainer = createDomElem('div', ['content__words-list']);
     return this;
   }
 
@@ -49,9 +49,12 @@ class WordsPuzzle {
       numbers.add(num);
     }
     Array.from(numbers).forEach((num) => {
-      const word = createDomElem('div', ['puzzle__content__words-item'], [wordsArr[num]]);
-      word.setAttribute('data-action', 'in-field');
-      word.setAttribute('draggable', 'true');
+      const word = createDomElem(
+        'div',
+        ['content__words-item'],
+        [wordsArr[num]],
+        [['data-action', 'in-field'], ['draggable', 'true']],
+      );
       this.container.append(word);
     });
     return this;

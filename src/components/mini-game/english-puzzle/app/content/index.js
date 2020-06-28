@@ -12,6 +12,7 @@ let dragSrcEl = null;
 
 function active(elem) {
   const { action } = elem.dataset;
+  // console.log(elem.dataset);
   if (actions[action]) {
     actions[action](elem);
   }
@@ -76,14 +77,6 @@ class Content {
     return this.appContainer;
   }
 
-  getCurWords() {
-    return this.curWords;
-  }
-
-  getWordsData() {
-    return this.wordsData;
-  }
-
   constructor() {
     if (instance) {
       return instance;
@@ -99,13 +92,21 @@ class Content {
     return new Content();
   }
 
+  getCurWords() {
+    return this.curWords;
+  }
+
+  getWordsData() {
+    return this.wordsData;
+  }
+
   setData(data) {
     this.wordsData = data;
     return this;
   }
 
   createContainer() {
-    this.appContainer = createDomElem('div', ['puzzle__content']);
+    this.appContainer = createDomElem('div', ['content']);
     return this;
   }
 

@@ -32,7 +32,7 @@ function createDropdown(curNum, name, listNum) {
 
 function createPages(curPage) {
   const name = 'page';
-  const listNum = 60;
+  const listNum = 30;
   return createDropdown(curPage, name, listNum);
 }
 

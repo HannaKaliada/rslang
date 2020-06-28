@@ -1,7 +1,7 @@
 import createDomElem from '../../common';
 
 function createBtn(text, className) {
-  return createDomElem('button', ['puzzle__content__btn', 'btn', 'btn-info', className], [text]);
+  return createDomElem('button', ['content__btn', 'btn', 'btn-info', className], [text]);
 }
 
 let instance;
@@ -28,7 +28,7 @@ class Buttons {
   }
 
   createContainer() {
-    this.appContainer = createDomElem('div', ['puzzle__content__btns']);
+    this.appContainer = createDomElem('div', ['content__btns']);
     return this;
   }
 

@@ -35,4 +35,4 @@ function createStartPage() {
   return page;
 }
 
-export default createStartPage;
+export default start;
