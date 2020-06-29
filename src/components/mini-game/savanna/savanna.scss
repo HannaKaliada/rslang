@@ -1,4 +1,33 @@
 .savanna-game-wrapper {
+  .timer {
+    position: absolute;
+    font-size: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .spinner-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .translation {
+    position: absolute;
+    top: 10%;
+    transition:top 9s linear;
+  }
+  .translation-move {
+    top: 90%;
+  }
+  .spinner-border {
+    width: 5rem !important;
+    height: 5rem !important;
+  }
+  .links {
+    display: flex;
+    justify-content: space-between;
+  }
   li {
     cursor: pointer;
   }
