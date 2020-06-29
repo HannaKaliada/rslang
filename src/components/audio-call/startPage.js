@@ -3,8 +3,9 @@ import createElement from '../../shared/createElement';
 import createGameData from './createGameData';
 
 class StartPage {
-  constructor(func) {
-    this.createElement = func;
+  constructor(createHTML, startGame) {
+    this.createElement = createHTML;
+    this.gameClass = startGame;
   }
 
   createTitle() {
@@ -40,12 +41,10 @@ class StartPage {
   }
 
   startGame() {
-    gamePage.init.call(gamePage);
+    this.gameClass.init.call(this.gameClass);
   }
-
 }
 
-const startPage = new StartPage(createElement);
-
+const startPage = new StartPage(createElement, gamePage);
 
 export default startPage;
