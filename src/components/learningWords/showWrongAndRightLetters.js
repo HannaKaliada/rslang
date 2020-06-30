@@ -6,10 +6,6 @@ export default function showWrongAndRightLetters() {
   const correctWord = properties.missingWord.split('');
 
   correctWord.forEach((letter, index) => {
-    if (letter === inputValueSpell[index]) {
-      document.querySelector('.input-top-layer').insertAdjacentHTML('beforeend', `<span class="correct-letter">${letter}</span>`);
-    } else {
-      document.querySelector('.input-top-layer').insertAdjacentHTML('beforeend', `<span class="wrong-letter">${letter}</span>`);
-    }
+    document.querySelector('.input-top-layer').insertAdjacentHTML('beforeend', `<span class=${letter === inputValueSpell[index] ? 'correct-letter' : 'wrong-letter'}>${letter}</span>`);
   });
 }

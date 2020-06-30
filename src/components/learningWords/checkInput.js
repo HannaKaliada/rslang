@@ -9,25 +9,27 @@ export default function checkInput() {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const input = form.querySelector('input');
-    document.querySelector('.input-top-layer').textContent = '';
-    document.querySelector('.input-top-layer').classList.remove('transparent');
+    const inputTopLayer = document.querySelector('.input-top-layer');
+
+    inputTopLayer.textContent = '';
+    inputTopLayer.classList.remove('transparent');
 
     if (input.value === properties.missingWord) {
       correctAnswer();
     } else {
-      document.querySelector('.input-top-layer').classList.remove('hidden');
+      inputTopLayer.classList.remove('hidden');
 
-      await showWrongAndRightLetters();
+      showWrongAndRightLetters();
 
       input.value = '';
-      input.style.width = `${document.querySelector('.input-top-layer').offsetWidth}px`;
-      document.querySelector('.input-top-layer').style.marginLeft = `${-input.offsetWidth - 5}px`;
+      input.style.width = `${inputTopLayer.offsetWidth}px`;
+      inputTopLayer.style.marginLeft = `${-input.offsetWidth - 5}px`;
 
       input.addEventListener('input', () => {
-        document.querySelector('.input-top-layer').classList.add('transparent');
+        inputTopLayer.classList.add('transparent');
       });
 
-      document.querySelector('.input-top-layer').addEventListener('click', () => {
+      inputTopLayer.addEventListener('click', () => {
         input.focus();
       });
     }
