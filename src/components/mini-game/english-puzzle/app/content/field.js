@@ -9,15 +9,6 @@ function createWordsList(words) {
 let instance;
 
 class Field {
-  getFields() {
-    return this.fields;
-  }
-
-  cleanFields() {
-    this.fields = [];
-    return this;
-  }
-
   get container() {
     return this.appContainer;
   }
@@ -27,7 +18,6 @@ class Field {
       return instance;
     }
     this.appContainer = null;
-    this.count = null;
     this.fields = [];
     instance = this;
     return this;
@@ -37,13 +27,17 @@ class Field {
     return new Field();
   }
 
-  setCount(num) {
-    this.count = num;
+  getFields() {
+    return this.fields;
+  }
+
+  cleanFields() {
+    this.fields = [];
     return this;
   }
 
   createContainer() {
-    this.appContainer = createDomElem('div', ['content__field-list']);
+    this.appContainer = createDomElem('div', ['content__field']);
     return this;
   }
 
@@ -57,18 +51,21 @@ class Field {
     return this;
   }
 
-  addContent() {
-    if (this.count) {
-      const words = Content.create().getWordsData();
-      console.log(words);
-      for (let i = 0; i < this.count; i += 1) {
-        const numField = createDomElem('div', ['content__field-num'], [`${i + 1}`]);
-        const wordsArr = words[i].textExample.split(' ').map(() => createDomElem('div', ['content__field-word']));
+  addContent(url) {
+    const words = Content.create().getWordsData();
+    if (words) {
+      const wordsNodeList = words.map((elem) => {
+        const wordsArr = elem.textExample.split(' ').map(() => createDomElem('div', ['content__field-word']));
         const wordsList = createDomElem('div', ['content__field-words'], wordsArr);
-        const field = createDomElem('div', ['content__field-item'], [numField, wordsList]);
+        const field = createDomElem('div', ['content__field-item'], [wordsList]);
         this.fields.push(field);
-        this.container.append(field);
-      }
+        return field;
+      });
+      const numNodeList = words.map((elem, i) => createDomElem('li', ['content__field-num'], [`${i + 1}`]));
+      const numList = createDomElem('ul', ['content__field-nums'], [...numNodeList]);
+      const imgStyle = ['style', `background-image: url(${url})`];
+      const wordsList = createDomElem('div', ['content__field-words__container'], [...wordsNodeList], [imgStyle]);
+      this.container.append(numList, wordsList);
     }
     return this;
   }

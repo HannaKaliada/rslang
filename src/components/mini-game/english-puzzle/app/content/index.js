@@ -1,5 +1,6 @@
 import createDomElem from '../../common';
 import Tips from './tips';
+// eslint-disable-next-line import/no-cycle
 import Field from './field';
 import WordsPuzzle from './words-puzzle';
 import Buttons from './buttons';
@@ -119,11 +120,10 @@ class Content {
     return this;
   }
 
-  addField() {
+  addField(url) {
     const field = Field.create()
       .createContainer()
-      .setCount(this.wordsData.length)
-      .addContent();
+      .addContent(url);
     this.container.append(field.container);
     return this;
   }
@@ -181,7 +181,6 @@ class Content {
     Field.create()
       .cleanContainer()
       .cleanFields()
-      .setCount(this.wordsData.length)
       .addContent();
     WordsPuzzle.create()
       .cleanContainer()

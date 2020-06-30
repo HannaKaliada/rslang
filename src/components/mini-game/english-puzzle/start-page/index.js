@@ -1,5 +1,6 @@
 import createDomElem from '../common';
 import getWords from '../../../../shared/get-words';
+import getImg from '../data';
 import Puzzle from '../app';
 
 const FIRST_VALUE = 0;
@@ -12,9 +13,12 @@ async function start() {
     .addControls({ group: FIRST_VALUE, page: FIRST_VALUE });
   body.append(app.container, errors);
   const data = await getWords(FIRST_VALUE, FIRST_VALUE);
-  if (typeof data === 'object') {
+  const imgData = await getImg();
+  console.log(imgData);
+  if (typeof data === 'object' && typeof imgData === 'object') {
+    const imgUrl = imgData.urls.full;
     app
-      .addContent(data);
+      .addContent(data, imgUrl);
   }
 }
 

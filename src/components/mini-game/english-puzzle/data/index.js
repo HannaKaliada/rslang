@@ -4,9 +4,7 @@ async function getImg() {
     const res = await fetch(`https://api.unsplash.com/photos/random?orientation=landscape&per_page=1&query=$art&client_id=${imgKey}`);
     if (res.ok) {
       const imgData = await res.json();
-      console.log(imgData);
-      const { full: img } = imgData.urls;
-      return img;
+      return imgData;
     }
     throw new Error(`${res.status}`);
   } catch (e) {

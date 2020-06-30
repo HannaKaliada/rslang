@@ -51,7 +51,7 @@ class WordsPuzzle {
     Array.from(numbers).forEach((num) => {
       const word = createDomElem(
         'div',
-        ['content__words-item'],
+        ['content__words-item', 'puzzle-shape'],
         [wordsArr[num]],
         [['data-action', 'in-field'], ['draggable', 'true']],
       );

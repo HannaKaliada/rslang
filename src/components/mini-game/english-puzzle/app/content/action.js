@@ -19,8 +19,29 @@ function checkField() {
 }
 
 function cleanCheckWords() {
-  const wordsField = document.querySelectorAll('.content__words-item');
-  wordsField.forEach((word) => word.classList.remove('correct-word', 'wrong-word'));
+  const wordsCorrect = document.querySelectorAll('.correct-word');
+  const wordsWrong = document.querySelectorAll('.wrong-word');
+  wordsCorrect.forEach((word) => word.classList.remove('correct-word'));
+  wordsWrong.forEach((word) => word.classList.remove('wrong-word'));
+}
+
+function replaceWord(field, elem, direction) {
+  field.some((element) => {
+    if (element.textContent === '') {
+      // eslint-disable-next-line no-param-reassign
+      element.textContent = elem.textContent;
+      element.setAttribute('data-action', `${direction}-field`);
+      element.classList.add('puzzle-shape');
+      return true;
+    }
+    return false;
+  });
+  const parentElem = elem.parentNode;
+  elem.classList.remove('puzzle-shape');
+  // eslint-disable-next-line no-param-reassign
+  elem.textContent = '';
+  elem.remove();
+  parentElem.append(elem);
 }
 
 const actions = {
@@ -88,40 +109,25 @@ const actions = {
   },
 
   'in-field': function (elem) {
-    console.log(elem.classList);
     if (!this.isCheck) {
       const curPos = Content.create().getCurWords();
-      const field = Field.create();
-      // elem.setAttribute('data-action', 'out-field');
-      const curField = field.getFields()[curPos];
-      const secondElem = 1;
-      const curWordsList = [...curField.children[secondElem].children]
-        .some((element) => {
-          if (element.textContent === '') {
-            // eslint-disable-next-line no-param-reassign
-            element.textContent = elem.textContent;
-            element.setAttribute('data-action', 'out-field');
-            return true;
-          }
-          return false;
-        });
-      console.log(curWordsList);
+      const fieldClass = Field.create();
+      const curField = fieldClass.getFields()[curPos];
+      const firstElem = 0;
+      const field = [...curField.children[firstElem].children];
+      replaceWord(field, elem, 'out');
       // checkField();
     }
   },
 
   'out-field': function (elem) {
     if (!this.isCheck) {
-      const curPos = Content.create().getCurWords();
-      const curField = Field.create().getFields()[curPos];
-      if (elem.parentNode === curField) {
-        cleanCheckWords();
-        elem.setAttribute('data-action', 'in-field');
-        const puzzle = WordsPuzzle.create();
-        const list = puzzle.container;
-        list.append(elem);
-        checkField();
-      }
+      cleanCheckWords();
+      const field = [...WordsPuzzle.create()
+        .container
+        .children];
+      replaceWord(field, elem, 'in');
+      // checkField();
     }
   },
 };
