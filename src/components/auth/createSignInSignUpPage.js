@@ -13,7 +13,7 @@ class CreateSignInSignUpPage {
     this.passwordTipText = 'Password must contain at least 8 characters, at least one uppercase letter, one uppercase letter, one number and one special character from "+-_@$!%*?&#.,;:[]{}]."';
   }
 
-  formHandler(e) {
+  async formHandler(e) {
     e.preventDefault();
     if (!this.passwordCheck()) {
       this.password.classList.add('invalid-password');
@@ -24,22 +24,20 @@ class CreateSignInSignUpPage {
         password: this.password.value,
       };
       if (this.formType === FORM_TYPE_SIGNUP) {
-        createUser(credentials)
-          .then(() => signInUser(credentials))
-          .then(() => {
-            window.location.hash = '#/hub';
-          })
-          .catch((error) => {
-            this.errorField.textContent = error;
-          });
+        try {
+          await createUser(credentials);
+          await signInUser(credentials);
+          window.location.hash = '#/hub';
+        } catch (error) {
+          this.errorField.textContent = error;
+        }
       } else {
-        signInUser(credentials)
-          .then(() => {
-            window.location.hash = '#/hub';
-          })
-          .catch((error) => {
-            this.errorField.textContent = error;
-          });
+        try {
+          await signInUser(credentials);
+          window.location.hash = '#/hub';
+        } catch (error) {
+          this.errorField.textContent = error;
+        }
       }
     }
     return false;
