@@ -30,7 +30,7 @@ async function getRandomVariants(word) {
     }
     return el;
   }
-  const variants = Promise.all(words.splice(-3).map((el) => addVariant(el)));
+  const variants = Promise.all(words.splice(-4).map((el) => addVariant(el)));
   return variants;
 }
 
