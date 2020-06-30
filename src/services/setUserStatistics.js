@@ -1,4 +1,4 @@
-const setUserStatistic = async ({ userId, token, obj }) => {
+const setUserStatistics = async ({ userId, token, obj }) => {
   const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/statistics`, {
     method: 'POST',
     withCredentials: true,
@@ -16,4 +16,4 @@ const setUserStatistic = async ({ userId, token, obj }) => {
   throw new Error('Error to set user statistics');
 };
 
-export default setUserStatistic;
+export default setUserStatistics;

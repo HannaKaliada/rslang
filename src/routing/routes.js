@@ -22,6 +22,7 @@ function game() {
   <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
 }
+
 const routes = {
   '#/': startPage.createPage.bind(startPage),
   '#/statis-tics': statistics,

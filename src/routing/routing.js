@@ -10,7 +10,6 @@ class Routing {
   }
 
   navigation() {
-    console.log(2);
     if (!window.location.href.match(/#\/.*$/)) {
       return;
     }

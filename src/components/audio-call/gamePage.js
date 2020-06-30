@@ -3,16 +3,24 @@ import createGameData from './createGameData';
 import '../../assets/icons/speaker.svg';
 import '../../assets/icons/spinner.svg';
 import randomize from '../../shared/randomize';
+import getUserStastics from '../../services/getUserStastics';
+import setUserStatistics from '../../services/setUserStatistics';
+import {state} from './startPage';
 
 class GamePage {
-  constructor(createHTML, randomizing) {
+  constructor(createHTML, randomizing, getStatistics, setStatistics) {
     this.createElement = createHTML;
     this.randomize = randomizing;
-    this.gameResults = {};
+    this.getStatistics = getStatistics;
+    this.setStatistics = setStatistics;
+    this.gameResults = {
+      rightAnswers: [],
+      wrongAnswers: [],
+    };
   }
 
   variantsBlockHandler(e) {
-    if (!e.target.classList.contains('word')) {
+    if (!e.target.classList.contains('audio-call__answer')) {
       return;
     }
     this.checkAnswer(e.target);
@@ -22,12 +30,12 @@ class GamePage {
     this.showAnswer();
     this.gameButton.value = 'Next';
     if (target.innerText === this.rightVariantText) {
-      this.gameResults['right answers'] = this.gameData;
+      this.gameResults.rightAnswers.push(this.gameData);
       this.totalScore += this.isHintUsed ? 1 : 2;
       target.classList.add('right');
       this.showAnswer(true);
     } else {
-      this.gameResults['wrong answers'] = this.gameData;
+      this.gameResults.wrongAnswers.push(this.gameData);
       Array.prototype.forEach.call(this.variants, ((el) => {
         if (el.innerText === this.rightVariantText) {
           el.classList.add('right');
@@ -52,7 +60,7 @@ class GamePage {
       el.classList.remove('right');
       el.classList.remove('wrong');
     }));
-    this.gameButton.textContent = `I don't know`;
+    this.gameButton.textContent = "I don't know";
     this.icon.src = 'images/speaker.svg';
     this.icon.addEventListener('click', this.soundHandler);
     this.answerBlock.classList.add('hidden');
@@ -68,7 +76,6 @@ class GamePage {
     this.rightVariantText = this.gameData.wordTranslate;
     variantsText.push(this.rightVariantText);
     variantsText = this.randomize(variantsText);
-    console.log(this.gameData);
     this.icon.onload = () => {
       variantsText.forEach((el, i) => {
         this.variants[i].textContent = el;
@@ -85,6 +92,13 @@ class GamePage {
 
   stopGame() {
     this.renderStatisticPage();
+    const statObj = this.getStatistics(state);
+    if (statObj.audiocall.results) {
+      statObj.audiocall.results.push();
+    } else {
+      statObj.audiocall.results = [];
+    }
+
   }
 
   renderStatisticPage() {
@@ -93,7 +107,7 @@ class GamePage {
     const rightAnswersTitle = this.createElement('h3', 'audio-call__list-title');
     rightAnswersTitle.textContent = 'Right answers:';
     const rightAnswers = this.createElement('ul', 'audio-call__statistics-list');
-    rightAnswers.append(...this.gameResults['right answers'].map((el) => {
+    rightAnswers.append(...this.gameResults.rightAnswers.map((el) => {
       const li = this.createElement('li', 'audio-call__statistics-item');
       li.textContent = el.word;
       return li;
@@ -101,7 +115,7 @@ class GamePage {
     const wrongAnswersTitle = this.createElement('h3', 'audio-call__list-title');
     wrongAnswersTitle.textContent = 'Wrong answers:';
     const wrongAnswers = this.createElement('ul', 'audio-call__statistics-list');
-    wrongAnswers.append(...this.gameResults['wrong answers'].map((el) => {
+    wrongAnswers.append(...this.gameResults.wrongAnswers.map((el) => {
       const li = this.createElement('li', 'audio-call__statistics-item');
       li.textContent = el.word;
       return li;
@@ -110,7 +124,7 @@ class GamePage {
     const firstBlock = this.createElement('div', 'audio-call__statitics-block');
     const secondBlock = this.createElement('div', 'audio-call__statitics-block');
     firstBlock.append(rightAnswersTitle, rightAnswers);
-    secondBlock.append(secondBlock);
+    secondBlock.append(wrongAnswersTitle, wrongAnswers);
     this.gameButton.textContent = 'Next round';
     page.append(h2, firstBlock, secondBlock, this.gameButton);
     const container = document.querySelector('.container.audio-call');
@@ -130,7 +144,7 @@ class GamePage {
 
   createVariantsBlock() {
     this.variantsBlock = this.createElement('div', 'audio-call__answers');
-    this.variantsBlock.addEventListener('click', this.checkAnswer.bind(this));
+    this.variantsBlock.addEventListener('click', this.variantsBlockHandler.bind(this));
     this.variants = [1, 1, 1, 1, 1];
     this.variants = this.variants.map(() => this.createElement('p', 'audio-call__answer'));
     this.variantsBlock.append(...this.variants);
@@ -151,15 +165,19 @@ class GamePage {
 
   createGameButton() {
     this.gameButton = this.createElement('button', ['audio-call__game-button', 'btn', 'btn-secondary']);
-    this.gameButton.textContent = `I don't know`;
+    this.gameButton.textContent = "I don't know";
     this.gameButton.addEventListener('click', this.gameButtonHandler.bind(this));
     return this.gameButton;
+  }
+
+  createLevelControls() {
+    const fm = this.createElement('form', )
   }
 
   gameButtonHandler() {
     const text = this.gameButton.textContent;
     switch (text) {
-      case `I don't know`:
+      case "I don't know":
         this.showAnswer();
         return;
       case 'Next':
@@ -204,6 +222,6 @@ class GamePage {
   }
 }
 
-const gamePage = new GamePage(createElement, randomize);
+const gamePage = new GamePage(createElement, randomize, getUserStastics, setUserStatistics);
 
 export default gamePage;

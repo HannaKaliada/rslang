@@ -1,6 +1,8 @@
 import gamePage from './gamePage';
 import createElement from '../../shared/createElement';
-import createGameData from './createGameData';
+import loginUser from '../../services/loginUser';
+
+export const state = {};
 
 class StartPage {
   constructor(createHTML, startGame) {
@@ -30,6 +32,7 @@ class StartPage {
     const button = this.createElement('button', ['btn', 'btn-primary']);
     button.innerText = 'Start';
     button.addEventListener('click', this.startGame.bind(this));
+    button.addEventListener('click', this.tempFunction.bind(this));
     return button;
   }
 
@@ -43,8 +46,13 @@ class StartPage {
   startGame() {
     this.gameClass.init.call(this.gameClass);
   }
+
+  async tempFunction() {
+    const obj = await loginUser({ email: '1234@tut.by', password: 'Kolobok@1' });
+    state.userId = obj;
+    state.token = obj;
+  }
+
 }
 
-const startPage = new StartPage(createElement, gamePage);
-
-export default startPage;
+export const startPage = new StartPage(createElement, gamePage);
