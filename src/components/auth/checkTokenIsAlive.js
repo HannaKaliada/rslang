@@ -3,13 +3,15 @@ import checkToken from '../../services/checkToken';
 export default async function checkTokenIsAlive() {
   if (localStorage.getItem('userInfo')) {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    const { token } = userInfo;
-    const id = userInfo.userId;
+    const { token, userId } = userInfo;
     try {
-      await checkToken(id, token);
-      window.location.hash = '#/hub';
+      await checkToken(userId, token);
+      return true;
     } catch (error) {
       localStorage.clear();
+      return false;
     }
+  } else {
+    return false;
   }
 }

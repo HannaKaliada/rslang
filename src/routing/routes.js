@@ -29,13 +29,34 @@ function game() {
 }
 
 const routes = {
-  '#/': renderStartPage,
-  '#/statistics': statistics,
-  '#/game': game,
-  '#/settings': settings,
-  '#/auth': createSignInSignUpPage.init.bind(createSignInSignUpPage),
-  '#/about-team': renderTeamPage,
-  '#/hub': initHubPage,
+  '#/': {
+    requiresAuth: false,
+    render: renderStartPage,
+  },
+  '#/statistics': {
+    requiresAuth: true,
+    render: statistics,
+  },
+  '#/game': {
+    requiresAuth: true,
+    render: game,
+  },
+  '#/settings': {
+    requiresAuth: true,
+    render: settings,
+  },
+  '#/auth': {
+    requiresAuth: false,
+    render: createSignInSignUpPage.init.bind(createSignInSignUpPage),
+  },
+  '#/about-team': {
+    requiresAuth: false,
+    render: renderTeamPage,
+  },
+  '#/hub': {
+    requiresAuth: true,
+    render: initHubPage,
+  },
 };
 
 export default routes;

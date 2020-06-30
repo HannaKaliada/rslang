@@ -155,12 +155,14 @@ class CreateSignInSignUpPage {
     return form;
   }
 
-  init() {
+  async init() {
     const root = document.querySelector('.root');
     const container = this.createElement('div', 'container');
     container.append(this.createForm());
     root.append(container);
-    checkTokenIsAlive();
+    if (await checkTokenIsAlive()) {
+      window.location.hash = '#/hub';
+    }
   }
 }
 
