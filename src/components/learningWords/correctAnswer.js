@@ -1,18 +1,22 @@
 import goToTheNextWord from './goToTheNextWord';
 import setWordsToProps from './setWordsToProps';
 
-export default async function correctAnswer() {
-  if (localStorage.getItem('currentWord') < 9) {
-    localStorage.setItem('currentWord', Number(localStorage.getItem('currentWord')) + 1);
+export default function correctAnswer() {
+  const currentWord = localStorage.getItem('currentWord');
+  const currentPage = localStorage.getItem('currentPage');
+  const currentGroup = localStorage.getItem('currentGroup');
+
+  if (currentWord < 9) {
+    localStorage.setItem('currentWord', Number(currentWord) + 1);
   } else {
-    localStorage.setItem('currentWord', 0);
-    if (localStorage.getItem('currentPage') < 30) {
-      localStorage.setItem('currentPage', Number(localStorage.getItem('currentPage')) + 1);
-      await setWordsToProps();
+    if (currentPage < 30) {
+      localStorage.setItem('currentPage', Number(currentPage) + 1);
+      setWordsToProps();
     } else {
       localStorage.setItem('currentPage', 0);
-      localStorage.setItem('currentGroup', Number(localStorage.getItem('currentGroup')) + 1);
+      localStorage.setItem('currentGroup', Number(currentGroup) + 1);
     }
+    localStorage.setItem('currentWord', 0);
   }
-  await goToTheNextWord();
+  goToTheNextWord();
 }

@@ -6,7 +6,7 @@ export default function checkInput() {
   const form = document.querySelector('.word form');
   form.querySelector('input').focus();
 
-  form.addEventListener('submit', async (event) => {
+  form.addEventListener('submit', (event) => {
     event.preventDefault();
     const input = form.querySelector('input');
     const inputTopLayer = document.querySelector('.input-top-layer');
@@ -23,7 +23,7 @@ export default function checkInput() {
 
       input.value = '';
       input.style.width = `${inputTopLayer.offsetWidth}px`;
-      inputTopLayer.style.marginLeft = `${-input.offsetWidth - 5}px`;
+      inputTopLayer.style.marginLeft = `${-input.offsetWidth - 10}px`;
 
       input.addEventListener('input', () => {
         inputTopLayer.classList.add('transparent');

@@ -10,7 +10,7 @@ function formatData(data) {
 
 async function getWords(page, group) {
   try {
-    const url = `https://pacific-castle-12388.herokuapp.com/words?page=${Math.floor(page / 2)}&group=${group}`;
+    const url = `https://afternoon-falls-25894.herokuapp.com/words?page=${Math.floor(page / 2)}&group=${group}`;
     const res = await fetch(url);
     if (res.ok) {
       let data = Array.from(await res.json());

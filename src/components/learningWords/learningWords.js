@@ -6,9 +6,9 @@ import setWordsToProps from './setWordsToProps';
 import setInputWidth from './setInputWidth';
 
 export default async function learningWords() {
-  await setStartPosition();
+  setStartPosition();
   await setWordsToProps();
-  await renderContent();
-  await setInputWidth();
-  await checkInput();
+  renderContent();
+  setInputWidth();
+  checkInput();
 }
