@@ -60,6 +60,9 @@ class GamePage {
 
   startRound() {
     this.pageElementsDropToDefault();
+    if (!this.gameWords.length) {
+      this.stopGame();
+    }
     this.gameData = this.gameWords.pop();
     let variantsText = this.gameData.variants.map((el) => el.wordTranslate);
     this.rightVariantText = this.gameData.wordTranslate;
@@ -78,6 +81,41 @@ class GamePage {
     this.wordImage = this.gameData.image;
     this.rightAnswer.textContent = this.rightVariantText;
     setTimeout(this.audioTask.play.bind(this.audioTask), 500);
+  }
+
+  stopGame() {
+    this.renderStatisticPage();
+  }
+
+  renderStatisticPage() {
+    const h2 = this.createElement('h2', 'audio-call__title');
+    h2.textContent = 'Your statistics:';
+    const rightAnswersTitle = this.createElement('h3', 'audio-call__list-title');
+    rightAnswersTitle.textContent = 'Right answers:';
+    const rightAnswers = this.createElement('ul', 'audio-call__statistics-list');
+    rightAnswers.append(...this.gameResults['right answers'].map((el) => {
+      const li = this.createElement('li', 'audio-call__statistics-item');
+      li.textContent = el.word;
+      return li;
+    }));
+    const wrongAnswersTitle = this.createElement('h3', 'audio-call__list-title');
+    wrongAnswersTitle.textContent = 'Wrong answers:';
+    const wrongAnswers = this.createElement('ul', 'audio-call__statistics-list');
+    wrongAnswers.append(...this.gameResults['wrong answers'].map((el) => {
+      const li = this.createElement('li', 'audio-call__statistics-item');
+      li.textContent = el.word;
+      return li;
+    }));
+    const page = this.createElement('div', 'audio-call__statistics');
+    const firstBlock = this.createElement('div', 'audio-call__statitics-block');
+    const secondBlock = this.createElement('div', 'audio-call__statitics-block');
+    firstBlock.append(rightAnswersTitle, rightAnswers);
+    secondBlock.append(secondBlock);
+    this.gameButton.textContent = 'Next round';
+    page.append(h2, firstBlock, secondBlock, this.gameButton);
+    const container = document.querySelector('.container.audio-call');
+    container.innerHTML = '';
+    container.append(page);
   }
 
   createShowAnswerBlock() {
@@ -127,6 +165,9 @@ class GamePage {
       case 'Next':
         this.startRound();
         return;
+      case 'Next round':
+        this.init();
+        return;
       default:
         this.startRound();
     }
@@ -134,7 +175,8 @@ class GamePage {
 
   renderPage() {
     const elements = [];
-    elements.push(this.createSoundIcon(), this.createShowAnswerBlock(), this.createVariantsBlock(), this.createGameButton());
+    elements.push(this.createSoundIcon(), this.createShowAnswerBlock());
+    elements.push(this.createVariantsBlock(), this.createGameButton());
     return elements;
   }
 

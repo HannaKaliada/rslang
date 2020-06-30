@@ -4,11 +4,13 @@ class Routing {
   }
 
   loadPage(pathname) {
+    console.log(1);
     this.root.innerHTML = '';
     this.root.append(this.routes[pathname]);
   }
 
   navigation() {
+    console.log(2);
     if (!window.location.href.match(/#\/.*$/)) {
       return;
     }
