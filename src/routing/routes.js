@@ -4,7 +4,7 @@ import renderTeamPage from '../components/about-team-page/render-about-team-page
 import renderStartPage from '../components/start-page/renderStartPage';
 import initHubPage from '../components/hub/hub-page/initHubPage';
 import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
-import learningWords from '../components/learningWords/learningWords.js';
+import learningWords from '../components/learningWords/learningWords';
 
 function statistics() {
   const page = document.querySelector('.root');
