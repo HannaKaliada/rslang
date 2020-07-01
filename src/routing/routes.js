@@ -3,6 +3,7 @@ import renderTeamPage from '../components/about-team-page/render-about-team-page
 import renderStartPage from '../components/start-page/renderStartPage';
 import initHubPage from '../components/hub/hub-page/initHubPage';
 import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
+import renderSprintPage from '../components/sprint/renderSprintPage';
 
 function statistics() {
   const page = document.querySelector('.root');
@@ -36,6 +37,7 @@ const routes = {
   '#/auth': createSignInSignUpPage.init.bind(createSignInSignUpPage),
   '#/about-team': renderTeamPage,
   '#/hub': initHubPage,
+  '#/sprint': renderSprintPage,
 };
 
 export default routes;
