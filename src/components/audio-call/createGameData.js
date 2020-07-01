@@ -34,7 +34,14 @@ async function getRandomVariants(word) {
   return variants;
 }
 
-async function createGameData() {
+async function createGameData([level, round]) {
+  let nextRound = round + 1;
+  let nextLevel = level;
+  if (nextRound > 60) {
+    nextRound = 1;
+    nextLevel += 1;
+  }
+  gameData.length = 0;
   const arr = [];
   for (let i = 0; i <= 59; i += 1) {
     arr.push(i);

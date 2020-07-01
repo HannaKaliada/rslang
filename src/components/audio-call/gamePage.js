@@ -5,7 +5,7 @@ import '../../assets/icons/spinner.svg';
 import randomize from '../../shared/randomize';
 import getUserStastics from '../../services/getUserStastics';
 import setUserStatistics from '../../services/setUserStatistics';
-import {state} from './startPage';
+import getDate from '../../shared/getDate';
 
 class GamePage {
   constructor(createHTML, randomizing, getStatistics, setStatistics) {
@@ -17,6 +17,7 @@ class GamePage {
       rightAnswers: [],
       wrongAnswers: [],
     };
+    this.state = {};
   }
 
   variantsBlockHandler(e) {
@@ -90,15 +91,32 @@ class GamePage {
     setTimeout(this.audioTask.play.bind(this.audioTask), 500);
   }
 
-  stopGame() {
-    this.renderStatisticPage();
-    const statObj = this.getStatistics(state);
-    if (statObj.audiocall.results) {
-      statObj.audiocall.results.push();
-    } else {
-      statObj.audiocall.results = [];
-    }
+  getCurrentRound() {
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+    const obj = this.getStatistics({ userId, token});
+    this.currentRound = obj.audiocall ? obj.audiocall.round : [1, 1];
+    return this.currentRound;
+  }
 
+  stopGame() {
+    const round = document.querySelector('#audioCallRound').value;
+    const level = document.querySelector('#audioCallLevel').value;
+    this.renderStatisticPage();
+    const statObj = this.getStatistics(this.state);
+    const date = getDate();
+    const result = `${date}, m:${this.gameResults.wrongAnswers.length}`;
+    if (statObj.audiocall.results) {
+      statObj.audiocall.results.push(result);
+    } else {
+      statObj.audiocall.results = [result];
+    }
+    statObj.audiocall.round = [round, level];
+    const userId = this.state.userID;
+    console.log(userId);
+    const token = this.state.token;
+    const obj = statObj;
+    this.setStatistics({ userId, token, obj });
   }
 
   renderStatisticPage() {
@@ -171,7 +189,37 @@ class GamePage {
   }
 
   createLevelControls() {
-    const fm = this.createElement('form', )
+    const form = this.createElement('form', 'audio-call-form');
+    const level = this.createElement('select', ['audio-call-form__select', 'form-control']);
+    level.id = 'audioCallLevel';
+    const round = this.createElement('select', ['audio-call-form__select', 'form-control']);
+    round.id = 'audioCallRound';
+    level.addEventListener('change', this.init.bind(this));
+    round.addEventListener('change', this.init.bind(this));
+    for (let i = 1; i <= 60; i += 1) {
+      const option = this.createElement('option');
+      option.value = i;
+      option.textContent = i;
+      round.append(option);
+    }
+    for (let i = 1; i <= 6; i += 1) {
+      const option = this.createElement('option');
+      option.value = i;
+      option.textContent = i;
+      level.append(option);
+    }
+    const levelBlock = this.createElement('div', ['audio-call-form__block', 'form-group']);
+    const roundBlock = this.createElement('div', ['audio-call-form__block', 'form-group']);
+    const levelLabel = this.createElement('label');
+    levelLabel.textContent = 'Level:';
+    levelLabel.for = 'audioCallLevel';
+    const roundLabel = this.createElement('label');
+    roundLabel.textContent = 'Round:';
+    roundLabel.for = 'audioCallRound';
+    roundBlock.append(roundLabel, round);
+    levelBlock.append(levelLabel, level);
+    form.append(levelBlock, roundBlock);
+    return form;
   }
 
   gameButtonHandler() {
@@ -191,10 +239,24 @@ class GamePage {
     }
   }
 
+  createHintButton() {
+    const button = this.createElement('button', ['audio-call__hint-button', 'btn', 'btn-secondary']);
+    button.textContent = 'Get a hint';
+    button.addEventListener('click', this.hintButtonHandler.bind(this));
+    return button;
+  }
+
+  hintButtonHandler() {
+    this.audioHint.play();
+    this.isHintUsed = true;
+  }
+
   renderPage() {
     const elements = [];
+    elements.push(this.createLevelControls());
     elements.push(this.createSoundIcon(), this.createShowAnswerBlock());
     elements.push(this.createVariantsBlock(), this.createGameButton());
+    elements.push(this.createHintButton());
     return elements;
   }
 
@@ -207,12 +269,18 @@ class GamePage {
   }
 
   async init() {
+    const obj = { audiocall: {} };
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+    this.setStatistics({ userId, token, obj });
+    this.gameResults.rightAnswers = [];
+    this.gameResults.wrongAnswers = [];
     const root = document.querySelector('.root');
     const container = this.createElement('div', ['container', 'audio-call']);
     container.append(...this.loadingPlug());
     root.removeChild(root.firstChild);
     root.append(container);
-    await createGameData()
+    await createGameData(this.getCurrentRound())
       .then((words) => {
         this.gameWords = words;
         container.innerHTML = '';

@@ -1,6 +1,7 @@
 import gamePage from './gamePage';
 import createElement from '../../shared/createElement';
 import loginUser from '../../services/loginUser';
+import createUser from '../../services/createUser';
 
 export const state = {};
 
@@ -48,9 +49,14 @@ class StartPage {
   }
 
   async tempFunction() {
-    const obj = await loginUser({ email: '1234@tut.by', password: 'Kolobok@1' });
-    state.userId = obj;
-    state.token = obj;
+    const obj = await loginUser({ email: '1235@tut.by', password: 'Kolobok@1' })
+      .then((el) => {
+        console.log(el);
+        localStorage.setItem('userId', el.userId);
+        localStorage.setItem('token', el.token);
+        return el;
+      });
+    console.log(obj);
   }
 
 }

@@ -7,6 +7,7 @@ const getUserStatistic = async ({ userId, token }) => {
       Accept: 'application/json',
     },
   });
+  console.log(rawResponse);
   if (rawResponse.ok) {
     const content = await rawResponse.json();
     return content;
