@@ -36,6 +36,7 @@
         flex: 1;
         display: flex;
         width: 800px;
+        min-height: 40px;
 
         &__container {
           background-size: cover;
@@ -157,5 +158,9 @@
         }
       }
     }
+  }
+
+  .selected {
+    opacity: 0.6;
   }
 }

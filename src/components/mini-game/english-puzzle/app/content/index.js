@@ -6,10 +6,16 @@ import WordsPuzzle from './words-puzzle';
 import Buttons from './buttons';
 // eslint-disable-next-line import/no-cycle
 import actions from './action';
+// eslint-disable-next-line import/no-cycle
+import {
+  // eslint-disable-next-line import/named
+  handleDragEnd,
+  handleDragOver,
+  handleDragStart,
+  handleDrop,
+} from './drug-and-drop';
 
 let instance;
-
-let dragSrcEl = null;
 
 function active(elem) {
   const { action } = elem.dataset;
@@ -21,56 +27,6 @@ function active(elem) {
 
 function handleClick(e) {
   active(e.target);
-}
-
-function handleDragStart(e) {
-  dragSrcEl = e.target;
-  e.dataTransfer.effectAllowed = 'move';
-}
-
-function handleDragOver(e) {
-  if (e.preventDefault) {
-    e.preventDefault();
-  }
-  const curPos = instance.getCurWords();
-  const curField = Field.create().getFields()[curPos];
-  const puzzle = WordsPuzzle.create().container;
-  if (curField === e.target || puzzle === e.target) e.dataTransfer.dropEffect = 'move';
-  else e.dataTransfer.dropEffect = 'none';
-  return false;
-}
-
-function handleDragEnter(e) {
-  const curPos = instance.getCurWords();
-  const curField = Field.create().getFields()[curPos];
-  const puzzle = WordsPuzzle.create().container;
-  if (curField === e.target || puzzle === e.target) e.target.classList.add('over');
-}
-
-function handleDragLeave(e) {
-  const curPos = instance.getCurWords();
-  const curField = Field.create().getFields()[curPos];
-  const puzzle = WordsPuzzle.create().container;
-  if (curField === e.target || puzzle === e.target) e.target.classList.remove('over');
-}
-
-function handleDrop(e) {
-  if (e.stopPropagation) {
-    e.stopPropagation();
-  }
-  const curPos = instance.getCurWords();
-  const curField = Field.create().getFields()[curPos];
-  const puzzle = WordsPuzzle.create().container;
-  if (curField === e.target || puzzle === e.target) {
-    e.target.classList.remove('over');
-    active(dragSrcEl);
-  }
-  return false;
-}
-
-// eslint-disable-next-line no-unused-vars
-function handleDragEnd(e) {
-
 }
 
 class Content {
@@ -153,8 +109,6 @@ class Content {
 
   addEventDrug() {
     this.container.addEventListener('dragstart', handleDragStart);
-    this.container.addEventListener('dragenter', handleDragEnter);
-    this.container.addEventListener('dragleave', handleDragLeave);
     this.container.addEventListener('dragover', handleDragOver);
     this.container.addEventListener('drop', handleDrop);
     this.container.addEventListener('dragend', handleDragEnd);

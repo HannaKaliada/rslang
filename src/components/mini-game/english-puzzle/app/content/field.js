@@ -58,8 +58,8 @@ class Field {
         const wordsArr = elem.textExample.split(' ').map(() => createDomElem('div', ['content__field-word']));
         const wordsList = createDomElem('div', ['content__field-words'], wordsArr);
         const field = createDomElem('div', ['content__field-item'], [wordsList]);
-        this.fields.push(field);
-        return field;
+        this.fields.push(wordsList);
+        return wordsList;
       });
       const numNodeList = words.map((elem, i) => createDomElem('li', ['content__field-num'], [`${i + 1}`]));
       const numList = createDomElem('ul', ['content__field-nums'], [...numNodeList]);

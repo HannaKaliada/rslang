@@ -31,6 +31,7 @@ function replaceWord(field, elem, direction) {
       // eslint-disable-next-line no-param-reassign
       element.textContent = elem.textContent;
       element.setAttribute('data-action', `${direction}-field`);
+      element.setAttribute('draggable', 'true');
       element.classList.add('puzzle-shape');
       return true;
     }
@@ -38,6 +39,8 @@ function replaceWord(field, elem, direction) {
   });
   const parentElem = elem.parentNode;
   elem.classList.remove('puzzle-shape');
+  elem.removeAttribute('draggable');
+  elem.removeAttribute('data-action');
   // eslint-disable-next-line no-param-reassign
   elem.textContent = '';
   elem.remove();
@@ -113,8 +116,7 @@ const actions = {
       const curPos = Content.create().getCurWords();
       const fieldClass = Field.create();
       const curField = fieldClass.getFields()[curPos];
-      const firstElem = 0;
-      const field = [...curField.children[firstElem].children];
+      const field = [...curField.children];
       replaceWord(field, elem, 'out');
       // checkField();
     }
