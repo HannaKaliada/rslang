@@ -3,6 +3,11 @@ import getJsonWords from '../../services/getWords';
 export default class WordsSet {
 
 
+  constructor() {
+    this.round = 0;
+    this.level = 0;
+  }
+
   getSetOfWords() {
     return getJsonWords(0,0)
       .then(data => {
