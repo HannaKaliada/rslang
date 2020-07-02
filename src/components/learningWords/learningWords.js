@@ -3,10 +3,12 @@ import renderContent from './renderContent';
 import setStartPosition from './setStartPosition';
 import checkInput from './checkInput';
 import setWordsToProps from './setWordsToProps';
+import setInputWidth from './setInputWidth';
 
 export default async function learningWords() {
-  await setStartPosition();
+  setStartPosition();
   await setWordsToProps();
-  await renderContent();
-  await checkInput();
+  renderContent();
+  setInputWidth();
+  checkInput();
 }
