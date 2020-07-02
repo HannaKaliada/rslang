@@ -28,6 +28,9 @@ class GamePage {
   }
 
   checkAnswer(target) {
+    if (this.gameButton.textContent === 'Next') {
+      return;
+    }
     this.showAnswer();
     this.gameButton.value = 'Next';
     if (target.innerText === this.rightVariantText) {
@@ -69,10 +72,11 @@ class GamePage {
 
   startRound() {
     this.pageElementsDropToDefault();
-    if (!this.gameWords.length) {
-      this.stopGame();
-    }
     this.gameData = this.gameWords.pop();
+    if (!this.gameData) {
+      this.stopGame();
+      return;
+    }
     let variantsText = this.gameData.variants.map((el) => el.wordTranslate);
     this.rightVariantText = this.gameData.wordTranslate;
     variantsText.push(this.rightVariantText);
@@ -91,32 +95,66 @@ class GamePage {
     setTimeout(this.audioTask.play.bind(this.audioTask), 500);
   }
 
-  getCurrentRound() {
+  async getCurrentRound(e) {
     const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('token');
-    const obj = this.getStatistics({ userId, token});
-    this.currentRound = obj.audiocall ? obj.audiocall.round : [1, 1];
-    return this.currentRound;
+    this.currentRound = [];
+    if (e) {
+      this.currentRound.push(this.levelInput.value, this.roundInput.value);
+      return this.currentRound;
+    }
+    const obj = await this.getStatistics({ userId, token })
+      .then((res) => {
+        if (res.optional && res.optional.audioCall.round) {
+          let [level, round] = res.optional.audioCall.round;
+          round -= 1;
+          if (round > 60) {
+            round = 1;
+            level = level === 5 ? 0 : (level + 1);
+          }
+          this.currentRound.push(level, round);
+        } else {
+          this.currentRound = [0, 1];
+        }
+        return this.currentRound;
+      })
+      .catch(() => {
+        this.currentRound = [0, 1];
+        return this.currentRound;
+      });
+    return obj;
   }
 
-  stopGame() {
-    const round = document.querySelector('#audioCallRound').value;
-    const level = document.querySelector('#audioCallLevel').value;
-    this.renderStatisticPage();
-    const statObj = this.getStatistics(this.state);
-    const date = getDate();
-    const result = `${date}, m:${this.gameResults.wrongAnswers.length}`;
-    if (statObj.audiocall.results) {
-      statObj.audiocall.results.push(result);
-    } else {
-      statObj.audiocall.results = [result];
+  async stopGame() {
+    let round = Number(document.querySelector('#audioCallRound').value) + 1;
+    let level = Number(document.querySelector('#audioCallLevel').value);
+    if (round > 60) {
+      round = 1;
+      level = level === 5 ? 0 : (level + 1);
     }
-    statObj.audiocall.round = [round, level];
-    const userId = this.state.userID;
-    console.log(userId);
-    const token = this.state.token;
-    const obj = statObj;
-    this.setStatistics({ userId, token, obj });
+    this.renderStatisticPage();
+    const statistics = await this.getStatistics(this.state)
+      .then((res) => res);
+    const date = getDate();
+    const obj = {};
+    obj.optional = statistics.optional;
+    obj.learnedWords = statistics.learnedWords;
+    const result = `${date}, m:${this.gameResults.wrongAnswers.length}`;
+    if (obj.optional.audioCall && obj.optional.audioCall.results) {
+      obj.optional.audioCall.results.push(result);
+    } else {
+      obj.optional = {
+        audioCall: {
+          results: [result],
+        },
+      };
+    }
+    obj.optional.audioCall.round = [round, level];
+    const { userId, token } = this.state;
+    await this.setStatistics({ userId, token, obj })
+    .then((ans) => {
+      console.log(ans);
+    });
   }
 
   renderStatisticPage() {
@@ -190,23 +228,27 @@ class GamePage {
 
   createLevelControls() {
     const form = this.createElement('form', 'audio-call-form');
-    const level = this.createElement('select', ['audio-call-form__select', 'form-control']);
-    level.id = 'audioCallLevel';
-    const round = this.createElement('select', ['audio-call-form__select', 'form-control']);
-    round.id = 'audioCallRound';
-    level.addEventListener('change', this.init.bind(this));
-    round.addEventListener('change', this.init.bind(this));
+    this.levelInput = this.createElement('select', ['audio-call-form__select', 'form-control']);
+    this.levelInput.id = 'audioCallLevel';
+    this.roundInput = this.createElement('select', ['audio-call-form__select', 'form-control']);
+    this.roundInput.id = 'audioCallRound';
+    this.levelInput.addEventListener('change', this.init.bind(this));
+    this.roundInput.addEventListener('change', this.init.bind(this));
     for (let i = 1; i <= 60; i += 1) {
       const option = this.createElement('option');
       option.value = i;
       option.textContent = i;
-      round.append(option);
+      this.roundInput.append(option);
     }
     for (let i = 1; i <= 6; i += 1) {
       const option = this.createElement('option');
       option.value = i;
       option.textContent = i;
-      level.append(option);
+      this.levelInput.append(option);
+    }
+    if (this.currentRound) {
+      [this.roundInput.value, this.levelInput.value] = this.currentRound;
+      this.levelInput.value += 1;
     }
     const levelBlock = this.createElement('div', ['audio-call-form__block', 'form-group']);
     const roundBlock = this.createElement('div', ['audio-call-form__block', 'form-group']);
@@ -216,8 +258,8 @@ class GamePage {
     const roundLabel = this.createElement('label');
     roundLabel.textContent = 'Round:';
     roundLabel.for = 'audioCallRound';
-    roundBlock.append(roundLabel, round);
-    levelBlock.append(levelLabel, level);
+    roundBlock.append(roundLabel, this.roundInput);
+    levelBlock.append(levelLabel, this.levelInput);
     form.append(levelBlock, roundBlock);
     return form;
   }
@@ -268,19 +310,22 @@ class GamePage {
     return [loader, message];
   }
 
-  async init() {
-    const obj = { audiocall: {} };
-    const userId = localStorage.getItem('userId');
-    const token = localStorage.getItem('token');
-    this.setStatistics({ userId, token, obj });
+  async init(e) {
     this.gameResults.rightAnswers = [];
     this.gameResults.wrongAnswers = [];
+    this.state.userId = localStorage.getItem('userId');
+    this.state.token = localStorage.getItem('token');
     const root = document.querySelector('.root');
     const container = this.createElement('div', ['container', 'audio-call']);
     container.append(...this.loadingPlug());
     root.removeChild(root.firstChild);
     root.append(container);
-    await createGameData(this.getCurrentRound())
+    await this.getCurrentRound(e)
+      .then(async (arr) => {
+        console.log(arr);
+        const result = await createGameData(arr);
+        return result;
+      })
       .then((words) => {
         this.gameWords = words;
         container.innerHTML = '';

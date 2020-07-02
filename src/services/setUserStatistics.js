@@ -1,6 +1,6 @@
 const setUserStatistics = async ({ userId, token, obj }) => {
   const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/statistics`, {
-    method: 'POST',
+    method: 'PUT',
     withCredentials: true,
     headers: {
       Authorization: `Bearer ${token}`,
@@ -9,7 +9,6 @@ const setUserStatistics = async ({ userId, token, obj }) => {
     },
     body: JSON.stringify(obj),
   });
-  console.log(rawResponse);
   if (rawResponse.ok) {
     const content = await rawResponse.json();
     return content;

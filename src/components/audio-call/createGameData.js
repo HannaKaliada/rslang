@@ -3,6 +3,7 @@ import randomize from '../../shared/randomize';
 import getWordDistance from './getWordDistance';
 
 const gameData = [];
+let answers = [];
 
 async function getPartOfSpeech(word) {
   const url = 'https://dictionary.skyeng.ru/api/public/v1/words/search?search=';
@@ -14,7 +15,7 @@ async function getPartOfSpeech(word) {
 }
 
 async function getRandomVariants(word) {
-  let words = gameData.flat(1).slice(10);
+  let words = gameData.flat(1);
   const partOfSpeech = await getPartOfSpeech(word);
   words = words.map((el) => {
     const newElem = el;
@@ -35,30 +36,29 @@ async function getRandomVariants(word) {
 }
 
 async function createGameData([level, round]) {
-  let nextRound = round + 1;
-  let nextLevel = level;
-  if (nextRound > 60) {
-    nextRound = 1;
-    nextLevel += 1;
-  }
   gameData.length = 0;
+  answers.length = 0;
   const arr = [];
   for (let i = 0; i <= 59; i += 1) {
     arr.push(i);
   }
+  answers = await getWords(round, level);
   const promises = arr.map(async (el) => {
-    await getWords(el, 0)
+    const result = await getWords(el, round)
       .then((res) => gameData.push(res));
+    return result;
   });
-  await Promise.all(promises);
-  const wordsInGame = randomize(gameData[0]);
-  const promisesVariants = wordsInGame.map(async (el) => {
-    const newEl = el;
-    newEl.variants = await getRandomVariants(el);
-    return newEl;
-  });
-  const result = Promise.all(promisesVariants);
-  return result;
+  return Promise.allSettled(promises)
+    .then(() => {
+      const wordsInGame = randomize(answers);
+      return Promise.allSettled(wordsInGame.map(async (el) => {
+        const newEl = el;
+        newEl.variants = await getRandomVariants(el)
+          .then((res) => res);
+        return newEl;
+      }))
+        .then((res) => res.map((el) => el.value));
+    });
 }
 
 export default createGameData;
