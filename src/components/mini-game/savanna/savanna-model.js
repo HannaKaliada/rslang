@@ -5,16 +5,22 @@ const model = {
   rightAnswer: 0,
   level: 1,
   index: 0,
-  difficulty: 0,
+  difficulty: localStorage.getItem("level") % 3,
   mistakes: 0,
   timer: 0,
   arrayOfAnswers: [],
+  playMusic: function (event) {
+    event.target.children[0].play();
+  },
   endGame: function () {
     console.log("КОНЕЦ ИГРЫ", this.mistakes);
+    view.remove(document.getElementsByClassName("lives-container")[0]);
     clearTimeout(this.timer);
     view.remove(document.getElementsByClassName("game-words")[0]);
-    if (this.mistakes < 5) localStorage.setItem("savanna-level", this.level++);
     view.gameResult();
+    if (this.mistakes < 5) {
+      localStorage.setItem("savanna-level", this.level++);
+    } else document.getElementById("next-level-btn").classList.add("disabled");
   },
   trueCheck: function (word) {
     clearTimeout(this.timer);
@@ -24,10 +30,10 @@ const model = {
     else {
       if (word == this.answer) {
         this.rightAnswer++;
-        this.arrayOfAnswers[this.index]["answer"] = "true";
+        this.arrayOfAnswers[this.index % 20]["answer"] = "true";
       } else {
         this.mistakes++;
-        this.arrayOfAnswers[this.index]["answer"] = "false";
+        this.arrayOfAnswers[this.index % 20]["answer"] = "false";
       }
       this.index++;
       console.log("true");
@@ -41,7 +47,11 @@ const model = {
     let array = shuffle(createArray(10));
     console.log((this.level % 3) * 20);
     view.spinner();
+    console.log(this.index, " ", this.difficulty);
+
     let word = await getWords(this.index, this.difficulty);
+    console.log(word);
+
     view.removeSpinner();
     let min = array[0];
     let translate = word[array[0]].wordTranslate;
@@ -62,7 +72,9 @@ const model = {
     console.log(this.index, "  ", this.mistakes);
 
     this.answer = answer;
-    this.arrayOfAnswers[this.index]["answer"] = "false";
+    console.log(this.index % 20,"dwadwa");
+
+    this.arrayOfAnswers[this.index % 20]["answer"] = "false";
     this.timer = setTimeout(() => {
       this.mistakes++;
       this.index++;
@@ -71,7 +83,7 @@ const model = {
         this.endGame();
         clearTimeout(this.timer);
       } else view.wordInner();
-    }, 9000);
+    }, 9000000000);
     return content;
   },
 };

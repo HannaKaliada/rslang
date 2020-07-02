@@ -1,4 +1,20 @@
 .savanna-game-wrapper {
+  #play-btn {
+    padding: 1px 6px;
+    margin-left: 11px;
+  }
+  .btn-next-repeat {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  span {
+    margin-right: 5px;
+  }
+  .list-group-item {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .timer {
     position: absolute;
     font-size: 50px;
@@ -15,7 +31,7 @@
   .translation {
     position: absolute;
     top: 10%;
-    transition:top 9s linear;
+    transition: top 9s linear;
   }
   .translation-move {
     top: 90%;
@@ -35,6 +51,13 @@
     background-color: grey;
     cursor: not-allowed;
   }
+  .lives-container {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    right: 10px;
+    top: 5px;
+  }
   .btn {
     display: block;
   }
@@ -53,6 +76,6 @@
     width: 50%;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 50em;
   }
 }
