@@ -31,13 +31,13 @@ class GamePage {
     if (this.gameButton.textContent === 'Next') {
       return;
     }
-    this.showAnswer();
     this.gameButton.value = 'Next';
     if (target.innerText === this.rightVariantText) {
       this.gameResults.rightAnswers.push(this.gameData);
-      this.totalScore += this.isHintUsed ? 1 : 2;
+      this.score += this.isHintUsed ? 1 : 2;
+      this.scoreBlock.textContent = `Your score: ${this.score}`;
       target.classList.add('right');
-      this.showAnswer(true);
+      this.showAnswer();
     } else {
       this.gameResults.wrongAnswers.push(this.gameData);
       Array.prototype.forEach.call(this.variants, ((el) => {
@@ -48,8 +48,9 @@ class GamePage {
       if (target instanceof Element) {
         target.classList.add('wrong');
       }
-      this.showAnswer(false);
+      this.showAnswer();
     }
+    this.isHintUsed = false;
   }
 
   showAnswer() {
@@ -79,7 +80,7 @@ class GamePage {
     }
     let variantsText = this.gameData.variants.map((el) => el.wordTranslate);
     this.rightVariantText = this.gameData.wordTranslate;
-    variantsText.push(this.rightVariantText);
+    variantsText.push(this.gameData.wordTranslate);
     variantsText = this.randomize(variantsText);
     this.icon.onload = () => {
       variantsText.forEach((el, i) => {
@@ -91,8 +92,8 @@ class GamePage {
     this.audioHint = new Audio();
     this.audioHint.src = this.gameData.audioMeaning;
     this.wordImage = this.gameData.image;
-    this.rightAnswer.textContent = this.rightVariantText;
-    setTimeout(this.audioTask.play.bind(this.audioTask), 500);
+    this.rightAnswer.textContent = this.gameData.word;
+    setTimeout(this.audioTask.play.bind(this.audioTask), 200);
   }
 
   async getCurrentRound(e) {
@@ -100,7 +101,7 @@ class GamePage {
     const token = localStorage.getItem('token');
     this.currentRound = [];
     if (e) {
-      this.currentRound.push(this.levelInput.value, this.roundInput.value);
+      this.currentRound.push(this.levelInput.value, Number(this.roundInput.value) - 1);
       return this.currentRound;
     }
     const obj = await this.getStatistics({ userId, token })
@@ -119,7 +120,7 @@ class GamePage {
         return this.currentRound;
       })
       .catch(() => {
-        this.currentRound = [0, 1];
+        this.currentRound = [1, 0];
         return this.currentRound;
       });
     return obj;
@@ -151,38 +152,44 @@ class GamePage {
     }
     obj.optional.audioCall.round = [round, level];
     const { userId, token } = this.state;
-    await this.setStatistics({ userId, token, obj })
-    .then((ans) => {
-      console.log(ans);
-    });
+    await this.setStatistics({ userId, token, obj });
   }
 
   renderStatisticPage() {
     const h2 = this.createElement('h2', 'audio-call__title');
     h2.textContent = 'Your statistics:';
-    const rightAnswersTitle = this.createElement('h3', 'audio-call__list-title');
-    rightAnswersTitle.textContent = 'Right answers:';
-    const rightAnswers = this.createElement('ul', 'audio-call__statistics-list');
-    rightAnswers.append(...this.gameResults.rightAnswers.map((el) => {
-      const li = this.createElement('li', 'audio-call__statistics-item');
-      li.textContent = el.word;
-      return li;
-    }));
-    const wrongAnswersTitle = this.createElement('h3', 'audio-call__list-title');
-    wrongAnswersTitle.textContent = 'Wrong answers:';
-    const wrongAnswers = this.createElement('ul', 'audio-call__statistics-list');
-    wrongAnswers.append(...this.gameResults.wrongAnswers.map((el) => {
-      const li = this.createElement('li', 'audio-call__statistics-item');
-      li.textContent = el.word;
-      return li;
-    }));
+    const score = ('p', 'audio-call__score');
+    score.textContent = `Score: ${this.score}`;
     const page = this.createElement('div', 'audio-call__statistics');
-    const firstBlock = this.createElement('div', 'audio-call__statitics-block');
-    const secondBlock = this.createElement('div', 'audio-call__statitics-block');
-    firstBlock.append(rightAnswersTitle, rightAnswers);
-    secondBlock.append(wrongAnswersTitle, wrongAnswers);
+    page.append(h2, score);
+    if (this.gameResults.rightAnswers.length) {
+      const rightAnswersTitle = this.createElement('h3', 'audio-call__list-title');
+      rightAnswersTitle.textContent = 'Right answers:';
+      const rightAnswers = this.createElement('ul', 'audio-call__statistics-list');
+      rightAnswers.append(...this.gameResults.rightAnswers.map((el) => {
+        const li = this.createElement('li', 'audio-call__statistics-item');
+        li.textContent = el.word;
+        return li;
+      }));
+      const firstBlock = this.createElement('div', 'audio-call__statitics-block');
+      firstBlock.append(rightAnswersTitle, rightAnswers);
+      page.append(firstBlock);
+    }
+    if (this.gameResults.wrongAnswers.length) {
+      const wrongAnswersTitle = this.createElement('h3', 'audio-call__list-title');
+      wrongAnswersTitle.textContent = 'Wrong answers:';
+      const wrongAnswers = this.createElement('ul', 'audio-call__statistics-list');
+      wrongAnswers.append(...this.gameResults.wrongAnswers.map((el) => {
+        const li = this.createElement('li', 'audio-call__statistics-item');
+        li.textContent = el.word;
+        return li;
+      }));
+      const secondBlock = this.createElement('div', 'audio-call__statitics-block');
+      secondBlock.append(wrongAnswersTitle, wrongAnswers);
+      page.append(secondBlock);
+    }
     this.gameButton.textContent = 'Next round';
-    page.append(h2, firstBlock, secondBlock, this.gameButton);
+    page.append(this.gameButton);
     const container = document.querySelector('.container.audio-call');
     container.innerHTML = '';
     container.append(page);
@@ -264,11 +271,18 @@ class GamePage {
     return form;
   }
 
+  createScoreBlock() {
+    this.score = 0;
+    this.scoreBlock = this.createElement('div', 'audio-call__score');
+    this.scoreBlock.textContent = `Your score: ${this.score}`;
+    return this.scoreBlock;
+  }
+
   gameButtonHandler() {
     const text = this.gameButton.textContent;
     switch (text) {
       case "I don't know":
-        this.showAnswer();
+        this.showAnswer(false);
         return;
       case 'Next':
         this.startRound();
@@ -295,7 +309,9 @@ class GamePage {
 
   renderPage() {
     const elements = [];
-    elements.push(this.createLevelControls());
+    const flexContainer = this.createElement('div', 'flex-container');
+    flexContainer.append(this.createLevelControls(), this.createScoreBlock());
+    elements.push(flexContainer);
     elements.push(this.createSoundIcon(), this.createShowAnswerBlock());
     elements.push(this.createVariantsBlock(), this.createGameButton());
     elements.push(this.createHintButton());
@@ -322,7 +338,6 @@ class GamePage {
     root.append(container);
     await this.getCurrentRound(e)
       .then(async (arr) => {
-        console.log(arr);
         const result = await createGameData(arr);
         return result;
       })
