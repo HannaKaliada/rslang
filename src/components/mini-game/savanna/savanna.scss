@@ -1,7 +1,7 @@
 .savanna-game-wrapper {
   #play-btn {
-    padding: 1px 6px;
     margin-left: 11px;
+    padding: 1px 6px;
   }
   .btn-next-repeat {
     display: flex;
@@ -17,20 +17,24 @@
   }
   .timer {
     position: absolute;
-    font-size: 50px;
     top: 50%;
     left: 50%;
+
+    font-size: 50px;
+
     transform: translate(-50%, -50%);
   }
   .spinner-container {
     position: absolute;
     top: 50%;
     left: 50%;
+
     transform: translate(-50%, -50%);
   }
   .translation {
     position: absolute;
     top: 10%;
+
     transition: top 9s linear;
   }
   .translation-move {
@@ -53,29 +57,32 @@
   }
   .lives-container {
     position: absolute;
+    top: 5px;
+    right: 10px;
+
     display: flex;
     flex-wrap: wrap;
-    right: 10px;
-    top: 5px;
   }
   .btn {
     display: block;
   }
   .word-btn {
     display: block;
-    padding: 0;
-    margin: 10px;
-    height: 50px;
     width: 200px !important;
+    height: 50px;
+    margin: 10px;
+    padding: 0;
   }
-  .game-layout {
-  }
+
   .game-words {
     display: flex;
-    min-width: 300px;
-    width: 50%;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    width: 50%;
+    min-width: 300px;
     min-height: 50em;
+  }
+  .dropdown {
+    display: flex;
   }
 }
