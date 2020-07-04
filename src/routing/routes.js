@@ -7,6 +7,7 @@ import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
 import renderSavannaPage from "../components/mini-game/savanna/render-savanna-page.js";
 import learningWords from '../components/learningWords/learningWords.js';
 
+
 function statistics() {
   const page = document.querySelector('.root');
   const header = document.createElement('h2');
