@@ -23,21 +23,20 @@ const model = {
     clearTimeout(this.timer);
     view.remove(document.getElementsByClassName('game-words')[0]);
     view.gameResult();
-    if (this.mistakes <= 5) {
-    } else document.getElementById('next-level-btn').classList.add('disabled');
+    if (this.mistakes >= 5) document.getElementById('next-level-btn').classList.add('disabled');
   },
   trueCheck(word) {
     clearTimeout(this.timer);
     if (this.index + 1 >= this.level * 10 || this.mistakes >= 5) this.endGame();
     else {
       if (word === this.answer) {
-        this.rightAnswer++;
+        this.rightAnswer += 1;
         this.arrayOfAnswers[this.index % 10].answer = 'true';
       } else {
-        this.mistakes++;
+        this.mistakes += 1;
         this.arrayOfAnswers[this.index % 10].answer = 'false';
       }
-      this.index++;
+      this.index += 1;
       view.wordInner();
     }
   },
@@ -53,7 +52,7 @@ const model = {
     let min = array[0];
     let translate = word[array[0]].wordTranslate;
     let answer = word[array[0]].word;
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i += 1) {
       if (min > array[i]) {
         min = array[i];
         translate = word[array[i]].wordTranslate;
@@ -67,8 +66,8 @@ const model = {
     this.answer = answer;
     this.arrayOfAnswers[this.index % 10].answer = 'false';
     this.timer = setTimeout(() => {
-      this.mistakes++;
-      this.index++;
+      this.mistakes += 1;
+      this.index += 1;
 
       if (this.index + 1 >= this.level * 10 || this.mistakes >= 5) {
         this.endGame();
