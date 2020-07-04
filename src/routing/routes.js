@@ -65,14 +65,14 @@ const routes = {
     requiresAuth: true,
     render: initHubPage,
   },
-	'#/learning': {
-		requiresAuth: true,
-		render: learningWords,
-	},
+  '#/learning': {
+    requiresAuth: true,
+    render: learningWords,
+  },
   '#/speak-it': {
-		requiresAuth: true,
-		render: speakIt,
-	},
+    requiresAuth: true,
+    render: speakIt,
+  },
 
 };
 
