@@ -1,7 +1,7 @@
-import data from "../../data/teamInfo.json";
+import data from '../../data/teamInfo.json';
 
 export default function renderAboutTeamPage() {
-  const page = document.querySelector(".root");
+  const page = document.querySelector('.root');
   const links = `<div class="about-team-wrapper">
     <div class="links"> <h1>About team page:</h1>
     <h1 ><a href="#/">Main</a></h1> </div>`;
@@ -13,7 +13,7 @@ export default function renderAboutTeamPage() {
      <div class="swiper-button-prev"></div>
     </div>
     </div>`;
-  let content = "";
+  let content = '';
   data.forEach((el) => {
     content += `<div class="swiper-slide"><div class="card" >
         <img src="${el.img}" class="card-img-top" alt="${el.name}">
@@ -26,5 +26,5 @@ export default function renderAboutTeamPage() {
   });
 
   content = links + start + content + end;
-  page.insertAdjacentHTML("beforeend", content);
+  page.insertAdjacentHTML('beforeend', content);
 }
