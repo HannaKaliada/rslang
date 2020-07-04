@@ -10,7 +10,8 @@ async function getPartOfSpeech(word) {
   const partOfSpeech = fetch(`${url}${word.word}`)
     .then((response) => response.json())
     .then((arr) => arr.filter((el) => el.meanings[0].partOfSpeechCode !== 'abb'))
-    .then((res) => res[0].partOfSpeechCode);
+    .then((res) => res[0].partOfSpeechCode)
+    .catch(() => 'error');
   return partOfSpeech;
 }
 
@@ -43,8 +44,9 @@ async function createGameData([level, round]) {
     arr.push(i);
   }
   answers = await getWords(round, level);
+  console.log(answers);
   const promises = arr.map(async (el) => {
-    const result = await getWords(el, round)
+    const result = await getWords(el, level)
       .then((res) => gameData.push(res));
     return result;
   });

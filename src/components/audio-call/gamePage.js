@@ -97,21 +97,23 @@ class GamePage {
   }
 
   async getCurrentRound(e) {
-    const userId = localStorage.getItem('userId');
-    const token = localStorage.getItem('token');
+    const userId = this.state.userId;
+    const token = this.state.token;
     this.currentRound = [];
     if (e) {
-      this.currentRound.push(this.levelInput.value, Number(this.roundInput.value) - 1);
+      const level = Number(this.levelInput.value) > 0 ? Number(this.levelInput.value) - 1 : 0;
+      this.currentRound.push(level, Number(this.roundInput.value));
       return this.currentRound;
     }
     const obj = await this.getStatistics({ userId, token })
       .then((res) => {
         if (res.optional && res.optional.audioCall.round) {
           let [level, round] = res.optional.audioCall.round;
-          round -= 1;
-          if (round > 60) {
+          level = level > 0 ? level - 1 : level;
+          if (round > 59) {
             round = 1;
-            level = level === 5 ? 0 : (level + 1);
+            level = level === 5 ? 0 : (level + 2);
+            console.log(level, round);
           }
           this.currentRound.push(level, round);
         } else {
@@ -120,7 +122,7 @@ class GamePage {
         return this.currentRound;
       })
       .catch(() => {
-        this.currentRound = [1, 0];
+        this.currentRound = [0, 1];
         return this.currentRound;
       });
     return obj;
@@ -129,7 +131,7 @@ class GamePage {
   async stopGame() {
     let round = Number(document.querySelector('#audioCallRound').value) + 1;
     let level = Number(document.querySelector('#audioCallLevel').value);
-    if (round > 60) {
+    if (round > 59) {
       round = 1;
       level = level === 5 ? 0 : (level + 1);
     }
@@ -150,7 +152,7 @@ class GamePage {
         },
       };
     }
-    obj.optional.audioCall.round = [round, level];
+    obj.optional.audioCall.round = [level, round];
     const { userId, token } = this.state;
     await this.setStatistics({ userId, token, obj });
   }
@@ -158,7 +160,7 @@ class GamePage {
   renderStatisticPage() {
     const h2 = this.createElement('h2', 'audio-call__title');
     h2.textContent = 'Your statistics:';
-    const score = ('p', 'audio-call__score');
+    const score = this.createElement('p', 'audio-call__score');
     score.textContent = `Score: ${this.score}`;
     const page = this.createElement('div', 'audio-call__statistics');
     page.append(h2, score);
@@ -241,7 +243,7 @@ class GamePage {
     this.roundInput.id = 'audioCallRound';
     this.levelInput.addEventListener('change', this.init.bind(this));
     this.roundInput.addEventListener('change', this.init.bind(this));
-    for (let i = 1; i <= 60; i += 1) {
+    for (let i = 1; i <= 59; i += 1) {
       const option = this.createElement('option');
       option.value = i;
       option.textContent = i;
@@ -254,8 +256,8 @@ class GamePage {
       this.levelInput.append(option);
     }
     if (this.currentRound) {
-      [this.roundInput.value, this.levelInput.value] = this.currentRound;
-      this.levelInput.value += 1;
+      [this.levelInput.value, this.roundInput.value] = this.currentRound;
+      this.levelInput.value = Number(this.levelInput.value) + 1;
     }
     const levelBlock = this.createElement('div', ['audio-call-form__block', 'form-group']);
     const roundBlock = this.createElement('div', ['audio-call-form__block', 'form-group']);
@@ -329,8 +331,9 @@ class GamePage {
   async init(e) {
     this.gameResults.rightAnswers = [];
     this.gameResults.wrongAnswers = [];
-    this.state.userId = localStorage.getItem('userId');
-    this.state.token = localStorage.getItem('token');
+    const settings = JSON.parse(localStorage.getItem('userInfo'));
+    this.state.userId = settings.userId;
+    this.state.token = settings.token;
     const root = document.querySelector('.root');
     const container = this.createElement('div', ['container', 'audio-call']);
     container.append(...this.loadingPlug());
@@ -338,6 +341,7 @@ class GamePage {
     root.append(container);
     await this.getCurrentRound(e)
       .then(async (arr) => {
+        console.log(arr);
         const result = await createGameData(arr);
         return result;
       })

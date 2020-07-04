@@ -32,6 +32,7 @@ class StartPage {
     const button = this.createElement('button', ['btn', 'btn-primary']);
     button.innerText = 'Start';
     button.addEventListener('click', this.startGame.bind(this));
+    button.addEventListener('click', this.tempFunc.bind(this));
     return button;
   }
 
@@ -44,6 +45,18 @@ class StartPage {
 
   startGame() {
     this.gameClass.init.call(this.gameClass);
+  }
+
+  async tempFunc() {
+    await loginUser({ email: '1234@tut.by', password: 'Kolobok@1'})
+      .then((result) => {
+    const userInfo = {
+      token: result.token,
+      userId: result.userId,
+    };
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    console.log(localStorage.getItem('userInfo'));
+      })
   }
 }
 
