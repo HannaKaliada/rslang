@@ -111,7 +111,8 @@ class CreateSignInSignUpPage {
     this.passwordTip = this.createElement('div', 'password-tip');
     const emailBlock = this.createFormBlock(this.createEmailLabel(), this.createEmail());
     const passwordBlock = this.createFormBlock(this.createPasswordLabel(), this.createPassword());
-    const formElements = [this.createTitle(), emailBlock, passwordBlock, this.passwordTip, this.createSubmitButton(), this.createToggleFormButton()];
+    const formElements = [this.createTitle(), emailBlock, passwordBlock,
+      this.passwordTip, this.createSubmitButton(), this.createToggleFormButton()];
     form.append(...formElements);
     form.addEventListener('submit', this.formHandler.bind(this));
     return form;
