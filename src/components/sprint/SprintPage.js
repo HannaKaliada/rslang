@@ -2,10 +2,13 @@ import './sprintPage.scss';
 import Card from './Card';
 import Score from './Score';
 import Buttons from './Buttons';
+import CircleTimer from './CircleTimer';
+import renderResultPage from './ResultPage';
 
 const card = new Card();
 const score = new Score();
 const buttons = new Buttons();
+const timer = new CircleTimer();
 
 const initTrueButton = () =>  {
   const trueButton = document.querySelector('.btn-success');
@@ -52,6 +55,8 @@ export default function renderSprintPage() {
   buttons.renderButtons();
   initTrueButton();
   initFalseButton();
-
+  timer.renderCircleTimer();
+  timer.startTimer();
+  setTimeout(function(){renderResultPage(score);}, 30000);
 }
 
