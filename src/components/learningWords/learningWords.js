@@ -4,6 +4,7 @@ import setStartPosition from './setStartPosition';
 import checkInput from './checkInput';
 import setWordsToProps from './setWordsToProps';
 import setInputWidth from './setInputWidth';
+import goToTheNextWord from './goToTheNextWord';
 
 export default async function learningWords() {
   setStartPosition();
@@ -11,4 +12,5 @@ export default async function learningWords() {
   renderContent();
   setInputWidth();
   checkInput();
+  goToTheNextWord();
 }

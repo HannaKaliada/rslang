@@ -2,23 +2,43 @@
   display: none;
 }
 
+.learning-settings {
+  margin-top: 40px;
+  .word-translation, .sentences-translation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    p {
+      margin-right: 20px;
+      margin-bottom: 0;
+    }
+  }
+}
+
 .word {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  margin-top: 30px;
   &__card {
     margin-bottom: 20px;
     padding: 60px;
     .sentence {
+      font-size: 20px;
       input {
         display: inline-block;
         width: 25px;
         padding: 10px;
         margin: 0 5px;
+        outline: none;
 
         font-size: 17px;
+      }
+      .input_correct {
+        color: green;
+        border: 2px solid green;
       }
       .input-top-layer {
         display: inline-block;
@@ -49,6 +69,23 @@
     }
     .sentence-translation {
       margin-bottom: 20px;
+    }
+    .meaning {
+      font-size: 20px;
+      .hidden-word {
+        font-weight: bold;
+      }
+    }
+    .sentence-translation,
+    .word__translation,
+    .meaning-translation {
+      font-size: 16px;
+    }
+    .btn {
+      width: 120px;
+    }
+    .next-btn {
+      margin: 0 auto;
     }
   }
 }
