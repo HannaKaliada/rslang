@@ -40,13 +40,18 @@ class Content {
     }
     this.appContainer = null;
     this.wordsData = null;
-    this.curWords = 0;
+    this.dontKnowWords = [];
+    this.curWords = 9;
     instance = this;
     return this;
   }
 
   static create() {
     return new Content();
+  }
+
+  addDontKnowWords(num) {
+    this.dontKnowWords.push(num);
   }
 
   getCurWords() {
@@ -76,10 +81,10 @@ class Content {
     return this;
   }
 
-  addField(url) {
+  addField(imgData) {
     const field = Field.create()
       .createContainer()
-      .addContent(url);
+      .addContent(imgData);
     this.container.append(field.container);
     return this;
   }
@@ -96,7 +101,7 @@ class Content {
   addControls() {
     const btns = Buttons.create()
       .createContainer()
-      .addFirstBtn()
+      .addKnowBtn()
       .container;
     this.container.append(btns);
     return this;
@@ -126,8 +131,9 @@ class Content {
     return this;
   }
 
-  updateContent(data) {
+  updateContent(data, url) {
     this.setData(data);
+    this.curWords = 0;
     Tips.create()
       .cleanContainer()
       .setData(this.wordsData[this.curWords])
@@ -135,15 +141,16 @@ class Content {
     Field.create()
       .cleanContainer()
       .cleanFields()
-      .addContent();
+      .addContent(url);
     WordsPuzzle.create()
       .cleanContainer()
       .setWords(this.wordsData[this.curWords].textExample)
       .addContent();
     Buttons.create()
       .cleanContainer()
-      .addFirstBtn();
+      .addKnowBtn();
     actions.isCheck = false;
+    this.dontKnowWords = [];
     return this;
   }
 }

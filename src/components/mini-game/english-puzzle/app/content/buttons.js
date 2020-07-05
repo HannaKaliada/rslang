@@ -19,6 +19,8 @@ class Buttons {
     this.startBtn = null;
     this.checkBtn = null;
     this.continueBtn = null;
+    this.resultBtn = null;
+    this.nextBtn = null;
     instance = this;
     return this;
   }
@@ -36,11 +38,47 @@ class Buttons {
     this.startBtn = null;
     this.checkBtn = null;
     this.continueBtn = null;
+    this.resultBtn = null;
+    this.nextBtn = null;
     this.appContainer.innerHTML = '';
     return this;
   }
 
-  addFirstBtn() {
+  addNextBtn() {
+    if (!this.nextBtn) {
+      this.nextBtn = createBtn('Next level');
+      this.nextBtn.setAttribute('data-action', 'next');
+      this.container.append(this.nextBtn);
+    }
+    return this;
+  }
+
+  delNextBtn() {
+    if (this.nextBtn) {
+      this.nextBtn.remove();
+      this.nextBtn = null;
+    }
+    return this;
+  }
+
+  addResultBtn() {
+    if (!this.resultBtn) {
+      this.resultBtn = createBtn('Result');
+      this.resultBtn.setAttribute('data-action', 'result');
+      this.container.append(this.resultBtn);
+    }
+    return this;
+  }
+
+  delResultBtn() {
+    if (this.resultBtn) {
+      this.resultBtn.remove();
+      this.resultBtn = null;
+    }
+    return this;
+  }
+
+  addKnowBtn() {
     if (!this.startBtn) {
       this.startBtn = createBtn('I don\'t know', 'know');
       this.startBtn.setAttribute('data-action', 'know');
@@ -49,7 +87,7 @@ class Buttons {
     return this;
   }
 
-  delFirstBtn() {
+  delKnowBtn() {
     if (this.startBtn) {
       this.startBtn.remove();
       this.startBtn = null;

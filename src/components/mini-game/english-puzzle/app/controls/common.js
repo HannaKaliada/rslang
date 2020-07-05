@@ -1,6 +1,6 @@
 import createDomElem from '../../common';
 
-function createList(count, name) {
+export function createList(count, name) {
   const items = [];
   for (let i = 0; i < count; i += 1) {
     const elem = createDomElem('li', ['dropdown-item'], [`${
@@ -32,7 +32,7 @@ function createDropdown(curNum, name, listNum) {
 
 function createPages(curPage) {
   const name = 'page';
-  const listNum = 30;
+  const listNum = 45;
   return createDropdown(curPage, name, listNum);
 }
 

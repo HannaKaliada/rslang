@@ -1,20 +1,27 @@
 // eslint-disable-next-line import/no-cycle
 import Content from './index';
+// eslint-disable-next-line import/no-cycle
 import Field from './field';
 import WordsPuzzle from './words-puzzle';
 import Buttons from './buttons';
 import Tips from './tips';
 import createDomElem from '../../common';
+// eslint-disable-next-line import/no-cycle
+import { nextLevel } from '../controls';
+import Result from '../result';
 
 function checkField() {
   const curPos = Content.create().getCurWords();
   const btns = Buttons.create();
   const words = WordsPuzzle.create().getWords().split(' ');
   const field = Field.create().getFields()[curPos];
-  if (field.children.length === words.length) {
+  const wordsInField = [...field.children].filter((elem) => elem.textContent !== '');
+  if (wordsInField.length === words.length) {
     btns.addCheckBtn();
+    btns.delKnowBtn();
   } else {
     btns.delCheckBtn();
+    btns.addKnowBtn();
   }
 }
 
@@ -47,6 +54,14 @@ function replaceWord(field, elem, direction) {
   parentElem.append(elem);
 }
 
+function toggleBtns() {
+  const btns = document.querySelectorAll('.puzzle__controls-options__btn');
+  btns.forEach((btn) => {
+    btn.classList.toggle('btn-primary');
+    btn.classList.toggle('btn-secondary');
+  });
+}
+
 const actions = {
 
   isSound: true,
@@ -60,17 +75,18 @@ const actions = {
 
   know() {
     if (!this.isCheck) {
-      const curPos = Content.create().getCurWords();
+      const content = Content.create();
+      const curPos = content.getCurWords();
+      content.addDontKnowWords(curPos);
       const words = WordsPuzzle.create().cleanContainer().getWords().split(' ');
       const field = Field.create()
         .cleanField(curPos)
         .getFields()[curPos];
       words.forEach((str) => {
-        const word = createDomElem('div', ['content__words-item'], [str]);
-        word.setAttribute('data-action', 'out-field');
+        const word = createDomElem('div', ['content__words-item', 'puzzle-shape'], [str]);
         field.append(word);
       });
-      checkField();
+      this.check();
     }
   },
 
@@ -91,13 +107,27 @@ const actions = {
     const result = words
       .every((str, index) => str === curField.children[index].textContent);
     if (result) {
-      btns.delCheckBtn().addContinueBtn();
+      btns.delCheckBtn()
+        .delKnowBtn()
+        .addContinueBtn();
       this.isCheck = true;
       if (this.isSound) this.repeat();
+      if (curPos === 9) {
+        const { alt_description: description } = Field.create()
+          .showImg().getImgData();
+        Tips.create().cleanContainer();
+        btns.cleanContainer()
+          .addNextBtn()
+          .addResultBtn();
+        WordsPuzzle.create().addMessage(description);
+      } else toggleBtns();
+    } else {
+      btns.addKnowBtn();
     }
   },
 
   continue() {
+    toggleBtns();
     cleanCheckWords();
     Content.create().nextWords();
     const curPos = Content.create().getCurWords();
@@ -108,7 +138,9 @@ const actions = {
       .setData({ textExampleTranslate, audioExample })
       .addText()
       .addAudio();
-    Buttons.create().delContinueBtn();
+    Buttons.create()
+      .delContinueBtn()
+      .addKnowBtn();
   },
 
   'in-field': function (elem) {
@@ -118,7 +150,7 @@ const actions = {
       const curField = fieldClass.getFields()[curPos];
       const field = [...curField.children];
       replaceWord(field, elem, 'out');
-      // checkField();
+      checkField();
     }
   },
 
@@ -129,8 +161,22 @@ const actions = {
         .container
         .children];
       replaceWord(field, elem, 'in');
-      // checkField();
+      checkField();
     }
+  },
+
+  result() {
+    console.log('result');
+    const result = Result.create()
+      .createContainer()
+      .addContent()
+      .container;
+    document.body.append(result);
+  },
+
+  next() {
+    console.log('next');
+    nextLevel();
   },
 };
 

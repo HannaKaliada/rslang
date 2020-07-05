@@ -1,9 +1,11 @@
 import createDomElem from '../../common';
-import { createDataControls, createOptionsControls } from './common';
+import { createDataControls, createList, createOptionsControls } from './common';
 import getWords from '../../../../../shared/get-words';
 import Content from '../content';
 import actionsContent from '../content/action';
 import Tips from '../content/tips';
+import Field from '../content/field';
+import getImg from '../../data';
 
 let instance;
 
@@ -20,10 +22,34 @@ async function changeView(elem, value, type) {
   if (type === 'page') page = value;
   else group = value;
   const data = await getWords(page, group);
-  if (typeof data === 'object') {
+  const imgData = await getImg();
+  if (typeof data === 'object' && typeof imgData === 'object') {
     changeText(elem.parentNode, parseInt(type === 'page' ? page : group, 10));
     instance.info = { group, page };
-    Content.create().updateContent(data);
+    Content.create().updateContent(data, imgData);
+  }
+}
+
+function changePage(num) {
+  const pages = document.querySelector('.puzzle__controls-pages');
+  const toggle = pages.querySelector('.dropdown-toggle');
+  const menu = pages.querySelector('.dropdown-menu');
+  const name = 'page';
+  const newMenu = createList(num, name);
+  toggle.textContent = 'Page: 1';
+  menu.textContent = '';
+  menu.append(...newMenu.children);
+}
+
+function toggleTip(obj, name) {
+  if (obj[`is${name}`]) {
+    // eslint-disable-next-line no-param-reassign
+    obj[`is${name}`] = !obj[`is${name}`];
+    obj[`del${name}`]();
+  } else {
+    // eslint-disable-next-line no-param-reassign
+    obj[`is${name}`] = !obj[`is${name}`];
+    obj[`add${name}`]();
   }
 }
 
@@ -34,30 +60,48 @@ const actions = {
     changeView(elem, parseInt(value, 10), type);
   },
   level(elem) {
+    const pages = [45, 40, 40, 25, 25, 25];
     const [value] = Object.values((elem.dataset));
     const [type] = Object.keys(elem.dataset);
+    instance.info.page = 0;
     changeView(elem, parseInt(value, 10), type);
+    changePage(pages[parseInt(value, 10)]);
   },
   sound() {
     actionsContent.isSound = !actionsContent.isSound;
   },
   translate() {
     const tips = Tips.create();
-    if (tips.isText) tips.delText();
-    else tips.addText();
-    tips.isText = !tips.isText;
+    toggleTip(tips, 'Text');
   },
   melody() {
     const tips = Tips.create();
-    if (tips.isBtn) tips.delBtn();
-    else tips.addBtn();
-    tips.isBtn = !tips.isBtn;
+    toggleTip(tips, 'Btn');
+  },
+  image() {
+    const field = Field.create();
+    toggleTip(field, 'Img');
   },
 };
 
+export function nextLevel() {
+  const second = 1;
+  const addToNextPage = 2;
+  const pages = document.querySelector('.puzzle__controls-pages');
+  const page = [...pages.querySelectorAll('.dropdown-item')]
+    .find((elem) => parseInt(elem.textContent.split(' ')[second], 10) === instance.info.page + addToNextPage);
+  if (page) {
+    page.click();
+  } else {
+    const groups = document.querySelector('.puzzle__controls-levels');
+    const group = [...groups.querySelectorAll('.dropdown-item')]
+      .find((elem) => parseInt(elem.textContent.split(' ')[second], 10) === instance.info.group + addToNextPage);
+    if (group) group.click();
+  }
+}
+
 function changeData(e) {
   const [action] = Object.keys(e.target.dataset);
-  console.log(action);
   if (actions[action]) {
     actions[action](e.target);
   }
@@ -70,8 +114,8 @@ function toggleActive(elem) {
 
 function changeOptions(e) {
   const [type] = Object.values(e.target.dataset);
-  toggleActive(e.target);
   if (actions[type]) {
+    toggleActive(e.target);
     actions[type](e.target);
   }
 }

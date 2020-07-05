@@ -14,11 +14,9 @@ async function start() {
   body.append(app.container, errors);
   const data = await getWords(FIRST_VALUE, FIRST_VALUE);
   const imgData = await getImg();
-  console.log(imgData);
   if (typeof data === 'object' && typeof imgData === 'object') {
-    const imgUrl = imgData.urls.full;
     app
-      .addContent(data, imgUrl);
+      .addContent(data, imgData);
   }
 }
 

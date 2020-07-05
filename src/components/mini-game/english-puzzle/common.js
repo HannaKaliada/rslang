@@ -16,3 +16,10 @@ export default function createDomElem(
 export function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
+export function createAudio(
+  src, audioName, audioClass, sourceClass,
+) {
+  const cardAudioSource = createDomElem('source', [sourceClass], null, [['src', src], ['type', 'audio/mpeg']]);
+  return createDomElem('audio', [audioClass], [cardAudioSource, 'Your browser does not support the audio element.'], [['data-name', audioName]]);
+}

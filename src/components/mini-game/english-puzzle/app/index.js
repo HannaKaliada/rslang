@@ -39,12 +39,12 @@ class Puzzle {
     return this;
   }
 
-  addContent(data, url) {
+  addContent(data, imgData) {
     const content = Content.create()
       .setData(data)
       .createContainer()
       .addTips()
-      .addField(url)
+      .addField(imgData)
       .addPuzzleWords()
       .addControls()
       .addEventClick()

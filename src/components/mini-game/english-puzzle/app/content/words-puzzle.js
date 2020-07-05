@@ -59,6 +59,10 @@ class WordsPuzzle {
     });
     return this;
   }
+
+  addMessage(str) {
+    this.container.textContent = str[0].toUpperCase() + str.substring(1);
+  }
 }
 
 export default WordsPuzzle;

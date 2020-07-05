@@ -42,9 +42,11 @@ class Tips {
   }
 
   addBtn() {
-    this.btn = createDomElem('button', ['content__tips-btn', 'btn', 'btn-info']);
-    this.btn.setAttribute('data-action', 'repeat');
-    this.container.prepend(this.btn);
+    if (this.isBtn) {
+      this.btn = createDomElem('button', ['content__tips-btn', 'btn', 'btn-info']);
+      this.btn.setAttribute('data-action', 'repeat');
+      this.container.prepend(this.btn);
+    }
     return this;
   }
 
@@ -57,8 +59,10 @@ class Tips {
   }
 
   addText() {
-    this.text = createDomElem('p', ['puzzle__content__tips-text'], [this.data.textExampleTranslate]);
-    this.container.append(this.text);
+    if (this.isText) {
+      this.text = createDomElem('p', ['content__tips-text'], [this.data.textExampleTranslate]);
+      this.container.append(this.text);
+    }
     return this;
   }
 
@@ -71,10 +75,10 @@ class Tips {
   }
 
   addAudio() {
-    const source = createDomElem('source', ['puzzle__content__tips-source']);
+    const source = createDomElem('source', ['content__tips-source']);
     source.setAttribute('src', this.data.audioExample);
     source.setAttribute('type', 'audio/ogg');
-    this.audio = createDomElem('audio', ['puzzle__content__tips-audio'], [source]);
+    this.audio = createDomElem('audio', ['content__tips-audio'], [source]);
     this.container.append(this.audio);
     return this;
   }
