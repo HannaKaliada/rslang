@@ -1,0 +1,23 @@
+.word {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  &__card {
+    margin-bottom: 20px;
+    padding: 60px;
+    .sentence {
+      input {
+        display: inline-block;
+        width: 25px;
+        padding: 10px;
+
+        font-size: 19px;
+      }
+    }
+    .sentence-translation {
+      margin-bottom: 20px;
+    }
+  }
+}

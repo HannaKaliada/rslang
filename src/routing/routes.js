@@ -1,9 +1,14 @@
+import createStartPage from '../components/mini-game/speak-it/start-page';
 import settings from '../components/settings/settings';
 import renderTeamPage from '../components/about-team-page/render-about-team-page';
 import renderStartPage from '../components/start-page/renderStartPage';
 import initHubPage from '../components/hub/hub-page/initHubPage';
 import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
+<<<<<<< HEAD
 import renderSprintPage from '../components/sprint/SprintPage';
+=======
+import learningWords from '../components/learningWords/learningWords';
+>>>>>>> 4a0fbad7704df95302bbf15ae1b18005ff1edf18
 
 function statistics() {
   const page = document.querySelector('.root');
@@ -23,10 +28,16 @@ function game() {
   header.innerText = 'This is game page';
   const list = document.createElement('ul');
   list.innerHTML = `
-  <li><a href="#/statistics">Statistic page</a></li>
+  <li><a href="#/statis-tics">Statistic page</a></li>
   <li><a href="#/">Main page</a></li>
   <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
+}
+
+function speakIt() {
+  const page = document.querySelector('.root');
+  page.innerHTML = '';
+  page.append(createStartPage(page));
 }
 
 const routes = {
@@ -37,7 +48,12 @@ const routes = {
   '#/auth': createSignInSignUpPage.init.bind(createSignInSignUpPage),
   '#/about-team': renderTeamPage,
   '#/hub': initHubPage,
+<<<<<<< HEAD
   '#/sprint': renderSprintPage,
+=======
+  '#/learning': learningWords,
+  '#/speak-it': speakIt,
+>>>>>>> 4a0fbad7704df95302bbf15ae1b18005ff1edf18
 };
 
 export default routes;
