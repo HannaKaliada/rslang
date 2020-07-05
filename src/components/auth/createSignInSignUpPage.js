@@ -1,16 +1,44 @@
 import createElement from '../../shared/createElement';
+import signInUser from './signInUser';
+import createUser from '../../services/createUser';
+import checkTokenIsAlive from './checkTokenIsAlive';
+
+const FORM_TYPE_SIGNUP = 'signUp';
+const FORM_TYPE_SIGNIN = 'signIn';
 
 class CreateSignInSignUpPage {
   constructor(func) {
+    this.formType = FORM_TYPE_SIGNUP;
     this.createElement = func;
     this.passwordTipText = 'Password must contain at least 8 characters, at least one uppercase letter, one uppercase letter, one number and one special character from "+-_@$!%*?&#.,;:[]{}]."';
   }
 
-  formHandler(e) {
+  async formHandler(e) {
     e.preventDefault();
     if (!this.passwordCheck()) {
       this.password.classList.add('invalid-password');
       this.password.focus();
+    } else {
+      const credentials = {
+        email: this.email.value,
+        password: this.password.value,
+      };
+      if (this.formType === FORM_TYPE_SIGNUP) {
+        try {
+          await createUser(credentials);
+          await signInUser(credentials);
+          window.location.hash = '#/hub';
+        } catch (error) {
+          this.errorField.textContent = error;
+        }
+      } else {
+        try {
+          await signInUser(credentials);
+          window.location.hash = '#/hub';
+        } catch (error) {
+          this.errorField.textContent = error;
+        }
+      }
     }
     return false;
   }
@@ -25,7 +53,8 @@ class CreateSignInSignUpPage {
   }
 
   showPasswordTip() {
-    if (this.submit.value === 'Sign up') {
+    if (this.formType === FORM_TYPE_SIGNUP) {
+      this.errorField.textContent = '';
       this.passwordTip.style.left = `${this.password.offsetLeft}`;
       this.passwordTip.style.top = `${this.password.offsetHeight + this.password.offsetTop}px`;
       this.passwordTip.style.display = 'block';
@@ -53,8 +82,11 @@ class CreateSignInSignUpPage {
 
   createEmail() {
     const emailAttrs = [['type', 'email'], ['name', 'email'], ['placeholder', 'e-mail']];
-    const email = this.createElement('input', 'form-control', emailAttrs);
-    return email;
+    this.email = this.createElement('input', 'form-control', emailAttrs);
+    this.email.addEventListener('focus', () => {
+      this.errorField.textContent = '';
+    });
+    return this.email;
   }
 
   createEmailLabel() {
@@ -75,14 +107,16 @@ class CreateSignInSignUpPage {
   toggleSingInSignUpForm(e) {
     e.preventDefault();
     this.password.classList.remove('invalid-password');
-    if (e.target.innerText === 'Already have an account') {
+    if (this.formType === FORM_TYPE_SIGNUP) {
       e.target.innerText = 'Create an account';
       this.submit.value = 'Sign in';
       this.title.innerText = 'Sign in to RS Lang';
+      this.formType = FORM_TYPE_SIGNIN;
     } else {
       e.target.innerText = 'Already have an account';
       this.submit.value = 'Sign up';
       this.title.innerText = 'Create an account';
+      this.formType = FORM_TYPE_SIGNUP;
     }
   }
 
@@ -111,18 +145,24 @@ class CreateSignInSignUpPage {
     this.passwordTip = this.createElement('div', 'password-tip');
     const emailBlock = this.createFormBlock(this.createEmailLabel(), this.createEmail());
     const passwordBlock = this.createFormBlock(this.createPasswordLabel(), this.createPassword());
+    this.errorField = this.createElement('p', 'sign-in-form__error-msg');
     const formElements = [this.createTitle(), emailBlock, passwordBlock,
-      this.passwordTip, this.createSubmitButton(), this.createToggleFormButton()];
+      this.passwordTip, this.errorField,
+      this.createSubmitButton(), this.createToggleFormButton()];
+
     form.append(...formElements);
     form.addEventListener('submit', this.formHandler.bind(this));
     return form;
   }
 
-  init() {
+  async init() {
     const root = document.querySelector('.root');
     const container = this.createElement('div', 'container');
     container.append(this.createForm());
     root.append(container);
+    if (await checkTokenIsAlive()) {
+      window.location.hash = '#/hub';
+    }
   }
 }
 
