@@ -1,5 +1,7 @@
 export default function renderContent() {
   const page = document.querySelector('.root');
+  const cardsLimit = localStorage.getItem('cardsLimit');
+  const wordsLimit = localStorage.getItem('wordsLimit');
   page.insertAdjacentHTML('beforeend',
     `<div class="container">
       <h1>Settings:</h1>
@@ -14,8 +16,9 @@ export default function renderContent() {
             min="1"
             max="300"
             step="1"
-            value="${localStorage.getItem('wordsLimit') || 50}"/>
-          <output class="words-limit-output" for="words-limit">${localStorage.getItem('wordsLimit') || 50}</output>
+            value="${wordsLimit || 50}"
+          />
+          <output class="words-limit-output" for="words-limit">${wordsLimit || 50}</output>
         </div>
         <div class="limit">
           <label for="cards-limit">New cards per day: </label>
@@ -27,46 +30,57 @@ export default function renderContent() {
             min="1"
             max="500"
             step="1"
-            value="${localStorage.getItem('cardsLimit') || 80}"/>
-          <output class="cards-limit-output" for="cards-limit">${localStorage.getItem('cardsLimit') || 80}</output>
+            value="${cardsLimit || 80}"
+          />
+          <output class="cards-limit-output" for="cards-limit">${cardsLimit || 80}</output>
         </div>
       </div>
-     <div class="info-settings">
-      <p>What information do you want to see on the cards?</p>
-      <label>
-        <input
-          type="checkbox"
-          name="wordTranslation"
-          class="settings-to-save"
-          checked
-        />
-        Word translation</label>
-      <label>
-        <input type="checkbox" name="wordMeaning" class="settings-to-save" />
-        Sentence explaining the meaning of the word</label>
-      <label>
-        <input
-          type="checkbox"
-          name="wordExample-"
-          class="settings-to-save"
-          checked
-        />
-        Sentence with an example of using the studied word</label>
-      <label>
-        <input
-          type="checkbox"
-          name="wordTranscription"
-          class="settings-to-save"
-        />
-        Word transcription</label>
-      <label>
-        <input type="checkbox" name="wordImage" class="settings-to-save" />
-        Image-association to the studied word</label>
-      <p class="warning hidden">At least one point must be chosen!</p>
-      <p class="success-notification hidden">
-        Your settings have been successfully saved!
-      </p>
+      <div class="main-settings">
+        <p><b>Main settings:</b></p>
+        <p>What information do you want to see on the cards?</p>
+        <label>
+          <input
+            type="checkbox"
+            name="wordTranslation"
+            class="settings-to-save"
+          />
+          Word translation</label>
+        <label>
+          <input type="checkbox" name="wordMeaning" class="settings-to-save" />
+          Sentence explaining the meaning of the word</label>
+        <label>
+          <input type="checkbox" name="wordExample-" class="settings-to-save" />
+          Sentence with an example of using the studied word</label>
+        <label>
+          <input
+            type="checkbox"
+            name="wordTranscription"
+            class="settings-to-save"
+          />
+          Word transcription</label>
+        <label>
+          <input type="checkbox" name="wordImage" class="settings-to-save" />
+          Image-association to the studied word</label>
+        <p class="warning hidden">
+          At least one point from main settings must be chosen!
+        </p>
+      </div>
+      <div class="additional-settings">
+        <p><b>Additional settings:</b></p>
+        <label
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Using the 'Again', 'Difficult', 'Good', 'Easy' buttons, you can specify the individual complexity of the studied word">
+          <input
+            type="checkbox"
+            name="intervalRepeating"
+            class="settings-to-save"
+          />
+          Show buttons 'Again', 'Difficult', 'Good', 'Easy'</label>
+        <p class="success-notification hidden">
+          Your settings have been successfully saved!
+        </p>
+      </div>
       <input class="btn btn-primary save-btn" type="button" value="Save" />
-    </div>
     </div>`);
 }

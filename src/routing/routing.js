@@ -1,3 +1,5 @@
+import checkTokenIsAlive from '../components/auth/checkTokenIsAlive';
+
 class Routing {
   constructor(routes) {
     this.routes = routes;
@@ -8,13 +10,20 @@ class Routing {
     this.root.append(this.routes[pathname]);
   }
 
-  navigation() {
+  async navigation() {
     if (!window.location.href.match(/#\/.*$/)) {
       return;
     }
-    const route = window.location.href.match(/#\/.*$/)[0];
+    const routePath = window.location.href.match(/#\/.*$/)[0];
     this.root.innerHTML = '';
-    this.routes[route]();
+    const route = this.routes[routePath];
+    if (route.requiresAuth) {
+      if (!await checkTokenIsAlive()) {
+        this.routes['#/auth'].render();
+        return;
+      }
+    }
+    route.render();
   }
 
   init() {
