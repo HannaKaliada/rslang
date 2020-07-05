@@ -1,14 +1,13 @@
 import createElement from '../../shared/createElement';
-import get
-
-function getAmountOfDoneCards() {
-
-  const amountOfCards =
-}
+import { getAmountOfDoneCards } from './updateAmountOfDoneCards';
 
 function createBar() {
-  const attrs = [['role', 'progressbar'], [] ['aria-valuemin', '0'], ['aria-valuemax', '100']];
+  const cardsLimit = localStorage.getItem('cardsLimit') || 80;
+  const doneCards = getAmountOfDoneCards();
+  const amount = (doneCards * 100) / cardsLimit > 100 ? 100 : (doneCards * 100) / cardsLimit;
+  const attrs = [['role', 'progressbar'], ['aria-valuenow', `${amount}`], ['aria-valuemin', '0'], ['aria-valuemax', '100']];
   const bar = createElement('div', ['progress-bar', 'bg-success'], attrs);
+  bar.style.width = `${amount}%`;
   return bar;
 }
 
@@ -21,7 +20,7 @@ function createProgressBar() {
   const barWrapper = createElement('div', 'progress');
   barWrapper.append(createBar());
   wrapper.append(doneCards, barWrapper, cardsToDo);
-  return wrapper;
+  return wrapper.outerHTML;
 }
 
 export default createProgressBar;

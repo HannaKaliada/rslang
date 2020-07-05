@@ -1,4 +1,5 @@
 import properties from './properties';
+import createProgressBar from './progressBar';
 
 export default function renderContent() {
   const page = document.querySelector('.root');
@@ -22,6 +23,8 @@ export default function renderContent() {
         <p class="word__translation">
           ${properties.words[currentWord].wordTranslate}
         </p>
+
       </div>
+      ${createProgressBar()}
     </div>`);
 }

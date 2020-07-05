@@ -2,25 +2,30 @@ import getDate from '../../shared/getDate';
 
 function updateAmountOfDoneCards() {
   const today = getDate();
-  let amountOfCards;
+  let doneCards;
   let date;
   if (localStorage.getItem('doneCards')) {
-    [date, amountOfCards] = localStorage.getItem('doneCards');
-    if (today === date) {
-      amountOfCards += 1;
-      localStorage.setItem('doneCards', [date, amountOfCards]);
-      return amountOfCards;
-    }
+    [date, doneCards] = localStorage.getItem('doneCards').split(',');
   }
-  amountOfCards = 1;
-  localStorage.setItem('doneCards', [today, amountOfCards]);
-  return amountOfCards;
+  if (date !== today) {
+    date = today;
+    doneCards = 0;
+  }
+  doneCards = Number(doneCards) + 1;
+  localStorage.setItem('doneCards', [date, doneCards]);
+  const cardsLimit = localStorage.getItem('cardsLimit');
+  const amount = (doneCards * 100) / cardsLimit > 100 ? 100 : (doneCards * 100) / cardsLimit;
+  const bar = document.querySelector('.progress-bar');
+  const cardsAmountDone = document.querySelector('.cards-amount-done');
+  cardsAmountDone.textContent = doneCards;
+  bar.setAttribute('aria-valuenow', amount);
+  bar.style.width = `${amount}%`;
 }
 
 function getAmountOfDoneCards() {
   const today = getDate();
   if (localStorage.getItem('doneCards')) {
-    const [date, amountOfCards] = localStorage.getItem('doneCards');
+    const [date, amountOfCards] = localStorage.getItem('doneCards').split(',');
     return today === date ? amountOfCards : 0;
   }
   return 0;
