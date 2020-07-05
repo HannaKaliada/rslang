@@ -43,7 +43,8 @@ timeLeft = this.TIME_LIMIT;
   }
 
   calculateTimeFraction() {
-    return this.timeLeft / this.TIME_LIMIT;
+    const rawTimeFraction = this.timeLeft / this.TIME_LIMIT;
+    return rawTimeFraction - (1 / this.TIME_LIMIT) * (1 - rawTimeFraction);
   }
 
   // Update the dasharray value as time passes, starting with 283
