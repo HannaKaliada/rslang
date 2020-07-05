@@ -97,7 +97,6 @@ class Field {
     const { height, width } = this.container.getBoundingClientRect();
     const url = this.imgData.urls.full;
     this.cleanContainer();
-    console.log(height);
     this.container.setAttribute('style', `width: ${width}px; height: ${height}px; background-image: url(${url})`);
     return this;
   }

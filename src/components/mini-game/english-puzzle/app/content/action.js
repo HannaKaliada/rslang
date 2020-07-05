@@ -171,12 +171,20 @@ const actions = {
       .createContainer()
       .addContent()
       .container;
-    document.body.append(result);
+    Content.create()
+      .container.append(result);
   },
 
   next() {
-    console.log('next');
+    if (Result.create().container) {
+      Result.create().container.remove();
+      Result.create().appContainer = null;
+    }
     nextLevel();
+  },
+
+  sound(elem) {
+    elem.parentNode.lastChild.play();
   },
 };
 
