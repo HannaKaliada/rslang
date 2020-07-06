@@ -1,10 +1,12 @@
-import Swiper from "swiper";
+/* eslint-disable no-unused-vars */
+import Swiper from 'swiper';
+
 export default function swiperInit() {
-  const swiper = new Swiper(".swiper-container", {
+  const swiper = new Swiper('.swiper-container', {
     slidesPerView: 3,
     spaceBetween: 30,
     pagination: {
-      el: ".swiper-pagination",
+      el: '.swiper-pagination',
       clickable: true,
     },
     breakpoints: {
@@ -24,8 +26,8 @@ export default function swiperInit() {
       },
     },
     navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
     },
   });
 }
