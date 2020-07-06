@@ -31,7 +31,7 @@ class GamePage {
     if (this.gameButton.textContent === 'Next') {
       return;
     }
-    this.gameButton.value = 'Next';
+    this.gameButton.textContent = 'Next';
     if (target.innerText === this.rightVariantText) {
       this.gameResults.rightAnswers.push(this.gameData);
       this.score += this.isHintUsed ? 1 : 2;
@@ -50,13 +50,21 @@ class GamePage {
       }
       this.showAnswer();
     }
-    this.isHintUsed = false;
   }
 
-  showAnswer() {
+  showAnswer(value) {
     this.icon.src = this.wordImage;
-    this.icon.removeEventListener('click', this.soundHandler);
-    this.answerBlock.classList.remove('hidden');
+    this.icon.onload = () => {
+      this.icon.removeEventListener('click', this.soundHandler);
+      this.answerBlock.classList.remove('hidden');
+      if (!value) {
+        Array.prototype.forEach.call(this.variants, ((el) => {
+          if (el.innerText === this.rightVariantText) {
+            el.classList.add('right');
+          }
+        }));
+      }
+    };
     this.gameButton.textContent = 'Next';
   }
 
@@ -73,7 +81,15 @@ class GamePage {
 
   startRound() {
     this.pageElementsDropToDefault();
-    this.gameData = this.gameWords.pop();
+    this.isHintUsed = false;
+    function check() {
+      const gameData = this.gameWords.pop();
+      if (!gameData && this.gameWords.length) {
+        return check.call(this);
+      }
+      return gameData;
+    }
+    this.gameData = check.call(this);
     if (!this.gameData) {
       this.stopGame();
       return;
@@ -97,15 +113,13 @@ class GamePage {
   }
 
   async getCurrentRound(e) {
-    const userId = this.state.userId;
-    const token = this.state.token;
     this.currentRound = [];
     if (e) {
       const level = Number(this.levelInput.value) > 0 ? Number(this.levelInput.value) - 1 : 0;
       this.currentRound.push(level, Number(this.roundInput.value));
       return this.currentRound;
     }
-    const obj = await this.getStatistics({ userId, token })
+    const obj = await this.getStatistics(this.state)
       .then((res) => {
         if (res.optional && res.optional.audioCall.round) {
           let [level, round] = res.optional.audioCall.round;
@@ -113,7 +127,6 @@ class GamePage {
           if (round > 59) {
             round = 1;
             level = level === 5 ? 0 : (level + 2);
-            console.log(level, round);
           }
           this.currentRound.push(level, round);
         } else {
@@ -136,23 +149,37 @@ class GamePage {
       level = level === 5 ? 0 : (level + 1);
     }
     this.renderStatisticPage();
-    const statistics = await this.getStatistics(this.state)
-      .then((res) => res);
     const date = getDate();
-    const obj = {};
-    obj.optional = statistics.optional;
-    obj.learnedWords = statistics.learnedWords;
     const result = `${date}, m:${this.gameResults.wrongAnswers.length}`;
-    if (obj.optional.audioCall && obj.optional.audioCall.results) {
-      obj.optional.audioCall.results.push(result);
-    } else {
-      obj.optional = {
-        audioCall: {
-          results: [result],
-        },
-      };
-    }
-    obj.optional.audioCall.round = [level, round];
+    const obj = await this.getStatistics(this.state)
+      .then((res) => {
+        const object = {};
+        object.optional = res.optional;
+        object.learnedWords = res.learnedWords;
+        if (object.optional.audioCall && object.optional.audioCall.results) {
+          object.optional.audioCall.results.push(result);
+        } else {
+          object.optional = {
+            audioCall: {
+              results: [result],
+            },
+          };
+        }
+        object.optional.audioCall.round = [level, round];
+        return object;
+      })
+      .catch(() => {
+        const object = {
+          learnedWords: 0,
+          optional: {
+            audioCall: {
+              results: [result],
+              round: [level, round],
+            },
+          },
+        };
+        return object;
+      });
     const { userId, token } = this.state;
     await this.setStatistics({ userId, token, obj });
   }
@@ -341,7 +368,6 @@ class GamePage {
     root.append(container);
     await this.getCurrentRound(e)
       .then(async (arr) => {
-        console.log(arr);
         const result = await createGameData(arr);
         return result;
       })

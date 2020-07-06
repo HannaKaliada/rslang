@@ -1,6 +1,7 @@
 import gamePage from './gamePage';
 import createElement from '../../shared/createElement';
 import loginUser from '../../services/loginUser';
+import createUser from '../../services/createUser';
 
 export const state = {};
 
@@ -23,7 +24,7 @@ class StartPage {
     const p2 = this.createElement('p');
     p2.innerText = 'Difficult? Use a hint: listen to the meaning of the word.';
     const p3 = this.createElement('p');
-    p3.innerText = 'You get 2 points for right answer, 1 point for right answer with hint and 0 in other cases.';
+    p3.innerText = 'You get 2 points for the right answer, 1 point for the right answer with hint and 0 for the wrong answer.';
     desc.append(p1, p2, p3);
     return desc;
   }
@@ -36,7 +37,8 @@ class StartPage {
     return button;
   }
 
-  createPage() {
+  async createPage() {
+  //  await createUser({ email: 'qwerty24@tut.by', password: 'Kolobok@1' });
     const root = document.querySelector('.root');
     const container = this.createElement('div', ['container', 'audio-call']);
     container.append(this.createTitle(), this.createDescription(), this.createButton());
@@ -48,15 +50,16 @@ class StartPage {
   }
 
   async tempFunc() {
-    await loginUser({ email: '1234@tut.by', password: 'Kolobok@1'})
+  //  await createUser({ email: 'qwerty25@tut.by', password: 'Kolobok@1' });
+    await loginUser({ email: 'qwerty25@tut.by', password: 'Kolobok@1' })
       .then((result) => {
     const userInfo = {
       token: result.token,
       userId: result.userId,
     };
+    console.log(userInfo);
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
-    console.log(localStorage.getItem('userInfo'));
-      })
+      });
   }
 }
 
