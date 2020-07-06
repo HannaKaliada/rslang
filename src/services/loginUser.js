@@ -11,7 +11,14 @@ const loginUser = async (user) => {
     const content = await rawResponse.json();
     return content;
   }
-  throw new Error('Authorization error');
+  if (rawResponse.status === 403) {
+    throw new Error('Invalid e-mail or password');
+  }
+  if (rawResponse.status === 404) {
+    throw new Error('Couldn\'t find user');
+  } else {
+    throw new Error(`Something went wrong! ERROR ${rawResponse.status}`);
+  }
 };
 
 export default loginUser;
