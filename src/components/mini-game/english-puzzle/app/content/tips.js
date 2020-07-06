@@ -43,8 +43,8 @@ class Tips {
 
   addBtn() {
     if (this.isBtn) {
-      this.btn = createDomElem('button', ['content__tips-btn', 'btn', 'btn-info']);
-      this.btn.setAttribute('data-action', 'repeat');
+      const btn = createDomElem('button', ['content__tips-btn', 'btn', 'btn-info'], null, [['data-action', 'repeat']]);
+      this.btn = createDomElem('div', ['content__tips-btn__wrap'], [btn]);
       this.container.prepend(this.btn);
     }
     return this;

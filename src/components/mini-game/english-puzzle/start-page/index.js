@@ -37,4 +37,4 @@ function createStartPage() {
   return page;
 }
 
-export default start;
+export default createStartPage;

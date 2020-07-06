@@ -36,8 +36,7 @@
     }
 
     &__field {
-      display: flex;
-      width: fit-content;
+      display: inline-flex;
       margin: 0 auto;
       border: 3px solid whitesmoke;
       background-size: cover;
@@ -105,7 +104,7 @@
         justify-content: center;
         max-width: 800px;
         min-height: 40px;
-        margin: 0 auto;
+        margin: 20px auto;
         color: #ffff00;
         font-size: 20px;
         background: gray;
@@ -121,11 +120,19 @@
     }
 
     &__tips {
+      display: flex;
+      flex-direction: column;
+      height: 110px;
+      margin: 10px 0;
 
       &-btn {
         @extend .puzzle__controls-options__btn;
         background-image: url("~bootstrap-icons/icons/volume-up-fill.svg");
       }
+    }
+
+    &__btns {
+      padding: 20px;
     }
   }
 

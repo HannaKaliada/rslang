@@ -23,7 +23,7 @@ class Result {
   }
 
   createContainer() {
-    this.appContainer = createDomElem('div', ['speak-it__result']);
+    this.appContainer = createDomElem('div', ['result']);
     return this;
   }
 
@@ -38,14 +38,14 @@ class Result {
       .map((obj) => wordRow(obj));
     const btns = ['return', 'new game']
       .map((str) => createDomElem(
-        'button', ['speak-it__result__btn', 'btn', 'btn-primary'], [str.toUpperCase()], [['data-action', str]],
+        'button', ['result__btn', 'btn', 'btn-primary'], [str.toUpperCase()], [['data-action', str]],
       ));
-    const btnsRow = createDomElem('div', ['speak-it__result__controls'], btns);
-    const correctTitle = createDomElem('p', ['speak-it__result__title'], [`Correct: ${correctWords.length}`]);
-    const correctField = createDomElem('div', ['speak-it__result__correct'], [correctTitle, ...correctWords]);
-    const wrongTitle = createDomElem('p', ['speak-it__result__title'], [`Wrong: ${wrongWords.length}`]);
-    const wrongField = createDomElem('div', ['speak-it__result__wrong'], [wrongTitle, ...wrongWords]);
-    const wrap = createDomElem('div', ['speak-it__result__wrap'], [correctField, wrongField, btnsRow]);
+    const btnsRow = createDomElem('div', ['result__controls'], btns);
+    const correctTitle = createDomElem('p', ['result__title'], [`Correct: ${correctWords.length}`]);
+    const correctField = createDomElem('div', ['result__correct'], [correctTitle, ...correctWords]);
+    const wrongTitle = createDomElem('p', ['result__title'], [`Wrong: ${wrongWords.length}`]);
+    const wrongField = createDomElem('div', ['result__wrong'], [wrongTitle, ...wrongWords]);
+    const wrap = createDomElem('div', ['result__wrap'], [correctField, wrongField, btnsRow]);
     this.container.append(wrap);
     return this;
   }

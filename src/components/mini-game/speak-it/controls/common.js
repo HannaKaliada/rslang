@@ -11,21 +11,34 @@ function createList(count, name) {
   return createDomElem('ul', ['dropdown-menu', `speak-it__${name}`], items);
 }
 
-export function createGroups(group) {
+function createDropdown(curNum, name, listNum) {
   const btn = createDomElem(
     'button',
     ['btn', 'btn-primary', 'dropdown-toggle'],
-    [`Level: ${group + 1}`],
+    [`${name[0].toUpperCase() + name.substring(1)}: ${curNum + 1}`],
     [['type', 'button'], ['data-toggle', 'dropdown'], ['aria-haspopup', 'true'], ['aria-expanded', 'false']],
   );
+  const tooltipText = `Select game ${name}`;
   const dropdown = createDomElem('div', [
     'dropdown',
-    'speak-it__controls-groups'],
-  [btn, createList(6, 'level')],
-  [['data-toggle', 'tooltip'], ['data-placement', 'right'], ['title', 'Select game level']]);
+    `puzzle__controls-${name}s`],
+  [btn, createList(listNum, name)],
+  [['data-toggle', 'tooltip'], ['data-placement', 'right'], ['title', tooltipText]]);
   // eslint-disable-next-line no-undef
   $(dropdown).tooltip('show');
   return dropdown;
+}
+
+export function createPages(curPage) {
+  const name = 'page';
+  const listNum = 60;
+  return createDropdown(curPage, name, listNum);
+}
+
+export function createGroups(curGroup) {
+  const name = 'level';
+  const listNum = 6;
+  return createDropdown(curGroup, name, listNum);
 }
 
 export function createAppControls() {

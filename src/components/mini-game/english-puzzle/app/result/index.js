@@ -26,7 +26,7 @@ class Result {
   }
 
   createContainer() {
-    this.appContainer = createDomElem('div', ['speak-it__result']);
+    this.appContainer = createDomElem('div', ['result']);
     return this;
   }
 
@@ -43,7 +43,7 @@ class Result {
       .map((obj) => wordRow(obj));
     const btns = ['next']
       .map((str) => createDomElem(
-        'button', ['speak-it__result__btn', 'btn', 'btn-primary'], [str.toUpperCase()], [['data-action', str]],
+        'button', ['result__btn', 'btn', 'btn-primary'], [str.toUpperCase()], [['data-action', str]],
       ));
     const title = data.alt_description[0].toUpperCase() + data.alt_description.substring(1);
     const url = data.urls.full;
@@ -53,12 +53,12 @@ class Result {
     ]);
     const imgTitle = createDomElem('p', ['result__img-title'], [title]);
     const imgContainer = createDomElem('div', ['result__img-container'], [img, imgTitle]);
-    const btnsRow = createDomElem('div', ['speak-it__result__controls'], btns);
-    const correctTitle = createDomElem('p', ['speak-it__result__title'], [`I know: ${correctWords.length}`]);
-    const correctField = createDomElem('div', ['speak-it__result__correct'], [correctTitle, ...correctWords]);
-    const wrongTitle = createDomElem('p', ['speak-it__result__title'], [`I don't know: ${wrongWords.length}`]);
-    const wrongField = createDomElem('div', ['speak-it__result__wrong'], [wrongTitle, ...wrongWords]);
-    const wrap = createDomElem('div', ['speak-it__result__wrap'], [imgContainer, correctField, wrongField, btnsRow]);
+    const btnsRow = createDomElem('div', ['result__controls'], btns);
+    const correctTitle = createDomElem('p', ['result__title'], [`I know: ${correctWords.length}`]);
+    const correctField = createDomElem('div', ['result__correct'], [correctTitle, ...correctWords]);
+    const wrongTitle = createDomElem('p', ['result__title'], [`I don't know: ${wrongWords.length}`]);
+    const wrongField = createDomElem('div', ['result__wrong'], [wrongTitle, ...wrongWords]);
+    const wrap = createDomElem('div', ['result__wrap'], [imgContainer, correctField, wrongField, btnsRow]);
     this.container.append(wrap);
     return this;
   }

@@ -8,11 +8,6 @@ import Content from './content';
 // eslint-disable-next-line import/no-mutable-exports
 let actions;
 
-function changeClass(elem) {
-  elem.parentNode.classList.remove('show');
-  elem.parentNode.parentNode.classList.remove('show');
-}
-
 function toggleClass(elem, first, second) {
   elem.classList.toggle(first);
   elem.classList.toggle(second);
@@ -73,6 +68,10 @@ function compareAnswers(str) {
   }
 }
 
+function capitalize(str) {
+  return str[0].toUpperCase() + str.substring(1);
+}
+
 actions = {
   curWordElem: null,
 
@@ -126,19 +125,27 @@ actions = {
     Content.create().container.append(result);
   },
 
-  level(elem, type) {
-    changeClass(elem);
+  level(elem, num) {
     const state = State.create();
-    state.group = parseInt(type, 10);
+    state.group = parseInt(num, 10);
     changeLvl(state.group, state.page);
     this.isStart = false;
     // eslint-disable-next-line no-param-reassign
     elem.parentNode.previousSibling.textContent = `Level: ${state.group + 1}`;
   },
 
+  page(elem, num) {
+    const state = State.create();
+    state.page = parseInt(num, 10);
+    changeLvl(state.group, state.page);
+    this.isStart = false;
+    // eslint-disable-next-line no-param-reassign
+    elem.parentNode.previousSibling.textContent = `Level: ${state.page + 1}`;
+  },
+
   sound(elem) {
     const parent = elem.parentNode;
-    const resultAudio = parent.querySelector('.speak-it__result__audio');
+    const resultAudio = parent.querySelector('.result__audio');
     resultAudio.play();
   },
 
