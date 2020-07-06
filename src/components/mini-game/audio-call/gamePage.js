@@ -124,12 +124,7 @@ class GamePage {
     const obj = await this.getStatistics(this.state)
       .then((res) => {
         if (res.optional && res.optional.audioCall.round) {
-          let [level, round] = res.optional.audioCall.round;
-          level = level > 0 ? level - 1 : level;
-          if (round > 59) {
-            round = 1;
-            level = level === 5 ? 0 : (level + 2);
-          }
+          const [level, round] = res.optional.audioCall.round;
           this.currentRound.push(level, round);
         } else {
           this.currentRound = [0, 1];
@@ -145,7 +140,7 @@ class GamePage {
 
   async stopGame() {
     let round = Number(document.querySelector('#audioCallRound').value) + 1;
-    let level = Number(document.querySelector('#audioCallLevel').value);
+    let level = Number(document.querySelector('#audioCallLevel').value) - 1;
     if (round > 59) {
       round = 1;
       level = level === 5 ? 0 : (level + 1);
