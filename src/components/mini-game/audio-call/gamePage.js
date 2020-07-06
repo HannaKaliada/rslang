@@ -30,10 +30,11 @@ class GamePage {
   }
 
   checkAnswer(target) {
-    if (this.gameButton.textContent === 'Next') {
+    if (this.gameButton.dataset.value === 'Next') {
       return;
     }
     this.gameButton.textContent = 'Next';
+    this.gameButton.dataset.value = 'Next';
     if (target.innerText === this.rightVariantText) {
       this.gameResults.rightAnswers.push(this.gameData);
       this.score += this.isHintUsed ? 1 : 2;
@@ -68,6 +69,7 @@ class GamePage {
       }
     };
     this.gameButton.textContent = 'Next';
+    this.gameButton.dataset.value = 'Next';
   }
 
   pageElementsDropToDefault() {
@@ -76,6 +78,7 @@ class GamePage {
       el.classList.remove('wrong');
     }));
     this.gameButton.textContent = "I don't know";
+    this.gameButton.dataset.value = "I don't know";
     this.icon.src = 'images/speaker.svg';
     this.icon.addEventListener('click', this.soundHandler);
     this.answerBlock.classList.add('hidden');
@@ -215,6 +218,7 @@ class GamePage {
   createGameButton() {
     this.gameButton = this.createElement('button', ['audio-call__game-button', 'btn', 'btn-secondary']);
     this.gameButton.textContent = "I don't know";
+    this.gameButton.dataset.value = "I don't know";
     this.gameButton.addEventListener('click', this.gameButtonHandler.bind(this));
     return this.gameButton;
   }
@@ -265,7 +269,7 @@ class GamePage {
   }
 
   gameButtonHandler() {
-    const text = this.gameButton.textContent;
+    const text = this.gameButton.dataset.value;
     switch (text) {
       case "I don't know":
         this.showAnswer(false);

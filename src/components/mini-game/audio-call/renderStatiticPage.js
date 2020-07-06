@@ -32,6 +32,7 @@ export default function renderStatisticPage() {
     page.append(secondBlock);
   }
   this.gameButton.textContent = 'Next round';
+  this.gameButton.dataset.value = 'Next round';
   page.append(this.gameButton);
   const container = document.querySelector('.container.audio-call');
   container.innerHTML = '';
