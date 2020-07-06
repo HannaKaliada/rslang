@@ -1,7 +1,6 @@
 import gamePage from './gamePage';
 import createElement from '../../shared/createElement';
 import loginUser from '../../services/loginUser';
-import createUser from '../../services/createUser';
 
 export const state = {};
 
@@ -38,7 +37,6 @@ class StartPage {
   }
 
   async createPage() {
-  //  await createUser({ email: 'qwerty24@tut.by', password: 'Kolobok@1' });
     const root = document.querySelector('.root');
     const container = this.createElement('div', ['container', 'audio-call']);
     container.append(this.createTitle(), this.createDescription(), this.createButton());
@@ -50,7 +48,6 @@ class StartPage {
   }
 
   async tempFunc() {
-  //  await createUser({ email: 'qwerty25@tut.by', password: 'Kolobok@1' });
     await loginUser({ email: 'qwerty25@tut.by', password: 'Kolobok@1' })
       .then((result) => {
     const userInfo = {

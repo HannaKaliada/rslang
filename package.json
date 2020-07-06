@@ -12,7 +12,8 @@
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "normalize.css": "^8.0.1",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "swiper": "^5.4.5"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -53,7 +54,7 @@
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
-    "lint": "eslint ./src/*.js",
+    "lint": "eslint -c .eslintrc.js ./src/**/*.js",
     "csscomb": "./node_modules/.bin/csscomb ./src/styles/style.scss"
   },
   "author": "",

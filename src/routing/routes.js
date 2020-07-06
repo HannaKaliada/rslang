@@ -1,33 +1,53 @@
-import settings from '../components/settings/settings.js';
-import renderStartPage from '../components/start-page/renderStartPage.js';
-import startPage from '../components/audio-call/createAudioCallPage';
+import createStartPage from '../components/mini-game/speak-it/start-page';
+import settings from '../components/settings/settings';
+import renderTeamPage from '../components/about-team-page/render-about-team-page';
+import renderStartPage from '../components/start-page/renderStartPage';
+import initHubPage from '../components/hub/hub-page/initHubPage';
+import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
+import learningWords from '../components/learningWords/learningWords';
+import audioCall from '../components/audio-call/createAudioCallPage';
 
 function statistics() {
   const page = document.querySelector('.root');
   const header = document.createElement('h2');
   header.innerText = 'This is statistics page';
   const list = document.createElement('ul');
-  list.innerHTML = `<li><a href="#/">Main page</a></li>
+  list.innerHTML = `
+  <li><a href="#/">Main page</a></li>
   <li><a href="#/game">Game page</a></li>
   <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
 }
+
 function game() {
   const page = document.querySelector('.root');
   const header = document.createElement('h2');
   header.innerText = 'This is game page';
   const list = document.createElement('ul');
-  list.innerHTML = `<li><a href="#/statis-tics">Statistic page</a></li>
+  list.innerHTML = `
+  <li><a href="#/statis-tics">Statistic page</a></li>
   <li><a href="#/">Main page</a></li>
   <li><a href="#/settings">Settings</a></li>`;
   page.append(header, list);
 }
 
+function speakIt() {
+  const page = document.querySelector('.root');
+  page.innerHTML = '';
+  page.append(createStartPage(page));
+}
+
 const routes = {
-  '#/': startPage.createPage.bind(startPage),
-  '#/statis-tics': statistics,
+  '#/': renderStartPage,
+  '#/statistics': statistics,
   '#/game': game,
   '#/settings': settings,
+  '#/auth': createSignInSignUpPage.init.bind(createSignInSignUpPage),
+  '#/about-team': renderTeamPage,
+  '#/hub': initHubPage,
+  '#/learning': learningWords,
+  '#/speak-it': speakIt,
+  '#/audio-call': audioCall,
 };
 
 export default routes;

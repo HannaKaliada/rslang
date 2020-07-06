@@ -1,4 +1,6 @@
 import { startPage } from './startPage';
 import './audioCall.scss';
 
-export default startPage;
+export default function audioCall() {
+  return startPage();
+}
