@@ -5,7 +5,7 @@ import initHubPage from '../components/hub/hub-page/initHubPage';
 import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
 import learningWords from '../components/learningWords/learningWords';
 import createStartPage from '../components/mini-game/speak-it/start-page';
-import audioCall from '../components/audio-call/createAudioCallPage';
+import audioCall from '../components/mini-game/audio-call/createAudioCallPage';
 
 function speakIt() {
   const page = document.querySelector('.root');

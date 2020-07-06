@@ -1,5 +1,5 @@
 import gamePage from './gamePage';
-import createElement from '../../shared/createElement';
+import createElement from '../../../shared/createElement';
 
 export const state = {};
 
@@ -31,7 +31,6 @@ class StartPage {
     const button = this.createElement('button', ['btn', 'btn-primary']);
     button.innerText = 'Start';
     button.addEventListener('click', this.startGame.bind(this));
-    button.addEventListener('click', this.tempFunc.bind(this));
     return button;
   }
 

@@ -1,5 +1,5 @@
-import getWords from '../../shared/getWords';
-import randomize from '../../shared/randomize';
+import getWords from '../../../shared/get-words';
+import randomize from '../../../shared/randomize';
 import getWordDistance from './getWordDistance';
 
 const gameData = [];
