@@ -1,6 +1,5 @@
 import gamePage from './gamePage';
 import createElement from '../../shared/createElement';
-import loginUser from '../../services/loginUser';
 
 export const state = {};
 
@@ -45,18 +44,6 @@ class StartPage {
 
   startGame() {
     this.gameClass.init.call(this.gameClass);
-  }
-
-  async tempFunc() {
-    await loginUser({ email: 'qwerty25@tut.by', password: 'Kolobok@1' })
-      .then((result) => {
-    const userInfo = {
-      token: result.token,
-      userId: result.userId,
-    };
-    console.log(userInfo);
-    localStorage.setItem('userInfo', JSON.stringify(userInfo));
-      });
   }
 }
 
