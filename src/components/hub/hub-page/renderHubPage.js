@@ -1,6 +1,8 @@
+import createElement from '../../../shared/createElement';
+
 export default function renderHubPage(info) {
-  const root = document.querySelector('.root');
-  root.insertAdjacentHTML('beforeend',
+  const hubPageWrapper = createElement('div', 'hub-page');
+  hubPageWrapper.insertAdjacentHTML('beforeend',
     `<div class="hub__wrapper">
       <div class="hub__user-info">
         <span class="user-email">${info.userEmail}</span>
@@ -38,4 +40,5 @@ export default function renderHubPage(info) {
           <p class="info_total">Words learned: ${info.wordsLearned} out of ${info.wordsAll} </p>
       </div>
     </div>`);
+  return hubPageWrapper;
 }
