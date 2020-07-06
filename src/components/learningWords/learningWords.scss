@@ -7,8 +7,8 @@
   .word-translation,
   .sentences-translation {
     display: flex;
-    align-items: center;
     justify-content: flex-end;
+    align-items: center;
     margin-bottom: 20px;
     p {
       margin-right: 20px;
@@ -29,14 +29,16 @@
     input {
       display: inline-block;
       width: 25px;
-      padding: 10px;
       margin: 0 5px;
-      outline: none;
+      padding: 10px;
 
       font-size: 17px;
+
+      outline: none;
     }
     .input_correct {
       color: green;
+
       border: 2px solid green;
     }
     .input-top-layer {
