@@ -2,7 +2,7 @@ const getWordById = async (id) => {
   const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/words/${id}`, {
     method: 'GET',
     headers: {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
     },
   });

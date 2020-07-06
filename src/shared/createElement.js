@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 function createElement(tag, className, attrs) {
   const element = document.createElement(tag);
   if (className) {
