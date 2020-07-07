@@ -13,20 +13,21 @@ function updateAmountOfDoneCards() {
   }
   doneCards = Number(doneCards) + 1;
   localStorage.setItem('doneCards', [date, doneCards]);
-  const cardsLimit = localStorage.getItem('cardsLimit');
-  const amount = (doneCards * 100) / cardsLimit > 100 ? 100 : (doneCards * 100) / cardsLimit;
+  const cardsLimit = localStorage.getItem('cardsLimit') || 80;
+  const amount = ((doneCards * 100) / cardsLimit) > 100 ? 100 : (doneCards * 100) / cardsLimit;
   const bar = document.querySelector('.progress-bar');
   const cardsAmountDone = document.querySelector('.cards-amount-done');
   cardsAmountDone.textContent = doneCards;
   bar.setAttribute('aria-valuenow', amount);
-  bar.style.width = `${amount}%`;
+  bar.style.width = `${(doneCards * 100) / cardsLimit}%`;
 }
 
 function getAmountOfDoneCards() {
   const today = getDate();
   if (localStorage.getItem('doneCards')) {
     const [date, amountOfCards] = localStorage.getItem('doneCards').split(',');
-    return today === date ? amountOfCards : 0;
+    console.log(date);
+    return today === date ? Number(amountOfCards) : 0;
   }
   return 0;
 }
