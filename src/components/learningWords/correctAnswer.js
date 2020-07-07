@@ -1,10 +1,12 @@
 import goToTheNextWord from './goToTheNextWord';
 import setWordsToProps from './setWordsToProps';
+import updateAmountOfDoneCards from './updateAmountOfDoneCards';
 
 export default function correctAnswer() {
   const currentWord = localStorage.getItem('currentWord');
   const currentPage = localStorage.getItem('currentPage');
   const currentGroup = localStorage.getItem('currentGroup');
+  updateAmountOfDoneCards();
 
   if (currentWord < 9) {
     localStorage.setItem('currentWord', Number(currentWord) + 1);
