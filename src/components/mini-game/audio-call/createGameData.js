@@ -33,8 +33,8 @@ async function getRandomVariants(word) {
   words = words.filter((el, i) => words.indexOf(el) === i);
   words = words.sort((a, b) => b.distance - a.distance);
   async function addVariant(el) {
-    const POS = await getPartOfSpeech(el);
-    if (POS !== partOfSpeech) {
+    const variantPartOfSpeech = await getPartOfSpeech(el);
+    if (variantPartOfSpeech !== partOfSpeech) {
       const result = await addVariant(words.pop());
       return result;
     }

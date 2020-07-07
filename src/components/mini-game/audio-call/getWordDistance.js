@@ -14,8 +14,8 @@ function getWordDistance(a, b) {
       if (b.charAt(i - 1) === a.charAt(j - 1)) {
         matrix[i][j] = matrix[i - 1][j - 1];
       } else {
-        const pos = Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
-        matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, pos);
+        const position = Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
+        matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, position);
       }
     }
   }

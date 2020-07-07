@@ -17,13 +17,13 @@ class StartPage {
 
   createDescription() {
     const desc = this.createElement('div', 'audiocall-description');
-    const p1 = this.createElement('p');
-    p1.innerText = 'Listen to the word and choose the right translation.';
-    const p2 = this.createElement('p');
-    p2.innerText = 'Difficult? Use a hint: listen to the meaning of the word.';
-    const p3 = this.createElement('p');
-    p3.innerText = 'You get 2 points for the right answer, 1 point for the right answer with hint and 0 for the wrong answer.';
-    desc.append(p1, p2, p3);
+    const gameplayInfo = this.createElement('p');
+    gameplayInfo.innerText = 'Listen to the word and choose the right translation.';
+    const hintInfo = this.createElement('p');
+    hintInfo.innerText = 'Difficult? Use a hint: listen to the meaning of the word.';
+    const scoresInfo = this.createElement('p');
+    scoresInfo.innerText = 'You get 2 points for the right answer, 1 point for the right answer with hint and 0 for the wrong answer.';
+    desc.append(gameplayInfo, hintInfo, scoresInfo);
     return desc;
   }
 

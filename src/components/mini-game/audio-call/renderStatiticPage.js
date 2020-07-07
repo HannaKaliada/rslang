@@ -10,9 +10,9 @@ export default function renderStatisticPage() {
     rightAnswersTitle.textContent = 'Right answers:';
     const rightAnswers = this.createElement('ul', 'audio-call__statistics-list');
     rightAnswers.append(...this.gameResults.rightAnswers.map((el) => {
-      const li = this.createElement('li', 'audio-call__statistics-item');
-      li.textContent = el.word;
-      return li;
+      const statsItem = this.createElement('li', 'audio-call__statistics-item');
+      statsItem.textContent = el.word;
+      return statsItem;
     }));
     const firstBlock = this.createElement('div', 'audio-call__statitics-block');
     firstBlock.append(rightAnswersTitle, rightAnswers);
@@ -23,9 +23,9 @@ export default function renderStatisticPage() {
     wrongAnswersTitle.textContent = 'Wrong answers:';
     const wrongAnswers = this.createElement('ul', 'audio-call__statistics-list');
     wrongAnswers.append(...this.gameResults.wrongAnswers.map((el) => {
-      const li = this.createElement('li', 'audio-call__statistics-item');
-      li.textContent = el.word;
-      return li;
+      const statsItem = this.createElement('li', 'audio-call__statistics-item');
+      statsItem.textContent = el.word;
+      return statsItem;
     }));
     const secondBlock = this.createElement('div', 'audio-call__statitics-block');
     secondBlock.append(wrongAnswersTitle, wrongAnswers);
