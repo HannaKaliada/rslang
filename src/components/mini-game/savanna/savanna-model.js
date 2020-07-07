@@ -14,8 +14,6 @@ const model = {
     this.level = localStorage.getItem('savanna-level');
     this.difficulty = localStorage.getItem('savanna-difficulty');
     this.index = localStorage.getItem('savanna-level') * 10 - 10;
-    console.log(localStorage.getItem('savanna-level'));
-    console.log(localStorage.getItem('savanna-level') * 10 - 10);
   },
   playMusic(event) {
     event.target.children[0].play();
@@ -49,9 +47,6 @@ const model = {
     const array = shuffle(createArray(10));
     view.spinner();
     const word = await getWords(this.index, this.difficulty);
-console.log(word);
-console.log(this.index,'  ',this.difficulty);
-
     view.removeSpinner();
     let min = array[0];
     let translate = word[array[0]].wordTranslate;

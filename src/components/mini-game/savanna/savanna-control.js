@@ -19,7 +19,7 @@ const control = {
         case 'next-level-btn':
           if (event.target.classList[2] !== 'disabled') {
             let level = localStorage.getItem('savanna-level');
-             // eslint-disable-next-line
+            // eslint-disable-next-line
             level ++ ;
             localStorage.setItem('savanna-level', level);
             model.mistakes = 0;
@@ -39,7 +39,7 @@ const control = {
         case 'next-difficulty-btn':
           if (event.target.classList[2] !== 'disabled') {
             let difficulty = localStorage.getItem('savanna-difficulty');
-             // eslint-disable-next-line
+            // eslint-disable-next-line
             difficulty ++;
             localStorage.setItem('savanna-difficulty', difficulty);
             model.mistakes = 0;
