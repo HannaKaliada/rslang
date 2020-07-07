@@ -1,9 +1,12 @@
 import createDomElem from '../../common';
 import { createDataControls, createList, createOptionsControls } from './common';
 import getWords from '../../../../../shared/get-words';
+// eslint-disable-next-line import/no-cycle
 import Content from '../content';
+// eslint-disable-next-line import/no-cycle
 import actionsContent from '../content/action';
 import Tips from '../content/tips';
+// eslint-disable-next-line import/no-cycle
 import Field from '../content/field';
 import getImg from '../../data';
 

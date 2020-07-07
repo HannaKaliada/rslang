@@ -41,7 +41,7 @@ class Content {
     this.appContainer = null;
     this.wordsData = null;
     this.dontKnowWords = [];
-    this.curWords = 9;
+    this.curWords = 0;
     instance = this;
     return this;
   }

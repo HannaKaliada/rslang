@@ -1,7 +1,7 @@
 import createDomElem from '../../common';
 
 function createBtn(text, className) {
-  return createDomElem('button', ['content__btn', 'btn', 'btn-info', className], [text]);
+  return createDomElem('button', ['content__btn', 'btn', 'btn-primary', className], [text]);
 }
 
 let instance;

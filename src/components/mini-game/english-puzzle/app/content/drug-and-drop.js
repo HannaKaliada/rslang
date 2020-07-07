@@ -39,6 +39,10 @@ export function handleDragOver(e) {
     && activeElement.dataset.action && currentElement.dataset.action) {
     return;
   }
+  if (activeElement.parentNode === curField || activeElement.parentNode === puzzle) {
+    console.log(e.target);
+    return;
+  }
   e.dataTransfer.dropEffect = 'none';
 }
 
@@ -46,14 +50,14 @@ export function handleDrop(e) {
   if (e.stopPropagation) {
     e.stopPropagation();
   }
-  const activeElement = document.querySelector('.selected');
-  const currentElement = e.target;
-  if (activeElement.dataset.action !== currentElement.dataset.action
-    && activeElement.dataset.action && currentElement.dataset.action) {
-    const value = activeElement.textContent;
-    activeElement.textContent = currentElement.textContent;
-    currentElement.textContent = value;
-  }
+  // const activeElement = document.querySelector('.selected');
+  // const currentElement = e.target;
+  // if (activeElement.dataset.action !== currentElement.dataset.action
+  //   && activeElement.dataset.action && currentElement.dataset.action) {
+  //   const value = activeElement.textContent;
+  //   activeElement.textContent = currentElement.textContent;
+  //   currentElement.textContent = value;
+  // }
 }
 
 export function handleDragEnd(e) {

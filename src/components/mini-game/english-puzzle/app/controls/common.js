@@ -47,14 +47,23 @@ export function createDataControls(data) {
   return createDomElem('div', ['puzzle__controls-data'], [createGroups(group), createPages(page)]);
 }
 
-function createBtn(type) {
-  const btn = createDomElem('button', ['puzzle__controls-options__btn', type, 'btn', 'btn-primary']);
-  btn.setAttribute('data-type', type);
+function createBtn(arr) {
+  const [type, str] = arr;
+  const btn = createDomElem('button', ['puzzle__controls-options__btn', type, 'btn', 'btn-primary'], null, [
+    ['data-type', type], ['data-toggle', 'tooltip'], ['data-placement', 'bottom'], ['title', str],
+  ]);
+  // eslint-disable-next-line no-undef
+  $(btn).tooltip('show');
   return btn;
 }
 
 export function createOptionsControls() {
-  const tips = ['sound', 'translate', 'melody', 'image'];
-  const tipBtns = tips.map((str) => createBtn(str));
+  const tips = [
+    ['sound', 'Auto repeat off or on'],
+    ['translate', 'Show or hide translate'],
+    ['melody', 'Show or hide translate'],
+    ['image', 'Show or hide image'],
+  ];
+  const tipBtns = tips.map((arr) => createBtn(arr));
   return createDomElem('div', ['puzzle__controls-options'], tipBtns);
 }

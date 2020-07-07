@@ -43,7 +43,14 @@ class Tips {
 
   addBtn() {
     if (this.isBtn) {
-      const btn = createDomElem('button', ['content__tips-btn', 'btn', 'btn-info'], null, [['data-action', 'repeat']]);
+      const btn = createDomElem('button', ['content__tips-btn', 'btn', 'btn-primary'], null, [
+        ['data-action', 'repeat'],
+        ['data-toggle', 'tooltip'],
+        ['data-placement', 'right'],
+        ['title', 'Repeat'],
+      ]);
+      // eslint-disable-next-line no-undef
+      $(btn).tooltip('show');
       this.btn = createDomElem('div', ['content__tips-btn__wrap'], [btn]);
       this.container.prepend(this.btn);
     }
