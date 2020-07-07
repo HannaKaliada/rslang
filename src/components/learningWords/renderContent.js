@@ -23,8 +23,8 @@ export default function renderContent() {
         <p class="word__translation">
           ${properties.words[currentWord].wordTranslate}
         </p>
-
+        ${createProgressBar()}
       </div>
-      ${createProgressBar()}
+
     </div>`);
 }

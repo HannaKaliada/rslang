@@ -17,9 +17,11 @@ function createProgressBar() {
   doneCards.textContent = getAmountOfDoneCards();
   const cardsToDo = createElement('p', 'cards-amount-all');
   cardsToDo.textContent = localStorage.getItem('cardsLimit') || 80;
+  const cardsNumbersWrapper = createElement('div', 'cards-numbers-wrapper');
+  cardsNumbersWrapper.append(doneCards, cardsToDo);
   const barWrapper = createElement('div', 'progress');
   barWrapper.append(createBar());
-  wrapper.append(doneCards, barWrapper, cardsToDo);
+  wrapper.append(cardsNumbersWrapper, barWrapper);
   return wrapper.outerHTML;
 }
 

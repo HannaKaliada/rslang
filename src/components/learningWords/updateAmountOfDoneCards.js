@@ -26,7 +26,6 @@ function getAmountOfDoneCards() {
   const today = getDate();
   if (localStorage.getItem('doneCards')) {
     const [date, amountOfCards] = localStorage.getItem('doneCards').split(',');
-    console.log(date);
     return today === date ? Number(amountOfCards) : 0;
   }
   return 0;

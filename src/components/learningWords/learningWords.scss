@@ -52,3 +52,15 @@
     }
   }
 }
+
+.progress-bar-wrapper {
+  width: 100%;
+  .cards-numbers-wrapper{
+    display: flex;
+    justify-content: space-between;
+    .cards-amount-done, .cards-amount-all{
+      display: inline-block;
+    }
+  }
+}
+
