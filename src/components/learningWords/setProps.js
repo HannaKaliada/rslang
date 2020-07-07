@@ -4,7 +4,6 @@ import properties from './properties';
 export default async function setProps() {
   const words = await getWords(localStorage.getItem('currentPage'), localStorage.getItem('currentGroup'));
   properties.words = words;
-
   properties.currentWord = localStorage.getItem('currentWord');
   properties.currentPage = localStorage.getItem('currentPage');
   properties.currentGroup = localStorage.getItem('currentGroup');
