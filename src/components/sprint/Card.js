@@ -2,8 +2,8 @@ import WordsSet from './WordsSet';
 
 export default class Card {
 
-  constructor() {
-
+  constructor(wordSet) {
+    this.wordSet = wordSet;
   }
 
   renderCard() {
@@ -17,24 +17,21 @@ export default class Card {
     </h5>
   <div class="card-body text-center">
     <div class="words">
-      <h5 class="word_english mb-4">test</h5>
-      <h5 class="word_russian">test</h5>
+      <h5 class="word_english mb-4"> </h5>
+      <h5 class="word_russian"> </h5>
     </div>
   </div>
   </div>`);
-  this.initWords();
+  this.renderWords();
+
   }
 
-  initWords() {
-    const wordSet = new WordsSet();
+  renderWords() {
     const englishContent = document.querySelector('.word_english');
     const russianContent = document.querySelector('.word_russian');
-    wordSet.getGamesPairWord()
-    .then(result => {
-      this.currentWords = result;
-      englishContent.firstChild.nodeValue = result.eng;
-      russianContent.firstChild.nodeValue = result.rus;
-    });
+    this.currentWords = this.wordSet.getGamesPairWord();
+    englishContent.firstChild.nodeValue = this.currentWords.eng;
+    russianContent.firstChild.nodeValue = this.currentWords.rus;
   }
 
   isCorrect() {

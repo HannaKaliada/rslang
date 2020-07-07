@@ -6,7 +6,7 @@ export default function renderResultPage(score) {
     card.removeChild(card.childNodes[i]);
  }
  card.insertAdjacentHTML('beforeend', `<div class="card">
- <div class="card-header">
+ <div class="card-header text-center">
    YOUR RESULT: ${score.score}
  </div>
  <div class="card-body">
