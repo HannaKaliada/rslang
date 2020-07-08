@@ -14,7 +14,7 @@ const model = {
   getLevelDifficulty() {
     this.level = localStorage.getItem('savanna-level');
     this.difficulty = localStorage.getItem('savanna-difficulty');
-    this.index = localStorage.getItem('savanna-level') * 10 - 10;
+    this.index = (localStorage.getItem('savanna-level') - 1) * 10;
   },
   playMusic(event) {
     event.play();
@@ -29,40 +29,42 @@ const model = {
   },
   trueCheck(word) {
     clearTimeout(this.timer);
+
+    if (word === this.answer) {
+      view.showFidelity(true);
+      this.rightAnswer += 1;
+      this.arrayOfAnswers[this.index % 10].answer = true;
+    } else {
+      view.showFidelity(false);
+      this.mistakes += 1;
+      this.arrayOfAnswers[this.index % 10].answer = false;
+    }
     if (this.index + 1 >= this.level * 10 || this.mistakes >= 5) this.endGame();
     else {
-      if (word === this.answer) {
-        view.showFidelity(true);
-        this.rightAnswer += 1;
-        this.arrayOfAnswers[this.index % 10].answer = 'true';
-      } else {
-        view.showFidelity(false);
-        this.mistakes += 1;
-        this.arrayOfAnswers[this.index % 10].answer = 'false';
-      }
       this.index += 1;
       view.wordInner();
     }
   },
   async processArray() {
     let content = '';
+    const rand = Math.round(Math.random() * 3);
     const createArray = (length) => Array.from({ length }, (v, k) => k);
     const shuffle = (array) => array.sort(() => Math.random() - 0.5);
     const array = shuffle(createArray(10));
     view.spinner();
     const word = await getWords(this.index, this.difficulty);
     view.removeSpinner();
-    const min = array[0];
-    const translate = word[array[0]].wordTranslate;
-    const answer = word[array[0]].word;
     for (let i = 0; i < 4; i += 1) {
+      if (i === rand) {
+        this.arrayOfAnswers.push(word[array[i]]);
+        this.answer = word[array[i]].word;
+        this.translate = word[array[i]].wordTranslate;
+      }
       content += `<button type="button" id="word-btn" class="btn word-btn btn-secondary">
        ${word[array[i]].word}</button>`;
     }
-    this.arrayOfAnswers.push(word[min]);
-    content += `<div class="translation">${translate}</div>`;
-    this.answer = answer;
-    this.arrayOfAnswers[this.index % 10].answer = 'false';
+    content += `<div class="translation">${this.translate}</div>`;
+    this.arrayOfAnswers[this.index % 10].answer = false;
     this.timer = setTimeout(() => {
       this.mistakes += 1;
       this.index += 1;

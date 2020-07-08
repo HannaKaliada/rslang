@@ -39,40 +39,43 @@ const view = {
     ul.classList.add('list-group');
     page.insertAdjacentElement('afterbegin', ul);
     model.arrayOfAnswers.forEach((el) => {
-      if (el.answer === 'true') {
+      if (el.answer) {
         contentTrue += `
         <li class="list-group-item">
-        <span>${el.word}</span>
-        <span>${el.transcription}</span>
-        <span>${el.wordTranslate}</span>
-        <span><button id="play-btn" type="button" class="btn btn-dark">
-                <audio id="audiotag1" src="${el.audio}" preload="auto"></audio>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi id="play-btn-1" bi-play-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path id="play-btn-2" d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
-        </svg>
-        </button></span</li>`;
+        <span class="el-word">${el.word}</span>
+        <span class="el-transcription">${el.transcription}</span>
+        <span class="el-translate">${el.wordTranslate}</span>
+          <button id="play-btn" type="button" class="btn btn-dark">
+            <audio id="audiotag1" src="${el.audio}" preload="auto"></audio>
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi id="play-btn-1" bi-play-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+             <path id="play-btn-2" d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+            </svg>
+          </button>
+          </li>`;
       } else {
         contentFalse += `
         <li class="list-group-item">
-<span>${el.word}</span>
-<span>${el.transcription}</span>
-<span>${el.wordTranslate}</span>
-<span><button id="play-btn" type="button" class="btn btn-dark">
-        <audio id="audiotag1" src="${el.audio}" preload="auto"></audio>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" id="play-btn-1" class="bi bi-play-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path id="play-btn-2" d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
-</svg>
-</button></span></li>`;
+<span class="el-word">${el.word}</span>
+<span class="el-transcription">${el.transcription}</span>
+<span class="el-translate">${el.wordTranslate}</span>
+  <button id="play-btn" type="button" class="btn btn-dark">
+    <audio id="audiotag1" src="${el.audio}" preload="auto"></audio>
+    <svg width="1em" height="1em" viewBox="0 0 16 16" id="play-btn-1" class="bi bi-play-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+     <path id="play-btn-2" d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+    </svg>
+  </button>
+</li>`;
       }
     });
     contentFalse += '</div>';
     contentTrue += '</div>';
-    let nextLevelBtn = '';
-    let nextDifficultyBtn = '';
-    if (model.level >= 6 || model.mistakes >= 5) nextLevelBtn = '<button type="button" id="next-level-btn" class="btn btn-primary disabled">Next Level</button>';
-    else nextLevelBtn = '<button type="button" id="next-level-btn" class="btn  btn-primary">Next Level</button>';
-    if (model.difficulty >= 5 || model.mistakes >= 5) nextDifficultyBtn = '<button type="button" id="next-difficulty-btn" class="btn btn-primary disabled">Next Difficulty</button>';
-    else nextDifficultyBtn = '<button type="button" id="next-difficulty-btn" class="btn  btn-primary">Next Difficulty</button>';
+
+    const nextDifficultyBtn = (model.difficulty >= 5 || model.mistakes >= 5) ? '<button type="button" id="next-difficulty-btn" class="btn btn-primary disabled">Next Difficulty</button>'
+      : '<button type="button" id="next-difficulty-btn" class="btn  btn-primary">Next Difficulty</button>';
+
+    const nextLevelBtn = (model.level >= 6 || model.mistakes >= 5) ? '<button type="button" id="next-level-btn" class="btn btn-primary disabled">Next Level</button>'
+      : '<button type="button" id="next-level-btn" class="btn  btn-primary">Next Level</button>';
+
     const buttons = `<div class="btn-next-repeat">
     ${nextLevelBtn}
     ${nextDifficultyBtn}
@@ -161,13 +164,12 @@ const view = {
     this.remove(gameWords);
 
     const timer = document.createElement('span');
-    timer.innerHTML = '3';
     timer.classList.add('timer');
     this.spinner();
     document
       .getElementsByClassName('spinner-border')[0]
       .insertAdjacentElement('beforebegin', timer);
-    let index = 3;
+    let index = 4;
 
     const interval = setInterval(() => {
       index -= 1;
