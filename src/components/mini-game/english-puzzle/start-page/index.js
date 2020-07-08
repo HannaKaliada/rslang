@@ -1,22 +1,35 @@
 import createDomElem from '../common';
-import getWords from '../../../../shared/get-words';
-import getImg from '../data';
+import getImg, { getWords } from '../data';
 import Puzzle from '../app';
+import ErrorMsg from '../app/error';
 
 const FIRST_VALUE = 0;
 
 async function start() {
-  const errors = createDomElem('div', ['errors']);
-  const { body } = document;
+  const errors = ErrorMsg.create()
+    .createContainer()
+    .container;
+  const root = document.querySelector('.root');
   const app = Puzzle.create()
     .createContainer()
     .addControls({ group: FIRST_VALUE, page: FIRST_VALUE });
-  body.append(app.container, errors);
+  root.append(app.container, errors);
   const data = await getWords(FIRST_VALUE, FIRST_VALUE);
-  const imgData = await getImg();
-  if (typeof data === 'object' && typeof imgData === 'object') {
+  let imgData = await getImg();
+  if (typeof data === 'object') {
+    if (imgData === 'string') {
+      ErrorMsg.create().addError(imgData);
+      imgData = {
+        urls: {
+          full: '',
+        },
+        alt_description: '',
+      };
+    }
     app
       .addContent(data, imgData);
+  } else {
+    ErrorMsg.create().addError(data);
   }
 }
 

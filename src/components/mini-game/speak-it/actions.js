@@ -4,6 +4,7 @@ import WordsField from './content/content-words';
 import getWords from '../../../shared/get-words';
 import Result from './result';
 import Content from './content';
+import ErrorMsg from '../english-puzzle/app/error';
 
 // eslint-disable-next-line import/no-mutable-exports
 let actions;
@@ -42,6 +43,8 @@ async function changeLvl(group, page) {
       .resetInfo();
     WordsField.create()
       .updateContent();
+  } else {
+    ErrorMsg.create().addError(words);
   }
 }
 

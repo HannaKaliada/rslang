@@ -3,6 +3,8 @@ import Field from './field';
 import WordsPuzzle from './words-puzzle';
 // eslint-disable-next-line import/no-cycle
 import Content from './index';
+// eslint-disable-next-line import/no-cycle,import/named
+import actions, { replaceWord } from './action';
 
 export function handleDragStart(e) {
   e.target.classList.add('selected');
@@ -25,39 +27,63 @@ export function handleDragOver(e) {
   const activeElement = document.querySelector('.selected');
   const currentElement = e.target;
   if (activeElement === currentElement) return;
-  if (activeElement.dataset.action === currentElement.dataset.action
-    && activeElement.parentNode === puzzle) {
+  if (currentElement.parentNode === curField && activeElement.parentNode === puzzle) {
+    if (activeElement.dataset.action && currentElement.dataset.action) {
+      const field = [...curField.children];
+      const newElement = replaceWord(field, activeElement, 'in');
+      swapContent(currentElement, newElement, curField);
+    }
+    return;
+  }
+  if (activeElement.parentNode === curField && currentElement.parentNode === puzzle) {
+    if (activeElement.dataset.action && currentElement.dataset.action) {
+      const field = [...puzzle.children];
+      const newElement = replaceWord(field, activeElement, 'out');
+      swapContent(currentElement, newElement, puzzle);
+    }
+    return;
+  }
+  if ((activeElement.dataset.action === currentElement.dataset.action)
+    && (activeElement.parentNode === puzzle) && activeElement.dataset.action) {
     swapContent(currentElement, activeElement, puzzle);
     return;
   }
-  if (activeElement.dataset.action === currentElement.dataset.action
-    && activeElement.parentNode === curField) {
+  if ((activeElement.dataset.action === currentElement.dataset.action)
+    && (activeElement.parentNode === curField) && activeElement.dataset.action) {
     swapContent(currentElement, activeElement, curField);
     return;
   }
-  if (activeElement.dataset.action !== currentElement.dataset.action
-    && activeElement.dataset.action && currentElement.dataset.action) {
-    return;
-  }
-  if (activeElement.parentNode === curField || activeElement.parentNode === puzzle) {
-    console.log(e.target);
-    return;
-  }
   e.dataTransfer.dropEffect = 'none';
+}
+
+function addElement(direction, field, element, curElem) {
+  const empty = [...field.children].find((el) => el.textContent === '');
+  if (empty) {
+    if ((element.dataset.action && !curElem.dataset.action)
+      || (!element.dataset.action && curElem.dataset.action)) {
+      actions[direction](element);
+    }
+  }
 }
 
 export function handleDrop(e) {
   if (e.stopPropagation) {
     e.stopPropagation();
   }
-  // const activeElement = document.querySelector('.selected');
-  // const currentElement = e.target;
-  // if (activeElement.dataset.action !== currentElement.dataset.action
-  //   && activeElement.dataset.action && currentElement.dataset.action) {
-  //   const value = activeElement.textContent;
-  //   activeElement.textContent = currentElement.textContent;
-  //   currentElement.textContent = value;
-  // }
+  const curPos = Content.create().getCurWords();
+  const curField = Field.create().getFields()[curPos];
+  const puzzle = WordsPuzzle.create().container;
+  const activeElement = document.querySelector('.selected');
+  const currentElement = e.target;
+  if (currentElement.parentNode === curField && activeElement.parentNode === puzzle
+    && !currentElement.dataset.action) {
+    addElement('in-field', curField, activeElement, currentElement);
+    return;
+  }
+  if (activeElement.parentNode === curField && currentElement.parentNode === puzzle
+    && !currentElement.dataset.action) {
+    addElement('out-field', puzzle, activeElement, currentElement);
+  }
 }
 
 export function handleDragEnd(e) {

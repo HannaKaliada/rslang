@@ -1,4 +1,4 @@
-import createDomElem from '../../common';
+import createDomElem from '../common';
 
 let instance;
 

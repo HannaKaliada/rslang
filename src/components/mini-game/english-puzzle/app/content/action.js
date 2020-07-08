@@ -25,15 +25,15 @@ function checkField() {
   }
 }
 
-function cleanCheckWords() {
+export function cleanCheckWords() {
   const wordsCorrect = document.querySelectorAll('.correct-word');
   const wordsWrong = document.querySelectorAll('.wrong-word');
   wordsCorrect.forEach((word) => word.classList.remove('correct-word'));
   wordsWrong.forEach((word) => word.classList.remove('wrong-word'));
 }
 
-function replaceWord(field, elem, direction) {
-  field.some((element) => {
+export function replaceWord(field, elem, direction) {
+  const newElem = field.find((element) => {
     if (element.textContent === '') {
       // eslint-disable-next-line no-param-reassign
       element.textContent = elem.textContent;
@@ -52,6 +52,7 @@ function replaceWord(field, elem, direction) {
   elem.textContent = '';
   elem.remove();
   parentElem.append(elem);
+  return newElem;
 }
 
 function toggleBtns() {

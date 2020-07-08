@@ -1,6 +1,5 @@
 import createDomElem from '../../common';
 import { createDataControls, createList, createOptionsControls } from './common';
-import getWords from '../../../../../shared/get-words';
 // eslint-disable-next-line import/no-cycle
 import Content from '../content';
 // eslint-disable-next-line import/no-cycle
@@ -8,7 +7,8 @@ import actionsContent from '../content/action';
 import Tips from '../content/tips';
 // eslint-disable-next-line import/no-cycle
 import Field from '../content/field';
-import getImg from '../../data';
+import getImg, { getWords } from '../../data';
+import ErrorMsg from '../error';
 
 let instance;
 
@@ -25,11 +25,22 @@ async function changeView(elem, value, type) {
   if (type === 'page') page = value;
   else group = value;
   const data = await getWords(page, group);
-  const imgData = await getImg();
-  if (typeof data === 'object' && typeof imgData === 'object') {
+  let imgData = await getImg();
+  if (typeof data === 'object') {
+    if (imgData === 'string') {
+      ErrorMsg.create().addError(imgData);
+      imgData = {
+        urls: {
+          full: '',
+        },
+        alt_description: '',
+      };
+    }
     changeText(elem.parentNode, parseInt(type === 'page' ? page : group, 10));
     instance.info = { group, page };
     Content.create().updateContent(data, imgData);
+  } else {
+    ErrorMsg.create().addError(data);
   }
 }
 
