@@ -10,15 +10,17 @@ const model = {
   mistakes: 0,
   timer: 0,
   arrayOfAnswers: [],
+  fidelityTimer: 0,
   getLevelDifficulty() {
     this.level = localStorage.getItem('savanna-level');
     this.difficulty = localStorage.getItem('savanna-difficulty');
     this.index = localStorage.getItem('savanna-level') * 10 - 10;
   },
   playMusic(event) {
-    event.target.children[0].play();
+    event.play();
   },
   endGame() {
+    view.remove(document.getElementsByClassName('fidelity-container')[0]);
     view.remove(document.getElementsByClassName('lives-container')[0]);
     clearTimeout(this.timer);
     view.remove(document.getElementsByClassName('game-words')[0]);
@@ -30,9 +32,11 @@ const model = {
     if (this.index + 1 >= this.level * 10 || this.mistakes >= 5) this.endGame();
     else {
       if (word === this.answer) {
+        view.showFidelity(true);
         this.rightAnswer += 1;
         this.arrayOfAnswers[this.index % 10].answer = 'true';
       } else {
+        view.showFidelity(false);
         this.mistakes += 1;
         this.arrayOfAnswers[this.index % 10].answer = 'false';
       }
@@ -62,11 +66,12 @@ const model = {
     this.timer = setTimeout(() => {
       this.mistakes += 1;
       this.index += 1;
+      view.showFidelity(false);
       if (this.index + 1 >= this.level * 10 || this.mistakes >= 5) {
         this.endGame();
         clearTimeout(this.timer);
       } else view.wordInner();
-    }, 9000);
+    }, 8000);
     return content;
   },
 };

@@ -9,18 +9,24 @@ const control = {
   click() {
     document.addEventListener('click', (event) => {
       switch (event.target.id) {
+        case 'play-btn-2':
+          model.playMusic(event.target.parentNode.parentNode.children[0]);
+          break;
+        case 'play-btn-1':
+          model.playMusic(event.target.parentNode.children[0]);
+          break;
         case 'word-btn':
           model.trueCheck(event.target.innerText);
           break;
         case 'play-btn':
-          model.playMusic(event);
+          model.playMusic(event.target.children[0]);
           break;
 
         case 'next-level-btn':
           if (event.target.classList[2] !== 'disabled') {
             let level = localStorage.getItem('savanna-level');
             // eslint-disable-next-line
-            level ++ ;
+            level++;
             localStorage.setItem('savanna-level', level);
             model.mistakes = 0;
             model.timer = 0;
@@ -40,7 +46,7 @@ const control = {
           if (event.target.classList[2] !== 'disabled') {
             let difficulty = localStorage.getItem('savanna-difficulty');
             // eslint-disable-next-line
-            difficulty ++;
+            difficulty++;
             localStorage.setItem('savanna-difficulty', difficulty);
             model.mistakes = 0;
             model.timer = 0;

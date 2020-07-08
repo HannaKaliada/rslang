@@ -1,6 +1,27 @@
 import model from './savanna-model';
 
 const view = {
+  showFidelity(bool) {
+    clearTimeout(model.fidelityTimer);
+    view.remove(document.getElementsByClassName('fidelity-container')[0]);
+    let content = '';
+    if (bool) {
+      content = `<div class="fidelity"><svg class="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+    <g><path d="M990,193.4c-2.9,2-6.2,3.5-8.6,6C762.8,428.9,544.2,658.5,325.6,888.2c-1.1,1.1-1.8,2.5-2.7,3.8c-1.1,0-2.1,0-3.2,0c-1.8-2.5-3.4-5.2-5.5-7.4C215.7,780.8,117,677,18.3,573.3c-2.5-2.6-5.5-4.6-8.3-6.9c0-1.1,0-2.1,0-3.2c27.2-24.8,54.4-49.6,83-75.5c73,76.7,150.5,158.1,230.1,241.6c3.4-4.6,5.9-8.8,9.1-12.2c191.6-201.4,383.3-402.7,575-604.1c1.4-1.5,2.5-3.3,3.8-5c1.1,0,2.1,0,3.2,0c25.3,26.3,50.6,52.7,75.9,79C990,189.1,990,191.2,990,193.4z"/></g>
+    </svg></div>`;
+    } else {
+      content = `<div class="fidelity"><svg class="false" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+    <g><path d="M990,852.1l-352.3-353l349.9-349.9L841,2.5L491.3,352.3L168.2,28.4l-145,145.4l322.9,323.6L10,833.6l146.6,146.6l335.9-335.9L845,997.5L990,852.1z"/></g>
+    </svg></div>`;
+    }
+    document
+      .getElementsByClassName('fidelity-container')[0]
+      .insertAdjacentHTML('afterbegin', content);
+    model.fidelityTimer = setTimeout(
+      () => view.remove(document.getElementsByClassName('fidelity-container')[0]),
+      3000,
+    );
+  },
   changeLevelDifficulty() {
     this.remove(document.getElementsByClassName('level-difficulty')[0]);
     const content = `<span>level: ${localStorage.getItem(
@@ -26,8 +47,8 @@ const view = {
         <span>${el.wordTranslate}</span>
         <span><button id="play-btn" type="button" class="btn btn-dark">
                 <audio id="audiotag1" src="${el.audio}" preload="auto"></audio>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-play-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi id="play-btn-1" bi-play-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path id="play-btn-2" d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
         </svg>
         </button></span</li>`;
       } else {
@@ -38,8 +59,8 @@ const view = {
 <span>${el.wordTranslate}</span>
 <span><button id="play-btn" type="button" class="btn btn-dark">
         <audio id="audiotag1" src="${el.audio}" preload="auto"></audio>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-play-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" id="play-btn-1" class="bi bi-play-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path id="play-btn-2" d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
 </svg>
 </button></span></li>`;
       }
@@ -67,9 +88,12 @@ const view = {
     gameLayout.classList.add('game-layout', 'mx-auto');
     const gameWords = document.createElement('div');
     const spinnerContainer = document.createElement('div');
+    const fidelityContainer = document.createElement('div');
+    fidelityContainer.classList.add('fidelity-container');
     spinnerContainer.classList.add('spinner-container', 'mx-auto');
     gameWords.classList.add('game-words', 'mx-auto');
     gameLayout.insertAdjacentElement('beforeend', spinnerContainer);
+    gameLayout.insertAdjacentElement('beforeend', fidelityContainer);
     gameLayout.insertAdjacentElement('beforeend', gameWords);
     this.innerContent(gameLayout, page);
     this.preparationPage();

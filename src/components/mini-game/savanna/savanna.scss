@@ -1,4 +1,29 @@
 .savanna-game-wrapper {
+  .fidelity-container {
+    position: relative;
+    @keyframes change-width {
+      0% {
+       width:  100px;
+      }
+      100% {
+        width:  200px;
+      }
+    }
+    .fidelity {
+      left: 50%;
+      width: 100px;
+      position: absolute;
+      top: 150px;
+      transform: translate(-50%);
+      animation: change-width 3s ease infinite;
+      .true {
+        fill: green;
+      }
+      .false{
+        fill:red;
+      }
+    }
+  }
   #play-btn {
     margin-left: 11px;
     padding: 1px 6px;
@@ -34,11 +59,15 @@
   .translation {
     position: absolute;
     top: 10%;
-
-    transition: top 9s linear;
+    font-size: 20px;
+    font-weight: 600;
+    transition: top 8s linear;
+   background: #FFFF00;
+    border-top-left-radius: 18em 1em;
+    border-bottom-right-radius: 22em 1em;
   }
   .translation-move {
-    top: 90%;
+    top: 70%;
   }
   .spinner-border {
     width: 5rem !important;
