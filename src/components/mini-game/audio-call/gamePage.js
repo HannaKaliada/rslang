@@ -14,7 +14,7 @@ class GamePage {
     this.randomize = randomizing;
     this.getStatistics = getStatistics;
     this.setStatistics = setStatistics;
-    this.renderStatisticPage = renderStatisticPage.bind(this);
+    this.renderStatisticPage = renderStatisticPage;
     this.gameResults = {
       rightAnswers: [],
       wrongAnswers: [],
@@ -43,11 +43,11 @@ class GamePage {
       this.showAnswer();
     } else {
       this.gameResults.wrongAnswers.push(this.gameData);
-      Array.prototype.forEach.call(this.variants, ((el) => {
+      this.variants.forEach((el) => {
         if (el.innerText === this.rightVariantText) {
           el.classList.add('right');
         }
-      }));
+      });
       if (target instanceof Element) {
         target.classList.add('wrong');
       }
@@ -61,11 +61,11 @@ class GamePage {
       this.icon.removeEventListener('click', this.soundHandler);
       this.answerBlock.classList.remove('hidden');
       if (!value) {
-        Array.prototype.forEach.call(this.variants, ((el) => {
+        this.variants.forEach((el) => {
           if (el.innerText === this.rightVariantText) {
             el.classList.add('right');
           }
-        }));
+        });
       }
     };
     this.gameButton.textContent = 'Next';
@@ -73,10 +73,10 @@ class GamePage {
   }
 
   pageElementsDropToDefault() {
-    Array.prototype.forEach.call(this.variants, ((el) => {
+    this.variants.forEach((el) => {
       el.classList.remove('right');
       el.classList.remove('wrong');
-    }));
+    });
     this.gameButton.textContent = "I don't know";
     this.gameButton.dataset.value = "I don't know";
     this.icon.src = 'images/speaker.svg';
@@ -148,7 +148,7 @@ class GamePage {
       round = 1;
       level = level === 5 ? 0 : (level + 1);
     }
-    this.renderStatisticPage();
+    this.renderStatisticPage(this.createElement, this.gameResults);
     const date = getDate();
     const result = `${date}, m:${this.gameResults.wrongAnswers.length}`;
     const obj = await this.getStatistics(this.state)
@@ -197,7 +197,8 @@ class GamePage {
   createVariantsBlock() {
     this.variantsBlock = this.createElement('div', 'audio-call__answers');
     this.variantsBlock.addEventListener('click', this.variantsBlockHandler.bind(this));
-    this.variants = [1, 1, 1, 1, 1];
+    this.variants = new Array(5);
+    this.variants.fill(1);
     this.variants = this.variants.map(() => this.createElement('p', 'audio-call__answer'));
     this.variantsBlock.append(...this.variants);
     return this.variantsBlock;

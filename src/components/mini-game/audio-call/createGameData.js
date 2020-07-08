@@ -7,7 +7,7 @@ let answers = [];
 
 async function getPartOfSpeech(word) {
   const url = 'https://dictionary.skyeng.ru/api/public/v1/words/search?search=';
-  const partOfSpeech = fetch(`${url}${word.word}`)
+  return fetch(`${url}${word.word}`)
     .then((response) => response.json())
     .then((arr) => arr.filter((el) => {
       const part = el.meanings[0].partOfSpeechCode;
@@ -15,7 +15,6 @@ async function getPartOfSpeech(word) {
     }))
     .then((res) => res[0].meanings[0].partOfSpeechCode)
     .catch((e) => `error:${e}`);
-  return partOfSpeech;
 }
 
 async function getRandomVariants(word) {
@@ -40,8 +39,8 @@ async function getRandomVariants(word) {
     }
     return el;
   }
-  const variants = Promise.all(words.splice(-4).map((el) => addVariant(el)));
-  return variants;
+  return Promise.allSettled(words.splice(-4).map((el) => addVariant(el)))
+    .then((res) => res.map((el) => el.value));
 }
 
 async function createGameData([level, round]) {
@@ -53,8 +52,8 @@ async function createGameData([level, round]) {
   }
   answers = await getWords(round, level);
   const promises = arr.map(async (el) => {
-    const result = await getWords(el, level)
-      .then((res) => gameData.push(res));
+    const result = await getWords(el, level);
+    gameData.push(result);
     return result;
   });
   return Promise.allSettled(promises)
@@ -62,8 +61,7 @@ async function createGameData([level, round]) {
       const wordsInGame = randomize(answers);
       return Promise.allSettled(wordsInGame.map(async (el) => {
         const newEl = el;
-        newEl.variants = await getRandomVariants(el)
-          .then((res) => res);
+        newEl.variants = await getRandomVariants(el);
         return newEl;
       }))
         .then((res) => res.map((el) => el.value));
