@@ -1,7 +1,7 @@
-import './sprintPage.scss';
+import '../styles/sprintPage.scss';
 import initSprintPage from './SprintPage';
-import WordsSet from './WordsSet';
-import initWords from './initWords';
+import initWords from '../methods/initWords';
+import clearCurrentPage from '../methods/clearCurrentPage';
 
 export default function renderStartSprintPage() {
   const page = document.querySelector('.root');
@@ -54,15 +54,9 @@ function initNumberOfLevels(value) {
     }
   }
 
-  function clearCurrentpage() {
-    let card = document.querySelector('.container');
-    for (let i = card.childNodes.length - 1; i >= 0; i--) {
-      card.removeChild(card.childNodes[i]);
-   }
-  }
 
 
-  const initStartButton = () =>  {
+  function initStartButton()  {
     const falseButton = document.querySelector('.btn-start');
     falseButton.addEventListener('click', () => {
       const round = document.querySelector('.select-round option:checked').value;
@@ -70,7 +64,9 @@ function initNumberOfLevels(value) {
       localStorage.setItem('round_sprint', round);
       localStorage.setItem('level_sprint', level);
       initWords().then(result => {
-        clearCurrentpage();
+        clearCurrentPage();
+        localStorage.setItem("current_sprint", JSON.stringify(result));
+        console.log(result);
         initSprintPage(result);
       });
      });

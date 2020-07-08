@@ -1,4 +1,3 @@
-import WordsSet from './WordsSet';
 
 export default class Card {
 
@@ -8,7 +7,9 @@ export default class Card {
 
   renderCard() {
     const container = document.querySelector('.container');
-    container.insertAdjacentHTML('beforeend', `<div class="card">
+    container.insertAdjacentHTML('beforeend',
+    `
+    <div class="card">
     <h5 class="card-header text-center bg-success">
       <span class="dot"></span>
       <span class="dot"></span>

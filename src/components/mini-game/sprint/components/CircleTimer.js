@@ -37,10 +37,15 @@ timeLeft = this.TIME_LIMIT;
     let timerInterval = setInterval(() => {
       this.timePassed = this.timePassed += 1;
       this.timeLeft = this.TIME_LIMIT - this.timePassed;
+      console.log(this.timePassed);
+      if (this.timePassed == 60) {
+        clearInterval(timerInterval);
+      }
       document.getElementById("base-timer-label").innerHTML = this.formatTime(this.timeLeft);
       this.setCircleDasharray();
     }, 1000);
   }
+
 
   calculateTimeFraction() {
     const rawTimeFraction = this.timeLeft / this.TIME_LIMIT;
