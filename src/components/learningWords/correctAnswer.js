@@ -1,10 +1,14 @@
 import goToTheNextWord from './goToTheNextWord';
 import setWordsToProps from './setWordsToProps';
+import properties from './properties';
 
 export default function correctAnswer() {
   const currentWord = localStorage.getItem('currentWord');
   const currentPage = localStorage.getItem('currentPage');
   const currentGroup = localStorage.getItem('currentGroup');
+
+  properties.currentWordPronunciation.play();
+  properties.currentWordExample.play();
 
   if (currentWord < 9) {
     localStorage.setItem('currentWord', Number(currentWord) + 1);

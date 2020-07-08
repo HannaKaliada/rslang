@@ -1,5 +1,6 @@
 import properties from './properties';
 import setInputWidth from './setInputWidth';
+import createAudioObjects from './createAudioObjects';
 
 export default function goToTheNextWord() {
   const currentWord = localStorage.getItem('currentWord');
@@ -16,6 +17,7 @@ export default function goToTheNextWord() {
 
   document.querySelector('.sentence-translation').textContent = properties.words[currentWord].textExampleTranslate;
   document.querySelector('.word__translation').textContent = properties.words[currentWord].wordTranslate;
+  createAudioObjects();
 
   setInputWidth();
 }

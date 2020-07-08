@@ -1,4 +1,4 @@
-import getWords from '../../shared/getWords';
+import getWords from '../../shared/get-words';
 import properties from './properties';
 
 export default async function setWordsToProps() {
