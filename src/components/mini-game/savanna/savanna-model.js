@@ -48,15 +48,10 @@ const model = {
     view.spinner();
     const word = await getWords(this.index, this.difficulty);
     view.removeSpinner();
-    let min = array[0];
-    let translate = word[array[0]].wordTranslate;
-    let answer = word[array[0]].word;
+    const min = array[0];
+    const translate = word[array[0]].wordTranslate;
+    const answer = word[array[0]].word;
     for (let i = 0; i < 4; i += 1) {
-      if (min > array[i]) {
-        min = array[i];
-        translate = word[array[i]].wordTranslate;
-        answer = word[array[i]].word;
-      }
       content += `<button type="button" id="word-btn" class="btn word-btn btn-secondary">
        ${word[array[i]].word}</button>`;
     }
@@ -67,7 +62,6 @@ const model = {
     this.timer = setTimeout(() => {
       this.mistakes += 1;
       this.index += 1;
-
       if (this.index + 1 >= this.level * 10 || this.mistakes >= 5) {
         this.endGame();
         clearTimeout(this.timer);
