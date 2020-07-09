@@ -13,16 +13,16 @@ timeLeft = this.TIME_LIMIT;
     container.insertAdjacentHTML('beforeend', `<div class="base-timer">
     <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g class="base-timer__circle">
-        <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+        <circle class="base-timer__path-elapsed" cx="50" cy="50" r="20"></circle>
         <path
         id="base-timer-path-remaining"
-        stroke-dasharray="283"
+        stroke-dasharray="125"
         class="base-timer__path-remaining green"
         d="
           M 50, 50
-          m -45, 0
-          a 45,45 0 1,0 90,0
-          a 45,45 0 1,0 -90,0
+          m -20, 0
+          a 20,20 0 1,0 40,0
+          a 20,20 0 1,0 -40,0
         "
       ></path>
       </g>
@@ -55,8 +55,8 @@ timeLeft = this.TIME_LIMIT;
   // Update the dasharray value as time passes, starting with 283
   setCircleDasharray() {
     const circleDasharray = `${(
-      this.calculateTimeFraction() * 283
-    ).toFixed(0)} 283`;
+      this.calculateTimeFraction() * 125
+    ).toFixed(0)} 125`;
     document
       .getElementById("base-timer-path-remaining")
       .setAttribute("stroke-dasharray", circleDasharray);
