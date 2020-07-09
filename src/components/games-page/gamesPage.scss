@@ -1,0 +1,29 @@
+.games {
+    display: flex;
+    flex-wrap: wrap;
+    .game {
+        padding: 30px;
+        margin-right: 20px;
+        text-align: center;
+        background: #6c757d;
+        width: calc(33.33333% - 20px);
+        margin-bottom: 20px;
+        color: #ffffff;
+        &__title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        &__desc {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .play-btn {
+            width: 120px;
+            margin: 0 auto;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #6c757d;
+        }
+    }
+}

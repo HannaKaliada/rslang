@@ -6,6 +6,7 @@ import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
 import renderSavannaPage from '../components/mini-game/savanna/render-savanna-page';
 import learningWords from '../components/learningWords/learningWords';
 import createStartPage from '../components/mini-game/speak-it/start-page';
+import gamesPages from '../components/games-page/gamesPage';
 
 function statistics() {
   const page = document.querySelector('.root');
@@ -78,6 +79,10 @@ const routes = {
     requiresAuth: true,
     render: renderSavannaPage,
   },
+  '#/games':{
+    requiresAuth: true,
+    render: gamesPages,
+  }
 };
 
 export default routes;
