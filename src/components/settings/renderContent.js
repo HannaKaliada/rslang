@@ -49,7 +49,7 @@ export default function renderContent() {
           <input type="checkbox" name="wordMeaning" class="settings-to-save" />
           Sentence explaining the meaning of the word</label>
         <label>
-          <input type="checkbox" name="wordExample-" class="settings-to-save" />
+          <input type="checkbox" name="wordExample" class="settings-to-save" />
           Sentence with an example of using the studied word</label>
         <label>
           <input
