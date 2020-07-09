@@ -3,6 +3,7 @@ export default class Score {
     this.score = 0;
     this.bonus = 10;
     this.series = 0;
+    this.state = new Object();
   }
 
   initScore() {
@@ -41,4 +42,5 @@ export default class Score {
     this.series = 0;
     this.clearMessage()
   }
+
 }

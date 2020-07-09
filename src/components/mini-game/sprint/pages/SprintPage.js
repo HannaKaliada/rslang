@@ -6,6 +6,53 @@ import CircleTimer from '../components/CircleTimer';
 import renderResultPage from './ResultPage';
 import WordsSet from '../components/WordsSet';
 import clearCurrentPage from '../methods/clearCurrentPage';
+import getStatistics from '../../../../services/getUserStastics'
+import setStatistics from '../../../../services/setUserStatistics'
+
+
+const state = new Object();
+
+function initState() {
+  const settings = JSON.parse(localStorage.getItem('userInfo'));
+  state.userId = settings.userId;
+  state.token = settings.token;
+}
+
+async function sendScore(score) {
+  let obj;
+  initState();
+    try {
+      obj = await getStatistics(state);
+      const object = {};
+      const result = score.score;
+      object.optional = obj.optional;
+      object.learnedWords = obj.learnedWords;
+      if (object.optional.sprint && object.optional.sprint.results) {
+        object.optional.sprint.results.push(result);
+      } else {
+        object.optional = {
+          sprint: {
+            results: [result],
+          },
+        };
+      }
+      obj = object;
+    } catch (e) {
+      obj = {
+        learnedWords: 0,
+        optional: {
+          sprint: {
+            results: [result],
+          },
+        },
+      };
+    }
+    const { userId, token } = state;
+    await setStatistics({ userId, token, obj });
+}
+
+
+
 
 function playCorrectAudio() {
   let audio = new Audio("/src/components/mini-game/sprint/assets/correct.mp3");
@@ -69,5 +116,12 @@ export default function initSprintPage(date) {
     });
     setTimeout(function(){
       clearCurrentPage();
-      renderResultPage(score);}, 60000)
+      //renderResultPage(score);
+      getStatistics(state).then(result => console.log(result));
+      sendScore(score).then( (result) => {
+        clearCurrentPage();
+        renderResultPage(score);
+        console.log("TEST" + result)
+      });
+    }, 5000)
 }

@@ -25,7 +25,7 @@ export default function renderStartSprintPage() {
   <button type="button" class="btn btn-primary btn-lg btn-block mt-4 btn-start">Start game</button>
   </div>
   </div>`);
-  initNumberOfLevels(30);
+  initNumberOfLevels(5);
   initNumberOfRounds(30);
   initStartButton()
 }
@@ -59,15 +59,21 @@ function initNumberOfLevels(value) {
   function initStartButton()  {
     const falseButton = document.querySelector('.btn-start');
     falseButton.addEventListener('click', () => {
-      const round = document.querySelector('.select-round option:checked').value;
-      const level = document.querySelector('.select-level option:checked').value;
+      const round = document.querySelector('.select-round option:checked').value - 1;
+      const level = document.querySelector('.select-level option:checked').value - 1;
       localStorage.setItem('round_sprint', round);
       localStorage.setItem('level_sprint', level);
+      console.log(round);
       initWords().then(result => {
-        clearCurrentPage();
-        localStorage.setItem("current_sprint", JSON.stringify(result));
-        console.log(result);
-        initSprintPage(result);
+        if ((round && level) < 0) {
+          alert("Choose difficulity and round please");
+        }
+        else {
+          clearCurrentPage();
+          localStorage.setItem("current_sprint", JSON.stringify(result));
+          console.log(result);
+          initSprintPage(result);
+        }
       });
      });
   }
