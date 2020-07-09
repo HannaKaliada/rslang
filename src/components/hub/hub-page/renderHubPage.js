@@ -13,7 +13,7 @@ export default function renderHubPage(info) {
         </a>
       </div>
       <div class="hub__buttons">
-          <a href="#/train" class="btn btn-primary" role="button">Start learning</a>
+          <a href="#/learning" class="btn btn-primary" role="button">Start learning</a>
           <a href="#/games" class="btn btn-primary" role="button">Play games</a>
       </div>
       <div class="hub__info_current">
