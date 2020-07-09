@@ -158,7 +158,9 @@ class CreateSignInSignUpPage {
   async init() {
     const root = document.querySelector('.root');
     const container = this.createElement('div', 'container');
-    container.append(this.createForm());
+    const formContainer = this.createElement('div', 'form-container')
+    container.append(formContainer);
+    formContainer.append(this.createForm());
     root.append(container);
     if (await checkTokenIsAlive()) {
       window.location.hash = '#/hub';

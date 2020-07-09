@@ -4,28 +4,31 @@
 
 @import "speak-it/speak-it";
 
-
-.sign-in-form {
-  position: relative;
-
+.form-container {
   display: flex;
-  flex-direction: column;
-  max-width: 390px;
-  input,
-  .sign-in-form__label {
-    margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .sign-in-form {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    max-width: 390px;
+    input,
+    &__label {
+      margin-bottom: 10px;
+    }
+    &__label {
+      display: block;
+
+      font-size: 1.4rem;
+    }
+    &__name,
+    &__password {
+      padding: 0 5px;
+    }
   }
-}
-
-.sign-in-form__label {
-  display: block;
-
-  font-size: 1.4rem;
-}
-
-.sign-in-form__name,
-.sign-in-form__password {
-  padding: 0 5px;
 }
 
 .password-tip {
