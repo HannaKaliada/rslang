@@ -81,6 +81,8 @@ export default function renderContent() {
           Your settings have been successfully saved!
         </p>
       </div>
-      <input class="btn btn-primary save-btn" type="button" value="Save" />
+      <div class="save-btn-container">
+        <input class="btn btn-primary save-btn" type="button" value="Save" />
+      </div>
     </div>`);
 }

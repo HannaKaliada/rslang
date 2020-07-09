@@ -1,3 +1,5 @@
+@import "../../styles/mixins.scss";
+
 .hidden {
   display: none;
 }
@@ -44,10 +46,35 @@
   .success-notification {
     color: green;
     margin-bottom: 0;
+    font-weight: 700;
   }
 }
 
 .save-btn {
   width: 120px;
   margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+@include mobile() {
+  .limits {
+    .limit {
+      label {
+        font-size: 13px;
+      }
+    }
+  }
+  .main-settings,
+  .additional-settings{
+    font-size: 14px;
+    p:first-child{
+      font-size: 18px;
+    }
+  }
+  .success-notification, .warning{
+    text-align: center;
+  }
+  .save-btn-container{
+    text-align: center;
+  }
 }
