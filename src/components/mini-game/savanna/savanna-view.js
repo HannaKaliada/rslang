@@ -32,8 +32,8 @@ const view = {
       .insertAdjacentHTML('afterbegin', content);
   },
   gameResult() {
-    let contentFalse = '<div class="content-false"><span>FALSE</span>';
-    let contentTrue = '<div class="content-true"><span>TRUE</span>';
+    let contentFalse = `<div class="content-false"><span>FALSE: ${model.mistakes}</span>`;
+    let contentTrue = `<div class="content-true"><span>TRUE: ${model.rightAnswer}</span>`;
     const page = document.querySelector('.game-words');
     const ul = document.createElement('ul');
     ul.classList.add('list-group');

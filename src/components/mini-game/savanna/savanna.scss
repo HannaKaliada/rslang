@@ -1,4 +1,10 @@
 .savanna-game-wrapper {
+  background: url(./src/background.jpg) no-repeat;
+  height: 100vh;
+  -moz-background-size: 100%;
+  -webkit-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
   .fidelity-container {
     position: relative;
     @keyframes change-width {
@@ -23,6 +29,12 @@
         fill:red;
       }
     }
+  }
+  .content-true{
+    border-bottom: 2px solid;
+  }
+  .level-difficulty{
+    font-size: 24px;
   }
   #play-btn {
     margin-left: 11px;
