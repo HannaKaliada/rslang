@@ -2,23 +2,16 @@ import createElement from '../../shared/createElement';
 import createProgressBar from './createProgressBar';
 
 export default function renderWordBlock(wordInfo) {
-  const wordBlock = createElement('div', 'vocabulary__word');
+  const wordWrapper = createElement('div', 'vocabulary__word');
   const dataUrl = 'https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/';
-  wordBlock.append(createProgressBar(wordInfo.intervals));
+  const wordBlock = createElement('div', 'word__block');
+  const wordDescript = createElement('div', 'word__descript');
+  const wordUsage = createElement('div', 'word__usage');
   wordBlock.insertAdjacentHTML('beforeend', `
-  <div class="word__block">
     <div class="word__name">
       <p>${wordInfo.word}</p>
     </div>
-    <button type="button" class="btn btn-primary word__delete-btn">Delete word</button>
-  </div>
-  <div class="word__image">
-    <img src="${dataUrl}${wordInfo.image}" alt="${wordInfo.word}">
-  </div>
-  <div class="word__descript">
-    <p class="descript__transcript">${wordInfo.transcription}</p>
-    <p class="descript__translate">${wordInfo.wordTranslate}</p>
-    <div class="descript__audio">
+    <div class="word__audio">
       <audio src="${dataUrl}${wordInfo.audio}"></audio>
       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-music-note audio-icon" fill="currentColor"
         xmlns="http://www.w3.org/2000/svg">
@@ -27,11 +20,38 @@ export default function renderWordBlock(wordInfo) {
         <path d="M8 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 13 2.22V4L8 5V2.82z" />
       </svg>
     </div>
-  </div>
-  <div class="word__usage">
+    <button type="button" class="btn btn-primary word__delete-btn">Delete word</button>
+    `);
+  wordBlock.append(createProgressBar(wordInfo.intervals));
+  wordWrapper.append(wordBlock);
+  if (localStorage.wordImage === 'true') {
+    wordWrapper.insertAdjacentHTML('beforeend', `
+    <div class="word__image">
+      <img src="${dataUrl}${wordInfo.image}" alt="${wordInfo.word}">
+    </div>
+    `);
+  }
+  if (localStorage.wordTranscription === 'true') {
+    wordDescript.insertAdjacentHTML('beforeend', `
+    <p class="descript__transcript">${wordInfo.transcription}</p>
+    `);
+  }
+  if (localStorage.wordTranslation === 'true') {
+    wordDescript.insertAdjacentHTML('beforeend', `
+    <p class="descript__translate">${wordInfo.wordTranslate}</p>
+    `);
+  }
+  wordWrapper.append(wordDescript);
+  if (localStorage.wordMeaning === 'true') {
+    wordUsage.insertAdjacentHTML('beforeend', `
     <p class="usage__meaning">Meaning: ${wordInfo.textMeaning}</p>
+    `);
+  }
+  if (localStorage['wordExample-'] === 'true') {
+    wordUsage.insertAdjacentHTML('beforeend', `
     <p class="usage__example">Example: ${wordInfo.textExample}</p>
-  </div>
-  `);
-  return wordBlock;
+    `);
+  }
+  wordWrapper.append(wordUsage);
+  return wordWrapper;
 }

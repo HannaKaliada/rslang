@@ -7,7 +7,6 @@ export default function vocabularyButtonsHandlers(userInfo) {
 
   vocabButtons.addEventListener('click', (event) => {
     const targetBtn = event.target.closest('.vocabulary__btn');
-    console.log(targetBtn);
     switch (targetBtn.dataset.type) {
       case 'learningWords':
         if (vocabTab.dataset.type !== 'learn-tab') {
@@ -17,16 +16,15 @@ export default function vocabularyButtonsHandlers(userInfo) {
         break;
       case 'difficultWords':
         if (vocabTab.dataset.type !== 'difficult-tab') {
-          console.log('clicked');
           vocabTab.textContent = '';
           renderDifficultWordsTab(userInfo.userId, userInfo.token);
         }
         break;
-      case 'deletedWords':
-        vocabTab.textContent = '';
-        vocabTab.dataset.type = 'delete-tab';
-        //renderDeletedWordsTab();
-        break;
+      // case 'deletedWords':
+      //   vocabTab.textContent = '';
+      //   vocabTab.dataset.type = 'delete-tab';
+      //   //renderDeletedWordsTab();
+      //   break;
       default:
         return;
     }
