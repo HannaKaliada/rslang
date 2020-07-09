@@ -156,6 +156,7 @@ const view = {
     this.remove(document.getElementsByClassName('spinner-container')[0]);
   },
   preparationPage() {
+    let index = 3;
     const gameWords = document.getElementsByClassName('game-words')[0];
     this.remove(gameWords);
 
@@ -165,8 +166,7 @@ const view = {
     document
       .getElementsByClassName('spinner-border')[0]
       .insertAdjacentElement('beforebegin', timer);
-    let index = 4;
-
+      timer.innerText=index;
     const interval = setInterval(() => {
       index -= 1;
       timer.innerText = index;
