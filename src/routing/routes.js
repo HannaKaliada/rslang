@@ -3,7 +3,7 @@ import renderTeamPage from '../components/about-team-page/render-about-team-page
 import renderStartPage from '../components/start-page/renderStartPage';
 import initHubPage from '../components/hub/hub-page/initHubPage';
 import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
-import renderSprintPage from '../components/sprint/SprintPage';
+import renderStartSprintPage from '../components/mini-game/sprint/pages/StartSprintPage';
 import learningWords from '../components/learningWords/learningWords.js';
 import createStartPage from '../components/mini-game/speak-it/start-page';
 
@@ -45,7 +45,6 @@ const routes = {
   '#/auth': createSignInSignUpPage.init.bind(createSignInSignUpPage),
   '#/about-team': renderTeamPage,
   '#/hub': initHubPage,
-  '#/sprint': renderSprintPage,
   '#/speak-it': speakIt,
   '#/': {
     requiresAuth: false,
@@ -82,6 +81,10 @@ const routes = {
   '#/speak-it': {
     requiresAuth: true,
     render: speakIt,
+  },
+  '#/sprint': {
+    requiresAuth: true,
+    render: renderStartSprintPage,
   },
 
 };
