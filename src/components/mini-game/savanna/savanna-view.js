@@ -70,12 +70,8 @@ const view = {
     contentFalse += '</div>';
     contentTrue += '</div>';
 
-    const nextDifficultyBtn = (model.difficulty >= 5 || model.mistakes >= 5) ? '<button type="button" id="next-difficulty-btn" class="btn btn-primary disabled">Next Difficulty</button>'
-      : '<button type="button" id="next-difficulty-btn" class="btn  btn-primary">Next Difficulty</button>';
-
-    const nextLevelBtn = (model.level >= 6 || model.mistakes >= 5) ? '<button type="button" id="next-level-btn" class="btn btn-primary disabled">Next Level</button>'
-      : '<button type="button" id="next-level-btn" class="btn  btn-primary">Next Level</button>';
-
+    const nextLevelBtn = `<button type="button" id="next-level-btn" class="btn btn-primary ${(model.level >= 6 || model.mistakes >= 5) ? 'disabled' : ''} ">Next Level</button>`;
+    const nextDifficultyBtn = `<button type="button" id="next-difficulty-btn" class="btn btn-primary ${(model.level >= 6 || model.mistakes >= 5) ? 'disabled' : ''}">Next Difficulty</button>`;
     const buttons = `<div class="btn-next-repeat">
     ${nextLevelBtn}
     ${nextDifficultyBtn}

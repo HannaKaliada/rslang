@@ -7,7 +7,7 @@ const control = {
     btn.addEventListener('click', () => view.generateGameLayout());
   },
   click() {
-    document.addEventListener('click', (event) => {
+    document.querySelector('.savanna-game-wrapper').addEventListener('click', (event) => {
       switch (event.target.id) {
         case 'play-btn-2':
           model.playMusic(event.target.parentNode.parentNode.children[0]);
