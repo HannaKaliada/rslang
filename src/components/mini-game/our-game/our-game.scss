@@ -1,0 +1,59 @@
+.our-game-wrapper {
+  height: 100vh;
+
+  .content-true{
+    border-bottom: 2px solid;
+  }
+  .level-difficulty{
+    font-size: 24px;
+  }
+  #play-btn {
+    margin-left: 11px;
+    padding: 1px 6px;
+  }
+
+  span {
+    margin-right: 5px;
+  }
+  .list-group-item {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .timer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    transform: translate(-50%, -50%);
+  }
+  .spinner-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .spinner-border {
+    width: 5rem !important;
+    height: 5rem !important;
+  }
+  .links {
+    display: flex;
+    justify-content: space-between;
+  }
+  li {
+    cursor: pointer;
+  }
+  .block {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+
+  .btn {
+    display: block;
+  }
+
+  .dropdown {
+    display: flex;
+  }
+}
