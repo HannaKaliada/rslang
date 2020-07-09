@@ -8,6 +8,7 @@ import WordsSet from '../components/WordsSet';
 import clearCurrentPage from '../methods/clearCurrentPage';
 import getStatistics from '../../../../services/getUserStastics'
 import setStatistics from '../../../../services/setUserStatistics'
+import getDate from '../../../../shared/getDate'
 
 
 const state = new Object();
@@ -21,6 +22,8 @@ function initState() {
 async function sendScore(score) {
   let obj;
   initState();
+  const date = getDate();
+  const result = `${date}, score:${score.score}`;
     try {
       obj = await getStatistics(state);
       const object = {};
@@ -116,12 +119,9 @@ export default function initSprintPage(date) {
     });
     setTimeout(function(){
       clearCurrentPage();
-      //renderResultPage(score);
-      getStatistics(state).then(result => console.log(result));
       sendScore(score).then( (result) => {
         clearCurrentPage();
         renderResultPage(score);
-        console.log("TEST" + result)
       });
-    }, 5000)
+    }, 60000)
 }
