@@ -2,7 +2,8 @@ import data from '../../data/teamInfo.json';
 
 export default function renderAboutTeamPage() {
   const page = document.querySelector('.root');
-  const links = `<div class="links"> <h1>About team page:</h1>
+  const links = `<div class="about-team-wrapper">
+    <div class="links"> <h1>About team page:</h1>
     <h1 ><a href="#/">Main</a></h1> </div>`;
   const start = `<div class="swiper-container">
     <div class="swiper-wrapper">`;

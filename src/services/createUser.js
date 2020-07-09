@@ -11,7 +11,11 @@ const createUser = async (user) => {
     const content = await rawResponse.json();
     return content;
   }
-  throw new Error('Creating account error');
+  if (rawResponse.status === 417) {
+    throw new Error('User already exists');
+  } else {
+    throw new Error(`Something went wrong! ERROR ${rawResponse.status}`);
+  }
 };
 
 export default createUser;
