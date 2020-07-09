@@ -8,6 +8,7 @@ import '../../../styles/menu.scss';
 import createElement from '../../../shared/createElement';
 import burgerIconHandler from '../../../shared/menu/burgerIconHandler';
 import setItemActiveState from '../../../shared/menu/setItemActiveState';
+import logoutButtonHandler from '../../../shared/header/logoutButtonHandler';
 
 export default function initHubPage() {
   const root = document.querySelector('.root');
@@ -16,4 +17,5 @@ export default function initHubPage() {
   root.append(hub);
   burgerIconHandler();
   setItemActiveState();
+  logoutButtonHandler();
 }
