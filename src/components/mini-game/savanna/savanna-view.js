@@ -166,7 +166,7 @@ const view = {
     document
       .getElementsByClassName('spinner-border')[0]
       .insertAdjacentElement('beforebegin', timer);
-      timer.innerText=index;
+    timer.innerText = index;
     const interval = setInterval(() => {
       index -= 1;
       timer.innerText = index;
