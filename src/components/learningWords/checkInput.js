@@ -1,7 +1,7 @@
 import properties from './properties';
 import correctAnswer from './correctAnswer';
 import showWrongAndRightLetters from './showWrongAndRightLetters';
-
+import showMessage from "./showMessage";
 export default function checkInput() {
   const form = document.querySelector('.word form');
   form.querySelector('input').focus();
@@ -17,6 +17,7 @@ export default function checkInput() {
     if (input.value === properties.missingWord) {
       input.classList.add('input_correct');
       input.disabled = true;
+      showMessage();
       correctAnswer();
     } else {
       inputTopLayer.classList.remove('hidden');

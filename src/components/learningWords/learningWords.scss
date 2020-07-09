@@ -23,6 +23,12 @@
   justify-content: center;
   align-items: center;
   margin-top: 30px;
+  .alert-success{
+    position: absolute;
+    text-align: center;
+    top: 33%;
+    z-index: 10;
+  }
   &__card {
     margin-bottom: 20px;
     padding: 60px;
