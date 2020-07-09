@@ -151,35 +151,34 @@ class GamePage {
     this.renderStatisticPage(this.createElement, this.gameResults);
     const date = getDate();
     const result = `${date}, m:${this.gameResults.wrongAnswers.length}`;
-    const obj = await this.getStatistics(this.state)
-      .then((res) => {
-        const object = {};
-        object.optional = res.optional;
-        object.learnedWords = res.learnedWords;
-        if (object.optional.audioCall && object.optional.audioCall.results) {
-          object.optional.audioCall.results.push(result);
-        } else {
-          object.optional = {
-            audioCall: {
-              results: [result],
-            },
-          };
-        }
-        object.optional.audioCall.round = [level, round];
-        return object;
-      })
-      .catch(() => {
-        const object = {
-          learnedWords: 0,
-          optional: {
-            audioCall: {
-              results: [result],
-              round: [level, round],
-            },
+    let obj;
+    try {
+      obj = await this.getStatistics(this.state);
+      const object = {};
+      object.optional = obj.optional;
+      object.learnedWords = obj.learnedWords;
+      if (object.optional.audioCall && object.optional.audioCall.results) {
+        object.optional.audioCall.results.push(result);
+      } else {
+        object.optional = {
+          audioCall: {
+            results: [result],
           },
         };
-        return object;
-      });
+      }
+      object.optional.audioCall.round = [level, round];
+      obj = object;
+    } catch (e) {
+      obj = {
+        learnedWords: 0,
+        optional: {
+          audioCall: {
+            results: [result],
+            round: [level, round],
+          },
+        },
+      };
+    }
     const { userId, token } = this.state;
     await this.setStatistics({ userId, token, obj });
   }
