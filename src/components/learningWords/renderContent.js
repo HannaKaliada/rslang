@@ -27,7 +27,7 @@ export default function renderContent() {
           </div>
         </div>
         <div class="sentences-translation">
-          <p>Example and Meaning translation</p>
+          <p>Sentences translation</p>
           <div
             class="btn-group mr-2 sent-trans-btns"
             role="group"

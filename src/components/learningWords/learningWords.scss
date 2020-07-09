@@ -1,3 +1,5 @@
+@import "../../styles/mixins.scss";
+
 .hidden {
   display: none;
 }
@@ -25,7 +27,7 @@
   margin-top: 30px;
   &__card {
     margin-bottom: 20px;
-    padding: 60px;
+    padding: 20px 60px;
     input {
       display: inline-block;
       width: 25px;
@@ -89,6 +91,45 @@
     }
     .next-btn {
       margin: 0 auto;
+    }
+  }
+}
+
+@include tablet-and-mobile() {
+  .learning-settings {
+    .word-translation {
+      margin-bottom: 10px;
+    }
+    .word-translation,
+    .sentences-translation {
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+  .word {
+    &__card {
+      .sentence,
+      .meaning {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@include mobile() {
+  .word {
+    &__card {
+      .sentence,
+      .meaning {
+        font-size: 15px;
+      }
+      .meaning-translation,
+      .sentence-translation {
+        p {
+          font-size: 13px;
+        }
+      }
     }
   }
 }
