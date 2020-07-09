@@ -74,10 +74,10 @@ const routes = {
     requiresAuth: true,
     render: speakIt,
   },
-  '#/savanna-game':{ 
-    requiresAuth:true,
-    render:renderSavannaPage,
-  }
+  '#/savanna-game': {
+    requiresAuth: true,
+    render: renderSavannaPage,
+  },
 };
 
 export default routes;

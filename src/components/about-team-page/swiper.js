@@ -1,4 +1,5 @@
 import Swiper from 'swiper';
+
 export default function swiperInit() {
   // eslint-disable-next-line
   const swiper = new Swiper('.swiper-container', {
