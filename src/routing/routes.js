@@ -5,6 +5,7 @@ import renderStartPage from '../components/start-page/renderStartPage';
 import initHubPage from '../components/hub/hub-page/initHubPage';
 import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
 import learningWords from '../components/learningWords/learningWords';
+import initVocabulary from '../components/vocabulary/initVocabulary';
 
 function statistics() {
   const page = document.querySelector('.root');
@@ -72,6 +73,11 @@ const routes = {
   '#/speak-it': {
     requiresAuth: true,
     render: speakIt,
+  },
+
+  '#/vocabulary': {
+    requiresAuth: true,
+    render: initVocabulary,
   },
 
 };
