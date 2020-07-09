@@ -26,7 +26,7 @@ export default function vocabularyButtonsHandlers(userInfo) {
       //   //renderDeletedWordsTab();
       //   break;
       default:
-        return;
+        return null;
     }
   });
 }
