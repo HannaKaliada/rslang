@@ -26,7 +26,7 @@ const view = {
     this.remove(document.getElementsByClassName('level-difficulty')[0]);
     const content = `<span>level: ${localStorage.getItem(
       'savanna-level',
-    )} ; difficulty:${localStorage.getItem('savanna-difficulty')}</span>`;
+    )}  difficulty:${localStorage.getItem('savanna-difficulty')}</span>`;
     document
       .getElementsByClassName('level-difficulty')[0]
       .insertAdjacentHTML('afterbegin', content);

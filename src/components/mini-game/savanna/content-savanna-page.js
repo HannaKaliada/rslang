@@ -13,7 +13,7 @@ export default function renderSavannaContent() {
   let content = `
   <div class="level-difficulty"><span>level: ${localStorage.getItem(
     'savanna-level',
-  )} ; difficulty:${localStorage.getItem('savanna-difficulty')}</span></div>
+  )}  difficulty:${localStorage.getItem('savanna-difficulty')}</span></div>
   <div class="d-flex">
   <div class="dropdown mr-1">
     <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
