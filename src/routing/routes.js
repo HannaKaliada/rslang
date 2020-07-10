@@ -6,7 +6,7 @@ import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
 import renderSavannaPage from '../components/mini-game/savanna/render-savanna-page';
 import learningWords from '../components/learningWords/learningWords';
 import createStartPage from '../components/mini-game/speak-it/start-page';
-import renderOurGamePage from '../components/mini-game/our-game/our-game-render-page'
+import renderOurGamePage from '../components/mini-game/our-game/our-game-render-page';
 
 function statistics() {
   const page = document.querySelector('.root');

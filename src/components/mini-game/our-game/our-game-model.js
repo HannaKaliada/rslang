@@ -1,4 +1,4 @@
-import view from "./our-game-view";
+const { default: view } = require('./our-game-view');
 
 const model = {
   level: 0,
@@ -13,11 +13,10 @@ const model = {
   gameDuration: 60,
   forTimer: 2.08,
   forTimer2: 125,
-  timerInterval:0,
+  timerInterval: 0,
   timer() {
-    const timerContainer = document.querySelector(".timer-container");
-    const baseTimer = document.querySelector("base-timer__circle");
-    let timerContent = `<div class="base-timer">
+    const timerContainer = document.querySelector('.timer-container');
+    const timerContent = `<div class="base-timer">
     <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g class="base-timer__circle">
         <circle class="base-timer__path-elapsed" cx="50" cy="50" r="20"></circle>
@@ -31,10 +30,10 @@ const model = {
     </svg>
     <span id="base-timer-label" class="base-timer__label">60</span>
   </div>`;
-    let baseTimerContent = "";
-    timerContainer.insertAdjacentHTML("beforeend", timerContent);
+    let baseTimerContent = '';
+    timerContainer.insertAdjacentHTML('beforeend', timerContent);
     this.timerInterval = setInterval(() => {
-      this.gameDuration--;
+      this.gameDuration -= 1;
       this.forTimer2 -= this.forTimer;
       view.remove(timerContainer);
       baseTimerContent = `<div class="base-timer">
@@ -52,9 +51,8 @@ const model = {
       <span id="base-timer-label" class="base-timer__label">${this.gameDuration}</span>
     </div>`;
 
-      timerContainer.insertAdjacentHTML("afterbegin", baseTimerContent);
+      timerContainer.insertAdjacentHTML('afterbegin', baseTimerContent);
     }, 1000);
-    console.log();
     this.timerGameEnd = setTimeout(() => {
       clearInterval(this.timerInterval);
       view.remove(timerContainer);
@@ -64,34 +62,31 @@ const model = {
   gameEnd() {
     clearInterval(this.timerInterval);
     clearTimeout(this.timer);
-    view.remove(document.querySelector(".side-container"));
-    view.remove(document.querySelector(".game-words"));
-    view.remove(document.querySelector(".screen"));
-    view.remove(document.querySelector(".timer-container"));
+    view.remove(document.querySelector('.side-container'));
+    view.remove(document.querySelector('.game-words'));
+    view.remove(document.querySelector('.screen'));
+    view.remove(document.querySelector('.timer-container'));
 
     view.gameResult();
   },
   trueCheck(bool) {
-    console.log(this.words);
     if (this.answer === bool) {
-      this.rightAnswers++;
-      console.log(true);
+      this.rightAnswers += 1;
       view.screenAlert(true);
       this.arrayOfAnswers[this.arrayOfAnswers.length - 1].answer = true;
     } else {
-      this.mistakes++;
-      console.log(false);
+      this.mistakes += 1;
       view.screenAlert(false);
     }
     if (this.index >= 19) setTimeout(() => this.gameEnd(), 1000);
     else {
-      this.index++;
+      this.index += 1;
       setTimeout(() => this.wordInner(), 2000);
     }
   },
   getLevelDifficulty() {
-    this.level = localStorage.getItem("our-game-level");
-    this.difficulty = localStorage.getItem("our-game-difficulty");
+    this.level = localStorage.getItem('our-game-level');
+    this.difficulty = localStorage.getItem('our-game-difficulty');
   },
   formatData(data) {
     return data.map((elem) => {
@@ -107,7 +102,7 @@ const model = {
       const url = `https://afternoon-falls-25894.herokuapp.com/words?page=${page}&group=${group}`;
       const res = await fetch(url);
       if (res.ok) {
-        let data = Array.from(await res.json());
+        const data = Array.from(await res.json());
         return this.formatData(data);
       }
       throw new Error(`${res.status}`);
@@ -116,13 +111,13 @@ const model = {
     }
   },
   shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
+    for (let i = array.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      // eslint-disable-next-line
       [array[i], array[j]] = [array[j], array[i]];
     }
   },
   async wordsShuffle() {
-    console.log(this.level, " ", this.difficulty);
     this.words = await this.getWords(this.level, this.difficulty);
     this.shuffle(this.words);
   },
@@ -131,29 +126,29 @@ const model = {
     const wordAnswer = this.words[this.index + this.answer];
     wordAnswer.answer = false;
     this.arrayOfAnswers.push(wordAnswer);
-    view.remove(document.querySelector(".word-red"));
-    view.remove(document.querySelector(".word-green"));
-    view.remove(document.querySelector(".game-words"));
+    view.remove(document.querySelector('.word-red'));
+    view.remove(document.querySelector('.word-green'));
+    view.remove(document.querySelector('.game-words'));
     document
-      .querySelector(".word-red")
+      .querySelector('.word-red')
       .insertAdjacentHTML(
-        "afterbegin",
-        `${this.words[this.index].textMeaning.replace(/\<.*\>/, "...")}`
+        'afterbegin',
+        `${this.words[this.index].textMeaning.replace(/\<.*\>/, '...')}`,
       );
-
+    this.index += 1;
     document
-      .querySelector(".word-green")
+      .querySelector('.word-green')
       .insertAdjacentHTML(
-        "afterbegin",
-        `${this.words[++this.index].textMeaning.replace(/\<.*\>/, "...")}`
+        'afterbegin',
+        `${this.words[this.index].textMeaning.replace(/\<.*\>/, '...')}`,
       );
-    const learnWord = document.createElement("p");
-    learnWord.classList.add("learn-word");
+    const learnWord = document.createElement('p');
+    learnWord.classList.add('learn-word');
     document
-      .querySelector(".game-words")
-      .insertAdjacentElement("afterbegin", learnWord);
+      .querySelector('.game-words')
+      .insertAdjacentElement('afterbegin', learnWord);
 
-    learnWord.insertAdjacentHTML("afterbegin", wordAnswer.word);
+    learnWord.insertAdjacentHTML('afterbegin', wordAnswer.word);
   },
 };
 export default model;

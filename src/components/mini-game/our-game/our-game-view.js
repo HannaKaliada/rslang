@@ -1,4 +1,5 @@
-import model from "./our-game-model";
+import model from './our-game-model';
+
 const view = {
   gameResult() {
     let contentFalse = `<div class="content-false"><span>FALSE: ${model.mistakes}</span>`;
@@ -39,7 +40,6 @@ const view = {
     contentFalse += '</div>';
     contentTrue += '</div>';
 
-
     const buttons = `<div class="btn-next-menu">
     <button type="button" id="repeat-level-btn" class="btn  btn-primary">Repeat Level</button>
     <button type="button" id="game-menu-btn" class="btn  btn-primary">Game menu</button>
@@ -48,8 +48,8 @@ const view = {
   },
   screenAlert(bool) {
     const screen = `<div class=" ${bool ? 'screen-green' : 'screen-red'} "><div>`;
-    document.querySelector(".screen").insertAdjacentHTML("beforeend", screen);
-    setTimeout(() => view.remove(document.querySelector(".screen")), 2000);
+    document.querySelector('.screen').insertAdjacentHTML('beforeend', screen);
+    setTimeout(() => view.remove(document.querySelector('.screen')), 2000);
   },
   changeLevelDifficulty() {
     this.remove(document.getElementsByClassName('level-difficulty')[0]);
@@ -63,49 +63,47 @@ const view = {
   generateGameLayout() {
     model.getLevelDifficulty();
     model.wordsShuffle();
-    const page = document.querySelector(".our-game-wrapper");
-    const gameLayout = document.createElement("div");
-    gameLayout.classList.add("game-layout", "mx-auto");
-    const gameWords = document.createElement("div");
-    const spinnerContainer = document.createElement("div");
-    const timerContainer=document.createElement('div');
-    timerContainer.classList.add('timer-container','mx-auto');
-    spinnerContainer.classList.add("spinner-container", "mx-auto");
-    gameWords.classList.add("game-words", "mx-auto");
-    gameLayout.insertAdjacentElement('beforeend',timerContainer);
-    gameLayout.insertAdjacentElement("beforeend", spinnerContainer);
-    gameLayout.insertAdjacentElement("beforeend", gameWords);
-    const screen = document.createElement("div");
-    screen.classList.add("screen");
-    gameLayout.insertAdjacentElement("beforeend", screen);
+    const page = document.querySelector('.our-game-wrapper');
+    const gameLayout = document.createElement('div');
+    gameLayout.classList.add('game-layout', 'mx-auto');
+    const gameWords = document.createElement('div');
+    const spinnerContainer = document.createElement('div');
+    const timerContainer = document.createElement('div');
+    timerContainer.classList.add('timer-container', 'mx-auto');
+    spinnerContainer.classList.add('spinner-container', 'mx-auto');
+    gameWords.classList.add('game-words', 'mx-auto');
+    gameLayout.insertAdjacentElement('beforeend', timerContainer);
+    gameLayout.insertAdjacentElement('beforeend', spinnerContainer);
+    gameLayout.insertAdjacentElement('beforeend', gameWords);
+    const screen = document.createElement('div');
+    screen.classList.add('screen');
+    gameLayout.insertAdjacentElement('beforeend', screen);
     this.remove(page);
-    page.insertAdjacentElement("beforeend", gameLayout);
+    page.insertAdjacentElement('beforeend', gameLayout);
     this.preparationPage();
   },
   async generateSideLayout() {
-    const sideContainer = document.createElement("div");
-    const greenSide = document.createElement("div");
-    const redSide = document.createElement("div");
-    greenSide.classList.add("green-side", "our-side");
-    redSide.classList.add("red-side", "our-side");
-    sideContainer.classList.add("side-container");
+    const sideContainer = document.createElement('div');
+    const greenSide = document.createElement('div');
+    const redSide = document.createElement('div');
+    greenSide.classList.add('green-side', 'our-side');
+    redSide.classList.add('red-side', 'our-side');
+    sideContainer.classList.add('side-container');
     document
-      .querySelector(".game-layout")
-      .insertAdjacentElement("beforeend", sideContainer);
-    sideContainer.insertAdjacentElement("afterbegin", redSide);
-    sideContainer.insertAdjacentElement("afterbegin", greenSide);
-    const wordRed = document.createElement("p");
-    const buttonRed =
-      '<button type="button" id="btn-red"  class="btn side-btn btn-danger">→</button>';
-    wordRed.classList.add("word-red");
-    const wordGreen = document.createElement("p");
-    const buttonGreen =
-      '<button type="button" id="btn-green" class="btn side-btn btn-success">←</button>';
-    wordGreen.classList.add("word-green");
-    redSide.insertAdjacentElement("afterbegin", wordRed);
-    redSide.insertAdjacentHTML("beforeend", buttonRed);
-    greenSide.insertAdjacentElement("afterbegin", wordGreen);
-    greenSide.insertAdjacentHTML("beforeend", buttonGreen);
+      .querySelector('.game-layout')
+      .insertAdjacentElement('beforeend', sideContainer);
+    sideContainer.insertAdjacentElement('afterbegin', redSide);
+    sideContainer.insertAdjacentElement('afterbegin', greenSide);
+    const wordRed = document.createElement('p');
+    const buttonRed = '<button type="button" id="btn-red"  class="btn side-btn btn-danger">→</button>';
+    wordRed.classList.add('word-red');
+    const wordGreen = document.createElement('p');
+    const buttonGreen = '<button type="button" id="btn-green" class="btn side-btn btn-success">←</button>';
+    wordGreen.classList.add('word-green');
+    redSide.insertAdjacentElement('afterbegin', wordRed);
+    redSide.insertAdjacentHTML('beforeend', buttonRed);
+    greenSide.insertAdjacentElement('afterbegin', wordGreen);
+    greenSide.insertAdjacentHTML('beforeend', buttonGreen);
   },
   remove(el) {
     while (el.firstChild) {
@@ -114,32 +112,33 @@ const view = {
   },
   spinner() {
     const spinnerContainer = document.getElementsByClassName(
-      "spinner-container"
+      'spinner-container',
     )[0];
     const spinner = `
     <div class="spinner-border" role="status">
     <span class="sr-only"></span>
   </div>`;
-    spinnerContainer.insertAdjacentHTML("beforeend", spinner);
+    spinnerContainer.insertAdjacentHTML('beforeend', spinner);
   },
   removeSpinner() {
-    this.remove(document.getElementsByClassName("spinner-container")[0]);
+    this.remove(document.getElementsByClassName('spinner-container')[0]);
   },
   preparationPage() {
-    let index = 3;
-    const gameWords = document.getElementsByClassName("game-words")[0];
+    const index = 3;
+    const gameWords = document.getElementsByClassName('game-words')[0];
     this.remove(gameWords);
-    this.timer(index,1000);
+    this.timer(index, 1000);
   },
-  timer(index,time){
-    const timer = document.createElement("span");
-    timer.classList.add("timer");
+  timer(index, time) {
+    const timer = document.createElement('span');
+    timer.classList.add('timer');
     this.spinner();
     document
-      .getElementsByClassName("spinner-border")[0]
-      .insertAdjacentElement("beforebegin", timer);
+      .getElementsByClassName('spinner-border')[0]
+      .insertAdjacentElement('beforebegin', timer);
     timer.innerText = index;
     const interval = setInterval(() => {
+      // eslint-disable-next-line
       index -= 1;
       timer.innerText = index;
       if (index <= 0) {
@@ -150,7 +149,7 @@ const view = {
         model.wordInner();
       }
     }, time);
-  }
+  },
 };
 
 export default view;
