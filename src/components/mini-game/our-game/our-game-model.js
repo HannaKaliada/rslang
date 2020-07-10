@@ -59,7 +59,7 @@ const model = {
     this.timerGameEnd = setTimeout(() => {
       clearInterval(this.timerInterval);
       view.remove(timerContainer);
-      this.mistakes+=1;
+      this.mistakes += 1;
       this.gameEnd();
     }, 60000);
   },
@@ -92,9 +92,9 @@ const model = {
   },
   getLevelDifficulty() {
     this.level = localStorage.getItem('our-game-level');
-    this.level-=1;
+    this.level -= 1;
     this.difficulty = localStorage.getItem('our-game-difficulty');
-    this.difficulty-=1;
+    this.difficulty -= 1;
   },
   formatData(data) {
     return data.map((elem) => {
