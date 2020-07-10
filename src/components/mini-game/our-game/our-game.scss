@@ -114,9 +114,11 @@
     }
     .red-side {
       background: #a65447;
+      border-radius: 100px 0px 0px 100px;
     }
     .green-side {
       background: #ffa729;
+      border-radius: 0px 100px 100px 0px;
     }
   }
   .content-true {
@@ -241,6 +243,7 @@
 
   .dropdown {
     display: flex;
+    cursor: pointer;
   }
   .dropdown-menu {
     max-height: 300px;
@@ -253,5 +256,8 @@
     max-width: 1000px;
     margin: 0 auto;
     margin-top: 30px;
+    .info-arrow{
+      font-size: 35px;
+    }
   }
 }
