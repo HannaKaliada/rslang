@@ -68,8 +68,11 @@ const view = {
     gameLayout.classList.add("game-layout", "mx-auto");
     const gameWords = document.createElement("div");
     const spinnerContainer = document.createElement("div");
+    const timerContainer=document.createElement('div');
+    timerContainer.classList.add('timer-container','mx-auto');
     spinnerContainer.classList.add("spinner-container", "mx-auto");
     gameWords.classList.add("game-words", "mx-auto");
+    gameLayout.insertAdjacentElement('beforeend',timerContainer);
     gameLayout.insertAdjacentElement("beforeend", spinnerContainer);
     gameLayout.insertAdjacentElement("beforeend", gameWords);
     const screen = document.createElement("div");

@@ -41,7 +41,7 @@ export default function renderContentOurGamePage() {
 
     </div>
 
-    <button type="button" class="btn mx-auto btn-primary">Start game</button>
+    <button type="button" id="srart-btn" class="btn mx-auto btn-primary">Start game</button>
   `;
 
   content = `${links + content}</div>`;

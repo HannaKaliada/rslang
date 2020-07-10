@@ -2,7 +2,7 @@ import model from "./our-game-model";
 import view from "./our-game-view";
 const control = {
   startClick() {
-    const btn = document.getElementsByClassName("btn-primary")[0];
+    const btn = document.querySelector("#srart-btn");
     btn.addEventListener("click", () => view.generateGameLayout());
   },
   click() {
@@ -39,7 +39,9 @@ const control = {
             model.mistakes = 0;
             model.arrayOfAnswers = [];
             model.index = 0;
-            model.rightAnswers=0;
+            model.rightAnswers = 0;
+            model.gameDuration = 60;
+            model.forTimer2 = 125;
             view.generateGameLayout();
             break;
           default:

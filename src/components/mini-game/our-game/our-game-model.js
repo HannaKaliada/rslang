@@ -9,16 +9,66 @@ const model = {
   mistakes: 0,
   arrayOfAnswers: [],
   rightAnswers: 0,
-  timer: 0,
+  timerGameEnd: 0,
+  gameDuration: 60,
+  forTimer: 2.08,
+  forTimer2: 125,
+  timerInterval:0,
   timer() {
-    const spinnerContainer=document.querySelector('.spinner-container');
-    this.timer = setTimeout(() => this.gameEnd(), 6000000);
+    const timerContainer = document.querySelector(".timer-container");
+    const baseTimer = document.querySelector("base-timer__circle");
+    let timerContent = `<div class="base-timer">
+    <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g class="base-timer__circle">
+        <circle class="base-timer__path-elapsed" cx="50" cy="50" r="20"></circle>
+        <path id="base-timer-path-remaining" stroke-dasharray="125 125" class="base-timer__path-remaining green" d="
+          M 50, 50
+          m -20, 0
+          a 20,20 0 1,0 40,0
+          a 20,20 0 1,0 -40,0
+        "></path>
+      </g>
+    </svg>
+    <span id="base-timer-label" class="base-timer__label">60</span>
+  </div>`;
+    let baseTimerContent = "";
+    timerContainer.insertAdjacentHTML("beforeend", timerContent);
+    this.timerInterval = setInterval(() => {
+      this.gameDuration--;
+      this.forTimer2 -= this.forTimer;
+      view.remove(timerContainer);
+      baseTimerContent = `<div class="base-timer">
+      <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g class="base-timer__circle">
+          <circle class="base-timer__path-elapsed" cx="50" cy="50" r="20"></circle>
+          <path id="base-timer-path-remaining" stroke-dasharray="${this.forTimer2} 125" class="base-timer__path-remaining green" d="
+            M 50, 50
+            m -20, 0
+            a 20,20 0 1,0 40,0
+            a 20,20 0 1,0 -40,0
+          "></path>
+        </g>
+      </svg>
+      <span id="base-timer-label" class="base-timer__label">${this.gameDuration}</span>
+    </div>`;
+
+      timerContainer.insertAdjacentHTML("afterbegin", baseTimerContent);
+    }, 1000);
+    console.log();
+    this.timerGameEnd = setTimeout(() => {
+      clearInterval(this.timerInterval);
+      view.remove(timerContainer);
+      this.gameEnd();
+    }, 60000);
   },
   gameEnd() {
-    console.log("end");
+    clearInterval(this.timerInterval);
+    clearTimeout(this.timer);
     view.remove(document.querySelector(".side-container"));
     view.remove(document.querySelector(".game-words"));
     view.remove(document.querySelector(".screen"));
+    view.remove(document.querySelector(".timer-container"));
+
     view.gameResult();
   },
   trueCheck(bool) {
