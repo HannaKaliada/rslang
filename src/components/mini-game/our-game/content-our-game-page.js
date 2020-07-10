@@ -10,7 +10,7 @@ export default function renderContentOurGamePage() {
       <h1 ><a href="#/">Main</a></h1>
        </div>`;
   let dropDown = '';
-  for (let i = 0; i <= 29; i += 1) dropDown += ` <a class="dropdown-item" id="dropdown-level" >${i}</a>`;
+  for (let i = 1; i <= 30; i += 1) dropDown += ` <a class="dropdown-item" id="dropdown-level" >${i}</a>`;
   let content = `
     <div class="level-difficulty"><span>level: ${localStorage.getItem(
     'our-game-level',
@@ -35,6 +35,7 @@ export default function renderContentOurGamePage() {
         <a class="dropdown-item" id="dropdown-difficulty" >3</a>
         <a class="dropdown-item" id="dropdown-difficulty" >4</a>
         <a class="dropdown-item" id="dropdown-difficulty" >5</a>
+        <a class="dropdown-item" id="dropdown-difficulty" >6</a>
       </div>
     </div>
 

@@ -92,7 +92,9 @@ const model = {
   },
   getLevelDifficulty() {
     this.level = localStorage.getItem('our-game-level');
+    this.level-=1;
     this.difficulty = localStorage.getItem('our-game-difficulty');
+    this.difficulty-=1;
   },
   formatData(data) {
     return data.map((elem) => {

@@ -80,7 +80,7 @@ const routes = {
     render: renderSavannaPage,
   },
   '#/our-game': {
-    requiresAuth: false,
+    requiresAuth: true,
     render: renderOurGamePage,
   },
 };
