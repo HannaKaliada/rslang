@@ -1,21 +1,26 @@
-import properties from './properties';
 import setInputWidth from './setInputWidth';
+import fillCardDueToSettings from './fillCardDueToSettings';
 
 export default function goToTheNextWord() {
-  const currentWord = localStorage.getItem('currentWord');
-  const sentence = document.querySelector('.sentence');
+  const nextBtn = document.querySelector('.next-btn');
 
-  document.querySelector('.input-top-layer').classList.remove('transparent');
+  nextBtn.addEventListener('click', () => {
+    const submitBtn = document.querySelector('.submit-btn');
+    const showAnswerBtn = document.querySelector('.show-answer-btn');
+    const toCleanBlocksClasses = ['sentence', 'meaning', 'translation-input', 'sentence-translation', 'word__translation', 'meaning-translation'];
 
-  sentence.textContent = '';
-  sentence.insertAdjacentHTML('beforeend', properties.words[currentWord].textExample.replace(/\<.*\>/,
-    `<input type="text" class="form-control word-input" maxlength="30">
-  <span class="input-top-layer hidden"></span>`));
+    submitBtn.classList.remove('hidden');
+    nextBtn.classList.add('hidden');
+    showAnswerBtn.classList.remove('hidden');
 
-  [properties.missingWord] = properties.words[currentWord].textExample.match(/(?<=\>).*(?=\<)/);
+    document.querySelector('.input-top-layer').classList.remove('transparent');
 
-  document.querySelector('.sentence-translation').textContent = properties.words[currentWord].textExampleTranslate;
-  document.querySelector('.word__translation').textContent = properties.words[currentWord].wordTranslate;
+    toCleanBlocksClasses.forEach((className) => {
+      document.querySelector(`.${className}`).textContent = '';
+    });
 
-  setInputWidth();
+    fillCardDueToSettings();
+
+    setInputWidth();
+  });
 }

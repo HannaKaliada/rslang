@@ -2,53 +2,116 @@
   display: none;
 }
 
+.learning-settings {
+  margin-top: 40px;
+  .word-translation {
+    margin-bottom: 10px;
+  }
+  .word-translation,
+  .sentences-translation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    p {
+      margin-right: 20px;
+      margin-bottom: 0;
+    }
+  }
+}
+
 .word {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  .to-check-width {
+    padding: 10px;
+
+    font-size: 18px;
+    color: white;
+
+    border: 2px solid transparent;
+  }
   &__card {
     margin-bottom: 20px;
-    padding: 60px;
+    padding: 20px 60px;
+
+    text-align: center;
+    input {
+      display: inline-block;
+      width: 25px;
+      margin: 0 5px;
+      padding: 10px;
+
+      font-size: 18px;
+
+      border-width: 2px;
+      outline: none;
+    }
+    .input_correct {
+      color: green;
+
+      border: 2px solid green;
+    }
+    .input_show-answer {
+      color: orange;
+
+      border: 2px solid orange;
+    }
+    .input-top-layer {
+      display: inline-block;
+      padding: 10px;
+
+      font-size: 18px;
+      text-align: left;
+
+      border: 2px solid transparent;
+    }
+    .input-top-layer.hidden {
+      display: none;
+    }
+    .transparent {
+      z-index: -1;
+
+      opacity: 0;
+
+      transition: 1s;
+      span {
+        color: gray;
+      }
+    }
+    .correct-letter {
+      color: green;
+    }
+    .wrong-letter {
+      color: red;
+    }
+    .hidden-word {
+      font-weight: bold;
+    }
     .sentence {
-      input {
-        display: inline-block;
-        width: 25px;
-        padding: 10px;
-        margin: 0 5px;
-
-        font-size: 17px;
-      }
-      .input-top-layer {
-        display: inline-block;
-        padding: 10px;
-
-        font-size: 18px;
-        text-align: left;
-      }
-      .input-top-layer.hidden {
-        display: none;
-      }
-      .transparent {
-        z-index: -1;
-
-        opacity: 0;
-
-        transition: 1s;
-        span {
-          color: gray;
-        }
-      }
-      .correct-letter {
-        color: green;
-      }
-      .wrong-letter {
-        color: red;
-      }
+      font-size: 20px;
     }
     .sentence-translation {
       margin-bottom: 20px;
+    }
+    .meaning {
+      font-size: 20px;
+    }
+    .sentence-translation,
+    .word__translation,
+    .meaning-translation {
+      font-size: 16px;
+    }
+    .btn {
+      width: 120px;
+    }
+    .next-btn {
+      margin: 0 auto;
+    }
+    .show-answer-btn {
+      margin: 0 auto;
+      margin-top: 10px;
     }
   }
 }
