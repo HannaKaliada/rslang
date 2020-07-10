@@ -10,6 +10,7 @@ import createElement from '../../shared/createElement';
 import '../../styles/header.scss';
 import '../../styles/vocabulary.scss';
 import '../../styles/menu.scss';
+import logoutButtonHandler from '../../shared/header/logoutButtonHandler';
 
 export default function initVocabulary() {
   const root = document.querySelector('.root');
@@ -22,4 +23,5 @@ export default function initVocabulary() {
   audioButtonHandler();
   burgerIconHandler();
   setItemActiveState();
+  logoutButtonHandler();
 }
