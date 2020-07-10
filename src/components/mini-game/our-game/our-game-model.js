@@ -1,4 +1,4 @@
-const { default: view } = require('./our-game-view');
+const { default: view } = require("./our-game-view");
 
 const model = {
   level: 0,
@@ -14,8 +14,11 @@ const model = {
   forTimer: 2.08,
   forTimer2: 125,
   timerInterval: 0,
+  playMusic(event) {
+    event.play();
+  },
   timer() {
-    const timerContainer = document.querySelector('.timer-container');
+    const timerContainer = document.querySelector(".timer-container");
     const timerContent = `<div class="base-timer">
     <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g class="base-timer__circle">
@@ -30,8 +33,8 @@ const model = {
     </svg>
     <span id="base-timer-label" class="base-timer__label">60</span>
   </div>`;
-    let baseTimerContent = '';
-    timerContainer.insertAdjacentHTML('beforeend', timerContent);
+    let baseTimerContent = "";
+    timerContainer.insertAdjacentHTML("beforeend", timerContent);
     this.timerInterval = setInterval(() => {
       this.gameDuration -= 1;
       this.forTimer2 -= this.forTimer;
@@ -51,7 +54,7 @@ const model = {
       <span id="base-timer-label" class="base-timer__label">${this.gameDuration}</span>
     </div>`;
 
-      timerContainer.insertAdjacentHTML('afterbegin', baseTimerContent);
+      timerContainer.insertAdjacentHTML("afterbegin", baseTimerContent);
     }, 1000);
     this.timerGameEnd = setTimeout(() => {
       clearInterval(this.timerInterval);
@@ -61,11 +64,11 @@ const model = {
   },
   gameEnd() {
     clearInterval(this.timerInterval);
-    clearTimeout(this.timer);
-    view.remove(document.querySelector('.side-container'));
-    view.remove(document.querySelector('.game-words'));
-    view.remove(document.querySelector('.screen'));
-    view.remove(document.querySelector('.timer-container'));
+    clearTimeout(this.timerGameEnd);
+    view.remove(document.querySelector(".side-container"));
+    view.remove(document.querySelector(".game-words"));
+    view.remove(document.querySelector(".screen"));
+    view.remove(document.querySelector(".timer-container"));
 
     view.gameResult();
   },
@@ -78,15 +81,17 @@ const model = {
       this.mistakes += 1;
       view.screenAlert(false);
     }
-    if (this.index >= 19) setTimeout(() => this.gameEnd(), 1000);
-    else {
+    if (this.index >= 19) {
+      clearInterval(this.timerInterval);
+      setTimeout(() => this.gameEnd(), 1000);
+    } else {
       this.index += 1;
       setTimeout(() => this.wordInner(), 2000);
     }
   },
   getLevelDifficulty() {
-    this.level = localStorage.getItem('our-game-level');
-    this.difficulty = localStorage.getItem('our-game-difficulty');
+    this.level = localStorage.getItem("our-game-level");
+    this.difficulty = localStorage.getItem("our-game-difficulty");
   },
   formatData(data) {
     return data.map((elem) => {
@@ -126,29 +131,29 @@ const model = {
     const wordAnswer = this.words[this.index + this.answer];
     wordAnswer.answer = false;
     this.arrayOfAnswers.push(wordAnswer);
-    view.remove(document.querySelector('.word-red'));
-    view.remove(document.querySelector('.word-green'));
-    view.remove(document.querySelector('.game-words'));
+    view.remove(document.querySelector(".word-red"));
+    view.remove(document.querySelector(".word-green"));
+    view.remove(document.querySelector(".game-words"));
     document
-      .querySelector('.word-red')
+      .querySelector(".word-red")
       .insertAdjacentHTML(
-        'afterbegin',
-        `${this.words[this.index].textMeaning.replace(/\<.*\>/, '...')}`,
+        "afterbegin",
+        `${this.words[this.index].textMeaning.replace(/\<.*\>/, "...")}`
       );
     this.index += 1;
     document
-      .querySelector('.word-green')
+      .querySelector(".word-green")
       .insertAdjacentHTML(
-        'afterbegin',
-        `${this.words[this.index].textMeaning.replace(/\<.*\>/, '...')}`,
+        "afterbegin",
+        `${this.words[this.index].textMeaning.replace(/\<.*\>/, "...")}`
       );
-    const learnWord = document.createElement('p');
-    learnWord.classList.add('learn-word');
+    const learnWord = document.createElement("p");
+    learnWord.classList.add("learn-word");
     document
-      .querySelector('.game-words')
-      .insertAdjacentElement('afterbegin', learnWord);
+      .querySelector(".game-words")
+      .insertAdjacentElement("afterbegin", learnWord);
 
-    learnWord.insertAdjacentHTML('afterbegin', wordAnswer.word);
+    learnWord.insertAdjacentHTML("afterbegin", wordAnswer.word);
   },
 };
 export default model;
