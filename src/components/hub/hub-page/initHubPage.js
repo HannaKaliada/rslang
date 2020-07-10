@@ -12,7 +12,7 @@ import setItemActiveState from '../../../shared/menu/setItemActiveState';
 export default function initHubPage() {
   const root = document.querySelector('.root');
   const hub = createElement('div', 'hub');
-  hub.append(renderHeader(), renderHubPage(info), renderMenu());
+  hub.append(renderMenu(), renderHeader(), renderHubPage(info));
   root.append(hub);
   burgerIconHandler();
   setItemActiveState();

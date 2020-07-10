@@ -1,0 +1,81 @@
+.vocabulary-page {
+    display: grid;
+
+    grid-template-areas: "menu header"
+    "menu vocabulary";
+    grid-template-columns: max-content;
+
+    .vocabulary__wrapper {
+        grid-area: vocabulary;
+        display: grid;
+        max-width: 1020px;
+        margin: 30px auto;
+
+        .vocabulary__buttons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+
+            .vocabulary__btn {
+                margin: 0 20px;
+            }
+        }
+
+        .vocabulary__tab {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            .vocabulary__word {
+                padding: 20px;
+                border: 1px solid #007bff;
+                .word__block {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+
+                    .word__audio {
+                        width: 40px;
+                        height: 40px;
+                        background-color: #007bff;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 3px;
+                        svg {
+                            height: 30px;
+                            width: 30px;
+                            fill: #fff;
+                        }
+                    }
+                    .word__audio:hover {
+                        background-color: #0062cc;
+                    }
+                    .word__name {
+                        border: 1px solid #007bff;
+                        p {
+                            margin: 0;
+                            font-size: 20px;
+                            font-weight: 900;
+                            text-align: center;
+                        }
+                    }
+                }
+
+                .voc__progress-bar {
+                    height: 15px;
+                    border-radius: 3px;
+                    background-color: #ebebeb;
+                    margin: 20px auto;
+                }
+
+                .word__image {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
+

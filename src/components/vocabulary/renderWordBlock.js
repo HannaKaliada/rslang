@@ -22,8 +22,8 @@ export default function renderWordBlock(wordInfo) {
     </div>
     <button type="button" class="btn btn-primary word__delete-btn">Delete word</button>
     `);
-  wordBlock.append(createProgressBar(wordInfo.intervals));
-  wordWrapper.append(wordBlock);
+  wordWrapper.append(wordBlock, createProgressBar(wordInfo.intervals));
+
   if (localStorage.wordImage === 'true') {
     wordWrapper.insertAdjacentHTML('beforeend', `
     <div class="word__image">
@@ -33,12 +33,12 @@ export default function renderWordBlock(wordInfo) {
   }
   if (localStorage.wordTranscription === 'true') {
     wordDescript.insertAdjacentHTML('beforeend', `
-    <p class="descript__transcript">${wordInfo.transcription}</p>
+    <p class="descript__transcript">Transcription: ${wordInfo.transcription}</p>
     `);
   }
   if (localStorage.wordTranslation === 'true') {
     wordDescript.insertAdjacentHTML('beforeend', `
-    <p class="descript__translate">${wordInfo.wordTranslate}</p>
+    <p class="descript__translate">Translation: ${wordInfo.wordTranslate}</p>
     `);
   }
   wordWrapper.append(wordDescript);
