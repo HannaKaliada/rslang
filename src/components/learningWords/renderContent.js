@@ -1,4 +1,5 @@
 import properties from './properties';
+import createVolumeBlock from './pronunciation/createVolumeBlock';
 
 export default function renderContent() {
   const page = document.querySelector('.root');
@@ -18,6 +19,7 @@ export default function renderContent() {
             </p>
             <button type="submit" class="btn btn-primary">Check</button>
           </form>
+          ${createVolumeBlock()}
         </div>
         <p class="word__translation">
           ${properties.words[currentWord].wordTranslate}

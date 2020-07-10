@@ -4,13 +4,15 @@ import setStartPosition from './setStartPosition';
 import checkInput from './checkInput';
 import setWordsToProps from './setWordsToProps';
 import setInputWidth from './setInputWidth';
-import createAudioObjects from './createAudioObjects';
+import createAudioObjects from './pronunciation/createAudioObjects';
+import addEventListeners from './pronunciation/addEventListeners';
 
 export default async function learningWords() {
   setStartPosition();
   await setWordsToProps();
   createAudioObjects();
   renderContent();
+  addEventListeners();
   setInputWidth();
-  checkInput();
+  await checkInput();
 }

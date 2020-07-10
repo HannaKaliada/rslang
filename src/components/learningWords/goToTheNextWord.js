@@ -1,8 +1,9 @@
 import properties from './properties';
 import setInputWidth from './setInputWidth';
-import createAudioObjects from './createAudioObjects';
+import createAudioObjects from './pronunciation/createAudioObjects';
 
 export default function goToTheNextWord() {
+  console.log(5);
   const currentWord = localStorage.getItem('currentWord');
   const sentence = document.querySelector('.sentence');
 
