@@ -1,9 +1,11 @@
 import games from '../../data/gamesInfo';
+import createElement from '../../shared/createElement';
 
 export default function renderContent() {
+  const wrapper = createElement('div', 'games-page__wrapper');
   const page = document.querySelector('.root');
-  page.insertAdjacentHTML('beforeend',
-    `<div class="container">
+  wrapper.insertAdjacentHTML('beforeend',
+    `<div class="container games-page">
       <h1>Games:</h1>
       <div class="games"></div>
     </div>`);
@@ -15,4 +17,5 @@ export default function renderContent() {
   <a href="${game.gameURL}" class="btn btn-warning play-btn">Play</a>
   </div>`);
   });
+  page.append(wrapper);
 }

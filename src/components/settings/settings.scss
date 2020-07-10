@@ -1,5 +1,16 @@
 @import "../../styles/mixins.scss";
 
+.settings__wrapper {
+  display: grid;
+  grid-template-areas: "menu header"
+  "menu settings";
+  grid-template-columns: max-content;
+
+  .settings {
+    grid-area: settings;
+  }
+}
+
 .hidden {
   display: none;
 }

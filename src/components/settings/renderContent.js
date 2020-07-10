@@ -1,9 +1,12 @@
+import createElement from '../../shared/createElement';
+
 export default function renderContent() {
+  const wrapper = createElement('div', 'settings__wrapper');
   const page = document.querySelector('.root');
   const cardsLimit = localStorage.getItem('cardsLimit');
   const wordsLimit = localStorage.getItem('wordsLimit');
-  page.insertAdjacentHTML('beforeend',
-    `<div class="container">
+  wrapper.insertAdjacentHTML('beforeend',
+    `<div class="container settings">
       <h1>Settings:</h1>
       <div class="limits">
         <div class="limit">
@@ -85,4 +88,5 @@ export default function renderContent() {
         <input class="btn btn-primary save-btn" type="button" value="Save" />
       </div>
     </div>`);
+  page.append(wrapper);
 }

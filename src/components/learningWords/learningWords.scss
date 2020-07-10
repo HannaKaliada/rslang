@@ -4,6 +4,17 @@
   display: none;
 }
 
+.learn-page__wrapper {
+  display: grid;
+  grid-template-areas: "menu header"
+  "menu learn";
+  grid-template-columns: max-content;
+
+  .learn-page {
+    grid-area: learn;
+  }
+}
+
 .learning-settings {
   margin-top: 40px;
   .word-translation,

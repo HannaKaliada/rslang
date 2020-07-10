@@ -1,7 +1,10 @@
+import createElement from '../../shared/createElement';
+
 export default function renderContent() {
+  const learnPage = createElement('div', 'learn-page__wrapper');
   const page = document.querySelector('.root');
-  page.insertAdjacentHTML('beforeend',
-    `<div class="container">
+  learnPage.insertAdjacentHTML('beforeend',
+    `<div class="container learn-page">
       <div class="learning-settings">
         <div class="word-translation">
           <p>Word translation</p>
@@ -70,4 +73,5 @@ export default function renderContent() {
         <p class="word__translation"></p>
       </div>
     </div>`);
+  page.append(learnPage);
 }
