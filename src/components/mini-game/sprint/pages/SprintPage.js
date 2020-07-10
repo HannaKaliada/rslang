@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import '../styles/sprintPage.scss';
 import Card from '../components/Card';
 import Score from '../components/Score';
@@ -6,12 +7,11 @@ import CircleTimer from '../components/CircleTimer';
 import renderResultPage from './ResultPage';
 import WordsSet from '../components/WordsSet';
 import clearCurrentPage from '../methods/clearCurrentPage';
-import getStatistics from '../../../../services/getUserStastics'
-import setStatistics from '../../../../services/setUserStatistics'
-import getDate from '../../../../shared/getDate'
+import getStatistics from '../../../../services/getUserStastics';
+import setStatistics from '../../../../services/setUserStatistics';
+import getDate from '../../../../shared/getDate';
 
-
-const state = new Object();
+const state = {};
 
 function initState() {
   const settings = JSON.parse(localStorage.getItem('userInfo'));
@@ -24,51 +24,46 @@ async function sendScore(score) {
   initState();
   const date = getDate();
   const result = `${date}, score:${score.score}`;
-    try {
-      obj = await getStatistics(state);
-      const object = {};
-      const result = score.score;
-      object.optional = obj.optional;
-      object.learnedWords = obj.learnedWords;
-      if (object.optional.sprint && object.optional.sprint.results) {
-        object.optional.sprint.results.push(result);
-      } else {
-        object.optional = {
-          sprint: {
-            results: [result],
-          },
-        };
-      }
-      obj = object;
-    } catch (e) {
-      obj = {
-        learnedWords: 0,
-        optional: {
-          sprint: {
-            results: [result],
-          },
+  try {
+    obj = await getStatistics(state);
+    const object = {};
+    object.optional = obj.optional;
+    object.learnedWords = obj.learnedWords;
+    if (object.optional.sprint && object.optional.sprint.results) {
+      object.optional.sprint.results.push(result);
+    } else {
+      object.optional = {
+        sprint: {
+          results: [result],
         },
       };
     }
-    const { userId, token } = state;
-    await setStatistics({ userId, token, obj });
+    obj = object;
+  } catch (e) {
+    obj = {
+      learnedWords: 0,
+      optional: {
+        sprint: {
+          results: [result],
+        },
+      },
+    };
+  }
+  const { userId, token } = state;
+  await setStatistics({ userId, token, obj });
 }
 
-
-
-
 function playCorrectAudio() {
-  let audio = new Audio("/src/components/mini-game/sprint/assets/correct.mp3");
+  const audio = new Audio('/src/components/mini-game/sprint/assets/correct.mp3');
   audio.playbackRate = 1.5;
   audio.play();
 }
 
 function playUnCorrectAudio() {
-    let audio = new Audio("/src/components/mini-game/sprint/assets/uncorrect.mp3");
-    audio.playbackRate = 1.75;
-    audio.play();
+  const audio = new Audio('/src/components/mini-game/sprint/assets/uncorrect.mp3');
+  audio.playbackRate = 1.75;
+  audio.play();
 }
-
 
 export default function initSprintPage(date) {
   const wordSet = new WordsSet(date);
@@ -78,7 +73,7 @@ export default function initSprintPage(date) {
   const timer = new CircleTimer();
   const page = document.querySelector('.root');
   page.insertAdjacentHTML('beforeend',
-  `<div class="container vh-100 d-flex flex-column align-items-center justify-content-center">
+    `<div class="container vh-100 d-flex flex-column align-items-center justify-content-center">
 </div>`);
   card.renderCard();
   score.renderScore();
@@ -88,40 +83,38 @@ export default function initSprintPage(date) {
 
   const trueButton = document.querySelector('.btn-success');
   trueButton.addEventListener('click', () => {
-    if(card.isCorrect()) {
+    if (card.isCorrect()) {
       playCorrectAudio();
       score.addScore();
       card.succesClick();
       card.renderWords();
-    }
-    else {
+    } else {
       playUnCorrectAudio();
       score.cancelBonus();
       card.unsuccesClick();
       card.renderWords();
     }
-   });
+  });
 
-   const falseButton = document.querySelector('.btn-danger');
-   falseButton.addEventListener('click', () => {
-     if(!card.isCorrect()) {
-       playCorrectAudio();
-       score.addScore();
-       card.succesClick();
-       card.renderWords();
-     }
-     else {
-       playUnCorrectAudio()
-       score.cancelBonus();
-       card.unsuccesClick();
-       card.renderWords();
-     }
-    });
-    setTimeout(function(){
+  const falseButton = document.querySelector('.btn-danger');
+  falseButton.addEventListener('click', () => {
+    if (!card.isCorrect()) {
+      playCorrectAudio();
+      score.addScore();
+      card.succesClick();
+      card.renderWords();
+    } else {
+      playUnCorrectAudio();
+      score.cancelBonus();
+      card.unsuccesClick();
+      card.renderWords();
+    }
+  });
+  setTimeout(() => {
+    clearCurrentPage();
+    sendScore(score).then(() => {
       clearCurrentPage();
-      sendScore(score).then( (result) => {
-        clearCurrentPage();
-        renderResultPage(score);
-      });
-    }, 60000)
+      renderResultPage(score);
+    });
+  }, 60000);
 }

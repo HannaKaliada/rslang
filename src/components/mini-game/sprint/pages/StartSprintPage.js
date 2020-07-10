@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable import/no-cycle */
 import '../styles/sprintPage.scss';
 import initSprintPage from './SprintPage';
 import initWords from '../methods/initWords';
@@ -27,11 +29,11 @@ export default function renderStartSprintPage() {
   </div>`);
   initNumberOfLevels(5);
   initNumberOfRounds(30);
-  initStartButton()
+  initStartButton();
 }
 
 function appendOption(selector, value) {
-  let node = document.createElement('option');
+  const node = document.createElement('option');
   node.innerHTML = value;
   selector.appendChild(node);
 }
@@ -39,41 +41,38 @@ function appendOption(selector, value) {
 function initNumberOfLevels(value) {
   const selector = document.querySelector('.select-level');
   let count = 0;
-  while (count != value) {
-    count++;
+  while (count !== value) {
+    count += 1;
     appendOption(selector, count);
   }
-};
+}
 
-  function initNumberOfRounds(value) {
-    const selector = document.querySelector('.select-round');
-    let count = 0;
-    while (count != value) {
-      count++;
-      appendOption(selector, count);
-    }
+function initNumberOfRounds(value) {
+  const selector = document.querySelector('.select-round');
+  let count = 0;
+  while (count !== value) {
+    count += 1;
+    appendOption(selector, count);
   }
+}
 
 
 
-  function initStartButton()  {
-    const falseButton = document.querySelector('.btn-start');
-    falseButton.addEventListener('click', () => {
-      const round = document.querySelector('.select-round option:checked').value - 1;
-      const level = document.querySelector('.select-level option:checked').value - 1;
-      localStorage.setItem('round_sprint', round);
-      localStorage.setItem('level_sprint', level);
-      console.log(round);
-      initWords().then(result => {
-        if ((round && level) < 0) {
-          alert("Choose difficulity and round please");
-        }
-        else {
-          clearCurrentPage();
-          localStorage.setItem("current_sprint", JSON.stringify(result));
-          console.log(result);
-          initSprintPage(result);
-        }
-      });
-     });
-  }
+function initStartButton() {
+  const falseButton = document.querySelector('.btn-start');
+  falseButton.addEventListener('click', () => {
+    const round = document.querySelector('.select-round option:checked').value - 1;
+    const level = document.querySelector('.select-level option:checked').value - 1;
+    localStorage.setItem('round_sprint', round);
+    localStorage.setItem('level_sprint', level);
+    initWords().then((result) => {
+      if ((round && level) < 0) {
+        alert('Choose difficulity and round please');
+      } else {
+        clearCurrentPage();
+        localStorage.setItem('current_sprint', JSON.stringify(result));
+        initSprintPage(result);
+      }
+    });
+  });
+}

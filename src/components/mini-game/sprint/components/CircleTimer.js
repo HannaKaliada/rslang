@@ -1,8 +1,10 @@
+/* eslint-disable class-methods-use-this */
 export default class CircleTimer {
-
-TIME_LIMIT = 60;
-timePassed = 0;
-timeLeft = this.TIME_LIMIT;
+  constructor() {
+    this.TIME_LIMIT = 60;
+    this.timePassed = 0;
+    this.timeLeft = this.TIME_LIMIT;
+  }
 
   formatTime(seconds) {
     return `${seconds}`;
@@ -34,32 +36,28 @@ timeLeft = this.TIME_LIMIT;
   }
 
   startTimer() {
-    let timerInterval = setInterval(() => {
-      this.timePassed = this.timePassed += 1;
+    const timerInterval = setInterval(() => {
+      this.timePassed += 1;
       this.timeLeft = this.TIME_LIMIT - this.timePassed;
-      console.log(this.timePassed);
-      if (this.timePassed == 60) {
+      if (this.timePassed === 60) {
         clearInterval(timerInterval);
       }
-      document.getElementById("base-timer-label").innerHTML = this.formatTime(this.timeLeft);
+      document.getElementById('base-timer-label').innerHTML = this.formatTime(this.timeLeft);
       this.setCircleDasharray();
     }, 1000);
   }
-
 
   calculateTimeFraction() {
     const rawTimeFraction = this.timeLeft / this.TIME_LIMIT;
     return rawTimeFraction - (1 / this.TIME_LIMIT) * (1 - rawTimeFraction);
   }
 
-  // Update the dasharray value as time passes, starting with 283
   setCircleDasharray() {
     const circleDasharray = `${(
       this.calculateTimeFraction() * 125
     ).toFixed(0)} 125`;
     document
-      .getElementById("base-timer-path-remaining")
-      .setAttribute("stroke-dasharray", circleDasharray);
+      .getElementById('base-timer-path-remaining')
+      .setAttribute('stroke-dasharray', circleDasharray);
   }
-
 }

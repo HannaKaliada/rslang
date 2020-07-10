@@ -3,7 +3,6 @@ export default class Score {
     this.score = 0;
     this.bonus = 10;
     this.series = 0;
-    this.state = new Object();
   }
 
   initScore() {
@@ -18,9 +17,9 @@ export default class Score {
   }
 
   addScore() {
-    if (this.series == 30 || this.series == 110 || this.series == 270) {
+    if (this.series === 30 || this.series === 110 || this.series === 270) {
       this.bonus *= 2;
-      this.initMessage()
+      this.initMessage();
     }
     this.score += this.bonus;
     this.series += this.bonus;
@@ -28,19 +27,19 @@ export default class Score {
   }
 
   initMessage() {
-      const card = document.querySelector('.info');
-      card.textContent = `+${this.bonus} очков за слово`;
-    }
+    const card = document.querySelector('.info');
+    card.textContent = `+${this.bonus} очков за слово`;
+  }
 
-    clearMessage() {
-      const card = document.querySelector('.info');
-      card.textContent = '';
-    }
+  // eslint-disable-next-line class-methods-use-this
+  clearMessage() {
+    const card = document.querySelector('.info');
+    card.textContent = '';
+  }
 
   cancelBonus() {
     this.bonus = 10;
     this.series = 0;
-    this.clearMessage()
+    this.clearMessage();
   }
-
 }

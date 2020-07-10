@@ -1,6 +1,4 @@
-
 export default class Card {
-
   constructor(wordSet) {
     this.wordSet = wordSet;
   }
@@ -8,7 +6,7 @@ export default class Card {
   renderCard() {
     const container = document.querySelector('.container');
     container.insertAdjacentHTML('beforeend',
-    `
+      `
     <div class="card">
     <h5 class="card-header text-center bg-success">
       <span class="dot"></span>
@@ -23,8 +21,7 @@ export default class Card {
     </div>
   </div>
   </div>`);
-  this.renderWords();
-
+    this.renderWords();
   }
 
   renderWords() {
@@ -42,7 +39,7 @@ export default class Card {
   succesClick() {
     const dots = document.querySelectorAll('.dot');
     for (let i = 0; i < dots.length; i++) {
-      if(!dots[i].classList.contains('dot-succes')) {
+      if (!dots[i].classList.contains('dot-succes')) {
         dots[i].classList.add('dot-succes');
         return;
       }
@@ -54,7 +51,6 @@ export default class Card {
     const dots = document.querySelectorAll('.dot');
     for (let i = 0; i < dots.length; i++) {
       dots[i].classList.remove('dot-succes');
+    }
   }
-  }
-
 }
