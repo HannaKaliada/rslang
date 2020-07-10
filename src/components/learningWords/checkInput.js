@@ -1,7 +1,8 @@
 import properties from './properties';
 import correctAnswer from './correctAnswer';
 import showWrongAndRightLetters from './showWrongAndRightLetters';
-import showMessage from "./showMessage";
+import showMessage from './showMessage';
+
 export default function checkInput() {
   const form = document.querySelector('.word form');
   form.querySelector('input').focus();
