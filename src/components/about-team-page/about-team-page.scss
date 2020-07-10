@@ -1,3 +1,15 @@
+.about-team-page {
+  display: grid;
+  grid-template-areas: "menu header"
+  "menu about-team";
+  grid-template-columns: max-content;
+
+  .about-team {
+    grid-area: about-team;
+    margin: 0 30px;
+  }
+}
+
 .about-team-wrapper {
   .links {
     display: flex;

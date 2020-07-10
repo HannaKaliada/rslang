@@ -1,7 +1,10 @@
 import data from '../../data/teamInfo.json';
+import createElement from '../../shared/createElement';
 
 export default function renderAboutTeamPage() {
   const page = document.querySelector('.root');
+  const wrapper = createElement('div', 'about-team-page');
+  const aboutWrapper = createElement('div', 'about-team');
   const links = `<div class="container"><div class="about-team-wrapper">
     <div class="links"> <h1>About team page:</h1>
     <h1 ><a href="#/">Main</a></h1> </div>`;
@@ -25,5 +28,7 @@ export default function renderAboutTeamPage() {
   });
 
   content = links + start + content + end;
-  page.insertAdjacentHTML('beforeend', content);
+  aboutWrapper.insertAdjacentHTML('beforeend', content);
+  wrapper.append(aboutWrapper);
+  page.append(wrapper);
 }

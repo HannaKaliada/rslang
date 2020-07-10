@@ -1,3 +1,18 @@
+.games-page__wrapper {
+  display: grid;
+  grid-template-areas: "menu header"
+  "menu games";
+  grid-template-columns: max-content;
+  margin: 0;
+  padding: 0;
+
+  .games-page {
+    grid-area: games;
+    margin: 0 30px;
+  }
+}
+
+
 .games {
   display: flex;
   flex-wrap: wrap;
