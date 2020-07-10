@@ -1,10 +1,12 @@
+import createHeader from './createHeader';
+
 export default function renderStatisticPage(createElement, gameResults) {
   const h2 = createElement('h2', 'audio-call__title');
   h2.textContent = 'Your statistics:';
   const score = createElement('p', 'audio-call__score');
   score.textContent = `Score: ${this.score}`;
   const page = createElement('div', 'audio-call__statistics');
-  page.append(h2, score);
+  page.append(createHeader(), h2, score);
   if (gameResults.rightAnswers.length) {
     const rightAnswersTitle = createElement('h3', 'audio-call__list-title');
     rightAnswersTitle.textContent = 'Right answers:';

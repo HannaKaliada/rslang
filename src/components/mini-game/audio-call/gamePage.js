@@ -7,6 +7,7 @@ import getUserStastics from '../../../services/getUserStastics';
 import setUserStatistics from '../../../services/setUserStatistics';
 import getDate from '../../../shared/getDate';
 import renderStatisticPage from './renderStatiticPage';
+import createHeader from './createHeader';
 
 class GamePage {
   constructor(createHTML, randomizing, getStatistics, setStatistics) {
@@ -150,7 +151,7 @@ class GamePage {
     }
     this.renderStatisticPage(this.createElement, this.gameResults);
     const date = getDate();
-    const result = `${date}, m:${this.gameResults.wrongAnswers.length}`;
+    const result = `${date}, m:${this.gameResults.wrongAnswers.map((el) => el.word)}`;
     let obj;
     try {
       obj = await this.getStatistics(this.state);
@@ -301,7 +302,7 @@ class GamePage {
     const elements = [];
     const flexContainer = this.createElement('div', 'flex-container');
     flexContainer.append(this.createLevelControls(), this.createScoreBlock());
-    elements.push(flexContainer);
+    elements.push(createHeader(), flexContainer);
     elements.push(this.createSoundIcon(), this.createShowAnswerBlock());
     elements.push(this.createVariantsBlock(), this.createGameButton());
     elements.push(this.createHintButton());

@@ -1,7 +1,11 @@
-.container.audio-call {
+.audio-call {
     display: flex;
     flex-direction: column;
     align-items: center;
+    &__header{
+        display: flex;
+        justify-content: flex-start;
+    }
     p {
         text-align: center;
     }

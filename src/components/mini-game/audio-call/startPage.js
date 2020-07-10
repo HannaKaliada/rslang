@@ -1,5 +1,6 @@
 import gamePage from './gamePage';
 import createElement from '../../../shared/createElement';
+import createHeader from './createHeader';
 
 export const state = {};
 
@@ -37,7 +38,7 @@ class StartPage {
   async createPage() {
     const root = document.querySelector('.root');
     const container = this.createElement('div', ['container', 'audio-call']);
-    container.append(this.createTitle(), this.createDescription(), this.createButton());
+    container.append(createHeader(), this.createTitle(), this.createDescription(), this.createButton());
     root.append(container);
   }
 
