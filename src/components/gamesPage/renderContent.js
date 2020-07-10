@@ -1,4 +1,4 @@
-import games from "../../data/gamesInfo";
+import games from '../../data/gamesInfo';
 
 export default function renderContent() {
   const page = document.querySelector('.root');
@@ -9,10 +9,10 @@ export default function renderContent() {
     </div>`);
   const gamesContainer = document.querySelector('.games');
   games.forEach((game) => {
-  gamesContainer.insertAdjacentHTML('beforeend', `<div class="card game">
+    gamesContainer.insertAdjacentHTML('beforeend', `<div class="card game">
   <div class="game__title">${game.gameTitle}</div>
   <div class="game__desc">${game.gameDesc}</div>
   <a href="${game.gameURL}" class="btn btn-warning play-btn">Play</a>
-  </div>`)
+  </div>`);
   });
 }

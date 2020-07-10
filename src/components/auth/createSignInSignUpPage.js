@@ -158,7 +158,7 @@ class CreateSignInSignUpPage {
   async init() {
     const root = document.querySelector('.root');
     const container = this.createElement('div', 'container');
-    const formContainer = this.createElement('div', 'form-container')
+    const formContainer = this.createElement('div', 'form-container');
     container.append(formContainer);
     formContainer.append(this.createForm());
     root.append(container);

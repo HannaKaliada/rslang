@@ -1,12 +1,12 @@
 const games = [{
   gameTitle: 'Speak It',
   gameDesc: 'With the help of the game Speak It you will learn new words and also how to pronounce them correctly.',
-  gameURL: ''
+  gameURL: '',
 },
 {
   gameTitle: 'English Puzzle',
   gameDesc: 'The English Puzzle game will teach you to formulate sentences correctly and to put words in the right order.',
-  gameURL: ''
+  gameURL: '',
 },
 {
   gameTitle: 'Savanna',
@@ -16,12 +16,12 @@ const games = [{
 {
   gameTitle: 'Sprint',
   gameDesc: '',
-  gameURL: ''
+  gameURL: '',
 },
 {
   gameTitle: 'AudioCall',
   gameDesc: '',
-  gameURL: '#/audiocall'
-}]
+  gameURL: '#/audiocall',
+}];
 
 export default games;

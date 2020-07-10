@@ -36,17 +36,18 @@
   .warning {
     margin-top: 0;
     margin-bottom: 0;
-    font-weight: 700;
 
+    font-weight: 700;
     color: red;
   }
 }
 
 .additional-settings {
   .success-notification {
-    color: green;
     margin-bottom: 0;
+
     font-weight: 700;
+    color: green;
   }
 }
 
@@ -65,16 +66,17 @@
     }
   }
   .main-settings,
-  .additional-settings{
+  .additional-settings {
     font-size: 14px;
-    p:first-child{
+    p:first-child {
       font-size: 18px;
     }
   }
-  .success-notification, .warning{
+  .success-notification,
+  .warning {
     text-align: center;
   }
-  .save-btn-container{
+  .save-btn-container {
     text-align: center;
   }
 }
