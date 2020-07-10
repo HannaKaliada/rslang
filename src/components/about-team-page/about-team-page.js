@@ -11,7 +11,6 @@ export default function renderAboutTeamPage() {
     <div class="swiper-pagination"></div>
       <div class="swiper-button-next"></div>
      <div class="swiper-button-prev"></div>
-    </div>
     </div>`;
   let content = '';
   data.forEach((el) => {
