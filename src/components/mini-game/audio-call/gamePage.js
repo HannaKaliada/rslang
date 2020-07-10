@@ -90,6 +90,7 @@ class GamePage {
     this.isHintUsed = false;
     function check() {
       const gameData = this.gameWords.pop();
+      console.log(gameData);
       if (!gameData && this.gameWords.length) {
         return check.call(this);
       }
@@ -100,7 +101,9 @@ class GamePage {
       this.stopGame();
       return;
     }
-    let variantsText = this.gameData.variants.map((el) => el.wordTranslate);
+    let variantsText = this.gameData.variants.map((el) => {
+      return el ? el.wordTranslate : '';
+    });
     this.rightVariantText = this.gameData.wordTranslate;
     variantsText.push(this.gameData.wordTranslate);
     variantsText = this.randomize(variantsText);
@@ -149,7 +152,7 @@ class GamePage {
       round = 1;
       level = level === 5 ? 0 : (level + 1);
     }
-    this.renderStatisticPage(this.createElement, this.gameResults);
+    this.renderStatisticPage(this.gameResults);
     const date = getDate();
     const result = `${date}, m:${this.gameResults.wrongAnswers.map((el) => el.word)}`;
     let obj;

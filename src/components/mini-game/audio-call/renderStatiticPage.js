@@ -1,6 +1,26 @@
 import createHeader from './createHeader';
+import '../../../assets/icons/speaker.svg';
+import createElement from '../../../shared/createElement';
 
-export default function renderStatisticPage(createElement, gameResults) {
+function createStatsItem(el) {
+  console.log(el);
+  const statsItem = createElement('li', 'audio-call__statistics-item');
+  const speaker = createElement('img', 'audio-call__small-icon');
+  speaker.src = 'images/speaker.svg';
+  const audio = new Audio();
+  audio.src = el.audio;
+  speaker.addEventListener('click', () => {
+    audio.play();
+  });
+  const word = createElement('p');
+  word.textContent = `${el.word} \u2013 `;
+  const translation = createElement('p');
+  translation.textContent = ` ${el.wordTranslate}`;
+  statsItem.append(speaker, word, translation);
+  return statsItem;
+}
+
+export default function renderStatisticPage(gameResults) {
   const h2 = createElement('h2', 'audio-call__title');
   h2.textContent = 'Your statistics:';
   const score = createElement('p', 'audio-call__score');
@@ -11,11 +31,7 @@ export default function renderStatisticPage(createElement, gameResults) {
     const rightAnswersTitle = createElement('h3', 'audio-call__list-title');
     rightAnswersTitle.textContent = 'Right answers:';
     const rightAnswers = createElement('ul', 'audio-call__statistics-list');
-    rightAnswers.append(...gameResults.rightAnswers.map((el) => {
-      const statsItem = createElement('li', 'audio-call__statistics-item');
-      statsItem.textContent = el.word;
-      return statsItem;
-    }));
+    rightAnswers.append(...gameResults.rightAnswers.map(createStatsItem));
     const firstBlock = createElement('div', 'audio-call__statitics-block');
     firstBlock.append(rightAnswersTitle, rightAnswers);
     page.append(firstBlock);
@@ -24,11 +40,7 @@ export default function renderStatisticPage(createElement, gameResults) {
     const wrongAnswersTitle = createElement('h3', 'audio-call__list-title');
     wrongAnswersTitle.textContent = 'Wrong answers:';
     const wrongAnswers = createElement('ul', 'audio-call__statistics-list');
-    wrongAnswers.append(...gameResults.wrongAnswers.map((el) => {
-      const statsItem = createElement('li', 'audio-call__statistics-item');
-      statsItem.textContent = el.word;
-      return statsItem;
-    }));
+    wrongAnswers.append(...gameResults.wrongAnswers.map(createStatsItem));
     const secondBlock = createElement('div', 'audio-call__statitics-block');
     secondBlock.append(wrongAnswersTitle, wrongAnswers);
     page.append(secondBlock);

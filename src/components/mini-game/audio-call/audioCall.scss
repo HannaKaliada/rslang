@@ -66,4 +66,10 @@
     form{
         display: flex;
     }
+    &__statistics-item {
+        display: flex;
+        p {
+            display: inline-block;
+        }
+    }
 }
