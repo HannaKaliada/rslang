@@ -1,9 +1,44 @@
+import view from "./our-game-view";
+
 const model = {
   level: 0,
   difficulty: 0,
   words: [],
   index: 0,
-  answer:0,
+  answer: 0,
+  mistakes: 0,
+  arrayOfAnswers: [],
+  rightAnswers: 0,
+  timer: 0,
+  timer() {
+    const spinnerContainer=document.querySelector('.spinner-container');
+    this.timer = setTimeout(() => this.gameEnd(), 6000000);
+  },
+  gameEnd() {
+    console.log("end");
+    view.remove(document.querySelector(".side-container"));
+    view.remove(document.querySelector(".game-words"));
+    view.remove(document.querySelector(".screen"));
+    view.gameResult();
+  },
+  trueCheck(bool) {
+    console.log(this.words);
+    if (this.answer === bool) {
+      this.rightAnswers++;
+      console.log(true);
+      view.screenAlert(true);
+      this.arrayOfAnswers[this.arrayOfAnswers.length - 1].answer = true;
+    } else {
+      this.mistakes++;
+      console.log(false);
+      view.screenAlert(false);
+    }
+    if (this.index >= 19) setTimeout(() => this.gameEnd(), 1000);
+    else {
+      this.index++;
+      setTimeout(() => this.wordInner(), 2000);
+    }
+  },
   getLevelDifficulty() {
     this.level = localStorage.getItem("our-game-level");
     this.difficulty = localStorage.getItem("our-game-difficulty");
@@ -37,32 +72,38 @@ const model = {
     }
   },
   async wordsShuffle() {
-    this.words = await this.getWords(0, 0);
+    console.log(this.level, " ", this.difficulty);
+    this.words = await this.getWords(this.level, this.difficulty);
     this.shuffle(this.words);
   },
   wordInner() {
-
-    console.log(this.words);
-    console.log(this.index);
-    this.answer=Math.round(Math.random());
-
-    const wordAnswer=this.words[this.index+this.answer].word;
-    console.log(wordAnswer);
+    this.answer = Math.round(Math.random());
+    const wordAnswer = this.words[this.index + this.answer];
+    wordAnswer.answer = false;
+    this.arrayOfAnswers.push(wordAnswer);
+    view.remove(document.querySelector(".word-red"));
+    view.remove(document.querySelector(".word-green"));
+    view.remove(document.querySelector(".game-words"));
     document
       .querySelector(".word-red")
       .insertAdjacentHTML(
-        "afterend",
+        "afterbegin",
         `${this.words[this.index].textMeaning.replace(/\<.*\>/, "...")}`
       );
 
     document
       .querySelector(".word-green")
       .insertAdjacentHTML(
-        "afterend",
+        "afterbegin",
         `${this.words[++this.index].textMeaning.replace(/\<.*\>/, "...")}`
       );
-      document.querySelector(".learn-word").insertAdjacentHTML('afterbegin',wordAnswer);
+    const learnWord = document.createElement("p");
+    learnWord.classList.add("learn-word");
+    document
+      .querySelector(".game-words")
+      .insertAdjacentElement("afterbegin", learnWord);
 
+    learnWord.insertAdjacentHTML("afterbegin", wordAnswer.word);
   },
 };
 export default model;
