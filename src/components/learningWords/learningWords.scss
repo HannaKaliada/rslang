@@ -23,13 +23,16 @@
   justify-content: center;
   align-items: center;
   margin-top: 30px;
-  .modal{
+  .modal {
     position: absolute;
     text-align: center;
     top: 33%;
     z-index: 10;
     display: block;
     height: auto;
+  }
+  .modal-title {
+    margin-left: 40%;
   }
   &__card {
     margin-bottom: 20px;

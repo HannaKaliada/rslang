@@ -5,8 +5,8 @@ export default function showMessage() {
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title">Good Work!</h5>
+          <button type="button"  class="close btn-close-show-message" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -14,7 +14,6 @@ export default function showMessage() {
           <p>You have fulfilled your norm for today, you can stop or continue to learn new words.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-close-show-message" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary btn-menu">Menu</button>
         </div>
       </div>
