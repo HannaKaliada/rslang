@@ -1,7 +1,7 @@
-/* eslint-disable no-unused-vars */
 import Swiper from 'swiper';
 
 export default function swiperInit() {
+  // eslint-disable-next-line
   const swiper = new Swiper('.swiper-container', {
     slidesPerView: 3,
     spaceBetween: 30,

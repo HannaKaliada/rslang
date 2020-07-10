@@ -1,11 +1,11 @@
-import createStartPage from '../components/mini-game/speak-it/start-page';
 import settings from '../components/settings/settings';
 import renderTeamPage from '../components/about-team-page/render-about-team-page';
 import renderStartPage from '../components/start-page/renderStartPage';
 import initHubPage from '../components/hub/hub-page/initHubPage';
 import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
+import renderSavannaPage from '../components/mini-game/savanna/render-savanna-page';
 import learningWords from '../components/learningWords/learningWords';
-import initVocabulary from '../components/vocabulary/initVocabulary';
+import createStartPage from '../components/mini-game/speak-it/start-page';
 
 function statistics() {
   const page = document.querySelector('.root');
@@ -74,12 +74,14 @@ const routes = {
     requiresAuth: true,
     render: speakIt,
   },
-
+  '#/savanna-game': {
+    requiresAuth: true,
+    render: renderSavannaPage,
+  },
   '#/vocabulary': {
     requiresAuth: true,
     render: initVocabulary,
   },
-
 };
 
 export default routes;
