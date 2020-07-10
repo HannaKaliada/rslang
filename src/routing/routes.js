@@ -46,6 +46,7 @@ const routes = {
   '#/audiocall': {
     requiresAuth: true,
     render: audioCall,
+  },
   '#/savanna-game': {
     requiresAuth: true,
     render: renderSavannaPage,
