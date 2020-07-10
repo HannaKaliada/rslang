@@ -22,11 +22,11 @@ export default function showMessage() {
   </div>
     `;
 
-
     page.insertAdjacentHTML('afterbegin', content);
     const btn = document.querySelector('.btn-close-show-message');
     btn.addEventListener('click', () => document.querySelector('.modal').remove());
-    const btnMenu= document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click',()=>document.location='#/hub');
+    const btnMenu = document.querySelector('.btn-menu');
+    // eslint-disable-next-line
+    btnMenu.addEventListener('click', () => document.location = '#/hub');
   }
 }
