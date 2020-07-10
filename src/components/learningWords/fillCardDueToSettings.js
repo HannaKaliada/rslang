@@ -44,7 +44,7 @@ export default function fillCardDueToSettings() {
   if (settings.wordTranscription === 'true') {
     document.querySelector('.transcription').textContent = properties.words[settings.currentWord].transcription;
   }
-  // if (settings.wordImage === 'true') {
-  //   document.querySelector('word__card .image').src = '';
-  // }
+  if (settings.wordImage === 'true') {
+    document.querySelector('.word__card .image').src = properties.words[settings.currentWord].image;
+  }
 }
