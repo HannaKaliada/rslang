@@ -3,9 +3,10 @@ import renderTeamPage from '../components/about-team-page/render-about-team-page
 import renderStartPage from '../components/start-page/renderStartPage';
 import initHubPage from '../components/hub/hub-page/initHubPage';
 import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
-import renderStartSprintPage from '../components/mini-game/sprint/pages/StartSprintPage';
-import learningWords from '../components/learningWords/learningWords.js';
+import renderSavannaPage from '../components/mini-game/savanna/render-savanna-page';
+import learningWords from '../components/learningWords/learningWords';
 import createStartPage from '../components/mini-game/speak-it/start-page';
+import renderStartSprintPage from '../components/mini-game/sprint/pages/StartSprintPage';
 
 function statistics() {
   const page = document.querySelector('.root');
@@ -38,14 +39,6 @@ function speakIt() {
 }
 
 const routes = {
-  '#/': renderStartPage,
-  '#/statistics': statistics,
-  '#/game': game,
-  '#/settings': settings,
-  '#/auth': createSignInSignUpPage.init.bind(createSignInSignUpPage),
-  '#/about-team': renderTeamPage,
-  '#/hub': initHubPage,
-  '#/speak-it': speakIt,
   '#/': {
     requiresAuth: false,
     render: renderStartPage,
@@ -82,11 +75,14 @@ const routes = {
     requiresAuth: true,
     render: speakIt,
   },
+  '#/savanna-game': {
+    requiresAuth: true,
+    render: renderSavannaPage,
+  },
   '#/sprint': {
     requiresAuth: true,
     render: renderStartSprintPage,
   },
-
 };
 
 export default routes;
