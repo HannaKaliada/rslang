@@ -44,6 +44,18 @@ const control = {
             model.forTimer2 = 125;
             view.generateGameLayout();
             break;
+          case 'play-btn-2':
+            model.playMusic(event.target.parentNode.parentNode.children[0]);
+            break;
+          case 'play-btn-1':
+            model.playMusic(event.target.parentNode.children[0]);
+            break;
+          case 'word-btn':
+            model.trueCheck(event.target.innerText);
+            break;
+          case 'play-btn':
+            model.playMusic(event.target.children[0]);
+            break;
           default:
             break;
         }
