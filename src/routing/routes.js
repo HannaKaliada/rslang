@@ -7,6 +7,7 @@ import renderSavannaPage from '../components/mini-game/savanna/render-savanna-pa
 import learningWords from '../components/learningWords/learningWords';
 import createStartPage from '../components/mini-game/speak-it/start-page';
 import audioCall from '../components/mini-game/audio-call/createAudioCallPage';
+import initVocabulary from '../components/vocabulary/initVocabulary';
 
 function speakIt() {
   const page = document.querySelector('.root');
@@ -46,6 +47,7 @@ const routes = {
   '#/audiocall': {
     requiresAuth: true,
     render: audioCall,
+  },
   '#/savanna-game': {
     requiresAuth: true,
     render: renderSavannaPage,
