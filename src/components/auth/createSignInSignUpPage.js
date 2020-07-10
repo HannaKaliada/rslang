@@ -2,6 +2,11 @@ import createElement from '../../shared/createElement';
 import signInUser from './signInUser';
 import createUser from '../../services/createUser';
 import checkTokenIsAlive from './checkTokenIsAlive';
+import setSettingsToLocalStorage from '../settings/setSettingsToLocalStorage';
+import postUserSettings from '../../services/postUserSettings';
+import defaultSettings from '../settings/defaultSettings';
+import getUserSettings from '../../services/getUserSettings';
+import setProps from '../learningWords/setProps';
 
 const FORM_TYPE_SIGNUP = 'signUp';
 const FORM_TYPE_SIGNIN = 'signIn';
@@ -27,6 +32,9 @@ class CreateSignInSignUpPage {
         try {
           await createUser(credentials);
           await signInUser(credentials);
+          await postUserSettings(defaultSettings);
+          setSettingsToLocalStorage(defaultSettings);
+          setProps();
           window.location.hash = '#/hub';
         } catch (error) {
           this.errorField.textContent = error;
@@ -34,6 +42,9 @@ class CreateSignInSignUpPage {
       } else {
         try {
           await signInUser(credentials);
+          const settings = await getUserSettings();
+          setSettingsToLocalStorage(settings);
+          setProps();
           window.location.hash = '#/hub';
         } catch (error) {
           this.errorField.textContent = error;
@@ -161,6 +172,9 @@ class CreateSignInSignUpPage {
     container.append(this.createForm());
     root.append(container);
     if (await checkTokenIsAlive()) {
+      const settings = await getUserSettings();
+      setSettingsToLocalStorage(settings);
+      setProps();
       window.location.hash = '#/hub';
     }
   }
