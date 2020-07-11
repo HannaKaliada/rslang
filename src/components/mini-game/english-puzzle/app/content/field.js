@@ -59,7 +59,7 @@ class Field {
   }
 
   addImg() {
-    const url = this.imgData.urls.full;
+    const url = this.imgData.urls.regular;
     this.wordsContainer.setAttribute('style', `background-image: url(${url})`);
     return this;
   }
@@ -71,7 +71,7 @@ class Field {
 
   addContent(data) {
     this.imgData = data;
-    const url = data.urls.full;
+    const url = data.urls.regular;
     const words = Content.create().getWordsData();
     if (words) {
       const wordsNodeList = words.map((elem) => {
@@ -95,7 +95,7 @@ class Field {
 
   showImg() {
     const { height, width } = this.container.getBoundingClientRect();
-    const url = this.imgData.urls.full;
+    const url = this.imgData.urls.regular;
     this.cleanContainer();
     this.container.setAttribute('style', `width: ${width}px; height: ${height}px; background-image: url(${url})`);
     return this;

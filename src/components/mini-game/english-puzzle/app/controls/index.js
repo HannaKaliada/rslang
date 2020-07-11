@@ -32,6 +32,7 @@ async function changeView(elem, value, type) {
       imgData = {
         urls: {
           full: '',
+          regular: '',
         },
         alt_description: '',
       };

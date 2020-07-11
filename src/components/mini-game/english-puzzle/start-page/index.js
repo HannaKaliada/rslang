@@ -23,6 +23,7 @@ async function start() {
       imgData = {
         urls: {
           full: '',
+          regular: '',
         },
         alt_description: '',
       };

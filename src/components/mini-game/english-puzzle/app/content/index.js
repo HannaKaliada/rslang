@@ -20,7 +20,6 @@ let instance;
 
 function active(elem) {
   const { action } = elem.dataset;
-  // console.log(elem.dataset);
   if (actions[action]) {
     actions[action](elem);
   }
