@@ -2,9 +2,11 @@ import setProps from './setProps';
 import properties from './properties';
 import showTranslation from './showTranslation';
 import { updateAmountOfDoneCards } from './updateAmountOfDoneCards';
+import showMessage from './showMessage';
 
 export default function correctAnswer() {
   showTranslation();
+  showMessage();
   updateAmountOfDoneCards();
   document.querySelector('.submit-btn').classList.add('hidden');
   document.querySelector('.next-btn').classList.remove('hidden');
