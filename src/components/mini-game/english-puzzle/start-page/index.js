@@ -12,7 +12,8 @@ async function start() {
   const root = document.querySelector('.root');
   const app = Puzzle.create()
     .createContainer()
-    .addControls({ group: FIRST_VALUE, page: FIRST_VALUE });
+    .addControls({ group: FIRST_VALUE, page: FIRST_VALUE })
+    .addErrors();
   root.append(app.container, errors);
   const data = await getWords(FIRST_VALUE, FIRST_VALUE);
   let imgData = await getImg();

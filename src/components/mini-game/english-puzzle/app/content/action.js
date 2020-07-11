@@ -35,11 +35,14 @@ export function cleanCheckWords() {
 export function replaceWord(field, elem, direction) {
   const newElem = field.find((element) => {
     if (element.textContent === '') {
+      const firstPart = createDomElem('div', ['shape-part']);
+      const lastPart = createDomElem('div', ['shape-part']);
       // eslint-disable-next-line no-param-reassign
       element.textContent = elem.textContent;
       element.setAttribute('data-action', `${direction}-field`);
       element.setAttribute('draggable', 'true');
       element.classList.add('puzzle-shape');
+      element.append(firstPart, lastPart);
       return true;
     }
     return false;
@@ -84,7 +87,9 @@ const actions = {
         .cleanField(curPos)
         .getFields()[curPos];
       words.forEach((str) => {
-        const word = createDomElem('div', ['content__words-item', 'puzzle-shape'], [str]);
+        const firstPart = createDomElem('div', ['shape-part']);
+        const lastPart = createDomElem('div', ['shape-part']);
+        const word = createDomElem('div', ['content__words-item', 'puzzle-shape'], [str, firstPart, lastPart]);
         field.append(word);
       });
       this.check();
@@ -167,7 +172,6 @@ const actions = {
   },
 
   result() {
-    console.log('result');
     const result = Result.create()
       .createContainer()
       .addContent()

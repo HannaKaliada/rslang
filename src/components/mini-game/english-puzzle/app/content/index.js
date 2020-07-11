@@ -14,6 +14,7 @@ import {
   handleDragStart,
   handleDrop,
 } from './drug-and-drop';
+import ErrorMsg from '../error';
 
 let instance;
 
@@ -149,6 +150,7 @@ class Content {
     Buttons.create()
       .cleanContainer()
       .addKnowBtn();
+    ErrorMsg.create().cleanContainer();
     actions.isCheck = false;
     this.dontKnowWords = [];
     return this;

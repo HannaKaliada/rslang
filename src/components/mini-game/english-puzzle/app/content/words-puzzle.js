@@ -49,10 +49,12 @@ class WordsPuzzle {
       numbers.add(num);
     }
     Array.from(numbers).forEach((num) => {
+      const firstPart = createDomElem('div', ['shape-part']);
+      const lastPart = createDomElem('div', ['shape-part']);
       const word = createDomElem(
         'div',
         ['content__words-item', 'puzzle-shape'],
-        [wordsArr[num]],
+        [wordsArr[num], firstPart, lastPart],
         [['data-action', 'in-field'], ['draggable', 'true']],
       );
       this.container.append(word);

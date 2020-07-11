@@ -1,6 +1,7 @@
 import createDomElem from '../common';
 import Controls from './controls';
 import Content from './content';
+import ErrorMsg from './error';
 // eslint-disable-next-line no-unused-vars
 
 let instance;
@@ -50,6 +51,14 @@ class Puzzle {
       .addEventClick()
       .addEventDrug();
     this.container.append(content.container);
+    return this;
+  }
+
+  addErrors() {
+    const errors = ErrorMsg.create()
+      .createContainer()
+      .container;
+    this.container.append(errors);
     return this;
   }
 }
