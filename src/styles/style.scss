@@ -1,8 +1,52 @@
+@import "speak-it/speak-it";
+@import './mixins.scss';
+
 * {
   box-sizing: border-box;
 }
 
-@import "speak-it/speak-it";
+html {
+  font-size: 10px;
+}
+
+@include tablet() {
+  html {
+    font-size: 8px;
+  }
+}
+
+@include mobile() {
+  html {
+    font-size: 7px;
+  }
+}
+
+body {
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+}
+
+.btn {
+  border-radius: 8rem;
+  padding: 1.6rem 6.4rem;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  border: 0;
+  color: #263238;
+  font-weight: 600;
+  text-transform: uppercase;
+  max-width: 27rem;
+}
+
+.btn_yellow {
+  background: #ffc727;
+  box-shadow: 0 .4rem 1.2rem #ffc727;
+}
+
+.btn_yellow:hover {
+  background: #caa234;
+  box-shadow: 0px 0.4rem 1.2rem #caa234;
+}
 
 .form-container {
   display: flex;

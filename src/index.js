@@ -1,5 +1,6 @@
 import './styles/normalize.css';
 import './styles/style.scss';
+import './styles/fonts.css';
 import 'bootstrap';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/js/dist/tooltip';

@@ -1,43 +1,70 @@
-.main-page__wrapper {
-    max-width: 1020px;
-    margin: 20px auto 0 auto;
-}
+@import "../../styles/mixins.scss";
 
-.main-page__promo {
-    display: flex;
-    align-items: center;
-    .promo-link {
-        font-size: 24px;
-    }
-}
-
-.main-page__description {
-    margin: 70px 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    h1 {
-        font-size: 48px;
-        margin-bottom: 50px;
-    }
-
-    .description-text {
-        text-align: center;
-
-        p {
-            font-size: 24px;
-            line-height: 1;
+.main-page {
+    padding: 20px 0;
+    &__promo {
+        .promo-link {
+            font-size: 2.8rem;
+            color: #ffc727;
+            font-weight: 600;
         }
     }
-
-
-    .main-page__start-btn {
+    &__content {
         display: flex;
-        justify-content: center;
+        align-items: center;
+        .description {
+            width: 70%;
+            h1 {
+                font-size: 5.4rem;
+                font-weight: 600;
+                margin-bottom: 2.5rem;
+                line-height: 7rem;
+                color: #051553;
+            }
 
-        .btn {
-            font-size: 24px;
+            ul {
+                padding-left: 0;
+                margin-bottom: 3rem;
+                li {
+                    list-style: disc inside;
+                    font-size: 2.4rem;
+                    line-height: 3.5rem;
+                    margin-bottom: 1rem;
+                    color: #051553;
+                }
+                li:last-child{
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+@include tablet() {
+    .main-page {
+        &__content {
+            .description,
+            img {
+                width: 50%;
+            }
+        }
+    }
+}
+
+@include mobile() {
+    .main-page {
+        &__promo {
+            text-align: center;
+        }
+        &__content {
+            flex-direction: column-reverse;
+            .description {
+                width: 100%;
+                text-align: center;
+            }
+            img{
+                width: 80%;
+            }
         }
     }
 }
