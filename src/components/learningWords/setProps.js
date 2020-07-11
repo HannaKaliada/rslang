@@ -13,4 +13,5 @@ export default async function setProps() {
   properties.wordTranscription = localStorage.getItem('wordTranscription');
   properties.wordTranslationHint = localStorage.getItem('wordTranslationHint');
   properties.sentencesTranslation = localStorage.getItem('sentencesTranslation');
+  properties.wordImage = localStorage.getItem('wordImage');
 }

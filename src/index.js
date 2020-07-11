@@ -1,7 +1,7 @@
 import './styles/normalize.css';
 import './styles/style.scss';
 import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/js/dist/tooltip';
 import './components/about-team-page/about-team-page';
 import Routing from './routing/routing';
