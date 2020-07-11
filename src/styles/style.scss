@@ -55,7 +55,14 @@ body {
 }
 
 .btn_medium {
-  width: 240px;
+  padding: 1rem 6.4rem;
+  width: 220px;
+}
+
+.btn_small {
+  padding: .8rem 4rem;
+  width: 160px;
+  font-size: 1.4rem;
 }
 
 .form-container {
@@ -112,6 +119,10 @@ body {
     &__name,
     &__password {
       padding: 0 0.5rem;
+    }
+    &__error-msg{
+      font-size: 1.4rem;
+      text-align: center;
     }
   }
 }
