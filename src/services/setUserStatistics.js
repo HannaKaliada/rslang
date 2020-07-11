@@ -1,18 +1,19 @@
-const getUserStatistic = async ({ userId, token }) => {
+const setUserStatistics = async ({ userId, token, obj }) => {
   const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/statistics`, {
-    method: 'GET',
+    method: 'PUT',
     withCredentials: true,
     headers: {
       Authorization: `Bearer ${token}`,
       Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-  })
-    .catch((e) => e);
+    body: JSON.stringify(obj),
+  });
   if (rawResponse.ok) {
     const content = await rawResponse.json();
     return content;
   }
-  throw new Error('Error to get user statistics');
+  throw new Error('Error to set user statistics');
 };
 
-export default getUserStatistic;
+export default setUserStatistics;

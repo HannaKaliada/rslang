@@ -9,6 +9,7 @@ import createElement from '../../../shared/createElement';
 import burgerIconHandler from '../../../shared/menu/burgerIconHandler';
 import setItemActiveState from '../../../shared/menu/setItemActiveState';
 import { getAmountOfDoneCards } from '../../learningWords/updateAmountOfDoneCards';
+import logoutButtonHandler from '../../../shared/header/logoutButtonHandler';
 
 function updateHubPageInfo() {
   info.cardsPerDay = localStorage.getItem('cardsLimit') ? localStorage.getItem('cardsLimit') : 80;
@@ -23,4 +24,5 @@ export default function initHubPage() {
   root.append(hub);
   burgerIconHandler();
   setItemActiveState();
+  logoutButtonHandler();
 }
