@@ -10,7 +10,7 @@ export default function renderStartPage() {
         </div>
         <div class="main-page__content">
           <div class="description">
-            <h1>The best way to learn a language</h1>
+            <h1>The best way to <br>learn a language</h1>
             <ul class="list">
               <li>Learn words using interval repetition techniques.</li>
               <li>Practice and test your knowledge by playing mini-games.</li>

@@ -129,7 +129,7 @@ class CreateSignInSignUpPage {
 
   createSubmitButton() {
     const submitAttrs = [['type', 'submit']];
-    this.submit = this.createElement('input', ['btn', 'btn-primary'], submitAttrs);
+    this.submit = this.createElement('input', ['btn', 'btn-primary', 'btn_yellow', 'btn_medium'], submitAttrs);
     this.submit.value = 'Sign up';
     return this.submit;
   }
