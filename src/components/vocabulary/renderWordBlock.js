@@ -1,5 +1,4 @@
 import createElement from '../../shared/createElement';
-import createProgressBar from './createProgressBar';
 
 export default function renderWordBlock(wordInfo) {
   const wordWrapper = createElement('div', 'vocabulary__word');
@@ -22,7 +21,7 @@ export default function renderWordBlock(wordInfo) {
     </div>
     <button type="button" class="btn btn-primary word__delete-btn">Delete word</button>
     `);
-  wordWrapper.append(wordBlock, createProgressBar(wordInfo.intervals));
+  //todo: wordWrapper.append(wordBlock, createProgressBar(wordInfo.intervals));
 
   if (localStorage.wordImage === 'true') {
     wordWrapper.insertAdjacentHTML('beforeend', `
