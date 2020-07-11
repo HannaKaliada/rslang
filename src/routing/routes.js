@@ -6,7 +6,9 @@ import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
 import renderSavannaPage from '../components/mini-game/savanna/render-savanna-page';
 import learningWords from '../components/learningWords/learningWords';
 import createStartPage from '../components/mini-game/speak-it/start-page';
+import renderOurGamePage from '../components/mini-game/our-game/our-game-render-page';
 import audioCall from '../components/mini-game/audio-call/createAudioCallPage';
+
 
 function speakIt() {
   const page = document.querySelector('.root');
@@ -50,6 +52,10 @@ const routes = {
   '#/savanna-game': {
     requiresAuth: true,
     render: renderSavannaPage,
+  },
+  '#/our-game': {
+    requiresAuth: true,
+    render: renderOurGamePage,
   },
 };
 
