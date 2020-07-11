@@ -1,5 +1,9 @@
+import properties from './properties';
+import createProgressBar from './progressBar';
+
 export default function renderContent() {
   const page = document.querySelector('.root');
+  const currentWord = localStorage.getItem('currentWord');
   page.insertAdjacentHTML('beforeend',
     `<div class="container">
       <div class="learning-settings">
@@ -67,6 +71,10 @@ export default function renderContent() {
           <button class="btn btn-primary next-btn hidden">Next</button>
           <button class="btn btn-info show-answer-btn">Show answer</button>
         </div>
+        <p class="word__translation">
+          ${properties.words[currentWord].wordTranslate}
+        </p>
+        ${createProgressBar()}
         <p class="word__translation"></p>
       </div>
     </div>`);
