@@ -5,6 +5,6 @@ export default function addEventListeners() {
   soundIcon.addEventListener('click', () => {
     document.querySelector('.sound-on').classList.toggle('hidden');
     document.querySelector('.sound-off').classList.toggle('hidden');
-    properties.sound = properties.sound === true;
+    properties.sound = !(properties.sound === true);
   });
 }

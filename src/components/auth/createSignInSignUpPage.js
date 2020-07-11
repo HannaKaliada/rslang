@@ -2,6 +2,7 @@ import createElement from '../../shared/createElement';
 import signInUser from './signInUser';
 import createUser from '../../services/createUser';
 import checkTokenIsAlive from './checkTokenIsAlive';
+import info from '../hub/hub-page/info';
 
 const FORM_TYPE_SIGNUP = 'signUp';
 const FORM_TYPE_SIGNIN = 'signIn';
@@ -27,6 +28,7 @@ class CreateSignInSignUpPage {
         try {
           await createUser(credentials);
           await signInUser(credentials);
+          info.userEmail = credentials.email;
           window.location.hash = '#/hub';
         } catch (error) {
           this.errorField.textContent = error;
@@ -34,6 +36,7 @@ class CreateSignInSignUpPage {
       } else {
         try {
           await signInUser(credentials);
+          info.userEmail = credentials.email;
           window.location.hash = '#/hub';
         } catch (error) {
           this.errorField.textContent = error;

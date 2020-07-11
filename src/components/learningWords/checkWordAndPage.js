@@ -1,19 +1,29 @@
-import setWordsToProps from './setWordsToProps';
+import setProps from './setProps';
+import properties from './properties';
 
 export default async function checkWordAndPage() {
-  const currentWord = localStorage.getItem('currentWord');
-  const currentPage = localStorage.getItem('currentPage');
-  const currentGroup = localStorage.getItem('currentGroup');
-  if (currentWord < 9) {
-    localStorage.setItem('currentWord', Number(currentWord) + 1);
+  if (properties.wordExample === 'true' && properties.wordTranslation === 'true') {
+    document.querySelector('.sentence .hidden-word').textContent = properties.words[properties.currentWord].textExample.match(/(?<=\>).*(?=\<)/);
+  }
+  if (properties.wordMeaning === 'true' && properties.wordExample === 'true') {
+    document.querySelector('.meaning .hidden-word').textContent = properties.words[properties.currentWord].textMeaning.match(/(?<=\>).*(?=\<)/);
+  }
+
+  if (properties.currentWord < 9) {
+    localStorage.setItem('currentWord', Number(properties.currentWord) + 1);
+    properties.currentWord = Number(properties.currentWord) + 1;
   } else {
-    if (currentPage < 30) {
-      localStorage.setItem('currentPage', Number(currentPage) + 1);
-      await setWordsToProps();
+    if (properties.currentPage < 30) {
+      localStorage.setItem('currentPage', Number(properties.currentPage) + 1);
+      properties.currentPage = Number(properties.currentPage) + 1;
+      setProps();
     } else {
       localStorage.setItem('currentPage', 0);
-      localStorage.setItem('currentGroup', Number(currentGroup) + 1);
+      properties.currentPage = 0;
+      localStorage.setItem('currentGroup', Number(properties.currentGroup) + 1);
+      properties.currentGroup = Number(properties.currentGroup) + 1;
     }
     localStorage.setItem('currentWord', 0);
+    properties.currentWord = 0;
   }
 }

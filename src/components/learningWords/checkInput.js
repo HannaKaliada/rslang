@@ -15,6 +15,8 @@ export default function checkInput() {
     inputTopLayer.classList.remove('transparent');
 
     if (input.value === properties.missingWord) {
+      input.classList.add('input_correct');
+      input.disabled = true;
       await correctAnswer();
     } else {
       inputTopLayer.classList.remove('hidden');
