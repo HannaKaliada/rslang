@@ -8,10 +8,17 @@ import '../../../styles/menu.scss';
 import createElement from '../../../shared/createElement';
 import burgerIconHandler from '../../../shared/menu/burgerIconHandler';
 import setItemActiveState from '../../../shared/menu/setItemActiveState';
+import { getAmountOfDoneCards } from '../../learningWords/updateAmountOfDoneCards';
+
+function updateHubPageInfo() {
+  info.cardsPerDay = localStorage.getItem('cardsLimit') ? localStorage.getItem('cardsLimit') : 80;
+  info.cardsCompleted = getAmountOfDoneCards();
+}
 
 export default function initHubPage() {
   const root = document.querySelector('.root');
   const hub = createElement('div', 'hub');
+  updateHubPageInfo();
   hub.append(renderHeader(), renderHubPage(info), renderMenu());
   root.append(hub);
   burgerIconHandler();
