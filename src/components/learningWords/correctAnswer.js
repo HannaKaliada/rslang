@@ -3,6 +3,7 @@ import properties from './properties';
 import showTranslation from './showTranslation';
 
 export default function correctAnswer() {
+  console.log(properties);
   showTranslation();
 
   document.querySelector('.submit-btn').classList.add('hidden');
