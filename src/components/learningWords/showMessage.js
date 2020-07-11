@@ -1,7 +1,7 @@
 export default function showMessage() {
   if (localStorage.getItem('currentWord') === localStorage.getItem('wordsLimit')) {
     const page = document.querySelector('.word');
-    const content = `<div class="modal" tabindex="-1" role="dialog">
+    const content = `<div class="modal modal-fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
