@@ -70,6 +70,7 @@ const model = {
     view.remove(document.querySelector('.game-words'));
     view.remove(document.querySelector('.screen'));
     view.remove(document.querySelector('.timer-container'));
+    document.querySelector('.btn-close').remove();
 
     view.gameResult();
   },
