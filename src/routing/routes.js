@@ -5,10 +5,12 @@ import initHubPage from '../components/hub/hub-page/initHubPage';
 import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
 import renderSavannaPage from '../components/mini-game/savanna/render-savanna-page';
 import learningWords from '../components/learningWords/learningWords';
+import englishPuzzle from '../components/mini-game/english-puzzle';
 import speakIt from '../components/mini-game/speak-it/start-page';
 import renderOurGamePage from '../components/mini-game/our-game/our-game-render-page';
 import audioCall from '../components/mini-game/audio-call/createAudioCallPage';
-import englishPuzzle from '../components/mini-game/english-puzzle';
+import renderStartSprintPage from '../components/mini-game/sprint/pages/StartSprintPage';
+
 
 const routes = {
   '#/': {
@@ -51,6 +53,10 @@ const routes = {
     requiresAuth: true,
     render: renderSavannaPage,
   },
+  '#/sprint': {
+    requiresAuth: true,
+    render: renderStartSprintPage,
+  },  
   '#/our-game': {
     requiresAuth: true,
     render: renderOurGamePage,
