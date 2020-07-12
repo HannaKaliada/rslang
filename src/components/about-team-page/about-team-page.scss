@@ -24,9 +24,10 @@
   margin-top: 50px;
   margin-bottom: 100px;
 }
-
+.swiper-pagination {
+  bottom: 0px !important;
+}
 .swiper-slide {
-  /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -43,7 +44,7 @@
   font-size: 18px;
   text-align: center;
 
-  background: #ffffff;
+  background: #e5e5e5;
   .card {
     .card-name {
       text-align: center;
@@ -51,30 +52,64 @@
     }
   }
 }
+
+@media screen and (max-device-width: 1100px) {
+  .swiper-container .card {
+    width: 17rem !important;
+    height: 300px !important;
+    min-height: 300px !important;
+  }
+}
 @media screen and (max-device-width: 400px) {
-  .card {
-    width: 15rem;
+  .swiper-container .card {
+    width: 15rem !important;
+    min-height: 220px !important;
+    height: 220px !important;
+  }
+  .swiper-container {
+    width: 163px !important;
+  }
+  .swiper-container .card-name {
+    font-size: 2.5rem !important;
+  }
+}
+@media screen and (max-device-width: 600px) {
+  .swiper-container {
+    width: 400px;
+  }
+  .swiper-container .card {
+    min-height: 250px !important;
+    height: 250px !important;
+  }
+}
+@media screen and (max-device-width: 500px) {
+  .swiper-container {
+    width: 300px;
+  }
+  .swiper-container .card {
+    min-height: 250px !important;
+    height: 250px !important;
   }
 }
 
 @media screen and (min-device-width: 920px) {
   .swiper-button-prev {
-    right: auto;
-    left: 5%;
+    right: auto !important;
+    left: 5% !important;
   }
   .swiper-button-next {
-    right: 5%;
-    left: auto;
+    right: 5% !important;
+    left: auto !important;
   }
 }
 
 @media screen and (min-device-width: 1199px) {
   .swiper-button-prev {
-    right: auto;
-    left: 2.6%;
+    right: auto !important;
+    left: 2.6% !important;
   }
   .swiper-button-next {
-    right: 2.6%;
-    left: auto;
+    right: 2.6% !important;
+    left: auto !important;
   }
 }
