@@ -2,11 +2,32 @@ import getWords from '../../shared/getWords';
 import properties from './properties';
 
 export default async function setProps() {
-  const words = await getWords(localStorage.getItem('currentPage'), localStorage.getItem('currentGroup'));
+  const words = await getWords(
+    localStorage.getItem('currentPage'),
+    localStorage.getItem('currentGroup'),
+  );
   properties.words = words;
+  const localAllWords = words.map((el) => {
+    // eslint-disable-next-line
+    el.answer = "none";
+    return el;
+  });
+
+  const localAllWords1 = JSON.parse(localStorage.getItem('localAllWords')) || [];
+
+  if (localAllWords1.length === 0) {
+    localStorage.setItem('currentWordIndex', 0);
+  }
+
+  if (localAllWords1.length === 0 || localAllWords1[0].word !== localAllWords[0].word) {
+    const localAllWords2 = [...localAllWords1, ...localAllWords];
+    localStorage.setItem('localAllWords', JSON.stringify(localAllWords2));
+  } else localStorage.setItem('localAllWords', JSON.stringify(localAllWords));
+
   properties.settings = {
     wordsPerDay: localStorage.getItem('wordsLimit'),
     optional: {
+      currentWordIndex: localStorage.getItem('currentWordIndex'),
       cardsLimit: localStorage.getItem('cardsLimit'),
       currentWord: localStorage.getItem('currentWord'),
       currentPage: localStorage.getItem('currentPage'),

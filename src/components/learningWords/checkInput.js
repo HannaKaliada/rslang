@@ -13,11 +13,18 @@ export default function checkInput() {
 
     inputTopLayer.textContent = '';
     inputTopLayer.classList.remove('transparent');
+    const currentWordIndex = localStorage.getItem('currentWordIndex');
+    const wordArray = JSON.parse(localStorage.getItem('localAllWords'));
 
     if (input.value === properties.missingWord) {
       input.classList.add('input_correct');
       input.disabled = true;
-      await correctAnswer();
+      correctAnswer();
+
+      if (wordArray[currentWordIndex].answer === 'none') {
+        wordArray[currentWordIndex].answer = 'true';
+        localStorage.setItem('localAllWords', JSON.stringify(wordArray));
+      }
     } else {
       inputTopLayer.classList.remove('hidden');
 

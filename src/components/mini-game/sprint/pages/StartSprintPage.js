@@ -56,8 +56,6 @@ function initNumberOfRounds(value) {
   }
 }
 
-
-
 function initStartButton() {
   const falseButton = document.querySelector('.btn-start');
   falseButton.addEventListener('click', () => {
