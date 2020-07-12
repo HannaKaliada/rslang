@@ -40,6 +40,9 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
   }
+  .modal-statistic{
+    z-index: 11111;
+  }
   .modal-body-flex {
     display: flex;
     justify-content: space-between;

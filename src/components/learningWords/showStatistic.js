@@ -19,7 +19,7 @@ export default function showStatistic() {
       }
     });
     const page = document.querySelector('.word');
-    const content = `<div class="modal modal-fade" tabindex="-1" role="dialog">
+    const content = `<div class="modal modal-fade modal-statistic" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
