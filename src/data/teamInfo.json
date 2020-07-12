@@ -3,6 +3,6 @@
     { "name": "Глеб Жидович", "description": "GOOD", "img": "../src/components/about-team-page/img/gleb.jpg" },
     { "name": "Анна Каледа", "description": "GOOD", "img": "../src/components/about-team-page/img/anya.jpg" },
     { "name": "Геннадий Бакулин", "description": "GOOD", "img": "../src/components/about-team-page/img/gennady.jpg" },
-    { "name": "Lesha Belenko", "description": "GOOD", "img": "../src/components/about-team-page/img/lesha.jpg" },
-    { "name": "Lesha Belenko", "description": "GOOD", "img": "../src/components/about-team-page/img/lesha.jpg" }
+    { "name": "Ксения Никитина", "description": "GOOD", "img": "../src/components/about-team-page/img/ksenia.jpg" },
+    { "name": "Lesha Belenko", "description": "GOOD", "img": "../src/components/about-team-page/img/lesha_b.jpg" }
 ]
