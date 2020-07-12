@@ -1,3 +1,5 @@
+@import "./mixins.scss";
+
 .hub {
   display: grid;
 
@@ -22,15 +24,21 @@
         display: flex;
         .hub__main-block {
           background: #ffffff;
-          padding: 2rem;
+          padding: 3rem;
           display: flex;
           width: 50%;
           box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.04);
           border-radius: 28px;
-          img {
-            max-width: 200px;
-            height: auto;
+          align-items: center;
+          .image {
             width: 50%;
+            display: flex;
+            align-items: center;
+            img {
+              max-width: 200px;
+              height: auto;
+              width: 100%;
+            }
           }
           .description {
             width: 50%;
@@ -58,10 +66,8 @@
         font-size: 3rem;
       }
       .current-info__words {
-        display: grid;
+        display: flex;
 
-        grid-gap: 2px;
-        grid-template-columns: 1fr 1fr 1fr;
         p {
           padding: 20px;
           box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.04);
@@ -70,18 +76,16 @@
           font-size: 2rem;
           text-align: center;
           margin-right: 20px;
+          width: calc(33.33333% - 20px);
           span {
             color: #ffc727;
             font-weight: 600;
             font-size: 4rem;
           }
         }
-      }
-
-      .info_week {
-        height: 400px;
-
-        border: 1px solid #007aff;
+        p:last-child{
+          margin-right: 0;
+        }
       }
       .hub__info_total {
         display: flex;
@@ -90,7 +94,7 @@
         background-color: #ffffff;
         align-items: center;
         margin-bottom: 30px;
-        background-image: url('../assets//images/hub-3.png');
+        background-image: url("../assets//images/hub-3.png");
         background-size: cover;
         .description {
           width: 40%;
@@ -105,6 +109,85 @@
             font-size: 4rem;
           }
         }
+      }
+    }
+  }
+}
+
+@include tablet() {
+  .hub {
+    .hub-page {
+      .hub__wrapper {
+        .hub__main-blocks {
+          .hub__main-block {
+            flex-direction: column;
+            .image {
+              min-height: 145px;
+              text-align: center;
+              display: flex;
+              align-items: center;
+              img {
+                margin: 0 auto;
+              }
+            }
+            .description {
+              width: 100%;
+              text-align: center;
+            }
+          }
+          .hub__main-block:first-child {
+            margin-right: 3rem;
+          }
+        }
+        .current-info__words {
+          p {
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mobile() {
+  .hub {
+    .hub-page {
+      .hub__wrapper {
+        .hub__main-blocks {
+          flex-direction: column;
+          .hub__main-block {
+            flex-direction: column;
+            width: 100%;
+            .image {
+              text-align: center;
+              display: flex;
+              align-items: center;
+              img {
+                margin: 0 auto;
+              }
+            }
+            .description {
+              width: 100%;
+              text-align: center;
+            }
+          }
+          .hub__main-block:first-child {
+            margin-right: 3rem;
+          }
+        }
+        .current-info__words {
+          flex-direction: column;
+          p {
+            margin-right: 0;
+            padding: 10px;
+          }
+        }
+        .hub__info_total {
+
+        .description {
+          width: 100%;
+        }
+      }
       }
     }
   }

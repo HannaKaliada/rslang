@@ -14,17 +14,21 @@ export default function renderHubPage(info) {
       </div>
       <div class="hub__main-blocks">
       <div class="hub__main-block">
+      <div class="image">
       <img src=${require('../../../assets/images/hub-2.png')}>
+      </div>
       <div class="description">
       <p>Improve your <b>skills</b> by learning <b>new words</b></p>
-      <a href="#/learning" class="btn btn_medium btn_yellow" role="button">Start learning</a>
+      <a href="#/learning" class="btn btn_small btn_yellow" role="button">Learn</a>
       </div>
       </div>
       <div class="hub__main-block">
+      <div class="image">
       <img src=${require('../../../assets/images/hub-1.png')}>
+      </div>
       <div class="description">
-      <p>Challange yourself & set <b>new records</b></p>
-      <a href="#/games" class="btn btn_medium btn_yellow" role="button">Play games</a>
+      <p>Challange yourself & set <b>new records</br></p>
+      <a href="#/games" class="btn btn_small btn_yellow" role="button">Play</a>
       </div>
       </div>
       </div>
