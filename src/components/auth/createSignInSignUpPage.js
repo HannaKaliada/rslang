@@ -7,6 +7,7 @@ import postUserSettings from '../../services/postUserSettings';
 import defaultSettings from '../settings/defaultSettings';
 import getUserSettings from '../../services/getUserSettings';
 import setProps from '../learningWords/setProps';
+import info from '../hub/hub-page/info';
 
 const FORM_TYPE_SIGNUP = 'signUp';
 const FORM_TYPE_SIGNIN = 'signIn';
@@ -35,6 +36,7 @@ class CreateSignInSignUpPage {
           await postUserSettings(defaultSettings);
           setSettingsToLocalStorage(defaultSettings);
           setProps();
+          info.userEmail = credentials.email;
           window.location.hash = '#/hub';
         } catch (error) {
           this.errorField.textContent = error;
@@ -45,6 +47,7 @@ class CreateSignInSignUpPage {
           const settings = await getUserSettings();
           setSettingsToLocalStorage(settings);
           setProps();
+          info.userEmail = credentials.email;
           window.location.hash = '#/hub';
         } catch (error) {
           this.errorField.textContent = error;

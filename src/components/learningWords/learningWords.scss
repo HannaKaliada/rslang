@@ -24,6 +24,34 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  margin-top: 30px;
+  .modal {
+    position: absolute;
+    text-align: center;
+    z-index: 10;
+    display: block;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+  }
+  .modal-fade {
+    animation: fade 1s ease;
+  }
+  .modal-dialog {
+    top: 25%;
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .modal-title {
+    margin-left: 40%;
+  }
   .to-check-width {
     padding: 10px;
 
@@ -115,3 +143,15 @@
     }
   }
 }
+
+.progress-bar-wrapper {
+  width: 100%;
+  .cards-numbers-wrapper{
+    display: flex;
+    justify-content: space-between;
+    .cards-amount-done, .cards-amount-all{
+      display: inline-block;
+    }
+  }
+}
+
