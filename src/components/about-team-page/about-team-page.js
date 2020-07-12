@@ -6,8 +6,8 @@ export default function renderAboutTeamPage() {
   const wrapper = createElement('div', 'about-team-page');
   const aboutWrapper = createElement('div', 'about-team');
   const links = `<div class="container"><div class="about-team-wrapper">
-    <div class="links"> <h1>About team page:</h1>
-    <h1 ><a href="#/">Main</a></h1> </div>`;
+    <h1>Our Team:</h1>
+    </div>`;
   const start = `<div class="swiper-container">
     <div class="swiper-wrapper">`;
   const end = ` </div>
@@ -20,7 +20,7 @@ export default function renderAboutTeamPage() {
     content += `<div class="swiper-slide"><div class="card" >
         <img src="${el.img}" class="card-img-top" alt="${el.name}">
         <div class="card-body">
-        <h1 class="card-name">${el.name}</h1>
+        <h2 class="card-name">${el.name}</h2>
           <p class="card-text">${el.description}</p>
         </div>
         </div>

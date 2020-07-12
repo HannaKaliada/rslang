@@ -54,8 +54,9 @@ body {
 }
 
 .btn_gray {
-  background: #a6a6a6;
   color: #ffffff;
+
+  background: #a6a6a6;
 }
 
 .btn_yellow:hover {
@@ -64,19 +65,21 @@ body {
 }
 
 .btn_medium {
-  padding: 1rem 6.4rem;
   width: 220px;
+  padding: 1rem 6.4rem;
 }
 
 .btn_small {
-  padding: 0.8rem 4rem;
   width: 160px;
+  padding: 0.8rem 4rem;
+
   font-size: 1.4rem;
 }
 
 .btn_extra-small {
-  padding: 0.8rem 2rem;
   width: 80px;
+  padding: 0.8rem 2rem;
+
   font-size: 1.4rem;
 }
 
