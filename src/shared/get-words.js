@@ -1,4 +1,3 @@
-
 function formatData(data) {
   return data.map((elem) => {
     const newElem = elem;

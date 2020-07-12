@@ -11,7 +11,6 @@ import renderOurGamePage from '../components/mini-game/our-game/our-game-render-
 import audioCall from '../components/mini-game/audio-call/createAudioCallPage';
 import renderStartSprintPage from '../components/mini-game/sprint/pages/StartSprintPage';
 
-
 const routes = {
   '#/': {
     requiresAuth: false,
@@ -56,7 +55,7 @@ const routes = {
   '#/sprint': {
     requiresAuth: true,
     render: renderStartSprintPage,
-  },  
+  },
   '#/our-game': {
     requiresAuth: true,
     render: renderOurGamePage,

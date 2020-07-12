@@ -4,11 +4,18 @@ import showTranslation from './showTranslation';
 import postUserSettings from '../../services/postUserSettings';
 import { updateAmountOfDoneCards } from './updateAmountOfDoneCards';
 import showMessage from './showMessage';
+import showStatistic from './showStatistic';
 
 export default function correctAnswer() {
   showTranslation();
+  let currentWordIndex = localStorage.getItem('currentWordIndex');
+  // eslint-disable-next-line
+  currentWordIndex++;
+  localStorage.setItem('currentWordIndex', currentWordIndex);
   showMessage();
+  showStatistic();
   updateAmountOfDoneCards();
+
   const settings = properties.settings.optional;
   document.querySelector('.submit-btn').classList.add('hidden');
   document.querySelector('.next-btn').classList.remove('hidden');

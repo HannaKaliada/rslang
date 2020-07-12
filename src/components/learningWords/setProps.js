@@ -4,9 +4,16 @@ import properties from './properties';
 export default async function setProps() {
   const words = await getWords(localStorage.getItem('currentPage'), localStorage.getItem('currentGroup'));
   properties.words = words;
+  const localAllWords = words.map((el) => {
+    // eslint-disable-next-line
+    el.answer = 'none';
+    return el;
+  });
+  properties.allWords = localAllWords;
   properties.settings = {
     wordsPerDay: localStorage.getItem('wordsLimit'),
     optional: {
+      currentWordIndex: localStorage.getItem('currentWordIndex'),
       cardsLimit: localStorage.getItem('cardsLimit'),
       currentWord: localStorage.getItem('currentWord'),
       currentPage: localStorage.getItem('currentPage'),

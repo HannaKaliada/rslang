@@ -1,6 +1,7 @@
 const defaultSettings = {
   wordsPerDay: 30,
   optional: {
+    currentWordIndex: 0,
     cardsLimit: 50,
     currentGroup: 0,
     currentPage: 0,

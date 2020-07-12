@@ -1,5 +1,6 @@
 const properties = {
   words: [],
+  allWords: [],
   missingWord: '',
   settings: {
     wordsPerDay: '',
