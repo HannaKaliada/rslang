@@ -38,7 +38,8 @@ class StartPage {
   async createPage() {
     const root = document.querySelector('.root');
     const container = this.createElement('div', ['container', 'audio-call']);
-    container.append(createHeader(), this.createTitle(), this.createDescription(), this.createButton());
+    container.append(createHeader(), this.createTitle(), this.createDescription());
+    container.append(this.createButton());
     root.append(container);
   }
 

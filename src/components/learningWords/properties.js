@@ -1,15 +1,12 @@
 const properties = {
   words: [],
   missingWord: '',
-  currentWord: '',
-  currentPage: '',
-  currentGroup: '',
-  wordTranslation: '',
-  wordExample: '',
-  wordMeaning: '',
-  wordTranscription: '',
-  wordImage: '',
-  wordTranslationHint: '',
+  settings: {
+    wordsPerDay: '',
+    optional: {
+
+    },
+  },
 };
 
 export default properties;

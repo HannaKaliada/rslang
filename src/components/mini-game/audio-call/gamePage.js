@@ -90,7 +90,6 @@ class GamePage {
     this.isHintUsed = false;
     function check() {
       const gameData = this.gameWords.pop();
-      console.log(gameData);
       if (!gameData && this.gameWords.length) {
         return check.call(this);
       }
@@ -101,9 +100,7 @@ class GamePage {
       this.stopGame();
       return;
     }
-    let variantsText = this.gameData.variants.map((el) => {
-      return el ? el.wordTranslate : '';
-    });
+    let variantsText = this.gameData.variants.map((el) => (el ? el.wordTranslate : ''));
     this.rightVariantText = this.gameData.wordTranslate;
     variantsText.push(this.gameData.wordTranslate);
     variantsText = this.randomize(variantsText);

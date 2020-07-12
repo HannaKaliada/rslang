@@ -1,7 +1,9 @@
 import properties from './properties';
 
 export default function setInputWidth() {
+  const ToCheckWidthBlock = document.querySelector('.to-check-width');
   const input = document.querySelector('form input');
-  input.style.width = `${((properties.missingWord.length + 1) * 8) + 24}px`;
+  ToCheckWidthBlock.textContent = properties.missingWord;
+  input.style.width = `${ToCheckWidthBlock.offsetWidth}px`;
   input.focus();
 }
