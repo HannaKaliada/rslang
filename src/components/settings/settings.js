@@ -1,7 +1,7 @@
 import changeLimits from './changeLimits';
 import renderContent from './renderContent';
 import './settings.scss';
-import saveSettings from './saveSettings';
+import saveButtonHandler from './saveButtonHandler';
 import hideSuccessNotification from './hideSuccessNotification';
 import setCheckedToChosenSettings from './setCheckedToChosenSettings';
 import renderMenu from '../../shared/menu/renderMenu';
@@ -15,7 +15,7 @@ import '../../styles/menu.scss';
 export default function settings() {
   renderContent();
   changeLimits();
-  saveSettings();
+  saveButtonHandler();
   setCheckedToChosenSettings();
   hideSuccessNotification();
   const wrapper = document.querySelector('.settings__wrapper');

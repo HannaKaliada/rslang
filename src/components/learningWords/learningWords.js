@@ -1,6 +1,5 @@
 import './learningWords.scss';
 import renderContent from './renderContent';
-import setStartPosition from './setStartPosition';
 import checkInput from './checkInput';
 import setProps from './setProps';
 import setInputWidth from './setInputWidth';
@@ -18,7 +17,6 @@ import '../../styles/menu.scss';
 import showAnswer from './showAnswer';
 
 export default async function learningWords() {
-  setStartPosition();
   await setProps();
   renderContent();
   fillCardDueToSettings();

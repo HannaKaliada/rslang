@@ -1,10 +1,10 @@
-// import $ from 'jquery';
 import createDomElem from '../common';
 import getWords from '../../../../shared/get-words';
 import State from '../state';
 import SpeakIt from '../index';
+import ErrorMsg from '../../english-puzzle/app/error';
 
-export default function createStartPage(node) {
+function createStartPage(node) {
   const tittle = 'speakit';
   const subTittle = [
     'Click on the words to hear them sound.',
@@ -21,18 +21,29 @@ export default function createStartPage(node) {
   async function toContent() {
     const data = await getWords(0, 0);
     // eslint-disable-next-line no-multi-assign
-    State.create()
-      .wordsData = data;
-    const speakIt = SpeakIt.create()
-      .createContainer()
-      .addControls()
-      .addContent()
-      .addClickHandle()
-      .container;
-    startPageBtn.removeEventListener('click', toContent);
-    startPage.remove();
-    node.append(speakIt);
+    if (typeof data === 'object') {
+      State.create()
+        .wordsData = data;
+      const speakIt = SpeakIt.create()
+        .createContainer()
+        .addControls()
+        .addError()
+        .addContent()
+        .addClickHandle()
+        .container;
+      startPageBtn.removeEventListener('click', toContent);
+      startPage.remove();
+      node.append(speakIt);
+    } else {
+      ErrorMsg.create().addError(data);
+    }
   }
   startPageBtn.addEventListener('click', toContent);
   return startPage;
+}
+
+export default function speakIt() {
+  const page = document.querySelector('.root');
+  page.innerHTML = '';
+  page.append(createStartPage(page));
 }

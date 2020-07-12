@@ -1,5 +1,9 @@
 @import "speak-it/speak-it";
 @import "./mixins.scss";
+@import "speak-it/speak-it";
+@import "speak-it/result";
+@import "speak-it/start-page";
+@import "english-puzzle/index";
 
 * {
   box-sizing: border-box;
