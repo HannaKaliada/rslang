@@ -5,9 +5,6 @@ export default function renderStartPage() {
   page.insertAdjacentHTML('beforeend',
     `<div class="container">
       <div class="main-page">
-        <div class="main-page__promo">
-          <a href="#/promo" class="promo-link">RS Lang</a>
-        </div>
         <div class="main-page__content">
           <div class="description">
             <h1>The best way to <br>learn a language</h1>
