@@ -19,7 +19,6 @@ export default function goToTheNextWord() {
     toCleanBlocksClasses.forEach((className) => {
       document.querySelector(`.${className}`).textContent = '';
     });
-
     fillCardDueToSettings();
     setInputWidth();
   });

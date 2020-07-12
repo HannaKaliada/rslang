@@ -10,6 +10,7 @@ function switchOffForm(e) {
 }
 
 export default async function playAudio() {
+  const settings = properties.settings.optional;
   properties.currentWordPronunciation.play();
   const htmlDoc = document.querySelector('html');
   htmlDoc.addEventListener('keydown', switchOffForm, true);
@@ -18,30 +19,27 @@ export default async function playAudio() {
   document.querySelector('.submit-btn').classList.add('hidden');
   document.querySelector('.next-btn').classList.remove('hidden');
   document.querySelector('.input-top-layer').classList.add('hidden');
-  if (!properties.playWordExample && !properties.playExplanation) {
+  await checkWordAndPage();
+  updateAmountOfDoneCards();
+  goToTheNextWord();
+  if (settings.playWordExample === 'false' && settings.playWordMeaning === 'false') {
     properties.currentWordPronunciation.onended = async () => {
       htmlDoc.removeEventListener('keydown', switchOffForm, true);
       htmlDoc.removeEventListener('click', switchOffForm, true);
-      await checkWordAndPage();
-      goToTheNextWord();
-      updateAmountOfDoneCards();
     };
     return;
   }
-  if (properties.playWordExample && !properties.playExplanation) {
+  if (settings.playWordExample === 'true' && settings.playWordMeaning === 'false') {
     properties.currentWordPronunciation.onended = () => {
       properties.currentWordExample.play();
     };
     properties.currentWordExample.onended = async () => {
       htmlDoc.removeEventListener('keydown', switchOffForm, true);
       htmlDoc.removeEventListener('click', switchOffForm, true);
-      await checkWordAndPage();
-      goToTheNextWord();
-      updateAmountOfDoneCards();
     };
     return;
   }
-  if (properties.playWordExample && properties.playExplanation) {
+  if (settings.playWordExample === 'true' && settings.playWordMeaning === 'true') {
     properties.currentWordPronunciation.onended = () => {
       properties.currentWordExample.play();
     };
@@ -51,20 +49,14 @@ export default async function playAudio() {
     properties.currentWordMeaning.onended = async () => {
       htmlDoc.removeEventListener('keydown', switchOffForm, true);
       htmlDoc.removeEventListener('click', switchOffForm, true);
-      await checkWordAndPage();
-      goToTheNextWord();
-      updateAmountOfDoneCards();
     };
     return;
   }
   properties.currentWordPronunciation.onended = () => {
-    properties.currentWordExplanation.play();
+    properties.currentWordMeaning.play();
   };
-  properties.currentWordExplanation.onended = async () => {
+  properties.currentWordMeaning.onended = async () => {
     htmlDoc.removeEventListener('keydown', switchOffForm, true);
     htmlDoc.removeEventListener('click', switchOffForm, true);
-    await checkWordAndPage();
-    goToTheNextWord();
-    updateAmountOfDoneCards();
   };
 }

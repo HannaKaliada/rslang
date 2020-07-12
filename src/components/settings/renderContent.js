@@ -16,11 +16,9 @@ export default function renderContent() {
             min="1"
             max="300"
             step="1"
-            value="${wordsLimit || 50}"
+            value="${wordsLimit}"
           />
-          <output class="words-limit-output" for="words-limit"
-            >${wordsLimit || 50}</output
-          >
+          <output class="words-limit-output" for="words-limit">${wordsLimit}</output>
         </div>
         <div class="limit">
           <label for="cards-limit">New cards per day: </label>
@@ -32,11 +30,9 @@ export default function renderContent() {
             min="1"
             max="500"
             step="1"
-            value="${cardsLimit || 80}"
+            value="${cardsLimit}"
           />
-          <output class="cards-limit-output" for="cards-limit"
-            >${cardsLimit || 80}</output
-          >
+          <output class="cards-limit-output" for="cards-limit">${cardsLimit}</output>
         </div>
       </div>
       <div class="main-settings">
@@ -64,14 +60,6 @@ export default function renderContent() {
       </div>
       <div class="main-settings">
         <p><b>Sound settings:</b></p>
-        <label>
-          <input
-            type="checkbox"
-            name="playWord"
-            class="settings-to-save"
-          />
-          Voice the word</label
-        >
         <label>
           <input type="checkbox" name="playWordExample" class="settings-to-save" />
           Voice the sentence with an example of using the studied word</label
