@@ -1,7 +1,9 @@
 const properties = {
   words: [],
+  allWords: [],
   missingWord: '',
   currentWord: '',
+  currentWordIndex: '',
   currentPage: '',
   currentGroup: '',
   wordTranslation: '',

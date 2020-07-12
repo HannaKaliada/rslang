@@ -13,16 +13,18 @@ export default function checkInput() {
 
     inputTopLayer.textContent = '';
     inputTopLayer.classList.remove('transparent');
-
+    const currentWordIndex = localStorage.getItem('currentWordIndex');
     if (input.value === properties.missingWord) {
       input.classList.add('input_correct');
       input.disabled = true;
       correctAnswer();
+      if (properties.allWords[currentWordIndex].answer === 'none') properties.allWords[currentWordIndex].answer = 'true';
     } else {
       inputTopLayer.classList.remove('hidden');
 
-      showWrongAndRightLetters();
+      properties.allWords[currentWordIndex].answer = 'false';
 
+      showWrongAndRightLetters();
       input.value = '';
       input.style.width = `${inputTopLayer.offsetWidth}px`;
       inputTopLayer.style.marginLeft = `${-input.offsetWidth - 10}px`;

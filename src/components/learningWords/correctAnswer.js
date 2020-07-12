@@ -3,10 +3,12 @@ import properties from './properties';
 import showTranslation from './showTranslation';
 import { updateAmountOfDoneCards } from './updateAmountOfDoneCards';
 import showMessage from './showMessage';
+import showStatistic from './showStatistic';
 
 export default function correctAnswer() {
   showTranslation();
   showMessage();
+  showStatistic();
   updateAmountOfDoneCards();
   document.querySelector('.submit-btn').classList.add('hidden');
   document.querySelector('.next-btn').classList.remove('hidden');
@@ -36,4 +38,8 @@ export default function correctAnswer() {
     localStorage.setItem('currentWord', 0);
     properties.currentWord = 0;
   }
+  let currentWordIndex = localStorage.getItem('currentWordIndex');
+  // eslint-disable-next-line
+  currentWordIndex++;
+  localStorage.setItem('currentWordIndex', currentWordIndex);
 }

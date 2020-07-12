@@ -9,7 +9,6 @@ import createStartPage from '../components/mini-game/speak-it/start-page';
 import renderOurGamePage from '../components/mini-game/our-game/our-game-render-page';
 import audioCall from '../components/mini-game/audio-call/createAudioCallPage';
 
-
 function speakIt() {
   const page = document.querySelector('.root');
   page.innerHTML = '';

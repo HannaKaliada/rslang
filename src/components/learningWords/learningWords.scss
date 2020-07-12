@@ -31,9 +31,13 @@
     text-align: center;
     z-index: 10;
     display: block;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  .modal-body-flex {
+    display: flex;
+    justify-content: space-between;
   }
   .modal-fade {
     animation: fade 1s ease;
@@ -50,7 +54,18 @@
     }
   }
   .modal-title {
-    margin-left: 40%;
+    margin: 0 auto;
+  }
+  .modal-header .close {
+    margin: -1rem -1rem -1rem 0;
+  }
+  .list-group-item{
+    display: flex;
+  }
+  .dropdown-menu-modal{
+    max-height: 600px;
+    overflow: scroll;
+    overflow-x: hidden;
   }
   .to-check-width {
     padding: 10px;
@@ -146,12 +161,12 @@
 
 .progress-bar-wrapper {
   width: 100%;
-  .cards-numbers-wrapper{
+  .cards-numbers-wrapper {
     display: flex;
     justify-content: space-between;
-    .cards-amount-done, .cards-amount-all{
+    .cards-amount-done,
+    .cards-amount-all {
       display: inline-block;
     }
   }
 }
-
