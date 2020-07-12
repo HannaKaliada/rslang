@@ -15,14 +15,14 @@ export default function renderContent() {
           >
             <button
               type="button"
-              class="btn btn-primary word-trans-on"
+              class="btn btn-primary btn_extra-small btn_gray word-trans-on"
               data-word-translation-hint="true"
             >
               ON
             </button>
             <button
               type="button"
-              class="btn btn-primary word-trans-off"
+              class="btn btn-primary btn_extra-small btn_gray word-trans-off"
               data-word-translation-hint="false"
             >
               OFF
@@ -38,14 +38,14 @@ export default function renderContent() {
           >
             <button
               type="button"
-              class="btn btn-primary sent-trans-on"
+              class="btn btn-primary btn_extra-small btn_gray sent-trans-on"
               data-sentences-translation="true"
             >
               ON
             </button>
             <button
               type="button"
-              class="btn btn-primary sent-trans-off"
+              class="btn btn-primary btn_extra-small btn_gray sent-trans-off"
               data-sentences-translation="false"
             >
               OFF
@@ -64,11 +64,11 @@ export default function renderContent() {
             <p class="meaning"></p>
             <p class="meaning-translation"></p>
             <p class="transcription"></p>
-            <button type="submit" class="btn btn-primary submit-btn">
+            <button type="submit" class="btn btn-primary submit-btn btn_small btn_yellow">
               Check
             </button>
           </form>
-          <button class="btn btn-primary next-btn hidden">Next</button>
+          <button class="btn btn-primary btn_small btn_yellow next-btn hidden">Next</button>
         </div>
         <p class="word__translation"></p>
       </div>

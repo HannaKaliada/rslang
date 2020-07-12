@@ -6,8 +6,9 @@
 
 .learn-page__wrapper {
   display: grid;
-  grid-template-areas: "menu header"
-  "menu learn";
+  grid-template-areas:
+    "menu header"
+    "menu learn";
   grid-template-columns: max-content;
 
   .learn-page {
@@ -24,8 +25,13 @@
     align-items: center;
     margin-bottom: 20px;
     p {
+      font-size: 2rem;
       margin-right: 20px;
       margin-bottom: 0;
+    }
+    .btn_gray.active {
+      background-color: #ffdd64;
+      color: #263238;
     }
   }
 }
@@ -38,7 +44,8 @@
   margin-top: 30px;
   &__card {
     margin-bottom: 20px;
-    padding: 20px 60px;
+    padding: 50px 120px;
+    border-radius: 2rem;
     input {
       display: inline-block;
       width: 25px;
@@ -96,9 +103,6 @@
     .word__translation,
     .meaning-translation {
       font-size: 16px;
-    }
-    .btn {
-      width: 120px;
     }
     .next-btn {
       margin: 0 auto;

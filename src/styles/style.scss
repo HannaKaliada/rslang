@@ -49,6 +49,11 @@ body {
   box-shadow: 0 0.4rem 1.2rem #ffdd64;
 }
 
+.btn_gray {
+  background: #a6a6a6;
+  color: #ffffff;
+}
+
 .btn_yellow:hover {
   background: #ffc727;
   box-shadow: 0 0.4rem 1.2rem #ffc727;
@@ -60,8 +65,14 @@ body {
 }
 
 .btn_small {
-  padding: .8rem 4rem;
+  padding: 0.8rem 4rem;
   width: 160px;
+  font-size: 1.4rem;
+}
+
+.btn_extra-small {
+  padding: 0.8rem 2rem;
+  width: 80px;
   font-size: 1.4rem;
 }
 
@@ -82,8 +93,8 @@ body {
       font-weight: 600;
       font-size: 4rem;
     }
-    input[type=email],
-    input[type=password] {
+    input[type="email"],
+    input[type="password"] {
       height: 4rem;
       margin-bottom: 1rem;
       padding: 0.5rem 2rem;
@@ -92,10 +103,10 @@ body {
 
       border-radius: 6rem;
     }
-    input[type=password] {
+    input[type="password"] {
       margin-bottom: 2.4rem;
     }
-    input[type=submit] {
+    input[type="submit"] {
       margin: 0 auto;
     }
     .btn-default {
@@ -120,7 +131,7 @@ body {
     &__password {
       padding: 0 0.5rem;
     }
-    &__error-msg{
+    &__error-msg {
       font-size: 1.4rem;
       text-align: center;
     }

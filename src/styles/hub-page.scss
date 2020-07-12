@@ -1,8 +1,9 @@
 .hub {
   display: grid;
 
-  grid-template-areas: "menu header"
-  "menu hub-page";
+  grid-template-areas:
+    "menu header"
+    "menu hub-page";
   grid-template-columns: max-content;
 
   .hub-page {
@@ -25,6 +26,9 @@
         a {
           margin: 0 5px;
         }
+      }
+      .hub__user-info {
+        font-size: 2rem;
       }
 
       .current-info__words {
