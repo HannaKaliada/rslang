@@ -5,6 +5,7 @@ import { updateAmountOfDoneCards } from './updateAmountOfDoneCards';
 import showMessage from './showMessage';
 
 export default function correctAnswer() {
+  console.log(properties);
   showTranslation();
   showMessage();
   updateAmountOfDoneCards();
