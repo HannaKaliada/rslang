@@ -2,6 +2,7 @@ import createDomElem from './common';
 import Controls from './controls';
 import Content from './content';
 import actions from './actions';
+import ErrorMsg from './error';
 
 let instance;
 
@@ -50,6 +51,14 @@ class SpeakIt {
       .addAppControls()
       .container;
     this.container.append(controls);
+    return this;
+  }
+
+  addError() {
+    const errorField = ErrorMsg.create()
+      .createContainer()
+      .container;
+    this.container.append(errorField);
     return this;
   }
 
