@@ -1,0 +1,120 @@
+
+.dot {
+  height: 12px;
+  width: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-succes {
+  background-color: red;
+}
+
+.card {
+  min-height: 400px;
+}
+
+.info {
+  color: white;
+  padding-top: 10px;
+}
+
+.body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+  background-image: url(/src/components/mini-game/sprint/assets/background-sprint.png);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.base-timer {
+  position: relative;
+  height: 300px;
+  width: 300px;
+}
+
+/* Removes SVG styling that would hide the time label */
+.base-timer__circle {
+  fill: none;
+  stroke: none;
+}
+
+/* The SVG path that displays the timer's progress */
+.base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+
+.base-timer__label {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 48px;
+}
+
+.base-timer__path-remaining {
+  /* Just as thick as the original ring */
+  stroke-width: 7px;
+
+  /* Rounds the line endings to create a seamless circle */
+  stroke-linecap: round;
+
+  /* Makes sure the animation starts at the top of the circle */
+  transform: rotate(90deg);
+  transform-origin: center;
+
+  /* One second aligns with the speed of the countdown timer */
+  transition: 1s linear all;
+
+  /* Allows the ring to change color when the color value updates */
+  stroke: green;
+}
+
+.base-timer__svg {
+  /* Flips the svg and makes the animation to move left-to-right */
+  transform: scaleX(-1);
+}
+
+.logo-game {
+  width: 300px;
+  height: 300px;
+  background-image: url("/src/components/mini-game/sprint/assets/background-sprint.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+
+// .bootstrap-select.show>.dropdown-menu>.dropdown-menu {
+//   display: block;
+// }
+
+// .bootstrap-select > .dropdown-menu > .dropdown-menu li.hidden{
+//   display:none;
+// }
+
+// .bootstrap-select > .dropdown-menu > .dropdown-menu li a{
+//   display: block;
+//   width: 100%;
+//   padding: 3px 1.5rem;
+//   clear: both;
+//   font-weight: 400;
+//   color: #292b2c;
+//   text-align: inherit;
+//   white-space: nowrap;
+//   background: 0 0;
+//   border: 0;
+// }

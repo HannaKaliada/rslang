@@ -12,6 +12,12 @@ const properties = {
   wordTranscription: '',
   wordImage: '',
   wordTranslationHint: '',
+  settings: {
+    wordsPerDay: '',
+    optional: {
+
+    },
+  },
 };
 
 export default properties;
