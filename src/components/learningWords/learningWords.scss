@@ -20,6 +20,7 @@
 }
 
 .word {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -140,6 +141,20 @@
     .show-answer-btn {
       margin: 0 auto;
       margin-top: 10px;
+    }
+  }
+  &__translation{
+    margin: 0 auto;
+  }
+  .sound-block {
+    position: absolute;
+    top: 225px;
+    left: 25px;
+    .sound-on,
+    .sound-off {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
     }
   }
 }

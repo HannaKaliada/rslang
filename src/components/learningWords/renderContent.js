@@ -1,4 +1,5 @@
 import properties from './properties';
+import createVolumeBlock from './pronunciation/createVolumeBlock';
 import createProgressBar from './progressBar';
 
 export default function renderContent() {
@@ -67,6 +68,7 @@ export default function renderContent() {
             <p class="meaning-translation"></p>
             <p class="transcription"></p>
             <button type="submit" class="btn btn-primary submit-btn">Check</button>
+            ${createVolumeBlock()}
           </form>
           <button class="btn btn-primary next-btn hidden">Next</button>
           <button class="btn btn-info show-answer-btn">Show answer</button>

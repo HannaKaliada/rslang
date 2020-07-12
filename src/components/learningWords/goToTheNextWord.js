@@ -1,4 +1,5 @@
 import setInputWidth from './setInputWidth';
+import createAudioObjects from './pronunciation/createAudioObjects';
 import fillCardDueToSettings from './fillCardDueToSettings';
 
 export default function goToTheNextWord() {
@@ -14,13 +15,11 @@ export default function goToTheNextWord() {
     showAnswerBtn.classList.remove('hidden');
 
     document.querySelector('.input-top-layer').classList.remove('transparent');
-
+    createAudioObjects();
     toCleanBlocksClasses.forEach((className) => {
       document.querySelector(`.${className}`).textContent = '';
     });
-
     fillCardDueToSettings();
-
     setInputWidth();
   });
 }
