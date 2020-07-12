@@ -1,4 +1,5 @@
 import createElement from '../../shared/createElement';
+import createProgressBar from './progressBar';
 
 export default function renderContent() {
   const learnPage = createElement('div', 'learn-page__wrapper');
@@ -15,14 +16,14 @@ export default function renderContent() {
           >
             <button
               type="button"
-              class="btn btn-primary btn_extra-small btn_gray word-trans-on"
+              class="btn btn_extra-small btn_gray word-trans-on"
               data-word-translation-hint="true"
             >
               ON
             </button>
             <button
               type="button"
-              class="btn btn-primary btn_extra-small btn_gray word-trans-off"
+              class="btn btn_extra-small btn_gray word-trans-off"
               data-word-translation-hint="false"
             >
               OFF
@@ -38,14 +39,14 @@ export default function renderContent() {
           >
             <button
               type="button"
-              class="btn btn-primary btn_extra-small btn_gray sent-trans-on"
+              class="btn btn_extra-small btn_gray sent-trans-on"
               data-sentences-translation="true"
             >
               ON
             </button>
             <button
               type="button"
-              class="btn btn-primary btn_extra-small btn_gray sent-trans-off"
+              class="btn btn_extra-small btn_gray sent-trans-off"
               data-sentences-translation="false"
             >
               OFF
@@ -54,6 +55,7 @@ export default function renderContent() {
         </div>
       </div>
       <div class="word">
+        <span class="to-check-width"></span>
         <div class="word__card card text-center">
           <img class="image" />
           <form>
@@ -68,9 +70,11 @@ export default function renderContent() {
               Check
             </button>
           </form>
-          <button class="btn btn-primary btn_small btn_yellow next-btn hidden">Next</button>
+          <button class="btn btn_small btn_yellow next-btn hidden">Next</button>
+          <button class="btn btn-default show-answer-btn">Show answer</button>
         </div>
         <p class="word__translation"></p>
+        ${createProgressBar()}
       </div>
     </div>`);
   page.append(learnPage);

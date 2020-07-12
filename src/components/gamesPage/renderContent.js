@@ -12,9 +12,10 @@ export default function renderContent() {
   const gamesContainer = document.querySelector('.games');
   games.forEach((game) => {
     gamesContainer.insertAdjacentHTML('beforeend', `<div class="card game">
+  <img src=${game.image}>
   <div class="game__title">${game.gameTitle}</div>
   <div class="game__desc">${game.gameDesc}</div>
-  <a href="${game.gameURL}" class="btn btn-warning play-btn">Play</a>
+  <a href="${game.gameURL}" class="btn btn_yellow btn_small play-btn">Play</a>
   </div>`);
   });
 }

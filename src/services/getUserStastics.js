@@ -6,7 +6,8 @@ const getUserStatistic = async ({ userId, token }) => {
       Authorization: `Bearer ${token}`,
       Accept: 'application/json',
     },
-  });
+  })
+    .catch((e) => e);
   if (rawResponse.ok) {
     const content = await rawResponse.json();
     return content;

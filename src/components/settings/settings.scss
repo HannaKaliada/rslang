@@ -40,9 +40,12 @@
 .main-settings {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  p{
+    margin-bottom: 10px;
+  }
   p:first-child {
-    margin-top: 30px;
+    margin-top: 10px;
   }
   .warning {
     margin-top: 0;
@@ -54,6 +57,11 @@
 }
 
 .additional-settings {
+  display: flex;
+  flex-direction: column;
+  p{
+    margin-bottom: 10px;
+  }
   .success-notification {
     margin-bottom: 0;
 

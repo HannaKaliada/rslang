@@ -15,6 +15,7 @@ import renderHeader from '../../shared/header/renderHeader';
 import logoutButtonHandler from '../../shared/header/logoutButtonHandler';
 import '../../styles/header.scss';
 import '../../styles/menu.scss';
+import showAnswer from './showAnswer';
 
 export default async function learningWords() {
   setStartPosition();
@@ -31,4 +32,5 @@ export default async function learningWords() {
   burgerIconHandler();
   setItemActiveState();
   logoutButtonHandler();
+  showAnswer();
 }
