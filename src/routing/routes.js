@@ -12,7 +12,6 @@ import audioCall from '../components/mini-game/audio-call/createAudioCallPage';
 import renderStartSprintPage from '../components/mini-game/sprint/pages/StartSprintPage';
 import gamesPages from '../components/gamesPage/gamesPage';
 
-
 const routes = {
   '#/': {
     requiresAuth: false,
@@ -65,7 +64,7 @@ const routes = {
   '#/games': {
     requiresAuth: true,
     render: gamesPages,
-  }
+  },
 };
 
 export default routes;
