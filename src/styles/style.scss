@@ -33,7 +33,7 @@ body {
   background-color: #e5e5e5;
 }
 
-.btn {
+.btn, .btn-primary {
   max-width: 27rem;
   padding: 1.6rem 5rem;
 
@@ -48,7 +48,7 @@ body {
   outline: none;
 }
 
-.btn_yellow {
+.btn_yellow, .btn-primary{
   background: #ffdd64;
   box-shadow: 0 0.4rem 1.2rem #ffdd64;
 }
@@ -59,8 +59,8 @@ body {
   background: #a6a6a6;
 }
 
-.btn_yellow:hover {
-  background: #ffc727;
+.btn_yellow:hover, .btn-primary:hover, .btn-primary:active,.btn-primary:focus {
+  background: #ffc727 !important;
   box-shadow: 0 0.4rem 1.2rem #ffc727;
 }
 
