@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 .limits {
   display: flex;
   justify-content: center;
@@ -20,32 +24,38 @@
   }
 }
 
-.info-settings {
+.main-settings {
   display: flex;
   flex-direction: column;
-  p:first-child {
-    margin-top: 30px;
+  margin-bottom: 10px;
+  p{
+    margin-bottom: 10px;
   }
-  .btn {
-    max-width: 120px;
+  p:first-child {
     margin-top: 10px;
   }
   .warning {
     margin-top: 0;
     margin-bottom: 0;
+    font-weight: 700;
 
     color: red;
   }
+}
+
+.additional-settings {
+  display: flex;
+  flex-direction: column;
+  p{
+    margin-bottom: 10px;
+  }
   .success-notification {
     color: green;
-  }
-  .success-notification,
-  .warning {
     margin-bottom: 0;
+  }
+}
 
-    font-weight: 700;
-  }
-  .hidden {
-    display: none;
-  }
+.save-btn {
+  width: 120px;
+  margin-top: 10px;
 }

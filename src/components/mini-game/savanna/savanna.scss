@@ -1,0 +1,128 @@
+.savanna-game-wrapper {
+  background: url(./src/background.jpg) no-repeat;
+  height: 100vh;
+  -moz-background-size: 100%;
+  -webkit-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  .fidelity-container {
+    position: relative;
+    @keyframes change-width {
+      0% {
+       width:  100px;
+      }
+      100% {
+        width:  200px;
+      }
+    }
+    .fidelity {
+      left: 50%;
+      width: 100px;
+      position: absolute;
+      top: 150px;
+      transform: translate(-50%);
+      animation: change-width 3s ease infinite;
+      .true {
+        fill: green;
+      }
+      .false{
+        fill:red;
+      }
+    }
+  }
+  .content-true{
+    border-bottom: 2px solid;
+  }
+  .level-difficulty{
+    font-size: 24px;
+  }
+  #play-btn {
+    margin-left: 11px;
+    padding: 1px 6px;
+  }
+  .btn-next-repeat {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  span {
+    margin-right: 5px;
+  }
+  .list-group-item {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .timer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    font-size: 50px;
+
+    transform: translate(-50%, -50%);
+  }
+  .spinner-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .translation {
+    position: absolute;
+    top: 10%;
+    font-size: 20px;
+    font-weight: 600;
+    transition: top 8s linear;
+    background: #FFFF00;
+    border-top-left-radius: 18em 1em;
+    border-bottom-right-radius: 22em 1em;
+  }
+  .translation-move {
+    top: 70%;
+  }
+  .spinner-border {
+    width: 5rem !important;
+    height: 5rem !important;
+  }
+  .links {
+    display: flex;
+    justify-content: space-between;
+  }
+  li {
+    cursor: pointer;
+  }
+  .block {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+  .lives-container {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: block;
+  }
+  .word-btn {
+    display: block;
+    width: 200px !important;
+    height: 50px;
+    margin: 10px;
+    padding: 0;
+  }
+
+  .game-words {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    min-width: 300px;
+    min-height: 50em;
+  }
+  .dropdown {
+    display: flex;
+  }
+}

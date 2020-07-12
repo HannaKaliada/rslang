@@ -1,0 +1,51 @@
+.hub {
+  display: grid;
+
+  grid-template-areas: "menu header"
+  "menu hub-page";
+  grid-template-columns: max-content;
+
+  .hub-page {
+    margin: 0 20px;
+
+    .hub__wrapper {
+      display: grid;
+      max-width: 1020px;
+      margin: auto;
+
+      grid-area: hub-page;
+      div {
+        margin-top: 20px;
+      }
+
+      .hub__buttons {
+        display: flex;
+        justify-content: center;
+
+        a {
+          margin: 0 5px;
+        }
+      }
+
+      .current-info__words {
+        display: grid;
+
+        grid-gap: 2px;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        p {
+          padding: 20px;
+
+          background-color: #ebebeb;
+          border-radius: 5px;
+        }
+      }
+
+      .info_week {
+        height: 400px;
+
+        border: 1px solid #007aff;
+      }
+    }
+  }
+}

@@ -1,11 +1,10 @@
-// import $ from 'jquery';
 import createDomElem from '../common';
 import getWords from '../../../../shared/get-words';
 import State from '../state';
 import SpeakIt from '../index';
 import ErrorMsg from '../../english-puzzle/app/error';
 
-export default function createStartPage(node) {
+function createStartPage(node) {
   const tittle = 'speakit';
   const subTittle = [
     'Click on the words to hear them sound.',
@@ -41,4 +40,10 @@ export default function createStartPage(node) {
   }
   startPageBtn.addEventListener('click', toContent);
   return startPage;
+}
+
+export default function speakIt() {
+  const page = document.querySelector('.root');
+  page.innerHTML = '';
+  page.append(createStartPage(page));
 }
