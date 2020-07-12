@@ -39,11 +39,11 @@ const routes = {
   },
   '#/english-puzzle': {
     requiresAuth: true,
-    render: speakIt,
+    render: englishPuzzle,
   },
   '#/speak-it': {
     requiresAuth: true,
-    render: englishPuzzle,
+    render: speakIt,
   },
   '#/audiocall': {
     requiresAuth: true,

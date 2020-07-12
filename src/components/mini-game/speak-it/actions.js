@@ -5,6 +5,7 @@ import getWords from '../../../shared/get-words';
 import Result from './result';
 import Content from './content';
 import ErrorMsg from '../english-puzzle/app/error';
+import LevelControls from './controls/level-controls';
 
 // eslint-disable-next-line import/no-mutable-exports
 let actions;
@@ -36,6 +37,8 @@ function changeClassBtns() {
 async function changeLvl(group, page) {
   const words = await getWords(page, group);
   if (typeof words === 'object') {
+    LevelControls.create().page = page;
+    LevelControls.create().group = group;
     State.create()
       .resetScore()
       .wordsData = words;

@@ -30,6 +30,7 @@ function createDropdown(curNum, name, listNum) {
 }
 
 export function createPages(curPage) {
+  console.log(curPage)
   const name = 'page';
   const listNum = 60;
   return createDropdown(curPage, name, listNum);

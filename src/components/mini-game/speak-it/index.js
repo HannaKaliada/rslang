@@ -44,10 +44,10 @@ class SpeakIt {
     return this;
   }
 
-  addControls() {
+  addControls(group, page) {
     const controls = Controls.create()
       .createContainer()
-      .addLevelControls()
+      .addLevelControls(group, page)
       .addAppControls()
       .container;
     this.container.append(controls);
