@@ -124,7 +124,7 @@ export default function renderContent() {
         </p>
       </div>
       <div class="save-btn-container">
-        <input class="btn btn-primary save-btn" type="button" value="Save" />
+        <input class="btn btn_medium btn_yellow save-btn" type="button" value="Save" />
       </div>
     </div>`);
   page.append(wrapper);
