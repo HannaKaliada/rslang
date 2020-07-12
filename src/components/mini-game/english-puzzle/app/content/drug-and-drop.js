@@ -4,7 +4,7 @@ import WordsPuzzle from './words-puzzle';
 // eslint-disable-next-line import/no-cycle
 import Content from './index';
 // eslint-disable-next-line import/no-cycle,import/named
-import actions, { replaceWord } from './action';
+import actions, { checkField, cleanCheckWords, replaceWord } from './action';
 
 export function handleDragStart(e) {
   e.target.classList.add('selected');
@@ -15,6 +15,8 @@ function swapContent(currentElement, activeElement, parent) {
     ? currentElement.nextElementSibling
     : currentElement;
   parent.insertBefore(activeElement, nextElement);
+  checkField();
+  cleanCheckWords();
 }
 
 export function handleDragOver(e) {

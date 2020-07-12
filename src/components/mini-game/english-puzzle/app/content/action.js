@@ -10,7 +10,7 @@ import createDomElem from '../../common';
 import { nextLevel } from '../controls';
 import Result from '../result';
 
-function checkField() {
+export function checkField() {
   const curPos = Content.create().getCurWords();
   const btns = Buttons.create();
   const words = WordsPuzzle.create().getWords().split(' ');
@@ -98,10 +98,9 @@ const actions = {
 
   check() {
     const curPos = Content.create().getCurWords();
-    const words = WordsPuzzle.create().cleanContainer().getWords().split(' ');
+    const words = WordsPuzzle.create().getWords().split(' ');
     const curField = Field.create().getFields()[curPos];
     const btns = Buttons.create();
-    curField.classList.remove('ddd');
     words.forEach((str, index) => {
       curField.children[index].classList.remove('correct-word', 'wrong-word');
       if (str === curField.children[index].textContent) {
@@ -113,6 +112,10 @@ const actions = {
     const result = words
       .every((str, index) => str === curField.children[index].textContent);
     if (result) {
+      [...curField.children].forEach((el) => {
+        el.removeAttribute('data-action');
+        el.removeAttribute('draggable');
+      });
       btns.delCheckBtn()
         .delKnowBtn()
         .addContinueBtn();
@@ -133,6 +136,7 @@ const actions = {
   },
 
   continue() {
+    WordsPuzzle.create().cleanContainer();
     toggleBtns();
     cleanCheckWords();
     Content.create().nextWords();
