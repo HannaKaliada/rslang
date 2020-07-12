@@ -29,6 +29,8 @@ export default async function setProps() {
       intervalRepeating: localStorage.getItem('intervalRepeating'),
       showAnswerBtn: localStorage.getItem('showAnswerBtn'),
       moveToDifficultBtn: localStorage.getItem('moveToDifficultBtn'),
+      playWordExample: localStorage.getItem('playWordExample'),
+      playWordMeaning: localStorage.getItem('playWordMeaning'),
     },
   };
 }

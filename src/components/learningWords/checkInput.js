@@ -6,7 +6,7 @@ export default function checkInput() {
   const form = document.querySelector('.word form');
   form.querySelector('input').focus();
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const input = form.querySelector('input');
     const inputTopLayer = document.querySelector('.input-top-layer');
