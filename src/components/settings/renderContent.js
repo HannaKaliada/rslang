@@ -54,12 +54,23 @@ export default function renderContent() {
           Sentence explaining the meaning of the word</label
         >
         <label>
-          <input type="checkbox" name="wordExample-" class="settings-to-save" />
+          <input type="checkbox" name="wordExample" class="settings-to-save" />
           Sentence with an example of using the studied word</label
         >
         <p class="warning hidden">
           At least one point from main settings must be chosen!
         </p>
+      </div>
+      <div class="main-settings sound-settings">
+        <p><b>Sound settings:</b></p>
+        <label>
+          <input type="checkbox" name="playWordExample" class="settings-to-save" />
+          Voice the sentence with an example of using the studied word</label
+        >
+        <label>
+          <input type="checkbox" name="playWordMeaning" class="settings-to-save" />
+          Voice the sentence explaining the meaning of the word</label
+        >
       </div>
       <div class="additional-settings">
         <p><b>Additional settings:</b></p>

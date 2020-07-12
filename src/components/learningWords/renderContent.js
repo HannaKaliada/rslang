@@ -1,3 +1,4 @@
+import createVolumeBlock from './pronunciation/createVolumeBlock';
 import createElement from '../../shared/createElement';
 import createProgressBar from './progressBar';
 
@@ -66,9 +67,8 @@ export default function renderContent() {
             <p class="meaning"></p>
             <p class="meaning-translation"></p>
             <p class="transcription"></p>
-            <button type="submit" class="btn btn-primary submit-btn btn_small btn_yellow">
-              Check
-            </button>
+            <button type="submit" class="btn submit-btn btn_small btn_yellow">Check</button>
+            ${createVolumeBlock()}
           </form>
           <button class="btn btn_small btn_yellow next-btn hidden">Next</button>
           <button class="btn btn-default show-answer-btn">Show answer</button>

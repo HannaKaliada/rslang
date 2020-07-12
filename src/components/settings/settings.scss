@@ -8,6 +8,10 @@
 
   .settings {
     grid-area: settings;
+    h1{
+      font-size: 3rem;
+      font-weight: 600;
+    }
   }
 }
 
@@ -17,10 +21,10 @@
 
 .limits {
   display: flex;
-  justify-content: center;
   .limit {
     label {
       margin-right: 10px;
+      font-size: 1.6rem;
     }
     input {
       vertical-align: middle;
@@ -30,6 +34,7 @@
     output {
       min-width: 35px;
       margin-left: 10px;
+      font-size: 1.6rem;
     }
   }
   .limit:first-child {
@@ -41,7 +46,11 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+  label{
+    font-size: 1.6rem;
+  }
   p{
+    font-size: 2rem;
     margin-bottom: 10px;
   }
   p:first-child {
@@ -59,8 +68,13 @@
 .additional-settings {
   display: flex;
   flex-direction: column;
+  label{
+    font-size: 1.6rem;
+  }
   p{
+    margin-top: 10px;
     margin-bottom: 10px;
+    font-size: 2rem;
   }
   .success-notification {
     margin-bottom: 0;
@@ -70,10 +84,10 @@
   }
 }
 
+
 .save-btn {
-  width: 120px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 50px;
+  margin-bottom: 40px;
 }
 
 @include mobile() {
