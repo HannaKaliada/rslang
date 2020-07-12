@@ -28,10 +28,10 @@ class Controls {
     return this;
   }
 
-  addLevelControls() {
+  addLevelControls(group, page) {
     const level = LevelControls.create()
       .createContainer()
-      .addLevel()
+      .addLevel(group, page)
       .container;
     this.container.append(level);
     return this;
