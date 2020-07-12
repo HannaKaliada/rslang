@@ -6,9 +6,9 @@ import createSignInSignUpPage from '../components/auth/createSignInSignUpPage';
 import renderSavannaPage from '../components/mini-game/savanna/render-savanna-page';
 import learningWords from '../components/learningWords/learningWords';
 import createStartPage from '../components/mini-game/speak-it/start-page';
+import renderStartSprintPage from '../components/mini-game/sprint/pages/StartSprintPage';
 import renderOurGamePage from '../components/mini-game/our-game/our-game-render-page';
 import audioCall from '../components/mini-game/audio-call/createAudioCallPage';
-
 
 function speakIt() {
   const page = document.querySelector('.root');
@@ -53,6 +53,10 @@ const routes = {
     requiresAuth: true,
     render: renderSavannaPage,
   },
+  '#/sprint': {
+    requiresAuth: true,
+    render: renderStartSprintPage,
+  },  
   '#/our-game': {
     requiresAuth: true,
     render: renderOurGamePage,
