@@ -8,6 +8,7 @@ import goToTheNextWord from './goToTheNextWord';
 import fillCardDueToSettings from './fillCardDueToSettings';
 import setTranslationSettings from './setTranslationSettings';
 import switchTranslationSettings from './switchTranslationSettings';
+import showAnswer from './showAnswer';
 
 export default async function learningWords() {
   setStartPosition();
@@ -19,4 +20,5 @@ export default async function learningWords() {
   checkInput();
   switchTranslationSettings();
   goToTheNextWord();
+  showAnswer();
 }

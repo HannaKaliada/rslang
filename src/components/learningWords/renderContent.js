@@ -1,5 +1,9 @@
+import properties from './properties';
+import createProgressBar from './progressBar';
+
 export default function renderContent() {
   const page = document.querySelector('.root');
+  const currentWord = localStorage.getItem('currentWord');
   page.insertAdjacentHTML('beforeend',
     `<div class="container">
       <div class="learning-settings">
@@ -51,6 +55,7 @@ export default function renderContent() {
         </div>
       </div>
       <div class="word">
+        <span class="to-check-width"></span>
         <div class="word__card card text-center">
           <img class="image" />
           <form>
@@ -61,12 +66,15 @@ export default function renderContent() {
             <p class="meaning"></p>
             <p class="meaning-translation"></p>
             <p class="transcription"></p>
-            <button type="submit" class="btn btn-primary submit-btn">
-              Check
-            </button>
+            <button type="submit" class="btn btn-primary submit-btn">Check</button>
           </form>
           <button class="btn btn-primary next-btn hidden">Next</button>
+          <button class="btn btn-info show-answer-btn">Show answer</button>
         </div>
+        <p class="word__translation">
+          ${properties.words[currentWord].wordTranslate}
+        </p>
+        ${createProgressBar()}
         <p class="word__translation"></p>
       </div>
     </div>`);
