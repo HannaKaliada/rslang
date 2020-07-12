@@ -1,5 +1,19 @@
+@import "../../styles/mixins.scss";
+
 .hidden {
   display: none;
+}
+
+.learn-page__wrapper {
+  display: grid;
+  grid-template-areas:
+    "menu header"
+    "menu learn";
+  grid-template-columns: max-content;
+
+  .learn-page {
+    grid-area: learn;
+  }
 }
 
 .learning-settings {
@@ -13,8 +27,13 @@
     justify-content: flex-end;
     align-items: center;
     p {
+      font-size: 2rem;
       margin-right: 20px;
       margin-bottom: 0;
+    }
+    .btn_gray.active {
+      background-color: #ffdd64;
+      color: #263238;
     }
   }
 }
@@ -79,15 +98,22 @@
     padding: 10px;
 
     font-size: 18px;
-    color: white;
+    color: #e5e5e5;
 
     border: 2px solid transparent;
   }
   &__card {
     margin-bottom: 20px;
-    padding: 20px 60px;
-
+    padding: 50px 120px;
+    border-radius: 2rem;
     text-align: center;
+    font-size: 1.6rem;
+    min-height: unset !important;
+    .image {
+      margin: 0 auto;
+      max-width: 200px;
+      margin-bottom: 20px;
+    }
     input {
       display: inline-block;
       width: 25px;
@@ -154,9 +180,6 @@
     .meaning-translation {
       font-size: 16px;
     }
-    .btn {
-      width: 120px;
-    }
     .next-btn {
       margin: 0 auto;
     }
@@ -167,6 +190,7 @@
   }
   &__translation{
     margin: 0 auto;
+    font-size: 2rem;
   }
   .sound-block {
     position: absolute;
@@ -183,12 +207,58 @@
 
 .progress-bar-wrapper {
   width: 100%;
+  margin-bottom: 4rem;
   .cards-numbers-wrapper {
     display: flex;
     justify-content: space-between;
+    margin-top: 3rem;
+    
     .cards-amount-done,
     .cards-amount-all {
       display: inline-block;
+      font-size: 3rem;
+      color: #263238;
+    }
+  }
+  .progress-bar {
+    background-color: #ffc727!important;
+  }
+}
+
+@include tablet-and-mobile() {
+  .learning-settings {
+    .word-translation {
+      margin-bottom: 10px;
+    }
+    .word-translation,
+    .sentences-translation {
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+  .word {
+    &__card {
+      .sentence,
+      .meaning {
+        font-size: 18px;
+      }
+    }
+  }
+}
+@include mobile() {
+  .word {
+    &__card {
+      .sentence,
+      .meaning {
+        font-size: 15px;
+      }
+      .meaning-translation,
+      .sentence-translation {
+        p {
+          font-size: 13px;
+        }
+      }
     }
   }
 }

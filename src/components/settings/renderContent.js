@@ -1,9 +1,12 @@
+import createElement from '../../shared/createElement';
+
 export default function renderContent() {
+  const wrapper = createElement('div', 'settings__wrapper');
   const page = document.querySelector('.root');
   const cardsLimit = localStorage.getItem('cardsLimit');
   const wordsLimit = localStorage.getItem('wordsLimit');
-  page.insertAdjacentHTML('beforeend',
-    `<div class="container">
+  wrapper.insertAdjacentHTML('beforeend',
+    `<div class="container settings">
       <h1>Settings:</h1>
       <div class="limits">
         <div class="limit">
@@ -58,7 +61,7 @@ export default function renderContent() {
           At least one point from main settings must be chosen!
         </p>
       </div>
-      <div class="main-settings">
+      <div class="main-settings sound-settings">
         <p><b>Sound settings:</b></p>
         <label>
           <input type="checkbox" name="playWordExample" class="settings-to-save" />
@@ -131,6 +134,9 @@ export default function renderContent() {
           Your settings have been successfully saved!
         </p>
       </div>
-      <input class="btn btn-primary save-btn" type="button" value="Save" />
+      <div class="save-btn-container">
+        <input class="btn btn_medium btn_yellow save-btn" type="button" value="Save" />
+      </div>
     </div>`);
+  page.append(wrapper);
 }

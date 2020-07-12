@@ -1,9 +1,5 @@
-import changeLimits from './changeLimits';
+import './gamesPage.scss';
 import renderContent from './renderContent';
-import './settings.scss';
-import saveButtonHandler from './saveButtonHandler';
-import hideSuccessNotification from './hideSuccessNotification';
-import setCheckedToChosenSettings from './setCheckedToChosenSettings';
 import renderMenu from '../../shared/menu/renderMenu';
 import burgerIconHandler from '../../shared/menu/burgerIconHandler';
 import setItemActiveState from '../../shared/menu/setItemActiveState';
@@ -12,14 +8,10 @@ import logoutButtonHandler from '../../shared/header/logoutButtonHandler';
 import '../../styles/header.scss';
 import '../../styles/menu.scss';
 
-export default function settings() {
+export default function gamesPages() {
   renderContent();
-  changeLimits();
-  saveButtonHandler();
-  setCheckedToChosenSettings();
-  hideSuccessNotification();
-  const wrapper = document.querySelector('.settings__wrapper');
-  wrapper.append(renderMenu(), renderHeader());
+  const gamesWrapper = document.querySelector('.games-page__wrapper');
+  gamesWrapper.append(renderMenu(), renderHeader());
   burgerIconHandler();
   setItemActiveState();
   logoutButtonHandler();

@@ -10,6 +10,7 @@ import speakIt from '../components/mini-game/speak-it/start-page';
 import renderOurGamePage from '../components/mini-game/our-game/our-game-render-page';
 import audioCall from '../components/mini-game/audio-call/createAudioCallPage';
 import renderStartSprintPage from '../components/mini-game/sprint/pages/StartSprintPage';
+import gamesPages from '../components/gamesPage/gamesPage';
 
 const routes = {
   '#/': {
@@ -59,6 +60,10 @@ const routes = {
   '#/our-game': {
     requiresAuth: true,
     render: renderOurGamePage,
+  },
+  '#/games': {
+    requiresAuth: true,
+    render: gamesPages,
   },
 };
 

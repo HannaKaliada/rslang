@@ -7,8 +7,15 @@ import createAudioObjects from './pronunciation/createAudioObjects';
 import addEventListeners from './pronunciation/addEventListeners';
 import fillCardDueToSettings from './fillCardDueToSettings';
 import setTranslationSettings from './setTranslationSettings';
-import showAnswer from './showAnswer';
 import switchTranslationSettings from './switchTranslationSettings';
+import renderMenu from '../../shared/menu/renderMenu';
+import burgerIconHandler from '../../shared/menu/burgerIconHandler';
+import setItemActiveState from '../../shared/menu/setItemActiveState';
+import renderHeader from '../../shared/header/renderHeader';
+import logoutButtonHandler from '../../shared/header/logoutButtonHandler';
+import '../../styles/header.scss';
+import '../../styles/menu.scss';
+import showAnswer from './showAnswer';
 import goToTheNextWord from './goToTheNextWord';
 
 export default async function learningWords() {
@@ -22,5 +29,10 @@ export default async function learningWords() {
   checkInput();
   switchTranslationSettings();
   goToTheNextWord();
+  const wrapper = document.querySelector('.learn-page__wrapper');
+  wrapper.append(renderMenu(), renderHeader());
+  burgerIconHandler();
+  setItemActiveState();
+  logoutButtonHandler();
   showAnswer();
 }

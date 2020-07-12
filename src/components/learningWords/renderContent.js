@@ -1,12 +1,12 @@
-import properties from './properties';
 import createVolumeBlock from './pronunciation/createVolumeBlock';
+import createElement from '../../shared/createElement';
 import createProgressBar from './progressBar';
 
 export default function renderContent() {
+  const learnPage = createElement('div', 'learn-page__wrapper');
   const page = document.querySelector('.root');
-  const currentWord = localStorage.getItem('currentWord');
-  page.insertAdjacentHTML('beforeend',
-    `<div class="container">
+  learnPage.insertAdjacentHTML('beforeend',
+    `<div class="container learn-page">
       <div class="learning-settings">
         <div class="word-translation">
           <p>Word translation</p>
@@ -17,14 +17,14 @@ export default function renderContent() {
           >
             <button
               type="button"
-              class="btn btn-primary word-trans-on"
+              class="btn btn_extra-small btn_gray word-trans-on"
               data-word-translation-hint="true"
             >
               ON
             </button>
             <button
               type="button"
-              class="btn btn-primary word-trans-off"
+              class="btn btn_extra-small btn_gray word-trans-off"
               data-word-translation-hint="false"
             >
               OFF
@@ -32,7 +32,7 @@ export default function renderContent() {
           </div>
         </div>
         <div class="sentences-translation">
-          <p>Example and Meaning translation</p>
+          <p>Sentences translation</p>
           <div
             class="btn-group mr-2 sent-trans-btns"
             role="group"
@@ -40,14 +40,14 @@ export default function renderContent() {
           >
             <button
               type="button"
-              class="btn btn-primary sent-trans-on"
+              class="btn btn_extra-small btn_gray sent-trans-on"
               data-sentences-translation="true"
             >
               ON
             </button>
             <button
               type="button"
-              class="btn btn-primary sent-trans-off"
+              class="btn btn_extra-small btn_gray sent-trans-off"
               data-sentences-translation="false"
             >
               OFF
@@ -67,17 +67,15 @@ export default function renderContent() {
             <p class="meaning"></p>
             <p class="meaning-translation"></p>
             <p class="transcription"></p>
-            <button type="submit" class="btn btn-primary submit-btn">Check</button>
+            <button type="submit" class="btn submit-btn btn_small btn_yellow">Check</button>
             ${createVolumeBlock()}
           </form>
-          <button class="btn btn-primary next-btn hidden">Next</button>
-          <button class="btn btn-info show-answer-btn">Show answer</button>
+          <button class="btn btn_small btn_yellow next-btn hidden">Next</button>
+          <button class="btn btn-default show-answer-btn">Show answer</button>
         </div>
-        <p class="word__translation">
-          ${properties.words[currentWord].wordTranslate}
-        </p>
-        ${createProgressBar()}
         <p class="word__translation"></p>
+        ${createProgressBar()}
       </div>
     </div>`);
+  page.append(learnPage);
 }

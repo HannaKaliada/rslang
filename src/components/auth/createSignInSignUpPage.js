@@ -143,7 +143,7 @@ class CreateSignInSignUpPage {
 
   createSubmitButton() {
     const submitAttrs = [['type', 'submit']];
-    this.submit = this.createElement('input', ['btn', 'btn-primary'], submitAttrs);
+    this.submit = this.createElement('input', ['btn', 'btn_yellow', 'btn_medium'], submitAttrs);
     this.submit.value = 'Sign up';
     return this.submit;
   }
@@ -172,7 +172,9 @@ class CreateSignInSignUpPage {
   async init() {
     const root = document.querySelector('.root');
     const container = this.createElement('div', 'container');
-    container.append(this.createForm());
+    const formContainer = this.createElement('div', 'form-container');
+    container.append(formContainer);
+    formContainer.append(this.createForm());
     root.append(container);
     if (await checkTokenIsAlive()) {
       const settings = await getUserSettings();

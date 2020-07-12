@@ -1,13 +1,30 @@
+@import "../../styles/mixins.scss";
+
+.settings__wrapper {
+  display: grid;
+  grid-template-areas: "menu header"
+  "menu settings";
+  grid-template-columns: max-content;
+
+  .settings {
+    grid-area: settings;
+    h1{
+      font-size: 3rem;
+      font-weight: 600;
+    }
+  }
+}
+
 .hidden {
   display: none;
 }
 
 .limits {
   display: flex;
-  justify-content: center;
   .limit {
     label {
       margin-right: 10px;
+      font-size: 1.6rem;
     }
     input {
       vertical-align: middle;
@@ -17,6 +34,7 @@
     output {
       min-width: 35px;
       margin-left: 10px;
+      font-size: 1.6rem;
     }
   }
   .limit:first-child {
@@ -28,7 +46,11 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+  label{
+    font-size: 1.6rem;
+  }
   p{
+    font-size: 2rem;
     margin-bottom: 10px;
   }
   p:first-child {
@@ -37,8 +59,8 @@
   .warning {
     margin-top: 0;
     margin-bottom: 0;
-    font-weight: 700;
 
+    font-weight: 700;
     color: red;
   }
 }
@@ -46,16 +68,48 @@
 .additional-settings {
   display: flex;
   flex-direction: column;
+  label{
+    font-size: 1.6rem;
+  }
   p{
+    margin-top: 10px;
     margin-bottom: 10px;
+    font-size: 2rem;
   }
   .success-notification {
-    color: green;
     margin-bottom: 0;
+
+    font-weight: 700;
+    color: green;
   }
 }
 
+
 .save-btn {
-  width: 120px;
-  margin-top: 10px;
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+@include mobile() {
+  .limits {
+    .limit {
+      label {
+        font-size: 13px;
+      }
+    }
+  }
+  .main-settings,
+  .additional-settings {
+    font-size: 14px;
+    p:first-child {
+      font-size: 18px;
+    }
+  }
+  .success-notification,
+  .warning {
+    text-align: center;
+  }
+  .save-btn-container {
+    text-align: center;
+  }
 }

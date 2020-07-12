@@ -1,31 +1,29 @@
-.about-team-wrapper{
-.links {
-  display: flex;
-  justify-content: space-between;
+.about-team-page {
+  display: grid;
+  grid-template-areas:
+    "menu header"
+    "menu about-team";
+  grid-template-columns: max-content;
+
+  .about-team {
+    grid-area: about-team;
+    margin: 0 30px;
+  }
+}
+
+.about-team-wrapper {
+  h1 {
+    font-size: 3rem;
+    font-weight: 600;
+  }
 }
 
 .swiper-container {
-  .card {
-    width: 18rem;
-  }
-
-  .card-name {
-    margin: 0 !important;
-
-    font-size: 24px;
-  }
-
-  h1 {
-    margin-right: 8px;
-    margin-left: 8px;
-  }
-
-  .swiper-container {
-    width: 100%;
-    height: 100%;
-    min-height: 600px;
-    margin-top: 100px;
-  }
+  width: 100%;
+  height: 100%;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
 
 .swiper-slide {
   /* Center slide text vertically */
@@ -41,18 +39,25 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+
   font-size: 18px;
   text-align: center;
+
   background: #ffffff;
+  .card {
+    .card-name {
+      text-align: center;
+      font-size: 2.8rem;
+    }
+  }
 }
 @media screen and (max-device-width: 400px) {
   .card {
-    width: 15rem !important;
+    width: 15rem;
   }
 }
 
 @media screen and (min-device-width: 920px) {
-
   .swiper-button-prev {
     right: auto;
     left: 5%;
@@ -64,7 +69,6 @@
 }
 
 @media screen and (min-device-width: 1199px) {
-
   .swiper-button-prev {
     right: auto;
     left: 2.6%;
@@ -73,4 +77,4 @@
     right: 2.6%;
     left: auto;
   }
-}}}
+}
