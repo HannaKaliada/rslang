@@ -18,7 +18,8 @@ class LevelControls {
     }
     instance = this;
     this.appContainer = null;
-    this.initValue = 0;
+    this.page = null;
+    this.group = null;
     return this;
   }
 
@@ -27,9 +28,9 @@ class LevelControls {
     return this;
   }
 
-  addLevel() {
-    const groups = createGroups(this.initValue);
-    const pages = createPages(this.initValue);
+  addLevel(group, page) {
+    const groups = createGroups(group);
+    const pages = createPages(page);
     this.container.append(groups, pages);
     return this;
   }

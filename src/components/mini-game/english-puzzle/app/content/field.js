@@ -2,10 +2,6 @@ import createDomElem from '../../common';
 // eslint-disable-next-line import/no-cycle
 import Content from './index';
 
-function createWordsList(words) {
-
-}
-
 let instance;
 
 class Field {

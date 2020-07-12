@@ -39,11 +39,11 @@ const routes = {
   },
   '#/english-puzzle': {
     requiresAuth: true,
-    render: speakIt,
+    render: englishPuzzle,
   },
   '#/speak-it': {
     requiresAuth: true,
-    render: englishPuzzle,
+    render: speakIt,
   },
   '#/audiocall': {
     requiresAuth: true,
@@ -56,7 +56,7 @@ const routes = {
   '#/sprint': {
     requiresAuth: true,
     render: renderStartSprintPage,
-  },  
+  },
   '#/our-game': {
     requiresAuth: true,
     render: renderOurGamePage,
