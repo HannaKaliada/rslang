@@ -14,14 +14,20 @@ export default function checkInput() {
     inputTopLayer.textContent = '';
     inputTopLayer.classList.remove('transparent');
     const currentWordIndex = localStorage.getItem('currentWordIndex');
+    const wordArray = JSON.parse(localStorage.getItem('localAllWords'));
+
     if (input.value === properties.missingWord) {
       input.classList.add('input_correct');
       input.disabled = true;
       correctAnswer();
-      if (properties.allWords[currentWordIndex].answer === 'none') properties.allWords[currentWordIndex].answer = 'true';
+
+      if (wordArray[currentWordIndex].answer === 'none') {
+        wordArray[currentWordIndex].answer = 'true';
+        localStorage.setItem('localAllWords', JSON.stringify(wordArray));
+      }
     } else {
       inputTopLayer.classList.remove('hidden');
-      properties.allWords[currentWordIndex].answer = 'false';
+
       showWrongAndRightLetters();
 
       input.value = '';

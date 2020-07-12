@@ -4,8 +4,14 @@ import fillCardDueToSettings from './fillCardDueToSettings';
 
 export default function goToTheNextWord() {
   const nextBtn = document.querySelector('.next-btn');
-
+  const currentWordIndex = localStorage.getItem('currentWordIndex');
   nextBtn.addEventListener('click', () => {
+    const wordArray = JSON.parse(localStorage.getItem('localAllWords'));
+    if (wordArray[currentWordIndex].answer === 'none') {
+      wordArray[currentWordIndex].answer = 'false';
+    }
+
+    localStorage.setItem('localAllWords', JSON.stringify(wordArray));
     const submitBtn = document.querySelector('.submit-btn');
     const showAnswerBtn = document.querySelector('.show-answer-btn');
     const toCleanBlocksClasses = ['sentence', 'meaning', 'translation-input', 'sentence-translation', 'word__translation', 'meaning-translation'];

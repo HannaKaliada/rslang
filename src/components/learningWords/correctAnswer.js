@@ -22,6 +22,7 @@ export default async function correctAnswer() {
   showMessage();
   showStatistic();
   updateAmountOfDoneCards();
+  // eslint-disable-next-line
   const settings = properties.settings.optional;
   document.querySelector('.submit-btn').classList.add('hidden');
   document.querySelector('.next-btn').classList.remove('hidden');

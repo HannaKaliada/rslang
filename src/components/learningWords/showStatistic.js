@@ -1,17 +1,16 @@
-import properties from './properties';
-
 export default function showStatistic() {
   if (localStorage.getItem('currentWordIndex') === localStorage.getItem('cardsLimit')) {
+    const wordArray = JSON.parse(localStorage.getItem('localAllWords'));
     let trueWords = '';
     let falseWords = '';
-    properties.allWords.forEach((el) => {
+    wordArray.forEach((el) => {
       if (el.answer === 'false') {
         falseWords += ` <li class="list-group-item">
   <span class="dropdown-item">${el.word}</span>
  <span class="dropdown-item">${el.transcription}</span>
  <span class="dropdown-item">${el.wordTranslate}</span>
  </li>`;
-      } else {
+      } else if (el.answer === 'true') {
         trueWords += `  <li class="list-group-item">
    <span class="dropdown-item">${el.word}</span>
   <span class="dropdown-item">${el.transcription}</span>
