@@ -16,7 +16,7 @@ export default function renderStartPage() {
               <li>Practice and test your knowledge by playing mini-games.</li>
               <li>Beat your records and improve knowledge every day</li>
             </ul>
-              <a class="btn btn-primary btn_yellow" href="#/auth" role="button">LETS GET STARTED</a>
+              <a class="btn btn_yellow" href="#/auth" role="button">LETS GET STARTED</a>
           </div>
             <img src=${require('../../assets/images/start-page.png')}>
         </div>

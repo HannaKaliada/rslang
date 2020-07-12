@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .games-page__wrapper {
   display: grid;
   grid-template-areas: "menu header"
@@ -61,3 +63,24 @@
     }
   }
 }
+
+@include tablet(){
+  .games {
+  .game {
+    width: calc(50% - 20px);
+    &__desc {
+      min-height: 145px;
+    }
+  }
+}
+}
+
+@include mobile(){
+  .games {
+    flex-direction: column;
+  .game {
+    width: 100%;
+  }
+}
+}
+
