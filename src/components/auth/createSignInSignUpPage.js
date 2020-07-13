@@ -8,6 +8,9 @@ import defaultSettings from '../settings/defaultSettings';
 import getUserSettings from '../../services/getUserSettings';
 import setProps from '../learningWords/setProps';
 import info from '../hub/hub-page/info';
+import setUserStatistics from '../../services/setUserStatistics'
+import defaultStatistics from '../statistics/defaultStatistics';
+
 
 const FORM_TYPE_SIGNUP = 'signUp';
 const FORM_TYPE_SIGNIN = 'signIn';
@@ -33,6 +36,7 @@ class CreateSignInSignUpPage {
         try {
           await createUser(credentials);
           await signInUser(credentials);
+          await setUserStatistics(defaultStatistics());
           await postUserSettings(defaultSettings);
           setSettingsToLocalStorage(defaultSettings);
           setProps();
