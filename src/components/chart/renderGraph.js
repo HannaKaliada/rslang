@@ -22,7 +22,6 @@ function func(x) {
 }
 
 function generateDate(learned) {
-  console.log("generateData");
   return Array.from(Array(learned).keys()).map(x => ({
     x: x, y: func(x)
   }))
@@ -30,7 +29,6 @@ function generateDate(learned) {
 
 function initChart(learnedWords, maxWords) {
   let ctx = document.querySelector('#myChart');
-  console.log(ctx);
   return new Chart(ctx, {
     type: 'scatter',
     data: {
@@ -101,7 +99,6 @@ function renderText(learnedWords) {
 function handleSlider() {
   let slider = document.querySelector('.custom-range');
   slider.addEventListener("input", function() {
-    console.log(slider.value)
     chart.data.datasets[0].data = generateDate(Number(slider.value));
     chart.update();
     initText(Number(slider.value), func(Number(slider.value)).toFixed(2));
@@ -132,7 +129,6 @@ async function getNumberLearnedWords() {
     initState();
     const number = 0;
     let data = await getUserStatistics(state);
-    console.log(data.learnedWords);
     return data;
   }
 
