@@ -18,7 +18,7 @@ export default function renderAboutTeamPage() {
   let content = '';
   data.forEach((el) => {
     content += `<div class="swiper-slide"><div class="card" >
-        <img src="${el.img}" class="card-img-top" alt="${el.name}">
+        <img src="${require(`${el.img}`)}" class="card-img-top" alt="${el.name}">
         <div class="card-body">
         <h2 class="card-name">${el.name}</h2>
           <p class="card-text">${el.description}</p>

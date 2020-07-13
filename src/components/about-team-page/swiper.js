@@ -18,11 +18,11 @@ export default function swiperInit() {
       690: {
         spaceBetween: 0,
         slidesPerView: 2,
-        // slidesPerGroup: 2
+
       },
       1200: {
         slidesPerView: 3,
-        // slidesPerGroup: 3
+
       },
     },
     navigation: {
