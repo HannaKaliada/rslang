@@ -1,10 +1,13 @@
-// import $ from 'jquery';
 import createDomElem from '../common';
 import getWords from '../../../../shared/get-words';
 import State from '../state';
 import SpeakIt from '../index';
+import getUserStatistic from '../../../../services/getUserStastics';
+import setUserStatistics from '../../../../services/setUserStatistics';
+import ErrorMsg from '../error';
+import LevelControls from '../controls/level-controls';
 
-export default function createStartPage(node) {
+function createStartPage(node) {
   const tittle = 'speakit';
   const subTittle = [
     'Click on the words to hear them sound.',
@@ -19,20 +22,89 @@ export default function createStartPage(node) {
     'div', ['start-page'], [startPageTitle, startPageSubTitle, startPageBtn],
   );
   async function toContent() {
-    const data = await getWords(0, 0);
+    let page = 0;
+    let group = 0;
+    const { userId, token } = JSON.parse(localStorage.getItem('userInfo'));
+    const close = async (e) => {
+      const dialogText = 'Are you sure?';
+      e.returnValue = dialogText;
+      window.removeEventListener('beforeunload', close);
+      // eslint-disable-next-line no-shadow
+      const { page, group } = LevelControls.create();
+      try {
+        const user = await getUserStatistic({ userId, token });
+        if (user) {
+          const obj = {
+            optional: {
+              ...user.optional,
+              speakIt: {
+                page,
+                group,
+              },
+            },
+          };
+          await setUserStatistics({
+            userId,
+            token,
+            obj,
+          });
+        }
+        // eslint-disable-next-line no-shadow
+      } catch (e) {
+        console.log(e.toString());
+      }
+      return dialogText;
+    };
+    window.addEventListener('beforeunload', close);
+    try {
+      const user = await getUserStatistic({ userId, token });
+      if (user) {
+        const { group: g, page: p } = user.optional.speakIt;
+        if (typeof g === 'number' && typeof p === 'number') {
+          group = g;
+          page = p;
+        }
+      }
+    } catch (e) {
+      await setUserStatistics({
+        userId,
+        token,
+        obj: {
+          optional: {
+            speakIt: {
+              group: 0,
+              page: 0,
+            },
+          },
+        },
+      });
+    }
+    const data = await getWords(page, group);
     // eslint-disable-next-line no-multi-assign
-    State.create()
-      .wordsData = data;
-    const speakIt = SpeakIt.create()
-      .createContainer()
-      .addControls()
-      .addContent()
-      .addClickHandle()
-      .container;
-    startPageBtn.removeEventListener('click', toContent);
-    startPage.remove();
-    node.append(speakIt);
+    if (typeof data === 'object') {
+      State.create()
+        .wordsData = data;
+      // eslint-disable-next-line no-shadow
+      const speakIt = SpeakIt.create()
+        .createContainer()
+        .addControls(group, page)
+        .addError()
+        .addContent()
+        .addClickHandle()
+        .container;
+      startPageBtn.removeEventListener('click', toContent);
+      startPage.remove();
+      node.append(speakIt);
+    } else {
+      ErrorMsg.create().addError(data);
+    }
   }
   startPageBtn.addEventListener('click', toContent);
   return startPage;
+}
+
+export default function speakIt() {
+  const page = document.querySelector('.root');
+  page.innerHTML = '';
+  page.append(createStartPage(page));
 }

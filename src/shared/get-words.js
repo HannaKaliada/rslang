@@ -1,10 +1,14 @@
 function formatData(data) {
   return data.map((elem) => {
     const newElem = elem;
-    const { image, audio } = newElem;
+    const {
+      image, audio, audioMeaning, audioExample,
+    } = newElem;
     newElem.image = `https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/${image}`;
     newElem.audio = `https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/${audio}`;
-    return elem;
+    newElem.audioMeaning = `https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/${audioMeaning}`;
+    newElem.audioExample = `https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/${audioExample}`;
+    return newElem;
   });
 }
 
