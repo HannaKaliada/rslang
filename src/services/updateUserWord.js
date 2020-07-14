@@ -15,7 +15,7 @@ const updateUserWord = async ({
     const content = await rawResponse.json();
     return content;
   }
-  throw new Error('Error creating word for user');
+  throw new Error('Error updating word for user');
 };
 
 export default updateUserWord;

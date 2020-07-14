@@ -9,16 +9,18 @@ export default async function saveLearnedWords(category) {
   const { userId, token } = userInfo;
   const settings = properties.settings.optional;
   const wordId = properties.words[(settings.currentWord)].id;
-  let word;
+  let word = {};
   try {
-    word = await getUserWord({ userId, wordId, token });
+    const oldword = await getUserWord({ userId, wordId, token });
+    word.optional = oldword.optional;
+    word.difficulty = oldword.difficulty;
     word.optional.timestamp = new Date();
     word.optional.repeat = Number(word.optional.repeat) + 1;
     word = updateDifficulty(word);
     if (category) {
       word.optional.category = category;
     }
-    updateUserWord({ userId, wordId, word, token });
+    await updateUserWord({ userId, wordId, word, token });
   } catch (er) {
     word = {
       difficulty: properties.difficulty,
