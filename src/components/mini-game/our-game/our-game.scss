@@ -1,6 +1,11 @@
 .our-game-wrapper {
   height: 100vh;
-  .btn-close{
+  text-align: center;
+  color: #263238;
+  .d-flex{
+    justify-content: center;
+  }
+  .btn-close {
     position: absolute;
     right: 5px;
     top: 5px;
@@ -86,7 +91,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 25px;
-    background: #382c2c;
+    background: #7d3f35;
     @media screen and (max-width: 600px) {
       .word-red {
         word-break: break-word;
@@ -116,6 +121,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      padding: 0 20px;
     }
     .red-side {
       background: #a65447;
@@ -135,6 +141,7 @@
   #play-btn {
     margin-left: 11px;
     padding: 1px 6px;
+    color: #ffffff;
   }
   #srart-btn {
     margin: 10px;
@@ -142,14 +149,22 @@
   .btn-next-menu {
     display: flex;
     justify-content: space-around;
+    margin-top: 5rem;
   }
   span {
     margin-right: 5px;
   }
   .list-group {
-    width: 90%;
+    width: 50%;
+    max-width: 800px;
     margin: 0 auto;
-    padding-top: 50px;
+    padding: 4rem;
+    font-size: 1.8rem;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.04);
+    border-radius: 28px;
+    background-color: #ffffff;
+    margin-top: 3rem;
+
   }
   .list-group-item {
     display: flex;
@@ -242,7 +257,9 @@
   .btn {
     display: block;
   }
-
+  .btn_dropdown:first-child {
+    margin-right: 20px;
+  }
   .dropdown {
     display: flex;
     cursor: pointer;
@@ -258,8 +275,29 @@
     max-width: 1000px;
     margin: 0 auto;
     margin-top: 30px;
-    .info-arrow{
+    color: #263238;
+    .info-arrow {
       font-size: 35px;
+    }
+  }
+  .game-rules {
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.04);
+    border-radius: 28px;
+    background-color: #ffffff;
+    max-width: 800px;
+    height: unset;
+    padding: 4rem;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    img{
+      width: 50%;
+      height: auto;
+      margin: 0 auto;
+    }
+    .info {
+      margin-bottom: 6rem;
     }
   }
 }

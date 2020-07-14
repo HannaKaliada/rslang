@@ -48,6 +48,11 @@ body {
   outline: none;
 }
 
+.btn:focus{
+  outline: none;
+  box-shadow: none;
+}
+
 .btn_yellow, .btn-primary{
   background: #ffdd64;
   box-shadow: 0 0.4rem 1.2rem #ffdd64;
@@ -82,6 +87,8 @@ body {
 
   font-size: 1.4rem;
 }
+
+
 
 .form-container {
   display: flex;
