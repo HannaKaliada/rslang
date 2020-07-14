@@ -42,9 +42,8 @@ export default function renderContentOurGamePage() {
     <div class="card game-rules">
     <img src="${require('../../../assets/images/teamgame-2.png')}">
     <p class="info">There are descriptions of two different words on the left and right sides. Your task is to match the words with there meaning correctly. You can use the arrows ← → and keyboard keys to correlate words and meanings. The game ends when the timer expires or after 10 words have passed.</p>
-    <button type="button" id="srart-btn" class="btn btn_yellow mx-auto">Start game</button>
+    <button type="button" id="srart-btn" class="btn btn_yellow mx-auto">Start</button>
     </div>
-
   `;
 
   content = `${links + content}</div>`;
