@@ -1,8 +1,10 @@
+@import "../../../styles/mixins.scss";
+
 .our-game-wrapper {
   height: 100vh;
   text-align: center;
   color: #263238;
-  .d-flex{
+  .d-flex {
     justify-content: center;
   }
   .btn-close {
@@ -135,8 +137,11 @@
   .content-true {
     border-bottom: 2px solid;
   }
+  .content-false {
+    margin-top: 30px;
+  }
   .level-difficulty {
-    font-size: 24px;
+    font-size: 2.4rem;
   }
   #play-btn {
     margin-left: 11px;
@@ -164,7 +169,7 @@
     border-radius: 28px;
     background-color: #ffffff;
     margin-top: 3rem;
-
+    margin-bottom: 4rem;
   }
   .list-group-item {
     display: flex;
@@ -257,12 +262,14 @@
   .btn {
     display: block;
   }
-  .btn_dropdown:first-child {
-    margin-right: 20px;
-  }
   .dropdown {
     display: flex;
     cursor: pointer;
+  }
+  .dropdown:first-child {
+    .btn_dropdown {
+      margin-right: 20px;
+    }
   }
   .dropdown-menu {
     max-height: 300px;
@@ -271,7 +278,7 @@
   }
   .info {
     text-align: center;
-    font-size: 20px;
+    font-size: 2rem;
     max-width: 1000px;
     margin: 0 auto;
     margin-top: 30px;
@@ -291,13 +298,70 @@
     margin: 0 auto;
     margin-top: 4rem;
     margin-bottom: 4rem;
-    img{
+    img {
       width: 50%;
       height: auto;
       margin: 0 auto;
     }
     .info {
       margin-bottom: 6rem;
+    }
+  }
+}
+
+@include mobile() {
+  .our-game-wrapper {
+    .game-rules {
+      width: 90%;
+      img{
+        width: 100%;
+      }
+    }
+    .list-group {
+      width: 90%;
+      font-size: 1.6rem;
+    }
+    .side-container {
+      .our-side {
+        width: 50%;
+      }
+      .red-side {
+        border-radius: 200px 0 0 200px;
+      }
+      .green-side {
+        border-radius: 0 200px 200px 0;
+      }
+      .side-btn {
+        bottom: 25%;
+      }
+    }
+    .btn-next-menu {
+      button{
+        font-size: 1.2rem;
+        padding: 0.8rem 3rem;
+      }
+      button:first-child {
+        margin-right: 20px;
+      }
+    }
+    .timer-container {
+      top: 100%;
+    }
+    .game-words {
+      .learn-word {
+        top: 10%;
+      }
+    }
+  }
+}
+
+@include tablet() {
+  .our-game-wrapper {
+    .game-rules {
+      width: 80%;
+    }
+    .list-group {
+      width: 80%;
     }
   }
 }

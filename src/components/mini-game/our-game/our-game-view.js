@@ -41,8 +41,8 @@ const view = {
     contentTrue += '</div>';
 
     const buttons = `<div class="btn-next-menu">
-    <button type="button" id="repeat-level-btn" class="btn  btn_yellow">Repeat Level</button>
-    <button type="button" id="game-menu-btn" class="btn  btn_yellow">Game menu</button>
+    <button type="button" id="game-menu-btn" class="btn  btn_yellow btn_small">Menu</button>
+    <button type="button" id="repeat-level-btn" class="btn  btn_yellow btn_small">Repeat Lvl</button>
     </div>`;
     ul.insertAdjacentHTML('beforeend', contentTrue + contentFalse + buttons);
   },
