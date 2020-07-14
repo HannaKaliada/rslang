@@ -34,7 +34,8 @@ body {
 }
 
 .btn,
-.btn-primary {
+.btn-primary,
+.btn-secondary {
   max-width: 27rem;
   padding: 1.6rem 5rem;
 
@@ -91,6 +92,18 @@ body {
   padding: 0.8rem 2rem;
 
   font-size: 1.4rem;
+}
+
+.btn-close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  padding: 0;
+  width: 28px;
+  height: 29px;
+  border-radius: 93px;
+  background-color: #7a6e6c !important;
+  border-color: #7a6e6c !important;
 }
 
 .form-container {
@@ -172,7 +185,9 @@ body {
   outline: 2px solid #ff4c4c;
 }
 
-.game-rules {
+.game-rules,
+.audio-call__main-elements,
+.audio-call__statistics {
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.04);
   border-radius: 28px;
   background-color: #ffffff;
@@ -196,8 +211,11 @@ body {
 }
 
 @include mobile() {
-  .game-rules {
+  .game-rules,
+  .audio-call__main-elements,
+  .audio-call__statistics {
     width: 90%;
+    padding: 2rem;
     img {
       width: 100%;
     }
@@ -205,7 +223,9 @@ body {
 }
 
 @include tablet() {
-  .game-rules {
+  .game-rules,
+  .audio-call__main-elements,
+  .audio-call__statistics {
     width: 80%;
   }
 }

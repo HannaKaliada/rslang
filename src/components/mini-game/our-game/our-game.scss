@@ -160,7 +160,7 @@
     margin-right: 5px;
   }
   .list-group {
-    width: 50%;
+    width: 60%;
     max-width: 800px;
     margin: 0 auto;
     padding: 4rem;
@@ -170,6 +170,9 @@
     background-color: #ffffff;
     margin-top: 3rem;
     margin-bottom: 4rem;
+    .btn_small {
+      padding: 0.8rem 3rem;
+    }
   }
   .list-group-item {
     display: flex;
@@ -291,12 +294,6 @@
 
 @include mobile() {
   .our-game-wrapper {
-    .game-rules {
-      width: 90%;
-      img{
-        width: 100%;
-      }
-    }
     .list-group {
       width: 90%;
       font-size: 1.6rem;
@@ -316,7 +313,7 @@
       }
     }
     .btn-next-menu {
-      button{
+      button {
         font-size: 1.2rem;
         padding: 0.8rem 3rem;
       }
@@ -337,9 +334,6 @@
 
 @include tablet() {
   .our-game-wrapper {
-    .game-rules {
-      width: 80%;
-    }
     .list-group {
       width: 80%;
     }
