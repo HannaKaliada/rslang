@@ -1,6 +1,8 @@
+@import "./mixins.scss";
+
 .menu {
   width: 70px;
-  height: 100vh;
+  height: 100%;
 
   background-color: #fff;
   box-shadow: 8px 0px 20px rgba(0, 0, 0, 0.04);
@@ -26,7 +28,7 @@
         height: 4px;
         margin: 3px;
 
-        background-color: #263238;
+        background-color: #A6A6A6;
         border-radius: 2px;
 
         transition: transform 0.5s;
@@ -51,17 +53,37 @@
       margin: 0 20px;
 
       .menu-item__label {
-        color: #263238;
+        color: #A6A6A6;
         margin-left: 15px;
         opacity: 0;
         align-self: center;
         font-size: 1.4rem;
       }
 
-      img {
+      svg {
         width: 30px;
         height: 30px;
+        fill: #A6A6A6;
       }
+    }
+  }
+
+  .menu__item.active {
+    .menu-item__label {
+      color: #263238;
+    }
+    svg {
+      fill: #263238;
+    }
+  }
+
+  .menu__item:hover {
+      text-decoration: none;
+    .menu-item__label {
+      color: #263238;
+    }
+    svg {
+      fill: #263238;
     }
   }
 }
@@ -73,13 +95,23 @@
 
     .menu-item__label {
       opacity: 1;
-
       transition: opacity 1.3s;
+    }
+  }
+
+  .menu__item.active {
+    .menu-item__label {
+      color: #263238;
+    }
+    svg {
+      fill: #263238;
     }
   }
 
   .menu__burger {
     .burger-icon {
+      margin: 0px 10px;
+
       div:nth-child(1) {
         transform: rotate(-45deg) translate( 1px , 9px);
       }
@@ -92,5 +124,24 @@
         transform: rotate(45deg) translate(-5px,-15px);
       }
     }
+  }
+}
+
+
+@include tablet() {
+  .menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+  }
+}
+
+@include mobile() {
+  .menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
   }
 }

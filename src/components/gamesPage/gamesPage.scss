@@ -65,22 +65,38 @@
 }
 
 @include tablet(){
-  .games {
-  .game {
-    width: calc(50% - 20px);
-    &__desc {
-      min-height: 145px;
+  .games-page__wrapper {
+    grid-template-areas: "header"
+    "games";
+    grid-template-columns: auto;
+    .games-page {
+      margin-left: 80px;
+      .games {
+        .game {
+          width: calc(50% - 20px);
+          &__desc {
+            min-height: 145px;
+          }
+        }
+      }
     }
   }
 }
-}
 
 @include mobile(){
-  .games {
-    flex-direction: column;
-  .game {
-    width: 100%;
+  .games-page__wrapper {
+    grid-template-areas: "header"
+    "games";
+    grid-template-columns: auto;
+    .games-page {
+      margin-left: 80px;
+      .games {
+        flex-direction: column;
+        .game {
+          width: 100%;
+        }
+      }
+    }
   }
-}
 }
 

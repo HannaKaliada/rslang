@@ -1,9 +1,12 @@
+@import "../../styles/mixins.scss";
+
 .about-team-page {
   display: grid;
   grid-template-areas:
     "menu header"
     "menu about-team";
   grid-template-columns: max-content;
+  height: 100vh;
 
   .about-team {
     grid-area: about-team;
@@ -111,5 +114,33 @@
   .swiper-button-next {
     right: 2.6% !important;
     left: auto !important;
+  }
+}
+
+@include tablet() {
+  .about-team-page {
+    display: grid;
+    grid-template-areas:
+      "header"
+      "about-team";
+    grid-template-columns: auto;
+  }
+  .about-team {
+    grid-area: about-team;
+    margin: 0 10px 0 80px !important;
+  }
+}
+
+@include mobile() {
+  .about-team-page {
+    display: grid;
+    grid-template-areas:
+      "header"
+      "about-team";
+    grid-template-columns: auto;
+  }
+  .about-team {
+    grid-area: about-team;
+    margin: 0 10px 0 80px !important;
   }
 }
