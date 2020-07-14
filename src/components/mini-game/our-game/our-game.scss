@@ -17,6 +17,9 @@
     border-radius: 93px;
     background-color: #7a6e6c !important;
     border-color: #7a6e6c !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
   }
   .btn-danger {
     border-radius: 10px;
@@ -313,7 +316,7 @@
   .our-game-wrapper {
     .game-rules {
       width: 90%;
-      img{
+      img {
         width: 100%;
       }
     }
@@ -336,7 +339,7 @@
       }
     }
     .btn-next-menu {
-      button{
+      button {
         font-size: 1.2rem;
         padding: 0.8rem 3rem;
       }
