@@ -2,7 +2,8 @@
   width: 70px;
   height: 100%;
 
-  background-color: #ebebeb;
+  background-color: #fff;
+  box-shadow: 8px 0px 20px rgba(0, 0, 0, 0.04);
 
   transition: width 0.2s linear;
 
@@ -25,18 +26,12 @@
         height: 4px;
         margin: 3px;
 
-        background-color: #007bff;
+        background-color: #263238;
         border-radius: 2px;
 
         transition: transform 0.5s;
       }
     }
-  }
-
-  .menu__separator {
-    height: 1px;
-
-    background-color: #007bff;
   }
 
   .menu__items {
@@ -47,10 +42,7 @@
 
     .menu__item.active {
       .menu-item__label {
-        color: #b34c12;
-      }
-      svg {
-        fill: #b34c12;
+        text-decoration: underline;
       }
     }
     .menu__item {
@@ -59,12 +51,14 @@
       margin: 0 20px;
 
       .menu-item__label {
+        color: #263238;
         margin-left: 15px;
-
         opacity: 0;
+        align-self: center;
+        font-size: 1.4rem;
       }
 
-      svg {
+      img {
         width: 30px;
         height: 30px;
       }

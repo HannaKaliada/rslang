@@ -1,8 +1,9 @@
-[{ "name": "Lesha Belenko", "description": "Хороший парень", "img": "../src/components/about-team-page/img/lesha.jpg" },
-    { "name": "Lesha Belenko", "description": "Стандартный парень", "img": "../src/components/about-team-page/img/lesha.jpg" },
-    { "name": "Lesha Belenko", "description": "афцввфцвфцгр3123123р12гор312о312р", "img": "../src/components/about-team-page/img/lesha.jpg" },
-    { "name": "Lesha Belenko", "description": "Плохой парень", "img": "../src/components/about-team-page/img/lesha.jpg" },
-    { "name": "Lesha Belenko", "description": "Лёша", "img": "../src/components/about-team-page/img/lesha.jpg" },
-    { "name": "Lesha Belenko", "description": "Нормальный парень", "img": "../src/components/about-team-page/img/lesha.jpg" },
-    { "name": "Lesha Belenko", "description": "Работящий парень", "img": "../src/components/about-team-page/img/lesha.jpg" }
+[{ "name": "Алексей Беленко", "description": "GOOD", "img": "./img/lesha_b.jpg" },
+    { "name": "Алексей Радюк", "description": "GOOD", "img": "./img/lesha_r.jpg" },
+    { "name": "Глеб Жидович", "description": "GOOD", "img": "./img/gleb.jpg" },
+    { "name": "Анна Каледа", "description": "GOOD", "img": "./img/anya.jpg" },
+    { "name": "Геннадий Бакулин", "description": "GOOD", "img": "./img/gennady.jpg" },
+    { "name": "Ксения Никитина", "description": "GOOD", "img": "./img/ksenia.jpg" },
+    { "name": "Сергей Зылевич", "description": "GOOD", "img": "./img/sergey.jpg" }
 ]
+

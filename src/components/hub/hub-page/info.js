@@ -4,7 +4,7 @@ const info = {
   wordsPracticed: 0,
   wordsLearned: 0,
   cardsCompleted: 0,
-  cardsPerDay: 0,
+  cardsPerDay: 80,
   wordsAll: 3600,
 };
 

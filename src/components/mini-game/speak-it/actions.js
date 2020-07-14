@@ -4,14 +4,11 @@ import WordsField from './content/content-words';
 import getWords from '../../../shared/get-words';
 import Result from './result';
 import Content from './content';
+import ErrorMsg from '../english-puzzle/app/error';
+import LevelControls from './controls/level-controls';
 
 // eslint-disable-next-line import/no-mutable-exports
 let actions;
-
-function changeClass(elem) {
-  elem.parentNode.classList.remove('show');
-  elem.parentNode.parentNode.classList.remove('show');
-}
 
 function toggleClass(elem, first, second) {
   elem.classList.toggle(first);
@@ -40,6 +37,8 @@ function changeClassBtns() {
 async function changeLvl(group, page) {
   const words = await getWords(page, group);
   if (typeof words === 'object') {
+    LevelControls.create().page = page;
+    LevelControls.create().group = group;
     State.create()
       .resetScore()
       .wordsData = words;
@@ -47,6 +46,8 @@ async function changeLvl(group, page) {
       .resetInfo();
     WordsField.create()
       .updateContent();
+  } else {
+    ErrorMsg.create().addError(words);
   }
 }
 
@@ -71,6 +72,10 @@ function compareAnswers(str) {
     actions.turnOff();
     actions.result();
   }
+}
+
+function capitalize(str) {
+  return str[0].toUpperCase() + str.substring(1);
 }
 
 actions = {
@@ -126,19 +131,27 @@ actions = {
     Content.create().container.append(result);
   },
 
-  level(elem, type) {
-    changeClass(elem);
+  level(elem, num) {
     const state = State.create();
-    state.group = parseInt(type, 10);
+    state.group = parseInt(num, 10);
     changeLvl(state.group, state.page);
     this.isStart = false;
     // eslint-disable-next-line no-param-reassign
     elem.parentNode.previousSibling.textContent = `Level: ${state.group + 1}`;
   },
 
+  page(elem, num) {
+    const state = State.create();
+    state.page = parseInt(num, 10);
+    changeLvl(state.group, state.page);
+    this.isStart = false;
+    // eslint-disable-next-line no-param-reassign
+    elem.parentNode.previousSibling.textContent = `Level: ${state.page + 1}`;
+  },
+
   sound(elem) {
     const parent = elem.parentNode;
-    const resultAudio = parent.querySelector('.speak-it__result__audio');
+    const resultAudio = parent.querySelector('.result__audio');
     resultAudio.play();
   },
 

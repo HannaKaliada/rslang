@@ -1,17 +1,15 @@
-const getUserSettings = async ({ userId, token }) => {
-  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/settings`, {
+const getUserSettings = async () => {
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userInfo.userId}/settings`, {
     method: 'GET',
-    withCredentials: true,
     headers: {
-      Authorization: `Bearer ${token}`,
       Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${userInfo.token}`,
     },
   });
-  if (rawResponse.ok) {
-    const content = await rawResponse.json();
-    return content;
-  }
-  throw new Error('Error to get user settings');
-};
+  const content = await rawResponse.json();
 
+  return content;
+};
 export default getUserSettings;

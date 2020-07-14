@@ -3,7 +3,6 @@ import '../../../assets/icons/speaker.svg';
 import createElement from '../../../shared/createElement';
 
 function createStatsItem(el) {
-  console.log(el);
   const statsItem = createElement('li', 'audio-call__statistics-item');
   const speaker = createElement('img', 'audio-call__small-icon');
   speaker.src = 'images/speaker.svg';

@@ -2,6 +2,7 @@ import createDomElem from './common';
 import Controls from './controls';
 import Content from './content';
 import actions from './actions';
+import ErrorMsg from './error';
 
 let instance;
 
@@ -43,13 +44,21 @@ class SpeakIt {
     return this;
   }
 
-  addControls() {
+  addControls(group, page) {
     const controls = Controls.create()
       .createContainer()
-      .addLevelControls()
+      .addLevelControls(group, page)
       .addAppControls()
       .container;
     this.container.append(controls);
+    return this;
+  }
+
+  addError() {
+    const errorField = ErrorMsg.create()
+      .createContainer()
+      .container;
+    this.container.append(errorField);
     return this;
   }
 
