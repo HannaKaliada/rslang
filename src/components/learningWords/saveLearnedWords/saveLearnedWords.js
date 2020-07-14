@@ -31,8 +31,7 @@ export default async function saveLearnedWords(category) {
     if (category) {
       word.optional.category = category;
     }
-    const res = await createUserWord({ userId, wordId, word, token });
-    console.log(res);
+    await createUserWord({ userId, wordId, word, token });
     properties.difficulty = 'hard';
     properties.category = null;
   }
