@@ -11,7 +11,7 @@ export default function renderStartSprintPage() {
     `<div class="container vh-100 d-flex flex-column align-items-center justify-content-center">
     <img class="logo-game">
       <h1 class="title-game">Sprint</h1>
-    <div class="form-group row">
+    <div class="form-group row allign-items-center">
     <div class="col-md-6">
       <label for="ex1">Difficulity</label>
       <select class="selectpicker form-control select-level">
@@ -24,10 +24,10 @@ export default function renderStartSprintPage() {
         <option value="" selected hidden>Select number of set...</option>
       </select>
   </div>
-  <button type="button" class="btn btn-primary btn-lg btn-block mt-4 btn-start">Start game</button>
   </div>
+  <button type="button" class="btn btn-primary btn-lg btn-block mt-4 btn-start">Start game</button>
   </div>`);
-  initNumberOfLevels(5);
+  initNumberOfLevels(6);
   initNumberOfRounds(30);
   initStartButton();
 }
@@ -57,14 +57,14 @@ function initNumberOfRounds(value) {
 }
 
 function initStartButton() {
-  const falseButton = document.querySelector('.btn-start');
-  falseButton.addEventListener('click', () => {
+  const startButton = document.querySelector('.btn-start');
+  startButton.addEventListener('click', () => {
     const round = document.querySelector('.select-round option:checked').value - 1;
     const level = document.querySelector('.select-level option:checked').value - 1;
     localStorage.setItem('round_sprint', round);
     localStorage.setItem('level_sprint', level);
     initWords().then((result) => {
-      if ((round && level) < 0) {
+      if (round < 0 || level < 0) {
         alert('Choose difficulity and round please');
       } else {
         clearCurrentPage();
