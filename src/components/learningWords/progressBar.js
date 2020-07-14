@@ -2,7 +2,7 @@ import createElement from '../../shared/createElement';
 import { getAmountOfDoneCards } from './updateAmountOfDoneCards';
 
 function createBar() {
-  const cardsLimit = localStorage.getItem('cardsLimit') || 80;
+  const cardsLimit = localStorage.getItem('cardsLimit') || 50;
   const doneCards = getAmountOfDoneCards();
   const amount = (doneCards * 100) / cardsLimit > 100 ? 100 : (doneCards * 100) / cardsLimit;
   const attrs = [['role', 'progressbar'], ['aria-valuenow', `${amount}`], ['aria-valuemin', '0'], ['aria-valuemax', '100']];

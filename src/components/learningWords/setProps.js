@@ -29,6 +29,7 @@ export default async function setProps() {
     optional: {
       currentWordIndex: localStorage.getItem('currentWordIndex'),
       cardsLimit: localStorage.getItem('cardsLimit'),
+      doneCards: localStorage.getItem('doneCards'),
       currentWord: localStorage.getItem('currentWord'),
       currentPage: localStorage.getItem('currentPage'),
       currentGroup: localStorage.getItem('currentGroup'),

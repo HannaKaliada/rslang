@@ -1,6 +1,8 @@
 import createVolumeBlock from './pronunciation/createVolumeBlock';
 import createElement from '../../shared/createElement';
 import createProgressBar from './progressBar';
+import buttonsBlock from './intervalRepeat/buttonsBlock';
+import getAllUserWords from '../../services/getAllUserWords';
 
 export default function renderContent() {
   const learnPage = createElement('div', 'learn-page__wrapper');
@@ -72,10 +74,14 @@ export default function renderContent() {
           </form>
           <button class="btn btn_small btn_yellow next-btn hidden">Next</button>
           <button class="btn btn-default show-answer-btn">Show answer</button>
+          ${buttonsBlock()}
         </div>
         <p class="word__translation"></p>
         ${createProgressBar()}
       </div>
     </div>`);
   page.append(learnPage);
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+  const { token, userId } = userInfo;
+  console.log(getAllUserWords({ token, userId }));
 }
