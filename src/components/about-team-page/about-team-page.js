@@ -16,6 +16,7 @@ export default function renderAboutTeamPage() {
      <div class="swiper-button-prev"></div>
     </div></div>`;
   let content = '';
+  /*eslint-disable*/
   data.forEach((el) => {
     content += `<div class="swiper-slide"><div class="card" >
         <img src="${require(`${el.img}`)}" class="card-img-top" alt="${el.name}">
@@ -26,7 +27,7 @@ export default function renderAboutTeamPage() {
         </div>
         </div>`;
   });
-
+  /* eslint-enable */
   content = links + start + content + end;
   aboutWrapper.insertAdjacentHTML('beforeend', content);
   wrapper.append(aboutWrapper);

@@ -89,6 +89,7 @@ const view = {
     const sideContainer = document.createElement('div');
     const greenSide = document.createElement('div');
     const redSide = document.createElement('div');
+
     const closeBtn = `<a id="game-menu-btn" class="btn btn-secondary btn-close active btn-close-svg" role="button" aria-pressed="true">
     <svg id="game-menu-btn" width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path id="game-menu-btn" fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>

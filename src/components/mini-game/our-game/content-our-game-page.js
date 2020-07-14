@@ -41,7 +41,7 @@ export default function renderContentOurGamePage() {
 
     <div class="card game-rules">
     <img src="${require('../../../assets/images/teamgame-2.png')}">
-    <p class="info">В этой игре с левой и правой стороны написано описание слова, вам нужно правильно сопоставить их посредством кнопок и клавиш(процессом игры можно управлять стрелками <span class="info-arrow">← →</span>  на клавиатуре и кнопками непосредственно на самом экране). Игра закончится по истечению таймера или по прохождению 10 слов.</p>
+    <p class="info">There are descriptions of two different words on the left and right sides. Your task is to match the words with there meaning correctly. You can use the arrows ← → and keyboard keys to correlate words and meanings. The game ends when the timer expires or after 10 words have passed.</p>
     <button type="button" id="srart-btn" class="btn btn_yellow mx-auto">Start game</button>
     </div>
 
