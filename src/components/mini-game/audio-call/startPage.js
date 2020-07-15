@@ -10,17 +10,21 @@ class StartPage {
     this.gameClass = startGame;
   }
 
+  createTitle() {
+    const title = this.createElement('h1', 'audiocall-title');
+    title.innerText = 'Audio Call';
+    return title;
+  }
+
   createDescription() {
-    const desc = this.createElement('div', ['audiocall-description', 'game-rules']);
-    const img = this.createElement('img');
-    img.src = require('../../../assets/images/audiocall-2.png');
+    const desc = this.createElement('div', 'audiocall-description');
     const gameplayInfo = this.createElement('p');
     gameplayInfo.innerText = 'Listen to the word and choose the right translation.';
     const hintInfo = this.createElement('p');
     hintInfo.innerText = 'Difficult? Use a hint: listen to the meaning of the word.';
-    const scoresInfo = this.createElement('p', 'info');
+    const scoresInfo = this.createElement('p');
     scoresInfo.innerText = 'You get 2 points for the right answer, 1 point for the right answer with hint and 0 for the wrong answer.';
-    desc.append(img, gameplayInfo, hintInfo, scoresInfo, this.createButton());
+    desc.append(gameplayInfo, hintInfo, scoresInfo);
     return desc;
   }
 
@@ -34,7 +38,8 @@ class StartPage {
   async createPage() {
     const root = document.querySelector('.root');
     const container = this.createElement('div', ['container', 'audio-call']);
-    container.append(this.createDescription());
+    container.append(createHeader(), this.createTitle(), this.createDescription());
+    container.append(this.createButton());
     root.append(container);
   }
 

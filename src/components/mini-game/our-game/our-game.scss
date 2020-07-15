@@ -1,11 +1,15 @@
-@import "../../../styles/mixins.scss";
-
 .our-game-wrapper {
   height: 100vh;
-  text-align: center;
-  color: #263238;
-  .d-flex {
-    justify-content: center;
+  .btn-close{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding: 0;
+    width: 28px;
+    height: 29px;
+    border-radius: 93px;
+    background-color: #7a6e6c !important;
+    border-color: #7a6e6c !important;
   }
   .btn-danger {
     border-radius: 10px;
@@ -82,7 +86,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 25px;
-    background: #7d3f35;
+    background: #382c2c;
     @media screen and (max-width: 600px) {
       .word-red {
         word-break: break-word;
@@ -112,7 +116,6 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 0 20px;
     }
     .red-side {
       background: #a65447;
@@ -126,16 +129,12 @@
   .content-true {
     border-bottom: 2px solid;
   }
-  .content-false {
-    margin-top: 30px;
-  }
   .level-difficulty {
-    font-size: 2.4rem;
+    font-size: 24px;
   }
   #play-btn {
     margin-left: 11px;
     padding: 1px 6px;
-    color: #ffffff;
   }
   #srart-btn {
     margin: 10px;
@@ -143,25 +142,14 @@
   .btn-next-menu {
     display: flex;
     justify-content: space-around;
-    margin-top: 5rem;
   }
   span {
     margin-right: 5px;
   }
   .list-group {
-    width: 60%;
-    max-width: 800px;
+    width: 90%;
     margin: 0 auto;
-    padding: 4rem;
-    font-size: 1.8rem;
-    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.04);
-    border-radius: 28px;
-    background-color: #ffffff;
-    margin-top: 3rem;
-    margin-bottom: 4rem;
-    .btn_small {
-      padding: 0.8rem 3rem;
-    }
+    padding-top: 50px;
   }
   .list-group-item {
     display: flex;
@@ -254,14 +242,10 @@
   .btn {
     display: block;
   }
+
   .dropdown {
     display: flex;
     cursor: pointer;
-  }
-  .dropdown:first-child {
-    .btn_dropdown {
-      margin-right: 20px;
-    }
   }
   .dropdown-menu {
     max-height: 300px;
@@ -270,62 +254,12 @@
   }
   .info {
     text-align: center;
-    font-size: 2rem;
+    font-size: 20px;
     max-width: 1000px;
     margin: 0 auto;
     margin-top: 30px;
-    color: #263238;
-    margin-bottom: 50px;
-    .info-arrow {
+    .info-arrow{
       font-size: 35px;
-    }
-  }
-}
-
-@include mobile() {
-  .our-game-wrapper {
-    .list-group {
-      width: 90%;
-      font-size: 1.6rem;
-    }
-    .side-container {
-      .our-side {
-        width: 50%;
-      }
-      .red-side {
-        border-radius: 200px 0 0 200px;
-      }
-      .green-side {
-        border-radius: 0 200px 200px 0;
-      }
-      .side-btn {
-        bottom: 25%;
-      }
-    }
-    .btn-next-menu {
-      button {
-        font-size: 1.2rem;
-        padding: 0.8rem 3rem;
-      }
-      button:first-child {
-        margin-right: 20px;
-      }
-    }
-    .timer-container {
-      top: 100%;
-    }
-    .game-words {
-      .learn-word {
-        top: 10%;
-      }
-    }
-  }
-}
-
-@include tablet() {
-  .our-game-wrapper {
-    .list-group {
-      width: 80%;
     }
   }
 }
