@@ -11,13 +11,17 @@ import setItemActiveState from '../../../shared/menu/setItemActiveState';
 import { getAmountOfDoneCards } from '../../learningWords/updateAmountOfDoneCards';
 import logoutButtonHandler from '../../../shared/header/logoutButtonHandler';
 import getAllUserWords from '../../../services/getAllUserWords';
+import getDate from '../../../shared/getDate';
+import properties from '../../learningWords/properties';
 
 async function updateHubPageInfo() {
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const { token, userId } = userInfo;
   const learnedWords = await getAllUserWords({ userId, token });
-  console.log(learnedWords);
-  info.wordsLearned = learnedWords.length;
+  const learnedToday = learnedWords.filter((el) => getDate === el.learnedDate);
+  info.wordsPracticed = learnedToday.length || 0;
+  info.wordsPerDay = properties.settings.wordsPerDay || 30;
+  info.wordsLearned = learnedWords.length || 0;
   info.cardsPerDay = localStorage.getItem('cardsLimit') ? localStorage.getItem('cardsLimit') : 50;
   info.cardsCompleted = getAmountOfDoneCards();
 }

@@ -1,6 +1,7 @@
 const defaultSettings = {
   wordsPerDay: 30,
   optional: {
+    today: '',
     currentWordIndex: 0,
     cardsLimit: 50,
     currentGroup: 0,
@@ -17,6 +18,7 @@ const defaultSettings = {
     moveToDifficultBtn: true,
     wordTranslationHint: true,
     sentencesTranslation: true,
+    learnedToday: 0,
   },
 };
 

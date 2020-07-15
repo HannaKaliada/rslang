@@ -3,6 +3,7 @@ import updateUserWord from '../../../services/updateUserWord';
 import properties from '../properties';
 import getUserWord from '../../../services/getUserWord';
 import updateDifficulty from './updateDifficulty';
+import getDate from '../../../shared/getDate';
 
 export default async function saveLearnedWords(category) {
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -28,6 +29,7 @@ export default async function saveLearnedWords(category) {
       difficulty: properties.difficulty,
       optional: {
         learned: true,
+        learnedDate: getDate(),
         repeat: 0,
         timestamp: new Date(),
       },
