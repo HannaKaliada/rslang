@@ -1,18 +1,17 @@
+@import "../../../styles/mixins.scss";
+
 .savanna-game-wrapper {
-  background: url(./src/background.jpg) no-repeat;
   height: 100vh;
-  -moz-background-size: 100%;
-  -webkit-background-size: 100%;
-  -o-background-size: 100%;
-  background-size: 100%;
+  text-align: center;
+  color: #263238;
   .fidelity-container {
     position: relative;
     @keyframes change-width {
       0% {
-       width:  100px;
+        width: 100px;
       }
       100% {
-        width:  200px;
+        width: 200px;
       }
     }
     .fidelity {
@@ -25,28 +24,55 @@
       .true {
         fill: green;
       }
-      .false{
-        fill:red;
+      .false {
+        fill: red;
       }
     }
   }
-  .content-true{
+  .savanna__buttons {
+    display: flex;
+    justify-content: center;
+    button:first-child{
+      margin-right: 20px;
+    }
+  }
+  .savanna__buttons:first-child{
+    margin-bottom: 20px;
+  }
+  .content-true {
     border-bottom: 2px solid;
   }
-  .level-difficulty{
+  .content-false {
+    margin-top: 30px;
+  }
+  .level-difficulty {
     font-size: 24px;
   }
   #play-btn {
     margin-left: 11px;
     padding: 1px 6px;
+    color: #ffffff;
   }
   .btn-next-repeat {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    margin-top: 50px;
   }
   span {
     margin-right: 5px;
+  }
+  .list-group {
+    width: 60%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem;
+    font-size: 1.8rem;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.04);
+    border-radius: 28px;
+    background-color: #ffffff;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+    .btn_small {
+      padding: 0.8rem 3rem;
+    }
   }
   .list-group-item {
     display: flex;
@@ -73,7 +99,7 @@
     font-size: 20px;
     font-weight: 600;
     transition: top 8s linear;
-    background: #FFFF00;
+    background: #ffdd64;
     border-top-left-radius: 18em 1em;
     border-bottom-right-radius: 22em 1em;
   }
@@ -108,21 +134,43 @@
   }
   .word-btn {
     display: block;
-    width: 200px !important;
     height: 50px;
     margin: 10px;
-    padding: 0;
   }
-
   .game-words {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    flex-wrap: wrap;
     min-width: 300px;
     min-height: 50em;
   }
   .dropdown {
     display: flex;
+  }
+  .dropdown:first-child {
+    .btn_dropdown {
+      margin-right: 20px;
+    }
+  }
+  .d-flex {
+    justify-content: center;
+  }
+}
+
+@include mobile() {
+  .savanna-game-wrapper {
+    .list-group {
+      width: 90%;
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@include tablet() {
+  .savanna-game-wrapper {
+    .list-group {
+      width: 80%;
+    }
   }
 }

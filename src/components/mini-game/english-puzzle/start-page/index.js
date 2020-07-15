@@ -93,12 +93,14 @@ async function start() {
 
 function createStartPage() {
   const titleText = 'english puzzle';
-  const title = createDomElem('h1', ['start-page__title'], [titleText.toUpperCase()]);
+  const image = document.createElement('img');
+  image.src = require('../../../../assets/images/puzzle-2.png');
   const subtitleText = 'Click on words, collect phrases. <br> Words can be drugs and drop. Select tooltips in the menu';
-  const subtitle = createDomElem('p', ['start-page__subtitle']);
+  const subtitle = createDomElem('p', ['start-page__subtitle', 'info']);
   subtitle.innerHTML = subtitleText;
-  const btn = createDomElem('button', ['start-page__btn', 'btn', 'btn-primary'], ['Start']);
-  const page = createDomElem('div', ['start-page'], [title, subtitle, btn]);
+  const btn = createDomElem('button', ['start-page__btn', 'btn', 'btn-primary', 'btn_yellow'], ['Start']);
+  const puzzleContainer = createDomElem('div', ['game-rules', 'card'], [image, subtitle, btn]);
+  const page = createDomElem('div', ['start-page'], [puzzleContainer]);
   page.addEventListener('click', (e) => {
     if (e.target === btn) {
       e.currentTarget.remove();

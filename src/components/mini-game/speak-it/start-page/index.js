@@ -6,20 +6,22 @@ import getUserStatistic from '../../../../services/getUserStastics';
 import setUserStatistics from '../../../../services/setUserStatistics';
 import ErrorMsg from '../error';
 import LevelControls from '../controls/level-controls';
+import createElement from '../../../../shared/createElement';
 
 function createStartPage(node) {
-  const tittle = 'speakit';
   const subTittle = [
     'Click on the words to hear them sound.',
     document.createElement('br'),
     'Click on the button and speak the words into the microphone.',
   ];
   const btn = 'START';
-  const startPageTitle = createDomElem('h1', ['start-page__title'], [tittle.toUpperCase()]);
-  const startPageSubTitle = createDomElem('p', ['start-page__subtitle'], [...subTittle]);
-  const startPageBtn = createDomElem('button', ['start-page__btn', 'btn', 'btn-primary'], [btn]);
+  const image = createElement('img');
+  image.src = require('../../../../assets/images/speakit-2.png');
+  const startPageSubTitle = createDomElem('p', ['start-page__subtitle', 'info'], [...subTittle]);
+  const startPageBtn = createDomElem('button', ['start-page__btn', 'btn', 'btn-primary', 'btn_yellow'], [btn]);
+  const startPageContainer = createDomElem('div', ['game-rules', 'card'], [image, startPageSubTitle, startPageBtn]);
   const startPage = createDomElem(
-    'div', ['start-page'], [startPageTitle, startPageSubTitle, startPageBtn],
+    'div', ['start-page'], [startPageContainer]
   );
   async function toContent() {
     let page = 0;

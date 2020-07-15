@@ -217,7 +217,7 @@ class GamePage {
   }
 
   createGameButton() {
-    this.gameButton = this.createElement('button', ['audio-call__game-button', 'btn', 'btn-secondary']);
+    this.gameButton = this.createElement('button', ['audio-call__game-button', 'btn', 'btn_yellow']);
     this.gameButton.textContent = "I don't know";
     this.gameButton.dataset.value = "I don't know";
     this.gameButton.addEventListener('click', this.gameButtonHandler.bind(this));
@@ -287,7 +287,7 @@ class GamePage {
   }
 
   createHintButton() {
-    const button = this.createElement('button', ['audio-call__hint-button', 'btn', 'btn-secondary']);
+    const button = this.createElement('button', ['audio-call__hint-button', 'btn', 'btn_yellow']);
     button.textContent = 'Get a hint';
     button.addEventListener('click', this.hintButtonHandler.bind(this));
     return button;
@@ -303,9 +303,17 @@ class GamePage {
     const flexContainer = this.createElement('div', 'flex-container');
     flexContainer.append(this.createLevelControls(), this.createScoreBlock());
     elements.push(createHeader(), flexContainer);
-    elements.push(this.createSoundIcon(), this.createShowAnswerBlock());
-    elements.push(this.createVariantsBlock(), this.createGameButton());
-    elements.push(this.createHintButton());
+    const gameBlock = this.createElement('div', ['card', 'audio-call__main-elements']);
+    gameBlock.append(this.createSoundIcon(), this.createShowAnswerBlock());
+
+    gameBlock.append(this.createVariantsBlock());
+    const btns = this.createElement('div', 'audio-call__buttons');
+    btns.append(this.createGameButton(), this.createHintButton());
+    gameBlock.append(btns);
+    elements.push(gameBlock);
+    // elements.push(this.createSoundIcon(), this.createShowAnswerBlock());
+    // elements.push(this.createVariantsBlock(), this.createGameButton());
+    // elements.push(this.createHintButton());
     return elements;
   }
 
@@ -315,6 +323,12 @@ class GamePage {
     const message = this.createElement('p', 'audio-call_message');
     message.innerText = 'Loading, please wait';
     return [loader, message];
+  }
+
+  closeBtnHandler(){
+    document.querySelector('#audio-call-close').addEventListener('click', () => {
+      window.location.hash = '#/audiocall';
+    });
   }
 
   async init(e) {

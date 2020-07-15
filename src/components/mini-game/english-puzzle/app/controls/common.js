@@ -15,7 +15,7 @@ export function createList(count, name) {
 function createDropdown(curNum, name, listNum) {
   const btn = createDomElem(
     'button',
-    ['btn', 'btn-primary', 'dropdown-toggle'],
+    ['btn', 'btn-secondary', 'dropdown-toggle'],
     [`${name[0].toUpperCase() + name.substring(1)}: ${curNum + 1}`],
     [['type', 'button'], ['data-toggle', 'dropdown'], ['aria-haspopup', 'true'], ['aria-expanded', 'false']],
   );
