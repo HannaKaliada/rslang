@@ -43,14 +43,18 @@
     height: 500px;
 
     .menu__item.active {
+      background-color: #FFDD64;
+      margin: 0;
+      padding: 20px;
       .menu-item__label {
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
     .menu__item {
       display: flex;
-      height: 30px;
+      height: 48px;
       margin: 0 20px;
+      align-items: center;
 
       .menu-item__label {
         color: #A6A6A6;

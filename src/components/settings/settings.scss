@@ -135,3 +135,23 @@
     text-align: center;
   }
 }
+
+@include tablet() {
+  .settings__wrapper {
+    padding: 0;
+    .settings {
+      max-width: 700px;
+      padding: 0;
+    }
+  }
+}
+
+@include mobile() {
+  .settings__wrapper {
+    padding: 0;
+    .settings {
+      max-width: 300px;
+      padding: 0;
+    }
+  }
+}

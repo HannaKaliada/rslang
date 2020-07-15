@@ -7,6 +7,7 @@
   grid-template-columns: max-content;
   margin: 0;
   padding: 0;
+  max-width: 100%;
 
   .games-page {
     grid-area: games;
@@ -66,6 +67,7 @@
 
 @include tablet(){
   .games-page__wrapper {
+    max-width: 100%;
     grid-template-areas: "header"
     "games";
     grid-template-columns: auto;
@@ -83,14 +85,29 @@
   }
 }
 
+@media (max-width: 660px) {
+  .games-page {
+    margin: 0 10px 0 80px;
+    .games {
+      display: flex;
+      flex-direction: column;
+      .game {
+        width: 100% !important;
+      }
+    }
+  }
+}
+
 @include mobile(){
   .games-page__wrapper {
+    max-width: 100%;
     grid-template-areas: "header"
     "games";
     grid-template-columns: auto;
     .games-page {
-      margin-left: 80px;
+      margin: 0 10px 0 80px;
       .games {
+        display: flex;
         flex-direction: column;
         .game {
           width: 100%;
