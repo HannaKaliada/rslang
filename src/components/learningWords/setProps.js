@@ -3,6 +3,7 @@ import properties from './properties';
 import createLearningData from './intervalRepeat/createLearningData';
 
 export default async function setProps() {
+  localStorage.setItem('currentWord', 0);
   properties.settings = {
     wordsPerDay: localStorage.getItem('wordsLimit'),
     optional: {
@@ -34,7 +35,11 @@ export default async function setProps() {
   properties.words = [];
   const learnedWords = await createLearningData();
   properties.words.push(...learnedWords);
-  properties.words.push(...words.slice(properties.currentWord - 1));
+  properties.words.push(...words.filter((el) => {
+    const value = learnedWords.find((elem) => elem.id === el.id);
+    return !value;
+  }));
+  console.log(properties);
   const localAllWords = words.map((el) => {
     // eslint-disable-next-line
     el.answer = "none";

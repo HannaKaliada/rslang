@@ -4,11 +4,11 @@ import postUserSettings from '../../services/postUserSettings';
 
 export default async function checkWordAndPage() {
   const settings = properties.settings.optional;
-  if (settings.wordExample === 'true' && settings.wordTranslation === 'true') {
+  if (String(settings.wordExample) === 'true' && String(settings.wordTranslation) === 'true') {
     document.querySelector('.sentence .hidden-word').textContent = properties.words[settings.currentWord].textExample.match(/(?<=\>).*(?=\<)/);
   }
-  if ((settings.wordMeaning === 'true' && settings.wordExample === 'true')
-    || (settings.wordMeaning === 'true' && settings.wordTranslation === 'true')) {
+  if ((String(settings.wordMeaning) === 'true' && String(settings.wordExample) === 'true')
+    || (String(settings.wordMeaning) === 'true' && String(settings.wordTranslation) === 'true')) {
     document.querySelector('.meaning .hidden-word').textContent = properties.words[settings.currentWord].textMeaning.match(/(?<=\>).*(?=\<)/);
   }
 

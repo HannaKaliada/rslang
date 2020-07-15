@@ -22,14 +22,14 @@ export default async function playAudio() {
   await checkWordAndPage();
   updateAmountOfDoneCards();
   goToTheNextWord();
-  if (!(settings.playWordExample === 'true') && !(settings.playWordMeaning === 'true')) {
+  if (!(String(settings.playWordExample) === 'true') && !(String(settings.playWordMeaning) === 'true')) {
     properties.currentWordPronunciation.onended = async () => {
       htmlDoc.removeEventListener('keydown', switchOffForm, true);
       htmlDoc.removeEventListener('click', switchOffForm, true);
     };
     return;
   }
-  if (settings.playWordExample === 'true' && !(settings.playWordMeaning === 'true')) {
+  if (String(settings.playWordExample) === 'true' && !(String(settings.playWordMeaning) === 'true')) {
     properties.currentWordPronunciation.onended = () => {
       properties.currentWordExample.play();
     };
@@ -39,7 +39,7 @@ export default async function playAudio() {
     };
     return;
   }
-  if (settings.playWordExample === 'true' && settings.playWordMeaning === 'true') {
+  if (String(settings.playWordExample) === 'true' && String(settings.playWordMeaning) === 'true') {
     properties.currentWordPronunciation.onended = () => {
       properties.currentWordExample.play();
     };

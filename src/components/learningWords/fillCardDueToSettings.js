@@ -5,7 +5,7 @@ export default function fillCardDueToSettings() {
   const sentence = document.querySelector('.sentence');
   const settings = properties.settings.optional;
 
-  if (settings.wordTranslation === 'true') {
+  if (String(settings.wordTranslation) === 'true') {
     properties.missingWord = properties.words[settings.currentWord].word;
 
     document.querySelector('.translation-input').insertAdjacentHTML('beforeend',
@@ -14,22 +14,22 @@ export default function fillCardDueToSettings() {
 
     document.querySelector('.word__card .translation').textContent = properties.words[settings.currentWord].wordTranslate;
 
-    if (settings.wordExample === 'true') {
+    if (String(settings.wordExample) === 'true') {
       sentence.insertAdjacentHTML('beforeend', `${properties.words[settings.currentWord].textExample.replace(/\<.*\>/,
         '<span class="hidden-word">[...]</span>')}`);
     }
-    if (settings.wordMeaning === 'true') {
+    if (String(settings.wordMeaning) === 'true') {
       meaning.insertAdjacentHTML('beforeend', `${properties.words[settings.currentWord].textMeaning.replace(/\<.*\>/,
         '<span class="hidden-word">[...]</span>')}`);
     }
-  } else if (settings.wordExample === 'true' && settings.wordTranslation === 'false') {
+  } else if (String(settings.wordExample) === 'true' && String(settings.wordTranslation) === 'false') {
     [properties.missingWord] = properties.words[settings.currentWord].textExample.match(/(?<=\>).*(?=\<)/);
 
     sentence.insertAdjacentHTML('beforeend', `${properties.words[settings.currentWord].textExample.replace(/\<.*\>/,
       `<input type="text" class="form-control word-input" maxlength="30">
     <span class="input-top-layer hidden"></span>`)}`);
 
-    if (settings.wordMeaning === 'true') {
+    if (String(settings.wordMeaning) === 'true') {
       meaning.insertAdjacentHTML('beforeend', `${properties.words[settings.currentWord].textMeaning.replace(/\<.*\>/,
         '<span class="hidden-word">[...]</span>')}`);
     }
@@ -41,10 +41,18 @@ export default function fillCardDueToSettings() {
     <span class="input-top-layer hidden"></span>`)}`);
   }
 
-  if (settings.wordTranscription === 'true') {
+  if (String(settings.wordTranscription) === 'true') {
     document.querySelector('.transcription').textContent = properties.words[settings.currentWord].transcription;
   }
-  if (settings.wordImage === 'true') {
+
+  if (String(settings.wordImage) === 'true') {
     document.querySelector('.word__card .image').src = properties.words[settings.currentWord].image;
+  }
+
+  if (String(settings.moveToDifficultBtn) === 'false') {
+    document.querySelector('.add-to-difficult').classList.add('hidden');
+  }
+  if (String(settings.intervalRepeating) === 'false') {
+    document.querySelector('.add-to-difficult').classList.add('hidden');
   }
 }

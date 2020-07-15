@@ -3,15 +3,13 @@ const postUserSettings = async (settings) => {
   const newSettings = settings;
   newSettings.wordsPerDay = Number(newSettings.wordsPerDay);
   for (const prop in newSettings.optional) {
-    if (!(isNaN(newSettings.optional[prop]))) {
+    if (newSettings.optional[prop] === 'true') {
+      newSettings.optional[prop] = true;
+    } else if (newSettings.optional[prop] === 'false') {
+      newSettings.optional[prop] = false;
+    } else if (!(isNaN(newSettings.optional[prop])) && newSettings.optional[prop] !== false
+    && newSettings.optional[prop] !== true) {
       newSettings.optional[prop] = Number(newSettings.optional[prop]);
-    } else {
-      if (newSettings.optional[prop] === 'true') {
-        newSettings.optional[prop] = true;
-      }
-      if (newSettings.optional[prop] === 'false') {
-        newSettings.optional[prop] = false;
-      }
     }
   }
   await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userInfo.userId}/settings`, {
