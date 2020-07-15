@@ -1,7 +1,9 @@
 import properties from '../properties';
 
 export default function createAudioObjects() {
+  console.log(properties);
   const currentWord = localStorage.getItem('currentWord');
+  console.log(currentWord);
   properties.currentWordPronunciation = new Audio();
   properties.currentWordPronunciation.src = properties.words[currentWord].audio;
   properties.currentWordExample = new Audio();

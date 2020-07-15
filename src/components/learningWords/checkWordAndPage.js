@@ -15,7 +15,11 @@ export default async function checkWordAndPage() {
   if (settings.currentWord < (properties.words.length - 1)) {
     localStorage.setItem('currentWord', Number(settings.currentWord) + 1);
     settings.currentWord = Number(settings.currentWord) + 1;
-    postUserSettings(properties.settings);
+    try {
+      await postUserSettings(properties.settings);
+    } catch (er) {
+      properties.error = er;
+    }
   } else {
     if (settings.currentPage < 30) {
       localStorage.setItem('currentPage', Number(settings.currentPage) + 1);

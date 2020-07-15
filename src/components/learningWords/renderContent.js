@@ -81,7 +81,4 @@ export default async function renderContent() {
       </div>
     </div>`);
   page.append(learnPage);
-  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  const { token, userId } = userInfo;
-  console.log(await getAllUserWords({ token, userId }));
 }
