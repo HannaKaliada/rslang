@@ -2,7 +2,6 @@ import createVolumeBlock from './pronunciation/createVolumeBlock';
 import createElement from '../../shared/createElement';
 import createProgressBar from './progressBar';
 import buttonsBlock from './intervalRepeat/buttonsBlock';
-import getAllUserWords from '../../services/getAllUserWords';
 
 export default async function renderContent() {
   const learnPage = createElement('div', 'learn-page__wrapper');
