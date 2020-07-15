@@ -6,15 +6,17 @@ import showTranslation from './showTranslation';
 import { updateAmountOfDoneCards } from './updateAmountOfDoneCards';
 import showMessage from './showMessage';
 import showStatistic from './showStatistic';
+import saveLearnedWords from './saveLearnedWords/saveLearnedWords';
 
 export default async function correctAnswer() {
+  await saveLearnedWords();
   if (properties.sound) {
     await playAudio();
     return;
   }
+  showTranslation();
   await checkWordAndPage();
   goToTheNextWord();
-  showTranslation();
   let currentWordIndex = localStorage.getItem('currentWordIndex');
   // eslint-disable-next-line
   currentWordIndex++;
@@ -22,8 +24,6 @@ export default async function correctAnswer() {
   showMessage();
   showStatistic();
   updateAmountOfDoneCards();
-  // eslint-disable-next-line
-  const settings = properties.settings.optional;
   document.querySelector('.submit-btn').classList.add('hidden');
   document.querySelector('.next-btn').classList.remove('hidden');
   document.querySelector('.show-answer-btn').classList.add('hidden');

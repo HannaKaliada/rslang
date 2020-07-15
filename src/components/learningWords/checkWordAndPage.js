@@ -4,18 +4,22 @@ import postUserSettings from '../../services/postUserSettings';
 
 export default async function checkWordAndPage() {
   const settings = properties.settings.optional;
-  if (settings.wordExample === 'true' && settings.wordTranslation === 'true') {
+  if (String(settings.wordExample) === 'true' && String(settings.wordTranslation) === 'true') {
     document.querySelector('.sentence .hidden-word').textContent = properties.words[settings.currentWord].textExample.match(/(?<=\>).*(?=\<)/);
   }
-  if ((settings.wordMeaning === 'true' && settings.wordExample === 'true')
-    || (settings.wordMeaning === 'true' && settings.wordTranslation === 'true')) {
+  if ((String(settings.wordMeaning) === 'true' && String(settings.wordExample) === 'true')
+    || (String(settings.wordMeaning) === 'true' && String(settings.wordTranslation) === 'true')) {
     document.querySelector('.meaning .hidden-word').textContent = properties.words[settings.currentWord].textMeaning.match(/(?<=\>).*(?=\<)/);
   }
 
-  if (settings.currentWord < 9) {
+  if (settings.currentWord < (properties.words.length - 1)) {
     localStorage.setItem('currentWord', Number(settings.currentWord) + 1);
     settings.currentWord = Number(settings.currentWord) + 1;
-    postUserSettings(properties.settings);
+    try {
+      await postUserSettings(properties.settings);
+    } catch (er) {
+      properties.error = er;
+    }
   } else {
     if (settings.currentPage < 30) {
       localStorage.setItem('currentPage', Number(settings.currentPage) + 1);
