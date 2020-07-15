@@ -11,7 +11,7 @@ const defaultSettings = {
     wordMeaning: true,
     wordTranscription: false,
     wordTranslation: true,
-    intervalRepeating: false,
+    intervalRepeating: true,
     deleteBtn: false,
     showAnswerBtn: true,
     moveToDifficultBtn: true,

@@ -2,7 +2,7 @@ import properties from './properties';
 import postUserSettings from '../../services/postUserSettings';
 
 export default function switchTranslationSettings() {
-  document.querySelector('.learning-settings').addEventListener('click', (event) => {
+  document.querySelector('.learning-settings').addEventListener('click', async (event) => {
     const settings = properties.settings.optional;
     if (event.target.classList.contains('btn') && !event.target.classList.contains('active')) {
       event.target.parentNode.querySelectorAll('.btn').forEach((button) => {
@@ -16,7 +16,7 @@ export default function switchTranslationSettings() {
         localStorage.setItem('sentencesTranslation', event.target.dataset.sentencesTranslation);
         settings.sentencesTranslation = event.target.dataset.sentencesTranslation;
       }
-      postUserSettings(properties.settings);
+      await postUserSettings(properties.settings);
     }
   });
 }

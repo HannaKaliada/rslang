@@ -7,6 +7,6 @@ export default async function renderDifficultWords(userId, token) {
   wrapper.dataset.type = 'difficult-tab';
   const words = await getHardUserWords(userId, token);
   words.forEach((word) => {
-    tab.append(renderWordBlock(word.optional));
+    tab.append(renderWordBlock(word));
   });
 }
