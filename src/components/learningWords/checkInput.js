@@ -27,7 +27,8 @@ export default function checkInput() {
       }
     } else {
       inputTopLayer.classList.remove('hidden');
-
+      wordArray[currentWordIndex].answer = 'false';
+      localStorage.setItem('localAllWords', JSON.stringify(wordArray));
       showWrongAndRightLetters();
 
       input.value = '';
