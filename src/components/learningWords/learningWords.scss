@@ -10,6 +10,7 @@
     "menu header"
     "menu learn";
   grid-template-columns: max-content;
+  min-height: 100vh;
 
   .learn-page {
     grid-area: learn;
@@ -212,7 +213,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 3rem;
-    
+
     .cards-amount-done,
     .cards-amount-all {
       display: inline-block;
@@ -226,6 +227,18 @@
 }
 
 @include tablet-and-mobile() {
+
+  .learn-page__wrapper {
+    display: grid;
+    grid-template-areas:
+      "header"
+      "learn";
+    grid-template-columns: auto;
+    .learn-page {
+      margin: 0;
+      margin-left: 80px;
+    }
+  }
   .learning-settings {
     .word-translation {
       margin-bottom: 10px;
@@ -239,6 +252,7 @@
   }
   .word {
     &__card {
+      padding: 50px;
       .sentence,
       .meaning {
         font-size: 18px;
@@ -247,10 +261,23 @@
   }
 }
 @include mobile() {
+  .learn-page__wrapper {
+    display: grid;
+    grid-template-areas:
+      "header"
+      "learn";
+    grid-template-columns: auto;
+    .learn-page {
+      margin:0 10px 0 80px;
+    }
+  }
+
   .word {
     &__card {
+      padding: 10px;
       .sentence,
       .meaning {
+        padding: 10px;
         font-size: 15px;
       }
       .meaning-translation,
