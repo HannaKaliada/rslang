@@ -187,7 +187,8 @@ body {
 
 .game-rules,
 .audio-call__main-elements,
-.audio-call__statistics {
+.audio-call__statistics,
+.speak-it .result__wrap {
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.04);
   border-radius: 28px;
   background-color: #ffffff;
@@ -214,7 +215,8 @@ body {
 @include mobile() {
   .game-rules,
   .audio-call__main-elements,
-  .audio-call__statistics {
+  .audio-call__statistics,
+  .speak-it .result__wrap {
     width: 90%;
     padding: 2rem;
     img {
@@ -226,7 +228,8 @@ body {
 @include tablet() {
   .game-rules,
   .audio-call__main-elements,
-  .audio-call__statistics {
+  .audio-call__statistics,
+  .speak-it .result__wrap {
     width: 80%;
   }
 }
