@@ -39,7 +39,6 @@ export default async function setProps() {
     const value = learnedWords.find((elem) => elem.id === el.id);
     return !value;
   }));
-  console.log(properties);
   const localAllWords = words.map((el) => {
     // eslint-disable-next-line
     el.answer = "none";

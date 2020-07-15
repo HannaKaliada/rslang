@@ -9,6 +9,7 @@ import englishPuzzle from '../components/mini-game/english-puzzle';
 import speakIt from '../components/mini-game/speak-it/start-page';
 import renderOurGamePage from '../components/mini-game/our-game/our-game-render-page';
 import audioCall from '../components/mini-game/audio-call/createAudioCallPage';
+import initVocabulary from '../components/vocabulary/initVocabulary';
 import renderStartSprintPage from '../components/mini-game/sprint/pages/StartSprintPage';
 import gamesPages from '../components/gamesPage/gamesPage';
 
@@ -52,6 +53,10 @@ const routes = {
   '#/savanna-game': {
     requiresAuth: true,
     render: renderSavannaPage,
+  },
+  '#/vocabulary': {
+    requiresAuth: true,
+    render: initVocabulary,
   },
   '#/sprint': {
     requiresAuth: true,

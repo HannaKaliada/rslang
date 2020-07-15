@@ -1,5 +1,5 @@
 const getAllUserWord = async ({ userId, token }) => {
-  const filter = {"userWord.optional.learned":true};
+  const filter = { 'userWord.optional.learned': true };
   const url = new URL(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/aggregatedWords`);
   url.searchParams.append('filter', JSON.stringify(filter));
   url.searchParams.append('wordsPerPage', 3600);
