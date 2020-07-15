@@ -5,7 +5,6 @@ export default async function createLearningData() {
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const { token, userId } = userInfo;
   const answer = await getAllUserWords({ token, userId });
-
   const learningData = [];
   const now = new Date();
   answer.forEach((el) => {

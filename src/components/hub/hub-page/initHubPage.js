@@ -10,16 +10,22 @@ import burgerIconHandler from '../../../shared/menu/burgerIconHandler';
 import setItemActiveState from '../../../shared/menu/setItemActiveState';
 import { getAmountOfDoneCards } from '../../learningWords/updateAmountOfDoneCards';
 import logoutButtonHandler from '../../../shared/header/logoutButtonHandler';
+import getAllUserWords from '../../../services/getAllUserWords';
 
-function updateHubPageInfo() {
-  info.cardsPerDay = localStorage.getItem('cardsLimit') ? localStorage.getItem('cardsLimit') : 80;
+async function updateHubPageInfo() {
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+  const { token, userId } = userInfo;
+  const learnedWords = await getAllUserWords({ userId, token });
+  console.log(learnedWords);
+  info.wordsLearned = learnedWords.length;
+  info.cardsPerDay = localStorage.getItem('cardsLimit') ? localStorage.getItem('cardsLimit') : 50;
   info.cardsCompleted = getAmountOfDoneCards();
 }
 
-export default function initHubPage() {
+export default async function initHubPage() {
   const root = document.querySelector('.root');
   const hub = createElement('div', 'hub');
-  updateHubPageInfo();
+  await updateHubPageInfo();
   hub.append(renderHeader(), renderHubPage(info), renderMenu());
   root.append(hub);
   burgerIconHandler();
