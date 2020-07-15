@@ -1,18 +1,21 @@
 .result {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   color: white;
-  background-color: #e5e5e5;
-  &__correct{
-    margin-bottom: 3rem;
-  }
-  &__wrong{
-    margin-bottom: 5rem;
+  background: linear-gradient(40deg, #45cafc,#303f9f);
+
+  &__wrap {
+    padding: 10px;
+
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
   }
 
   &__row {
@@ -20,16 +23,15 @@
 
     display: flex;
     align-items: center;
-    justify-content: center;
     margin-bottom: 10px;
 
     font-size: 20px;
-    color:  #263238;
+    color: #ffffff;
 
     cursor: pointer;
 
     &:hover {
-      background-color: #ffdd64;
+      background-color: #00bfff;
     }
   }
 
@@ -39,10 +41,6 @@
 
   &__btn {
     margin-right: 5px;
-  }
-
-  &__btn:first-child{
-    margin-right: 20px;
   }
 
   &__select {
@@ -57,29 +55,6 @@
     margin: 5px;
 
     font-size: 18px;
-    color: #ffdd64;
-  }
-}
-
-@include mobile(){
-  .result{
-    &__row {
-      font-size: 1.6rem;
-    }
-    &__controls{
-      display: flex;
-      justify-content: center;
-      button{
-        padding: 1.6rem 3rem;
-      }
-    }
-  }
-}
-
-@include tablet-and-mobile(){
-  .result{
-    &__controls{
-      justify-content: center;
-    }
+    color: yellow;
   }
 }

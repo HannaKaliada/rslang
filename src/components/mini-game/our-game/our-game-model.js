@@ -76,7 +76,6 @@ const model = {
   },
   trueCheck(bool) {
     if (this.answer === bool) {
-
       this.rightAnswers += 1;
       view.screenAlert(true);
       this.arrayOfAnswers[this.arrayOfAnswers.length - 1].answer = true;

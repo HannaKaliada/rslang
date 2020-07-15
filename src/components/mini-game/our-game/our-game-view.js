@@ -41,8 +41,8 @@ const view = {
     contentTrue += '</div>';
 
     const buttons = `<div class="btn-next-menu">
-    <button type="button" id="game-menu-btn" class="btn  btn_yellow btn_small">Menu</button>
-    <button type="button" id="repeat-level-btn" class="btn  btn_yellow btn_small">Repeat Lvl</button>
+    <button type="button" id="repeat-level-btn" class="btn  btn-primary">Repeat Level</button>
+    <button type="button" id="game-menu-btn" class="btn  btn-primary">Game menu</button>
     </div>`;
     ul.insertAdjacentHTML('beforeend', contentTrue + contentFalse + buttons);
   },
@@ -89,9 +89,8 @@ const view = {
     const sideContainer = document.createElement('div');
     const greenSide = document.createElement('div');
     const redSide = document.createElement('div');
-
-    const closeBtn = `<a id="game-menu-btn" class="btn btn-secondary btn-close active btn-close-svg" role="button" aria-pressed="true">
-    <svg id="game-menu-btn" width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    const closeBtn = `<a id="game-menu-btn" class="btn btn-secondary btn-close active" role="button" aria-pressed="true">
+    <svg id="game-menu-btn" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path id="game-menu-btn" fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
   <path id="game-menu-btn" fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
 </svg>
