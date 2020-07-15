@@ -14,7 +14,19 @@ const getAllUserWord = async ({ userId, token }) => {
   });
   if (rawResponse.ok) {
     const content = await rawResponse.json();
-    return content;
+    const result = content[0].paginatedResults;
+    return result.map((el) => {
+      const newElem = el;
+      const {
+        image, audio, audioMeaning, audioExample, _id,
+      } = newElem;
+      newElem.image = `https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/${image}`;
+      newElem.audio = `https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/${audio}`;
+      newElem.audioMeaning = `https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/${audioMeaning}`;
+      newElem.audioExample = `https://raw.githubusercontent.com/HannaKaliada/rslang-data/master/${audioExample}`;
+      newElem.id = _id;
+      return el;
+    });
   }
   throw new Error('Getting users word error');
 };
