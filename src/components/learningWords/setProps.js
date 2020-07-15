@@ -1,29 +1,8 @@
 import getWords from '../../shared/getWords';
 import properties from './properties';
+import createLearningData from './intervalRepeat/createLearningData';
 
 export default async function setProps() {
-  const words = await getWords(
-    localStorage.getItem('currentPage'),
-    localStorage.getItem('currentGroup'),
-  );
-  properties.words = words;
-  const localAllWords = words.map((el) => {
-    // eslint-disable-next-line
-    el.answer = "none";
-    return el;
-  });
-
-  const localAllWords1 = JSON.parse(localStorage.getItem('localAllWords')) || [];
-
-  if (localAllWords1.length === 0) {
-    localStorage.setItem('currentWordIndex', 0);
-  }
-
-  if (localAllWords1.length === 0 || localAllWords1[0].word !== localAllWords[0].word) {
-    const localAllWords2 = [...localAllWords1, ...localAllWords];
-    localStorage.setItem('localAllWords', JSON.stringify(localAllWords2));
-  } else localStorage.setItem('localAllWords', JSON.stringify(localAllWords));
-
   properties.settings = {
     wordsPerDay: localStorage.getItem('wordsLimit'),
     optional: {
@@ -48,4 +27,30 @@ export default async function setProps() {
       playWordMeaning: localStorage.getItem('playWordMeaning'),
     },
   };
+  const words = await getWords(
+    localStorage.getItem('currentPage'),
+    localStorage.getItem('currentGroup'),
+  );
+  properties.words = [];
+  const learnedWords = await createLearningData();
+  properties.words.push(...learnedWords);
+  properties.words.push(...words.slice(properties.currentWord - 1));
+  const localAllWords = words.map((el) => {
+    // eslint-disable-next-line
+    el.answer = "none";
+    return el;
+  });
+
+  const localAllWords1 = JSON.parse(localStorage.getItem('localAllWords')) || [];
+
+  if (localAllWords1.length === 0) {
+    localStorage.setItem('currentWordIndex', 0);
+  }
+
+  if (localAllWords1.length === 0 || localAllWords1[0].word !== localAllWords[0].word) {
+    const localAllWords2 = [...localAllWords1, ...localAllWords];
+    localStorage.setItem('localAllWords', JSON.stringify(localAllWords2));
+  } else localStorage.setItem('localAllWords', JSON.stringify(localAllWords));
+
+  console.log(properties);
 }

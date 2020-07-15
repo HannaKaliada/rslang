@@ -20,7 +20,9 @@ export default async function saveLearnedWords(category) {
     if (category) {
       word.optional.category = category;
     }
-    await updateUserWord({ userId, wordId, word, token });
+    await updateUserWord({
+      userId, wordId, word, token,
+    });
   } catch (er) {
     word = {
       difficulty: properties.difficulty,
@@ -33,7 +35,9 @@ export default async function saveLearnedWords(category) {
     if (category) {
       word.optional.category = category;
     }
-    await createUserWord({ userId, wordId, word, token });
+    await createUserWord({
+      userId, wordId, word, token,
+    });
     properties.difficulty = 'hard';
     properties.category = null;
   }

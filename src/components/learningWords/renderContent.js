@@ -4,7 +4,7 @@ import createProgressBar from './progressBar';
 import buttonsBlock from './intervalRepeat/buttonsBlock';
 import getAllUserWords from '../../services/getAllUserWords';
 
-export default function renderContent() {
+export default async function renderContent() {
   const learnPage = createElement('div', 'learn-page__wrapper');
   const page = document.querySelector('.root');
   learnPage.insertAdjacentHTML('beforeend',
@@ -81,4 +81,7 @@ export default function renderContent() {
       </div>
     </div>`);
   page.append(learnPage);
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+  const { token, userId } = userInfo;
+  console.log(await getAllUserWords({ token, userId }));
 }

@@ -45,6 +45,7 @@ class CreateSignInSignUpPage {
         try {
           await signInUser(credentials);
           const settings = await getUserSettings();
+          console.log(settings);
           setSettingsToLocalStorage(settings);
           setProps();
           info.userEmail = credentials.email;

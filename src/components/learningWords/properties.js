@@ -1,7 +1,7 @@
 const properties = {
   words: [],
   missingWord: '',
-  difficulty: 'strong',
+  difficulty: 'hard',
   settings: {
     wordsPerDay: '',
     optional: {
