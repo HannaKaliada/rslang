@@ -1,8 +1,11 @@
 import getWords from '../../shared/getWords';
 import properties from './properties';
 import createLearningData from './intervalRepeat/createLearningData';
+import getAllUserWords from '../../services/getAllUserWords';
 
 export default async function setProps() {
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+  const { userId, token } = userInfo;
   localStorage.setItem('currentWord', 0);
   properties.settings = {
     wordsPerDay: localStorage.getItem('wordsLimit'),
@@ -33,8 +36,9 @@ export default async function setProps() {
     localStorage.getItem('currentGroup'),
   );
   properties.words = [];
-  const learnedWords = await createLearningData();
-  properties.words.push(...learnedWords);
+  const wordsToRepeat = await createLearningData();
+  const learnedWords = await getAllUserWords({ userId, token });
+  properties.words.push(...wordsToRepeat);
   properties.words.push(...words.filter((el) => {
     const value = learnedWords.find((elem) => elem.id === el.id);
     return !value;
