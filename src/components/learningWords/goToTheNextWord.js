@@ -9,26 +9,6 @@ export default function goToTheNextWord() {
   const currentWordIndex = localStorage.getItem('currentWordIndex');
 
   nextBtn.addEventListener('click', () => {
-    console.log(properties);
-    // const currentWord = properties.words[properties.optional.currentWord - 1];
-    // console.log(properties);
-    // const difficulty = 'easy';
-    // const wordInfo = {
-    //   word: currentWord,
-    //   image: currentWord.image,
-    //   audio: currentWord.audio,
-    //   textMeaning: currentWord.textMeaning,
-    //   textExample: currentWord.textExample,
-    // };
-    // const word = {
-    //   difficulty,
-    //   optional: wordInfo,
-    // };
-    // const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    // createUserWord({
-    //   userId: userInfo.userId, wordId: currentWord.id, word, token: userInfo.token,
-    // });
-
     const wordArray = JSON.parse(localStorage.getItem('localAllWords'));
     if (wordArray[currentWordIndex].answer === 'none') {
       wordArray[currentWordIndex].answer = 'false';
