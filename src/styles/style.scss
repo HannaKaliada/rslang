@@ -57,7 +57,7 @@ body {
 
 .btn_yellow,
 .btn-primary {
-  background: #ffdd64;
+  background-color: #ffdd64;
   box-shadow: 0 0.4rem 1.2rem #ffdd64;
 }
 
@@ -71,7 +71,7 @@ body {
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary:focus {
-  background: #ffc727 !important;
+  background-color: #ffc727 !important;
   box-shadow: 0 0.4rem 1.2rem #ffc727;
 }
 
@@ -188,7 +188,8 @@ body {
 .game-rules,
 .audio-call__main-elements,
 .audio-call__statistics,
-.speak-it .result__wrap {
+.speak-it .result__wrap,
+.puzzle .result__wrap {
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.04);
   border-radius: 28px;
   background-color: #ffffff;
@@ -216,7 +217,8 @@ body {
   .game-rules,
   .audio-call__main-elements,
   .audio-call__statistics,
-  .speak-it .result__wrap {
+  .speak-it .result__wrap,
+  .puzzle .result__wrap{
     width: 90%;
     padding: 2rem;
     img {
@@ -229,7 +231,8 @@ body {
   .game-rules,
   .audio-call__main-elements,
   .audio-call__statistics,
-  .speak-it .result__wrap {
+  .speak-it .result__wrap,
+  .puzzle .result__wrap {
     width: 80%;
   }
 }
