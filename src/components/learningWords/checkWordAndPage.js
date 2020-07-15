@@ -12,7 +12,7 @@ export default async function checkWordAndPage() {
     document.querySelector('.meaning .hidden-word').textContent = properties.words[settings.currentWord].textMeaning.match(/(?<=\>).*(?=\<)/);
   }
 
-  if (settings.currentWord < 9) {
+  if (settings.currentWord < (properties.words.length - 1)) {
     localStorage.setItem('currentWord', Number(settings.currentWord) + 1);
     settings.currentWord = Number(settings.currentWord) + 1;
     postUserSettings(properties.settings);

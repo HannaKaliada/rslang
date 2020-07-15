@@ -51,6 +51,4 @@ export default async function setProps() {
     const localAllWords2 = [...localAllWords1, ...localAllWords];
     localStorage.setItem('localAllWords', JSON.stringify(localAllWords2));
   } else localStorage.setItem('localAllWords', JSON.stringify(localAllWords));
-
-  console.log(properties);
 }

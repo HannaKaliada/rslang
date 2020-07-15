@@ -16,7 +16,6 @@ export default function switchTranslationSettings() {
         localStorage.setItem('sentencesTranslation', event.target.dataset.sentencesTranslation);
         settings.sentencesTranslation = event.target.dataset.sentencesTranslation;
       }
-      console.log(properties.settings);
       await postUserSettings(properties.settings);
     }
   });
