@@ -7,17 +7,6 @@
   .d-flex {
     justify-content: center;
   }
-  .btn-close {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    padding: 0;
-    width: 28px;
-    height: 29px;
-    border-radius: 93px;
-    background-color: #7a6e6c !important;
-    border-color: #7a6e6c !important;
-  }
   .btn-danger {
     border-radius: 10px;
     background: #a65447;
@@ -286,6 +275,7 @@
     margin: 0 auto;
     margin-top: 30px;
     color: #263238;
+    margin-bottom: 50px;
     .info-arrow {
       font-size: 35px;
     }

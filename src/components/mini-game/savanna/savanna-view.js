@@ -75,8 +75,8 @@ const view = {
     const buttons = `<div class="btn-next-repeat">
     ${nextLevelBtn}
     ${nextDifficultyBtn}
-    <button type="button" id="repeat-level-btn" class="btn  btn-primary">Repeat Level</button>
-    <button type="button" id="game-menu-btn" class="btn  btn-primary">Game menu</button>
+    <button type="button" id="repeat-level-btn" class="btn  btn-primary">Repeat</button>
+    <button type="button" id="game-menu-btn" class="btn  btn-primary">menu</button>
     </div>`;
     ul.insertAdjacentHTML('beforeend', contentTrue + contentFalse + buttons);
   },
