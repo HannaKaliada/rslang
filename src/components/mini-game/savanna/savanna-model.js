@@ -30,7 +30,7 @@ const model = {
   trueCheck(word) {
     clearTimeout(this.timer);
 
-    if (word === this.answer) {
+    if (word.toLowerCase() === this.answer) {
       view.showFidelity(true);
       this.rightAnswer += 1;
       this.arrayOfAnswers[this.index % 10].answer = true;
@@ -63,7 +63,7 @@ const model = {
         this.answer = word[array[i]].word;
         this.translate = word[array[i]].wordTranslate;
       }
-      content += `<button type="button" id="word-btn" class="btn btn_small word-btn btn_gray">
+      content += `<button type="button" id="word-btn" class="btn word-btn btn_gray">
        ${word[array[i]].word}</button>`;
     }
     content += `<div class="translation">${this.translate}</div>`;

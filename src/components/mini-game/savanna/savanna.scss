@@ -8,10 +8,10 @@
     position: relative;
     @keyframes change-width {
       0% {
-       width:  100px;
+        width: 100px;
       }
       100% {
-        width:  200px;
+        width: 200px;
       }
     }
     .fidelity {
@@ -24,18 +24,28 @@
       .true {
         fill: green;
       }
-      .false{
-        fill:red;
+      .false {
+        fill: red;
       }
     }
   }
-  .content-true{
+  .savanna__buttons {
+    display: flex;
+    justify-content: center;
+    button:first-child{
+      margin-right: 20px;
+    }
+  }
+  .savanna__buttons:first-child{
+    margin-bottom: 20px;
+  }
+  .content-true {
     border-bottom: 2px solid;
   }
   .content-false {
     margin-top: 30px;
   }
-  .level-difficulty{
+  .level-difficulty {
     font-size: 24px;
   }
   #play-btn {
@@ -44,9 +54,6 @@
     color: #ffffff;
   }
   .btn-next-repeat {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     margin-top: 50px;
   }
   span {
@@ -134,6 +141,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     min-width: 300px;
     min-height: 50em;
   }
@@ -151,7 +159,7 @@
 }
 
 @include mobile() {
-  .savanna-game-wrapper{
+  .savanna-game-wrapper {
     .list-group {
       width: 90%;
       font-size: 1.6rem;
