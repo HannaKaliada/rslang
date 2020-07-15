@@ -11,25 +11,28 @@ export default function renderStartSprintPage() {
     `<div class="container vh-100 d-flex flex-column align-items-center justify-content-center">
     <img class="logo-game">
       <h1 class="title-game">Sprint</h1>
+      <p class="sprint-info">You are getting pair of random words in English with translation. Your goal to choose true matches as muach as you can and get the biggest score.</p>
     <div class="form-group row allign-items-center">
     <div class="col-md-6">
       <label for="ex1">Difficulity</label>
-      <select class="selectpicker form-control select-level">
+      <select class="selectpicker form-control select-level" data-style='btn btn-primary'>
         <option value="" selected hidden>Select level of difficulty...</option>
       </select>
     </div>
     <div class="col-md-6">
       <label for="ex1">№</label>
-      <select class="selectpicker form-control select-round">
+      <select class="selectpicker form-control select-round" data-size="5">
         <option value="" selected hidden>Select number of set...</option>
       </select>
   </div>
   </div>
   <button type="button" class="btn btn-primary btn-lg btn-block mt-4 btn-start">Start game</button>
+  <button type="button" class="btn btn-primary btn-lg btn-block mt-4 btn-exit">Exit</button>
   </div>`);
   initNumberOfLevels(6);
   initNumberOfRounds(30);
   initStartButton();
+  initEndButton();
 }
 
 function appendOption(selector, value) {
@@ -72,5 +75,14 @@ function initStartButton() {
         initSprintPage(result);
       }
     });
+  });
+}
+
+
+function initEndButton() {
+  const endButton = document.querySelector('.btn-exit');
+  endButton.addEventListener('click', () => {
+    console.log('exit');
+    window.location.hash = '#/hub';
   });
 }
