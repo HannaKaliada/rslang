@@ -77,7 +77,7 @@ export default function renderContent() {
         <label
           data-toggle="tooltip"
           data-placement="top"
-          title="Use the 'Again', 'Difficult', 'Good', 'Easy' buttons to specify the individual complexity of the studied word"
+          title="Use the 'Again', 'Hard', 'Good', 'Easy' buttons to specify the individual complexity of the studied word"
         >
           <input
             type="checkbox"

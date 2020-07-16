@@ -14,7 +14,7 @@ function createList(count, name) {
 function createDropdown(curNum, name, listNum) {
   const btn = createDomElem(
     'button',
-    ['btn', 'btn-primary', 'dropdown-toggle'],
+    ['btn', 'btn-secondary', 'dropdown-toggle'],
     [`${name[0].toUpperCase() + name.substring(1)}: ${curNum + 1}`],
     [['type', 'button'], ['data-toggle', 'dropdown'], ['aria-haspopup', 'true'], ['aria-expanded', 'false']],
   );
@@ -30,7 +30,6 @@ function createDropdown(curNum, name, listNum) {
 }
 
 export function createPages(curPage) {
-  console.log(curPage);
   const name = 'page';
   const listNum = 60;
   return createDropdown(curPage, name, listNum);

@@ -1,10 +1,13 @@
 import setInputWidth from './setInputWidth';
 import createAudioObjects from './pronunciation/createAudioObjects';
 import fillCardDueToSettings from './fillCardDueToSettings';
+import properties from './properties';
+import createUserWord from '../../services/createUserWord';
 
 export default function goToTheNextWord() {
   const nextBtn = document.querySelector('.next-btn');
   const currentWordIndex = localStorage.getItem('currentWordIndex');
+
   nextBtn.addEventListener('click', () => {
     const wordArray = JSON.parse(localStorage.getItem('localAllWords'));
     if (wordArray[currentWordIndex].answer === 'none') {

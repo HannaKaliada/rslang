@@ -11,13 +11,13 @@ export default function setTranslationSettings() {
     settings.wordTranslationHint = 'true';
   }
 
-  if (settings.wordTranslationHint === 'true') {
+  if (String(settings.wordTranslationHint) === 'true') {
     document.querySelector('.word-trans-on').classList.add('active');
   } else {
     document.querySelector('.word-trans-off').classList.add('active');
   }
 
-  if (settings.sentencesTranslation === 'true') {
+  if (String(settings.sentencesTranslation) === 'true') {
     document.querySelector('.sent-trans-on').classList.add('active');
   } else {
     document.querySelector('.sent-trans-off').classList.add('active');

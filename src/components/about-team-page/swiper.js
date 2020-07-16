@@ -16,13 +16,13 @@ export default function swiperInit() {
         slidesPerGroup: 1,
       },
       690: {
-        spaceBetween: 0,
+        spaceBetween: 30,
         slidesPerView: 2,
-        // slidesPerGroup: 2
+
       },
       1200: {
         slidesPerView: 3,
-        // slidesPerGroup: 3
+
       },
     },
     navigation: {

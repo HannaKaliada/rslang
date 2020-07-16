@@ -4,23 +4,9 @@
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 
-  background: linear-gradient(40deg, #45cafc,#303f9f);
-
-  &__title {
-    margin-bottom: 20px;
-    padding: 10px;
-
-    color: #ffffff;
-
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
-  }
-
-  &__subtitle {
-    font-size: 20px;
-    text-align: center;
-
-    @extend .start-page__title;
+  &__btn{
+    margin: 0 auto;
   }
 }

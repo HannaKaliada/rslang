@@ -116,8 +116,14 @@
 
 @include tablet() {
   .hub {
+    grid-template-areas:
+      "header"
+      "hub-page";
+    grid-template-columns: auto;
     .hub-page {
       .hub__wrapper {
+        margin-left: 80px;
+
         .hub__main-blocks {
           .hub__main-block {
             flex-direction: column;
@@ -151,8 +157,15 @@
 
 @include mobile() {
   .hub {
+    grid-template-areas:
+    "header"
+    "hub-page";
+    grid-template-columns: auto;
+
     .hub-page {
       .hub__wrapper {
+        margin-left: 80px;
+
         .hub__main-blocks {
           flex-direction: column;
           .hub__main-block {

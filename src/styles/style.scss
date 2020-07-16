@@ -33,7 +33,9 @@ body {
   background-color: #e5e5e5;
 }
 
-.btn, .btn-primary {
+.btn,
+.btn-primary,
+.btn-secondary {
   max-width: 27rem;
   padding: 1.6rem 5rem;
 
@@ -48,8 +50,14 @@ body {
   outline: none;
 }
 
-.btn_yellow, .btn-primary{
-  background: #ffdd64;
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn_yellow,
+.btn-primary {
+  background-color: #ffdd64;
   box-shadow: 0 0.4rem 1.2rem #ffdd64;
 }
 
@@ -59,8 +67,11 @@ body {
   background: #a6a6a6;
 }
 
-.btn_yellow:hover, .btn-primary:hover, .btn-primary:active,.btn-primary:focus {
-  background: #ffc727 !important;
+.btn_yellow:hover,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  background-color: #ffc727 !important;
   box-shadow: 0 0.4rem 1.2rem #ffc727;
 }
 
@@ -81,6 +92,18 @@ body {
   padding: 0.8rem 2rem;
 
   font-size: 1.4rem;
+}
+
+.btn-close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  padding: 0;
+  width: 28px;
+  height: 29px;
+  border-radius: 93px;
+  background-color: #7a6e6c !important;
+  border-color: #7a6e6c !important;
 }
 
 .form-container {
@@ -160,4 +183,56 @@ body {
 
 .invalid-password {
   outline: 2px solid #ff4c4c;
+}
+
+.game-rules,
+.audio-call__main-elements,
+.audio-call__statistics,
+.speak-it .result__wrap,
+.puzzle .result__wrap {
+  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.04);
+  border-radius: 28px;
+  background-color: #ffffff;
+  max-width: 800px;
+  text-align: center;
+  height: unset;
+  padding: 4rem;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  img {
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .info {
+    margin-bottom: 6rem;
+    color: #051553;
+    font-size: 2rem;
+  }
+}
+
+@include mobile() {
+  .game-rules,
+  .audio-call__main-elements,
+  .audio-call__statistics,
+  .speak-it .result__wrap,
+  .puzzle .result__wrap{
+    width: 90%;
+    padding: 2rem;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@include tablet() {
+  .game-rules,
+  .audio-call__main-elements,
+  .audio-call__statistics,
+  .speak-it .result__wrap,
+  .puzzle .result__wrap {
+    width: 80%;
+  }
 }

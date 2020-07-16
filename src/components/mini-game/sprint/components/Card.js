@@ -8,16 +8,16 @@ export default class Card {
     container.insertAdjacentHTML('beforeend',
       `
     <div class="card">
-    <h5 class="card-header text-center bg-success">
+    <h5 class="card-header text-center bg-yellow">
       <span class="dot"></span>
       <span class="dot"></span>
       <span class="dot"></span>
       <p class="info"></p>
     </h5>
-  <div class="card-body text-center">
+  <div class="card-body card-sprint text-center">
     <div class="words">
-      <h5 class="word_english mb-4"> </h5>
-      <h5 class="word_russian"> </h5>
+      <h3 class="word_english mb-4"> </h3>
+      <h3 class="word_russian"> </h5>
     </div>
   </div>
   </div>`);

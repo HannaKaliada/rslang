@@ -6,9 +6,7 @@ export default function renderContentOurGamePage() {
     localStorage.setItem('our-game-difficulty', 1);
   }
   const page = document.querySelector('.root');
-  const links = `<div class="our-game-wrapper"><div class="links"> <h1>Our game page:</h1>
-      <h1 ><a href="#/">Main</a></h1>
-       </div>`;
+  const links = `<div class="our-game-wrapper">`;
   let dropDown = '';
   for (let i = 1; i <= 30; i += 1) dropDown += ` <a class="dropdown-item" id="dropdown-level" >${i}</a>`;
   let content = `
@@ -17,7 +15,7 @@ export default function renderContentOurGamePage() {
   )}  difficulty:${localStorage.getItem('our-game-difficulty')}</span></div>
     <div class="d-flex">
     <div class="dropdown mr-1">
-      <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+      <button type="button" class="btn btn_gray btn_dropdown dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
         Level
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
@@ -26,7 +24,7 @@ export default function renderContentOurGamePage() {
     </div>
 
     <div class="dropdown mr-1">
-      <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+      <button type="button" class="btn btn_gray btn_small btn_dropdown dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
         Difficulty
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -41,8 +39,11 @@ export default function renderContentOurGamePage() {
 
     </div>
 
-    <button type="button" id="srart-btn" class="btn mx-auto btn-primary">Start game</button>
-    <p class="info">В этой игре с левой и правой стороны написано описание слова, вам нужно правильно сопоставить их посредством кнопок и клавиш(процессом игры можно управлять стрелками <span class="info-arrow">← →</span>  на клавиатуре и кнопками непосредственно на самом экране). Игра закончится по истечению таймера или по прохождению 10 слов.<p>
+    <div class="card game-rules">
+    <img src="${require('../../../assets/images/teamgame-2.png')}">
+    <p class="info">There are descriptions of two different words on the left and right sides. Your task is to match the words with there meaning correctly. You can use the arrows ← → and keyboard keys to correlate words and meanings. The game ends when the timer expires or after 10 words have passed.</p>
+    <button type="button" id="srart-btn" class="btn btn_yellow mx-auto">Start</button>
+    </div>
   `;
 
   content = `${links + content}</div>`;
