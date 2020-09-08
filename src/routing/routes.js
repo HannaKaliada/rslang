@@ -12,6 +12,7 @@ import audioCall from '../components/mini-game/audio-call/createAudioCallPage';
 import initVocabulary from '../components/vocabulary/initVocabulary';
 import renderStartSprintPage from '../components/mini-game/sprint/pages/StartSprintPage';
 import gamesPages from '../components/gamesPage/gamesPage';
+import renderTestGraph from '../components/chart/renderGraph';
 
 const routes = {
   '#/': {
@@ -69,6 +70,10 @@ const routes = {
   '#/games': {
     requiresAuth: true,
     render: gamesPages,
+  },
+  '#/chart': {
+    requiresAuth: true,
+    render: renderTestGraph,
   },
 };
 
